@@ -3,7 +3,7 @@
 
   # 🪵 Woodman
 
-  **Guide de Référence Complet pour Claude Code & Speckit**
+  **Guide de Référence Complet pour Claude Code & Speckit - Cheatsheets and Cheaptricks**
 
   [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/yourusername/woodman)
   [![Node](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen.svg)](https://nodejs.org/)
@@ -354,6 +354,7 @@ Pour questions ou problèmes:
 - [Documentation Claude Code](https://code.claude.com/docs)
 - [Speckit Repository](https://github.com/github/spec-kit)
 - [awesomeclaude.ai](https://awesomeclaude.ai)
+- Woodman - Oddity Movies
 
 ---
 
@@ -361,6 +362,6 @@ Pour questions ou problèmes:
 
   **Fait avec ❤️ et <img src="woodman-mini.png" alt="🪵" width="16" height="16" style="vertical-align: middle;"/> par la communauté**
 
-  [⭐ Star sur GitHub](https://github.com/yourusername/woodman) • [🐛 Reporter un Bug](https://github.com/yourusername/woodman/issues) • [💡 Demander une Feature](https://github.com/yourusername/woodman/issues)
+  [⭐ Star sur GitHub](https://github.com/izo/woodman) • [🐛 Reporter un Bug](https://github.com/izo/woodman/issues) • [💡 Demander une Feature](https://github.com/izo/woodman/issues)
 
 </div>
