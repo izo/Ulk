@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🪵 Woodman - Guide Complet Claude Code & Speckit</title>
+    <meta name="description" content="Guide de référence complet pour Claude Code et Speckit avec raccourcis, commandes et workflows">
+    <meta name="author" content="Woodman Contributors">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css">
+    <link rel="icon" href="woodman-mini.png" type="image/png">
+    <style>
+        body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+            background-color: #0d1117;
+        }
+
+        .markdown-body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+
+        .markdown-body img {
+            background-color: transparent;
+        }
+
+        .markdown-body h1 {
+            border-bottom: 1px solid #21262d;
+        }
+
+        .markdown-body h2 {
+            border-bottom: 1px solid #21262d;
+        }
+
+        .markdown-body code {
+            background-color: #161b22;
+            border-radius: 6px;
+            padding: 2px 6px;
+        }
+
+        .markdown-body pre {
+            background-color: #161b22;
+            border-radius: 6px;
+        }
+
+        .markdown-body table tr {
+            background-color: #0d1117;
+            border-top: 1px solid #21262d;
+        }
+
+        .markdown-body table tr:nth-child(2n) {
+            background-color: #161b22;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #238636;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            display: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background: #2ea043;
+        }
+
+        .back-to-top.show {
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2em;
+            color: #8b949e;
+        }
+
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #ffffff;
+            }
+            .markdown-body {
+                background-color: #ffffff;
+                color: #24292f;
+            }
+            .markdown-body code {
+                background-color: #f6f8fa;
+            }
+            .markdown-body pre {
+                background-color: #f6f8fa;
+            }
+            .markdown-body table tr {
+                background-color: #ffffff;
+                border-top: 1px solid #d0d7de;
+            }
+            .markdown-body table tr:nth-child(2n) {
+                background-color: #f6f8fa;
+            }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body" id="content">
+        <div class="loading">
+            <img src="woodman.png" alt="Woodman" width="100" style="opacity: 0.5;">
+            <p>Chargement de la documentation...</p>
+        </div>
+    </article>
+
+    <a href="#" class="back-to-top" id="backToTop">⬆ Haut</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Charger et afficher le markdown
+        fetch('woodman.md')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(text => {
+                // Extraire le frontmatter YAML
+                const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+                const match = text.match(frontmatterRegex);
+                const markdown = match ? match[2] : text;
+
+                // Configurer marked
+                marked.setOptions({
+                    breaks: true,
+                    gfm: true,
+                    headerIds: true,
+                    mangle: false
+                });
+
+                // Convertir et afficher
+                document.getElementById('content').innerHTML = marked.parse(markdown);
+
+                // Ajouter des ancres aux titres
+                document.querySelectorAll('h2, h3, h4').forEach(heading => {
+                    const id = heading.textContent.toLowerCase()
+                        .replace(/[^\w\s-]/g, '')
+                        .replace(/\s+/g, '-');
+                    heading.id = id;
+                });
+
+                console.log('✅ Woodman documentation loaded successfully');
+            })
+            .catch(error => {
+                document.getElementById('content').innerHTML = `
+                    <div style="text-align: center; padding: 50px;">
+                        <h1>❌ Erreur de Chargement</h1>
+                        <p>Impossible de charger le document woodman.md</p>
+                        <p style="color: #8b949e; font-size: 0.9em;">Error: ${error.message}</p>
+                    </div>
+                `;
+                console.error('Error loading Woodman:', error);
+            });
+
+        // Gestion du bouton "Retour en haut"
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
