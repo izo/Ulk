@@ -9,31 +9,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css">
     <link rel="icon" href="woodman-mini.png" type="image/png">
     <style>
-        /* Zed-inspired theme colors (from theme.ts) */
+        /* Nord Theme colors (https://www.nordtheme.com) */
         :root {
-            /* Light theme (default) */
-            --zed-bg: hsl(0, 0%, 100%);
-            --zed-fg: hsl(0, 0%, 0%);
-            --zed-muted: hsl(0, 0%, 96%);
-            --zed-muted-fg: hsl(0, 0%, 35%);
-            --zed-border: hsl(0, 0%, 90%);
-            --zed-primary: hsl(220, 93%, 42%);
-            --zed-primary-hover: hsl(220, 93%, 38%);
-            --zed-code-bg: hsl(0, 0%, 96%);
-            --zed-card: hsl(0, 0%, 100%);
+            /* Light theme (Snow Storm) */
+            --nord-bg: #ECEFF4;          /* nord6 */
+            --nord-bg-alt: #E5E9F0;      /* nord5 */
+            --nord-fg: #2E3440;          /* nord0 */
+            --nord-fg-dim: #4C566A;      /* nord3 */
+            --nord-border: #D8DEE9;      /* nord4 */
+            --nord-primary: #5E81AC;     /* nord10 - frost blue */
+            --nord-primary-hover: #81A1C1; /* nord9 */
+            --nord-accent: #88C0D0;      /* nord8 - frost cyan */
+            --nord-code-bg: #E5E9F0;     /* nord5 */
+            --nord-link: #5E81AC;        /* nord10 */
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --zed-bg: hsl(0, 0%, 0%);
-                --zed-fg: hsl(0, 0%, 100%);
-                --zed-muted: hsl(0, 0%, 12%);
-                --zed-muted-fg: hsl(0, 0%, 70%);
-                --zed-border: hsl(0, 0%, 18%);
-                --zed-primary: hsl(220, 93%, 52%);
-                --zed-primary-hover: hsl(220, 93%, 58%);
-                --zed-code-bg: hsl(0, 0%, 5%);
-                --zed-card: hsl(0, 0%, 5%);
+                /* Dark theme (Polar Night) */
+                --nord-bg: #2E3440;          /* nord0 */
+                --nord-bg-alt: #3B4252;      /* nord1 */
+                --nord-fg: #ECEFF4;          /* nord6 */
+                --nord-fg-dim: #D8DEE9;      /* nord4 */
+                --nord-border: #4C566A;      /* nord3 */
+                --nord-primary: #88C0D0;     /* nord8 - frost cyan */
+                --nord-primary-hover: #8FBCBB; /* nord7 */
+                --nord-accent: #81A1C1;      /* nord9 - frost blue */
+                --nord-code-bg: #3B4252;     /* nord1 */
+                --nord-link: #88C0D0;        /* nord8 */
             }
         }
 
@@ -43,13 +46,13 @@
             max-width: 980px;
             margin: 0 auto;
             padding: 45px;
-            background-color: var(--zed-bg);
-            font-family: "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--nord-bg);
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         .markdown-body {
-            background-color: var(--zed-bg);
-            color: var(--zed-fg);
+            background-color: var(--nord-bg);
+            color: var(--nord-fg);
         }
 
         .markdown-body img {
@@ -57,61 +60,88 @@
         }
 
         .markdown-body h1 {
-            border-bottom: 1px solid var(--zed-border);
+            border-bottom: 2px solid var(--nord-border);
+            color: var(--nord-fg);
         }
 
         .markdown-body h2 {
-            border-bottom: 1px solid var(--zed-border);
+            border-bottom: 1px solid var(--nord-border);
+            color: var(--nord-fg);
+        }
+
+        .markdown-body h3,
+        .markdown-body h4,
+        .markdown-body h5,
+        .markdown-body h6 {
+            color: var(--nord-fg);
         }
 
         .markdown-body code {
-            background-color: var(--zed-code-bg);
-            border-radius: 0.4rem;
+            background-color: var(--nord-code-bg);
+            color: var(--nord-accent);
+            border-radius: 4px;
             padding: 2px 6px;
-            font-family: "JetBrains Mono", "SF Mono", "Fira Code", Menlo, ui-monospace, monospace;
+            font-family: "Fira Code", "JetBrains Mono", "SF Mono", Consolas, monospace;
         }
 
         .markdown-body pre {
-            background-color: var(--zed-code-bg);
-            border-radius: 0.4rem;
-            border: 1px solid var(--zed-border);
+            background-color: var(--nord-code-bg);
+            border-radius: 6px;
+            border: 1px solid var(--nord-border);
         }
 
         .markdown-body pre code {
             background-color: transparent;
+            color: var(--nord-fg);
+        }
+
+        .markdown-body table {
+            border-color: var(--nord-border);
         }
 
         .markdown-body table tr {
-            background-color: var(--zed-bg);
-            border-top: 1px solid var(--zed-border);
+            background-color: var(--nord-bg);
+            border-top: 1px solid var(--nord-border);
         }
 
         .markdown-body table tr:nth-child(2n) {
-            background-color: var(--zed-muted);
+            background-color: var(--nord-bg-alt);
+        }
+
+        .markdown-body table th {
+            background-color: var(--nord-bg-alt);
+            color: var(--nord-fg);
         }
 
         .markdown-body blockquote {
-            border-left: 3px solid var(--zed-primary);
+            border-left: 4px solid var(--nord-primary);
+            color: var(--nord-fg-dim);
         }
 
         .markdown-body a {
-            color: var(--zed-primary);
+            color: var(--nord-link);
+            text-decoration: none;
         }
 
         .markdown-body a:hover {
-            color: var(--zed-primary-hover);
+            color: var(--nord-primary-hover);
+            text-decoration: underline;
+        }
+
+        .markdown-body hr {
+            border-color: var(--nord-border);
         }
 
         .back-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--zed-primary);
-            color: white;
+            background: var(--nord-primary);
+            color: var(--nord-bg);
             padding: 10px 15px;
-            border-radius: 0.4rem;
+            border-radius: 6px;
             text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             display: none;
             transition: all 0.3s ease;
             z-index: 1000;
@@ -119,9 +149,9 @@
         }
 
         .back-to-top:hover {
-            background: var(--zed-primary-hover);
+            background: var(--nord-primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
         .back-to-top.show {
@@ -132,7 +162,7 @@
             text-align: center;
             padding: 50px;
             font-size: 1.2em;
-            color: var(--zed-muted-fg);
+            color: var(--nord-fg-dim);
         }
 
         @media (max-width: 767px) {
