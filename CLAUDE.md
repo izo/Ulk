@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 1. **cheatheet/** - Documentation generator that combines Claude Code and Speckit references into a deployable GitHub Pages site
 2. **agents/** - Collection of specialized AI agents for common development tasks (spec writing, auditing, task generation, etc.)
-3. **sifrei - scribe/** - LLM context generator that creates `llm.txt` files for instant project onboarding
+3. **sifrei - scribe/** - LLM context generator concept that creates `llm.txt` files for instant project onboarding
 
 ## Essential Commands
 
@@ -31,19 +31,21 @@ gh run list --workflow=deploy.yml
 ### Agent Skills
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
+- `0-external-sync.md` - Syncs external documentation sources (Notion, Linear)
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
 - `03-sync-docs.md` - Synchronizes documentation across project files
 - `04-task-runner.md` - Executes and tracks development tasks
 - `05-code-auditor.md` - Performs code quality and architecture audits
-- `0-external-sync.md` - Syncs external documentation sources
+- `06-a11y-auditor.md` - Performs WCAG 2.1/2.2 accessibility audits
+- `07-perf-auditor.md` - Performs performance audits (Core Web Vitals, bundle analysis, etc.)
 
 ### Sifrei Scribe (Context Generator)
 
 Located in `sifrei - scribe/`:
-- Generates `llm.txt` - a 15,000 character max context snapshot
+- Conceptual tool for generating `llm.txt` - a 15,000 character max context snapshot
 - Synthesizes: README, CLAUDE.md, configs, git history, MCP servers, custom commands
-- Invoke with `/scribe` command (if configured)
+- Currently documented in `scribe.md` and `manifeste.md` but not implemented
 
 ## Architecture
 
@@ -97,9 +99,24 @@ generate-claude-cheatsheet.js
 The `agents/` directory contains markdown-based agent definitions with:
 - **Frontmatter**: name, description, tools, model
 - **Instructions**: Detailed agent behavior and workflows
-- **Pattern detection**: Stack-specific logic (Swift, Nuxt, Laravel, WordPress, SPIP, etc.)
+- **Pattern detection**: Stack-specific logic (Swift, Nuxt, Laravel, WordPress, SPIP, Python, Go, Rust, etc.)
 
 Agents use `AskUserQuestionTool` for interactive information gathering and adapt their approach based on detected project patterns.
+
+**Common Workflows**:
+```bash
+# Setup new project
+"Generate a spec" → "Generate todo" → "Sync with Linear"
+
+# Development session
+"What's the next task?" → "Continue" → "Report progress"
+
+# Pre-release checks
+"Audit performance" → "Audit accessibility" → "Audit code"
+
+# Maintenance
+"Sync with Notion and Linear" → "Where are we?"
+```
 
 ## Key Files & Responsibilities
 
@@ -115,7 +132,8 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 | `cheatheet/serve.sh` | Local dev server script (runs generator + HTTP server) |
 | `.github/workflows/deploy.yml` | CI/CD configuration (Node 18, weekly cron schedule) |
 | `agents/*.md` | Agent definitions with frontmatter and instructions |
-| `sifrei - scribe/scribe.md` | Context generator prompt |
+| `sifrei - scribe/scribe.md` | Context generator prompt (concept) |
+| `spec.md` | Project specification document |
 
 ### Configuration Files
 
@@ -123,13 +141,13 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 |------|---------|
 | `.claude/settings.local.json` | Pre-approved permissions for common operations |
 | `.nojekyll` | Prevents Jekyll processing on GitHub Pages |
-| `cheatheet/CLAUDE.md` | Module-specific instructions |
+| `cheatheet/CLAUDE.md` | Module-specific instructions (cheatheet only) |
 | `cheatheet/DEPLOY.md` | Deployment guide |
 
 ### Assets
 
-Located at repository root (not in cheatheet/):
-- `woodman.png` (200x200px) - Main logo for documentation header
+Located at repository root:
+- `woodman.png` (1.8MB) - Main logo for documentation header (⚠️ Should be optimized)
 - `woodman-mini.png` (16x16px) - Mini logo for footer/favicon
 
 ## Development Workflow
@@ -176,8 +194,49 @@ Keep version synchronized across three locations:
    ---
    ```
 2. Add detailed instructions following the pattern in existing agents
-3. Include pattern detection logic if stack-specific
+3. Include pattern detection logic if stack-specific (see 01-spec-writer.md for examples)
 4. Test agent thoroughly before committing
+
+## File Structure
+
+The repository has an intentional naming choice using spaces in folder names for aesthetic reasons:
+
+```
+Woodman/
+├── cheatheet/                    # Documentation generator module
+│   ├── generate-claude-cheatsheet.js
+│   ├── index.html
+│   ├── woodman.md (generated)
+│   ├── serve.sh
+│   └── README.md, DEPLOY.md, CLAUDE.md
+│
+├── agents/                       # AI agent definitions
+│   ├── 0-external-sync.md
+│   ├── 01-spec-writer.md
+│   ├── 02-todo-generator.md
+│   ├── 03-sync-docs.md
+│   ├── 04-task-runner.md
+│   ├── 05-code-auditor.md
+│   ├── 06-a11y-auditor.md
+│   ├── 07-perf-auditor.md
+│   └── Readme.md
+│
+├── sifrei - scribe/              # Context generator (concept only)
+│   ├── scribe.md
+│   └── manifeste.md
+│
+├── .github/workflows/
+│   └── deploy.yml
+│
+├── .claude/
+│   └── settings.local.json
+│
+├── woodman.png                   # Main logo (1.8MB)
+├── woodman-mini.png              # Favicon (16x16)
+├── spec.md                       # Project specification
+├── CLAUDE.md                     # This file
+└── .nojekyll                     # Disable Jekyll processing
+```
 
 ## Important Notes
 
@@ -186,23 +245,33 @@ Keep version synchronized across three locations:
 - YAML frontmatter is stripped by index.html before markdown rendering
 - Nord theme adapts to system dark/light mode preference
 - The site is fully static - no server-side processing required
+- No `package.json` - intentionally using vanilla Node.js without dependencies
 
 ### Permissions
 - `.claude/settings.local.json` pre-approves common git, GitHub CLI, and documentation generation commands
 - WebFetch is allowed for awesomeclaude.ai and github.com (documentation sources)
 - All git operations (add, commit, push, tag, release) are pre-approved
+- MCP servers enabled: `shadcn` and all project-level servers
 
 ### GitHub Pages Deployment
 - Requires Pages to be enabled: Settings > Pages > Source: GitHub Actions
 - `.nojekyll` file is critical - prevents Jekyll from ignoring files with underscores
 - Deployment happens automatically on push to main
-- Weekly auto-refresh ensures documentation stays current
+- Weekly auto-refresh (Sunday midnight UTC) ensures documentation stays current
+- Files are deployed from repository root (not from cheatheet/)
 
 ### Agent Best Practices
 - Agents should use `AskUserQuestionTool` for interactive workflows
-- Pattern detection (Swift, Nuxt, Laravel, etc.) should drive agent behavior
-- Agents should announce phases clearly ("Phase Exploration", "Phase Questions", etc.)
+- Pattern detection (Swift, Nuxt, Laravel, WordPress, SPIP, etc.) should drive agent behavior
+- Agents should announce phases clearly ("Phase 1: Exploration", "Phase 2: Questions", etc.)
 - Never generate content without sufficient information gathering
+- Most agents use `model: opus` for complex analysis tasks
+
+### Known Constraints
+- **Folder names with spaces**: Aesthetic choice that may cause issues in some CLI contexts
+- **Large logo file**: `woodman.png` is 1.8MB and should be optimized (convert to WebP or compress)
+- **No package.json**: Intentional design decision to keep the project dependency-free
+- **Scribe not implemented**: `sifrei - scribe/` contains only conceptual documentation, no working implementation
 
 ## Troubleshooting
 
@@ -210,12 +279,20 @@ Keep version synchronized across three locations:
 - Check Actions tab for deployment logs
 - Verify workflow permissions (contents: read, pages: write)
 - Ensure woodman.md is being generated (check workflow logs)
+- Note: The workflow runs from root but generates files in cheatheet/
 
 ### Generator script fails
 - Check Node.js version (requires >= 14.0.0)
-- Verify logo files exist at repository root
+- Verify logo files exist at repository root (not in cheatheet/)
 - Check sources[] array for valid URLs
+- Ensure you're running from repository root or cheatheet/ directory
 
 ### Local server not working
 - Ensure serve.sh has execute permissions: `chmod +x cheatheet/serve.sh`
 - Try manual server: `cd cheatheet && python3 -m http.server 8000`
+- Server expects to be run from cheatheet/ directory
+
+### Spaces in folder names causing issues
+- If CLI tools fail, consider escaping paths: `"sifrei - scribe/"`
+- Or navigate into directory first: `cd "sifrei - scribe"`
+- This is a known tradeoff for aesthetic naming
