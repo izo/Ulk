@@ -2,7 +2,7 @@
 name: todo-generator
 description: Génère une TODO détaillée et actionnable à partir d'un fichier spec.md existant. Utiliser cet agent après spec-writer, ou quand on demande de créer une liste de tâches, un backlog, ou de découper un projet en tâches exécutables.
 tools: View, Read, Grep, Glob, Bash, Write
-model: opus
+model: sonnet
 ---
 
 # Agent Todo Generator
