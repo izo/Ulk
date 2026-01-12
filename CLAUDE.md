@@ -50,6 +50,27 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `10-analyze/spip.md` - In-depth SPIP analysis (squelettes, boucles, CVT)
 - `10-analyze/swiftui.md` - In-depth SwiftUI analysis (MVVM, TCA, multi-platform)
 
+### Global Installation (Custom Commands)
+
+Install agents globally to use them in any project:
+
+```bash
+# Install (creates symlink to ~/.claude/commands/woodman)
+./install.sh
+
+# Uninstall
+./uninstall.sh
+```
+
+Once installed, invoke agents anywhere with:
+```
+/woodman:agents:spec-writer
+/woodman:agents:todo-generator
+/woodman:analyze:nuxt
+```
+
+The `commands/` directory contains the installable version of agents formatted for Claude Code Custom Commands.
+
 ### Sifrei Scribe (Context Generator)
 
 Located in `sifrei - scribe/`:
@@ -220,7 +241,7 @@ Woodman/
 │   ├── serve.sh
 │   └── README.md, DEPLOY.md, CLAUDE.md
 │
-├── agents/                       # AI agent definitions
+├── agents/                       # AI agent definitions (source)
 │   ├── 01-spec-writer.md
 │   ├── 02-todo-generator.md
 │   ├── 03-sync-local.md
@@ -241,6 +262,25 @@ Woodman/
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
 │
+├── commands/                     # Installable Custom Commands
+│   ├── agents/                   # Workflow agents
+│   │   ├── spec-writer.md
+│   │   ├── todo-generator.md
+│   │   ├── task-runner.md
+│   │   ├── sync-local.md
+│   │   ├── code-auditor.md
+│   │   ├── a11y-auditor.md
+│   │   ├── perf-auditor.md
+│   │   ├── external-sync.md
+│   │   └── context-generator.md
+│   ├── analyze/                  # Stack analyzers
+│   │   ├── nuxt.md
+│   │   ├── next.md
+│   │   ├── astro.md
+│   │   ├── spip.md
+│   │   └── swiftui.md
+│   └── README.md
+│
 ├── sifrei - scribe/              # Context generator (concept only)
 │   ├── scribe.md
 │   └── manifeste.md
@@ -251,6 +291,8 @@ Woodman/
 ├── .claude/
 │   └── settings.local.json
 │
+├── install.sh                    # Global installation script
+├── uninstall.sh                  # Uninstallation script
 ├── woodman.png                   # Main logo (1.8MB)
 ├── woodman-mini.png              # Favicon (16x16)
 ├── spec.md                       # Project specification
