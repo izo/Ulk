@@ -39,6 +39,22 @@ model: opus | sonnet
 | **external-sync** | `08-external-sync.md` | opus | Bidirectional sync with Notion/Linear ONLY (external tools) |
 | **context-generator** | `09-context-generator.md` | sonnet | Generate llm.txt snapshot (15K chars max) for instant LLM onboarding |
 
+### Stack Analyzers (10-analyze/)
+
+In-depth technical analysis agents for specific stacks:
+
+| Analyzer | File | Stack | Purpose |
+|----------|------|-------|---------|
+| **analyze-astro** | `10-analyze/astro.md` | Astro 3-5 | Islands Architecture, Content Collections, multi-framework optimization |
+| **analyze-next** | `10-analyze/next.md` | Next.js 13-15 | App Router, Server/Client Components, shadcn/ui integration |
+| **analyze-nuxt** | `10-analyze/nuxt.md` | Nuxt 3-4 | SSR/hydration, Nuxt UI v2/v3/v4, migration opportunities |
+| **analyze-spip** | `10-analyze/spip.md` | SPIP 3-5 | Squelettes, boucles, CVT forms, plugin analysis |
+| **analyze-swiftui** | `10-analyze/swiftui.md` | SwiftUI | MVVM/TCA, @Observable, SwiftData, multi-platform |
+
+**All analyzers use sonnet model** for optimal performance on structured analysis tasks.
+
+**See**: `10-analyze/README.md` for complete documentation.
+
 ## Agent Workflow Patterns
 
 ### Setup New Project

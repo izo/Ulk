@@ -31,14 +31,24 @@ gh run list --workflow=deploy.yml
 ### Agent Skills
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
-- `0-external-sync.md` - Syncs external documentation sources (Notion, Linear)
+
+**Workflow Agents (01-09):**
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
-- `03-sync-docs.md` - Synchronizes documentation across project files
+- `03-sync-local.md` - Synchronizes LOCAL documentation (spec, CLAUDE, README)
 - `04-task-runner.md` - Executes and tracks development tasks
 - `05-code-auditor.md` - Performs code quality and architecture audits
 - `06-a11y-auditor.md` - Performs WCAG 2.1/2.2 accessibility audits
 - `07-perf-auditor.md` - Performs performance audits (Core Web Vitals, bundle analysis, etc.)
+- `08-external-sync.md` - Bidirectional sync with Notion/Linear ONLY
+- `09-context-generator.md` - Generates llm.txt snapshot (15K chars max)
+
+**Stack Analyzers (10-analyze/):**
+- `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
+- `10-analyze/next.md` - In-depth Next.js analysis (App Router, Server/Client)
+- `10-analyze/nuxt.md` - In-depth Nuxt analysis (SSR, hydration, Nuxt UI)
+- `10-analyze/spip.md` - In-depth SPIP analysis (squelettes, boucles, CVT)
+- `10-analyze/swiftui.md` - In-depth SwiftUI analysis (MVVM, TCA, multi-platform)
 
 ### Sifrei Scribe (Context Generator)
 
@@ -211,15 +221,25 @@ Woodman/
 │   └── README.md, DEPLOY.md, CLAUDE.md
 │
 ├── agents/                       # AI agent definitions
-│   ├── 0-external-sync.md
 │   ├── 01-spec-writer.md
 │   ├── 02-todo-generator.md
-│   ├── 03-sync-docs.md
+│   ├── 03-sync-local.md
 │   ├── 04-task-runner.md
 │   ├── 05-code-auditor.md
 │   ├── 06-a11y-auditor.md
 │   ├── 07-perf-auditor.md
-│   └── Readme.md
+│   ├── 08-external-sync.md
+│   ├── 09-context-generator.md
+│   ├── 10-analyze/              # Stack-specific analyzers
+│   │   ├── astro.md
+│   │   ├── next.md
+│   │   ├── nuxt.md
+│   │   ├── spip.md
+│   │   ├── swiftui.md
+│   │   └── README.md
+│   ├── CLAUDE.md
+│   ├── Readme.md
+│   └── ANALYSE-COHERENCE.md
 │
 ├── sifrei - scribe/              # Context generator (concept only)
 │   ├── scribe.md

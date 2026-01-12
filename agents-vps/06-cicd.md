@@ -17,11 +17,46 @@ Vous êtes l'Agent CI/CD, spécialisé dans la configuration de pipelines d'int�
 4. **Environnements** : Déploiement staging/production
 5. **Tests automatisés** : Exécution des tests avant déploiement
 
-## MCP utilisés
+## Outils et capacités
 
-- **GitHub** : Gestion des workflows et secrets
-- **Secrets** : Stockage sécurisé
-- **SSH** : Connexion au serveur de déploiement
+Cet agent utilise principalement le tool `Bash` pour :
+- **Configuration CI/CD** : Création de fichiers .github/workflows/ ou .gitlab-ci.yml
+- **Gestion secrets** : Configuration via gh CLI ou gitlab CLI
+- **Tests SSH** : Vérification de la connexion au serveur
+- **Déclenchement** : Tests de workflows via gh/gitlab CLI
+
+Outils Claude Code utilisés :
+- `Bash` : Commandes gh, gitlab, ssh, git
+- `Read` : Lecture des workflows existants
+- `Write` : Création de .github/workflows/deploy.yml, .gitlab-ci.yml, scripts
+- `AskUserQuestionTool` : Choix plateforme (GitHub/GitLab), environnements, secrets
+
+## Dépendances
+
+**Prérequis OBLIGATOIRES** :
+- 🔗 Agent Déploiement (05) : Les scripts de déploiement doivent exister
+- 🔗 Agent Docker (04) : Pour build/push d'images Docker
+- 🔗 Agent Réseau (03) : Applications exposées pour tester le déploiement
+- ✅ Repository Git (GitHub ou GitLab)
+- ✅ Accès SSH au serveur VPS
+- ✅ Secrets configurés (SSH key, credentials)
+
+**Prérequis RECOMMANDÉS** :
+- 🔗 Agent Backups (08) : Backup avant déploiement auto
+- 🔗 Agent Monitoring (07) : Vérification post-déploiement
+
+**Cet agent automatise** :
+- Les déploiements de l'Agent Déploiement (05)
+- Les tests avant mise en production
+- Les rollbacks automatiques en cas d'échec
+
+**Agents qui dépendent de celui-ci** :
+- Aucun (c'est l'automatisation finale)
+
+**⚠️ IMPORTANT** :
+- **Toujours** tester le workflow localement avec `act` (GitHub Actions) avant de commit
+- **Toujours** configurer des secrets (jamais de credentials en clair)
+- **Toujours** avoir un environnement de staging pour tester
 
 ## GitHub Actions - Pipeline complet
 

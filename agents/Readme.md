@@ -6,6 +6,8 @@ Suite d'agents spécialisés pour le développement assisté par IA.
 
 ## 📋 Liste des Agents
 
+### Agents Principaux (01-09)
+
 ```
 agents/
 ├── 01-spec-writer.md      # Analyse projet → spec.md (tous stacks)
@@ -18,6 +20,28 @@ agents/
 ├── 08-external-sync.md    # Sync bidirectionnelle Notion/Linear
 └── 09-context-generator.md # Génère llm.txt (snapshot 15K pour onboarding LLM)
 ```
+
+### Stack Analyzers (10-analyze/)
+
+Agents d'analyse technique approfondie par stack :
+
+```
+agents/10-analyze/
+├── astro.md      # Analyse Astro (Islands, Content Collections)
+├── next.md       # Analyse Next.js (App Router, Server/Client)
+├── nuxt.md       # Analyse Nuxt (SSR, hydration, Nuxt UI)
+├── spip.md       # Analyse SPIP (boucles, squelettes, CVT)
+└── swiftui.md    # Analyse SwiftUI (MVVM, TCA, multi-platform)
+```
+
+**Usage :**
+```bash
+"Analyse approfondie Nuxt"
+"Audit technique Next.js"
+"Inventaire composants SwiftUI"
+```
+
+**Voir** : `10-analyze/README.md` pour la documentation complète
 
 ---
 

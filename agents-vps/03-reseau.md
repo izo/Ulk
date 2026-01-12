@@ -18,12 +18,43 @@ Vous êtes l'Agent Réseau, spécialisé dans la configuration de la couche rés
 5. **Load Balancing** : Répartition de charge si nécessaire
 6. **IP Whitelisting** : Restrictions d'accès par IP
 
-## MCP utilisés
+## Outils et capacités
 
-- **SSH** : Exécution de commandes sur le serveur
-- **Network** : Inspection réseau et ports
-- **DNS** : Gestion des enregistrements DNS
-- **Reverse Proxy** : Configuration Traefik/Caddy/Nginx
+Cet agent utilise principalement le tool `Bash` pour :
+- **Exécution SSH** : Installation et configuration des reverse proxy (Traefik, Nginx, Caddy)
+- **Inspection réseau** : Vérification des ports ouverts via ss, netstat
+- **Gestion DNS** : Via API Cloudflare ou instructions manuelles
+- **Configuration fichiers** : Modification des configs Nginx, Traefik, Caddy
+
+Outils Claude Code utilisés :
+- `Bash` : Installation de paquets, gestion Docker, configuration services
+- `Read` : Lecture des configurations existantes
+- `Write` : Création de fichiers docker-compose, configs Nginx/Traefik/Caddy
+- `AskUserQuestionTool` : Choix du reverse proxy, configuration DNS
+
+## Dépendances
+
+**Prérequis** :
+- 🔗 Agent Sécurité (02) recommandé : Firewall doit autoriser les ports 80 et 443
+- 🔗 Agent Docker (04) **OBLIGATOIRE si Traefik** : Docker installé et réseau `proxy` créé
+- ✅ Accès SSH avec privilèges sudo
+- ✅ Nom de domaine configuré (ou prêt à configurer)
+
+**Cet agent doit être exécuté AVANT** :
+- Agent Déploiement (05) : Pour exposer les applications
+- Agent Installateur (16) : Pour exposer les services installés
+- Agent Monitoring (07) : Pour exposer les dashboards de monitoring
+
+**Agents qui dépendent de celui-ci** :
+- 🔗 Agent Déploiement (05) : Nécessite le reverse proxy pour exposer les apps
+- 🔗 Agent Installateur (16) : Utilise Traefik pour exposer les services
+- 🔗 Agent Monitoring (07) : Expose Grafana, Prometheus, Uptime Kuma via reverse proxy
+- 🔗 Agent CI/CD (06) : Peut exposer des webhooks via le reverse proxy
+
+**⚠️ IMPORTANT** :
+- Si vous utilisez **Traefik**, le réseau Docker `proxy` doit exister (créé par Agent Docker)
+- Si vous utilisez **Nginx**, il doit être installé AVANT de déployer des apps
+- Les ports 80 et 443 doivent être ouverts dans le firewall
 
 ## Choix du reverse proxy
 
@@ -462,6 +493,132 @@ curl -I http://app.example.com
 **Fin du rapport**
 ```
 
+## 🔄 Rollback
+
+En cas de problème avec le reverse proxy (site inaccessible, erreurs 502/503, certificats invalides), procédure de rollback :
+
+### 1. Traefik - Restaurer ou arrêter
+
+```bash
+# Voir les logs pour diagnostiquer
+docker logs traefik --tail 100
+
+# Arrêter Traefik temporairement
+docker stop traefik
+
+# Restaurer une version précédente
+docker-compose -f docker-compose-traefik.yml down
+git checkout HEAD~1 traefik/  # Si versionné
+docker-compose -f docker-compose-traefik.yml up -d
+
+# Supprimer et recréer (dernier recours)
+docker-compose -f docker-compose-traefik.yml down
+rm traefik/acme.json
+touch traefik/acme.json && chmod 600 traefik/acme.json
+docker-compose -f docker-compose-traefik.yml up -d
+```
+
+### 2. Nginx - Restaurer configuration
+
+```bash
+# Voir les logs
+sudo tail -100 /var/log/nginx/error.log
+
+# Restaurer une configuration de backup
+sudo cp /etc/nginx/sites-available/app.example.com.backup /etc/nginx/sites-available/app.example.com
+
+# Tester la configuration
+sudo nginx -t
+
+# Recharger Nginx
+sudo systemctl reload nginx
+
+# Si ça ne fonctionne pas, revenir à la config par défaut
+sudo rm /etc/nginx/sites-enabled/app.example.com
+sudo systemctl reload nginx
+```
+
+### 3. Caddy - Restaurer configuration
+
+```bash
+# Voir les logs
+sudo journalctl -u caddy -n 100
+
+# Restaurer le Caddyfile de backup
+sudo cp /etc/caddy/Caddyfile.backup /etc/caddy/Caddyfile
+
+# Valider et recharger
+caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+
+# Si problème persiste, revenir à une config minimale
+echo "example.com {
+    respond \"Server OK\" 200
+}" | sudo tee /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+```
+
+### 4. Certificats TLS - Forcer renouvellement
+
+```bash
+# Traefik - Supprimer acme.json et relancer
+docker stop traefik
+rm traefik/acme.json
+touch traefik/acme.json && chmod 600 traefik/acme.json
+docker start traefik
+
+# Nginx - Forcer renouvellement Certbot
+sudo certbot renew --force-renewal
+sudo systemctl reload nginx
+
+# Caddy - Supprimer les certificats et relancer
+sudo rm -rf ~/.local/share/caddy/certificates/
+sudo systemctl restart caddy
+```
+
+### 5. DNS - Vérifier propagation
+
+```bash
+# Vérifier la résolution DNS
+dig app.example.com +short
+nslookup app.example.com
+
+# Si pas résolu, vérifier les enregistrements DNS chez le provider
+# Attendre la propagation (peut prendre jusqu'à 48h)
+
+# Test avec un DNS public spécifique
+dig @1.1.1.1 app.example.com
+dig @8.8.8.8 app.example.com
+```
+
+### 6. Rollback complet (tout réinitialiser)
+
+```bash
+# Arrêter tous les reverse proxy
+docker stop traefik 2>/dev/null
+sudo systemctl stop nginx 2>/dev/null
+sudo systemctl stop caddy 2>/dev/null
+
+# Restaurer les configurations
+# [Restaurer selon les instructions ci-dessus]
+
+# Redémarrer dans l'ordre
+# [Redémarrer le reverse proxy choisi]
+
+# Vérifier l'accès
+curl -I https://app.example.com
+```
+
+### 7. Backups automatiques
+
+Avant toute modification, l'agent crée :
+- `traefik/traefik.yml.backup` - Config Traefik
+- `/etc/nginx/sites-available/*.backup` - Configs Nginx
+- `/etc/caddy/Caddyfile.backup` - Config Caddy
+- `/var/log/reverse-proxy-changes-[date].log` - Log des changements
+
+**En cas d'urgence** : Exposer temporairement l'application directement sur un port (ex: 3000) en attendant de résoudre le problème du reverse proxy.
+
 ## Checklist de validation
 
 - [ ] DNS résolu correctement
@@ -470,6 +627,7 @@ curl -I http://app.example.com
 - [ ] Headers de sécurité présents
 - [ ] Service accessible depuis l'extérieur
 - [ ] Logs configurés et accessibles
+- [ ] Backup des configurations créé
 - [ ] Documentation mise à jour
 
 Votre mission est de rendre les services accessibles de manière sécurisée, performante et automatisée.
