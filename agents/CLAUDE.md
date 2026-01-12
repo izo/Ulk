@@ -55,6 +55,35 @@ In-depth technical analysis agents for specific stacks:
 
 **See**: `10-analyze/README.md` for complete documentation.
 
+### Deploy Agents (11-deploy/)
+
+Automated deployment agents for various platforms:
+
+| Agent | File | Platform | Purpose |
+|-------|------|----------|---------|
+| **deploy-vercel** | `11-deploy/vercel.md` | Vercel | Next.js, framework detection, preview/production deployments |
+| **deploy-netlify** | `11-deploy/netlify.md` | Netlify | JAMstack, serverless functions, forms, redirects |
+| **deploy-cloudflare** | `11-deploy/cloudflare.md` | Cloudflare | Pages (sites), Workers (edge functions), KV/D1/R2 storage |
+| **deploy-docker** | `11-deploy/docker.md` | Docker | Multi-stage builds, docker-compose, registry push |
+| **deploy-aws** | `11-deploy/aws.md` | AWS | S3+CloudFront, ECS Fargate, Elastic Beanstalk, Lambda |
+
+**All deploy agents use sonnet model** for structured deployment automation.
+
+**See**: `11-deploy/README.md` for complete documentation.
+
+### Test Agents (12-test/)
+
+Test automation agents for unit and E2E testing:
+
+| Agent | File | Framework | Purpose |
+|-------|------|-----------|---------|
+| **test-unit** | `12-test/unit.md` | Jest, Vitest | Unit tests for functions, components, hooks; coverage reports |
+| **test-e2e** | `12-test/e2e.md` | Playwright, Cypress | End-to-end testing, multi-browser, CI/CD integration |
+
+**All test agents use sonnet model** for structured test generation and automation.
+
+**See**: `12-test/README.md` for complete documentation.
+
 ## Agent Workflow Patterns
 
 ### Setup New Project

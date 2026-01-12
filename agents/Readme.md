@@ -43,6 +43,47 @@ agents/10-analyze/
 
 **Voir** : `10-analyze/README.md` pour la documentation complète
 
+### Deploy Agents (11-deploy/)
+
+Agents de déploiement automatisé vers différentes plateformes :
+
+```
+agents/11-deploy/
+├── vercel.md       # Déploiement Vercel (Next.js, frameworks JS)
+├── netlify.md      # Déploiement Netlify (JAMstack, Functions)
+├── cloudflare.md   # Cloudflare Pages + Workers (edge computing)
+├── docker.md       # Containerisation Docker + docker-compose
+└── aws.md          # AWS (S3+CloudFront, ECS, Elastic Beanstalk)
+```
+
+**Usage :**
+```bash
+"Déploie sur Vercel"
+"Configure Docker pour ce projet"
+"Setup AWS S3 + CloudFront"
+```
+
+**Voir** : `11-deploy/README.md` pour la documentation complète
+
+### Test Agents (12-test/)
+
+Agents d'automatisation des tests (unitaires, E2E) :
+
+```
+agents/12-test/
+├── unit.md     # Tests unitaires (Jest, Vitest)
+└── e2e.md      # Tests end-to-end (Playwright, Cypress)
+```
+
+**Usage :**
+```bash
+"Configure Jest pour ce projet"
+"Génère des tests E2E avec Playwright"
+"Setup testing complet"
+```
+
+**Voir** : `12-test/README.md` pour la documentation complète
+
 ---
 
 ## 🚀 Workflows Types

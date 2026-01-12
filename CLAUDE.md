@@ -50,6 +50,17 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `10-analyze/spip.md` - In-depth SPIP analysis (squelettes, boucles, CVT)
 - `10-analyze/swiftui.md` - In-depth SwiftUI analysis (MVVM, TCA, multi-platform)
 
+**Deploy Agents (11-deploy/):**
+- `11-deploy/vercel.md` - Vercel deployment (Next.js, frameworks, preview/production)
+- `11-deploy/netlify.md` - Netlify deployment (JAMstack, serverless functions)
+- `11-deploy/cloudflare.md` - Cloudflare Pages/Workers (edge computing, KV/D1/R2)
+- `11-deploy/docker.md` - Docker containerization (multi-stage builds, docker-compose)
+- `11-deploy/aws.md` - AWS deployment (S3+CloudFront, ECS, Elastic Beanstalk)
+
+**Test Agents (12-test/):**
+- `12-test/unit.md` - Unit testing (Jest, Vitest, components, hooks, coverage)
+- `12-test/e2e.md` - End-to-end testing (Playwright, Cypress, multi-browser)
+
 ### Sifrei Scribe (Context Generator)
 
 Located in `sifrei - scribe/`:
@@ -236,6 +247,17 @@ Woodman/
 │   │   ├── nuxt.md
 │   │   ├── spip.md
 │   │   ├── swiftui.md
+│   │   └── README.md
+│   ├── 11-deploy/               # Deployment automation
+│   │   ├── vercel.md
+│   │   ├── netlify.md
+│   │   ├── cloudflare.md
+│   │   ├── docker.md
+│   │   ├── aws.md
+│   │   └── README.md
+│   ├── 12-test/                 # Test automation
+│   │   ├── unit.md
+│   │   ├── e2e.md
 │   │   └── README.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
