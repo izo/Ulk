@@ -1,0 +1,42 @@
+{
+  "officialSources": [
+    {
+      "name": "Claude Code Official",
+      "url": "https://awesomeclaude.ai/code-cheatsheet",
+      "description": "Cheatsheet interactif officiel pour Claude Code",
+      "maintainer": "awesomeclaude.ai"
+    },
+    {
+      "name": "Spec Kit by GitHub",
+      "url": "https://github.com/github/spec-kit",
+      "description": "Toolkit open-source pour Spec-Driven Development",
+      "maintainer": "GitHub"
+    },
+    {
+      "name": "Claude Code",
+      "url": "https://claude.ai",
+      "description": "Assistant de code officiel développé par Anthropic",
+      "maintainer": "Anthropic"
+    }
+  ],
+  "internalSources": [
+    {
+      "name": "Boris Bible",
+      "url": "../boris-bible/Boris Bible.md",
+      "description": "Comment Boris Cherny (créateur de Claude Code) utilise Claude Code",
+      "maintainer": "Boris Cherny"
+    },
+    {
+      "name": "Woodman Agents",
+      "url": "../agents/",
+      "description": "Collection d'agents spécialisés pour développement assisté par AI",
+      "maintainer": "Woodman Contributors"
+    },
+    {
+      "name": "Woodman VPS Agents",
+      "url": "../agents-vps/",
+      "description": "Agents pour gestion automatisée d'infrastructure VPS",
+      "maintainer": "Woodman Contributors"
+    }
+  ]
+}

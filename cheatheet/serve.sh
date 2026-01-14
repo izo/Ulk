@@ -9,7 +9,7 @@ echo "🪵 Woodman Local Server"
 echo "======================="
 echo ""
 echo "🔄 Génération de la documentation..."
-node generate-claude-cheatsheet.js
+node generate-unified-docs.js
 
 if [ $? -eq 0 ]; then
     echo ""

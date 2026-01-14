@@ -1,0 +1,322 @@
+{
+  "software": {
+    "core": [
+      {
+        "id": "01",
+        "name": "spec-writer",
+        "description": "Analyse projet existant pour produire spec.md clair et actionnable",
+        "model": "opus",
+        "file": "../agents/01-spec-writer.md",
+        "useCases": ["Nouvelle spec", "Analyser l'architecture", "Documenter codebase existante"],
+        "stacks": ["Nuxt", "Next.js", "Laravel", "WordPress", "SPIP", "Swift", "Python", "Go", "Rust"]
+      },
+      {
+        "id": "02",
+        "name": "todo-generator",
+        "description": "Convertit spec.md en tâches actionnables priorisées (P0-P3)",
+        "model": "sonnet",
+        "file": "../agents/02-todo-generator.md",
+        "useCases": ["Générer todo depuis spec", "Prioriser tâches", "Estimer complexité"]
+      },
+      {
+        "id": "03",
+        "name": "sync-local",
+        "description": "Synchronise documentation locale (spec, CLAUDE, README)",
+        "model": "sonnet",
+        "file": "../agents/03-sync-local.md",
+        "useCases": ["Mise à jour doc", "Sync spec/CLAUDE/README"]
+      },
+      {
+        "id": "04",
+        "name": "task-runner",
+        "description": "Exécute et track les tâches depuis todo.md",
+        "model": "sonnet",
+        "file": "../agents/04-task-runner.md",
+        "useCases": ["Prochaine tâche", "Continuer tâche", "Rapport progression"]
+      },
+      {
+        "id": "05",
+        "name": "code-auditor",
+        "description": "Audit complet: code quality, architecture, sécurité, dette technique",
+        "model": "opus",
+        "file": "../agents/05-code-auditor.md",
+        "useCases": ["Audit code", "Analyse architecture", "Dette technique"]
+      },
+      {
+        "id": "06",
+        "name": "a11y-auditor",
+        "description": "Audit accessibilité WCAG 2.1/2.2",
+        "model": "sonnet",
+        "file": "../agents/06-a11y-auditor.md",
+        "useCases": ["Audit accessibilité", "WCAG compliance", "Tests a11y"]
+      },
+      {
+        "id": "07",
+        "name": "perf-auditor",
+        "description": "Audit performance: Core Web Vitals, bundle, backend",
+        "model": "sonnet",
+        "file": "../agents/07-perf-auditor.md",
+        "useCases": ["Audit performance", "Core Web Vitals", "Bundle size", "Quick wins"]
+      },
+      {
+        "id": "08",
+        "name": "external-sync",
+        "description": "Sync bidirectionnelle avec Notion/Linear uniquement",
+        "model": "opus",
+        "file": "../agents/08-external-sync.md",
+        "useCases": ["Sync Notion/Linear", "Résolution conflits", "Setup espaces"]
+      },
+      {
+        "id": "09",
+        "name": "context-generator",
+        "description": "Génère llm.txt (snapshot 15K pour onboarding LLM instantané)",
+        "model": "sonnet",
+        "file": "../agents/09-context-generator.md",
+        "useCases": ["Générer contexte", "Onboarding LLM", "Partage projet"]
+      }
+    ],
+    "analyzers": [
+      {
+        "id": "10-astro",
+        "name": "analyze-astro",
+        "description": "Analyse approfondie Astro: Islands, Content Collections",
+        "model": "sonnet",
+        "file": "../agents/10-analyze/astro.md",
+        "stack": "Astro 3-5"
+      },
+      {
+        "id": "10-next",
+        "name": "analyze-next",
+        "description": "Analyse approfondie Next.js: App Router, Server/Client Components",
+        "model": "sonnet",
+        "file": "../agents/10-analyze/next.md",
+        "stack": "Next.js 13-15"
+      },
+      {
+        "id": "10-nuxt",
+        "name": "analyze-nuxt",
+        "description": "Analyse approfondie Nuxt: SSR/hydration, Nuxt UI v2/v3/v4",
+        "model": "sonnet",
+        "file": "../agents/10-analyze/nuxt.md",
+        "stack": "Nuxt 3-4"
+      },
+      {
+        "id": "10-spip",
+        "name": "analyze-spip",
+        "description": "Analyse approfondie SPIP: Boucles, squelettes, CVT forms",
+        "model": "sonnet",
+        "file": "../agents/10-analyze/spip.md",
+        "stack": "SPIP 3-5"
+      },
+      {
+        "id": "10-swiftui",
+        "name": "analyze-swiftui",
+        "description": "Analyse approfondie SwiftUI: MVVM/TCA, @Observable, multi-platform",
+        "model": "sonnet",
+        "file": "../agents/10-analyze/swiftui.md",
+        "stack": "SwiftUI"
+      }
+    ],
+    "deploy": [
+      {
+        "id": "11-vercel",
+        "name": "deploy-vercel",
+        "description": "Déploiement Vercel: Next.js, frameworks JS, preview/production",
+        "model": "sonnet",
+        "file": "../agents/11-deploy/vercel.md",
+        "platform": "Vercel"
+      },
+      {
+        "id": "11-netlify",
+        "name": "deploy-netlify",
+        "description": "Déploiement Netlify: JAMstack, serverless functions",
+        "model": "sonnet",
+        "file": "../agents/11-deploy/netlify.md",
+        "platform": "Netlify"
+      },
+      {
+        "id": "11-cloudflare",
+        "name": "deploy-cloudflare",
+        "description": "Cloudflare Pages + Workers: edge computing, KV/D1/R2",
+        "model": "sonnet",
+        "file": "../agents/11-deploy/cloudflare.md",
+        "platform": "Cloudflare"
+      },
+      {
+        "id": "11-docker",
+        "name": "deploy-docker",
+        "description": "Containerisation Docker: multi-stage builds, docker-compose",
+        "model": "sonnet",
+        "file": "../agents/11-deploy/docker.md",
+        "platform": "Docker"
+      },
+      {
+        "id": "11-aws",
+        "name": "deploy-aws",
+        "description": "AWS: S3+CloudFront, ECS Fargate, Elastic Beanstalk",
+        "model": "sonnet",
+        "file": "../agents/11-deploy/aws.md",
+        "platform": "AWS"
+      }
+    ],
+    "testing": [
+      {
+        "id": "12-unit",
+        "name": "test-unit",
+        "description": "Tests unitaires: Jest, Vitest, components, hooks, coverage",
+        "model": "sonnet",
+        "file": "../agents/12-test/unit.md",
+        "frameworks": ["Jest", "Vitest"]
+      },
+      {
+        "id": "12-e2e",
+        "name": "test-e2e",
+        "description": "Tests E2E: Playwright, Cypress, multi-browser",
+        "model": "sonnet",
+        "file": "../agents/12-test/e2e.md",
+        "frameworks": ["Playwright", "Cypress"]
+      }
+    ]
+  },
+  "vps": {
+    "core": [
+      {
+        "id": "00",
+        "name": "orchestrateur",
+        "description": "Coordinateur central pour tous les agents VPS",
+        "model": "opus",
+        "file": "../agents-vps/00-orchestrateur.md",
+        "useCases": ["Orchestration", "Routing requêtes", "Workflows multi-agents"]
+      },
+      {
+        "id": "01",
+        "name": "audit",
+        "description": "Audit santé serveur complet",
+        "model": "sonnet",
+        "file": "../agents-vps/01-audit.md",
+        "useCases": ["Health check", "Diagnostic", "État serveur"]
+      },
+      {
+        "id": "02",
+        "name": "securite",
+        "description": "Sécurité: SSH, firewall, fail2ban, hardening",
+        "model": "opus",
+        "file": "../agents-vps/02-securite.md",
+        "useCases": ["Hardening", "SSH", "Firewall"]
+      },
+      {
+        "id": "03",
+        "name": "reseau",
+        "description": "Réseau: DNS, reverse-proxy, TLS",
+        "model": "sonnet",
+        "file": "../agents-vps/03-reseau.md",
+        "useCases": ["DNS", "Traefik", "Certificats TLS"]
+      },
+      {
+        "id": "04",
+        "name": "docker",
+        "description": "Docker: compose, networking, volumes",
+        "model": "sonnet",
+        "file": "../agents-vps/04-docker.md",
+        "useCases": ["Docker setup", "Compose", "Volumes"]
+      },
+      {
+        "id": "05",
+        "name": "deploiement",
+        "description": "Déploiement: build, run, update, rollback, migrations",
+        "model": "sonnet",
+        "file": "../agents-vps/05-deploiement.md",
+        "useCases": ["Deploy", "Rollback", "Migrations"]
+      },
+      {
+        "id": "06",
+        "name": "cicd",
+        "description": "CI/CD: GitHub Actions, GitLab CI",
+        "model": "sonnet",
+        "file": "../agents-vps/06-cicd.md",
+        "useCases": ["CI/CD setup", "Pipelines", "Automatisation"]
+      },
+      {
+        "id": "07",
+        "name": "monitoring",
+        "description": "Monitoring: Uptime Kuma, Prometheus, Grafana",
+        "model": "sonnet",
+        "file": "../agents-vps/07-monitoring.md",
+        "useCases": ["Monitoring", "Alerting", "Dashboards"]
+      },
+      {
+        "id": "08",
+        "name": "backups",
+        "description": "Backups: rotation, testing, remote storage",
+        "model": "sonnet",
+        "file": "../agents-vps/08-backups.md",
+        "useCases": ["Backups", "Restore", "Remote storage"]
+      },
+      {
+        "id": "09",
+        "name": "couts-ressources",
+        "description": "Optimisation coûts et ressources: CPU, RAM, disk",
+        "model": "sonnet",
+        "file": "../agents-vps/09-couts-ressources.md",
+        "useCases": ["Optimisation", "Cost reduction", "Ressources"]
+      },
+      {
+        "id": "10",
+        "name": "incidents",
+        "description": "Troubleshooting: 502, 503, certificats, logs",
+        "model": "sonnet",
+        "file": "../agents-vps/10-incidents.md",
+        "useCases": ["Troubleshooting", "Debug", "Incidents"]
+      },
+      {
+        "id": "11",
+        "name": "migration",
+        "description": "Migration serveur: données, DNS, downtime minimal",
+        "model": "opus",
+        "file": "../agents-vps/11-migration.md",
+        "useCases": ["Migration", "DNS change", "Zero downtime"]
+      },
+      {
+        "id": "12",
+        "name": "documentation",
+        "description": "Documentation: runbooks, diagrammes techniques",
+        "model": "sonnet",
+        "file": "../agents-vps/12-documentation.md",
+        "useCases": ["Runbooks", "Architecture docs", "Procedures"]
+      },
+      {
+        "id": "13",
+        "name": "compliance",
+        "description": "Compliance: GDPR, audit trails, logs",
+        "model": "sonnet",
+        "file": "../agents-vps/13-compliance.md",
+        "useCases": ["GDPR", "Compliance", "Audit logs"]
+      },
+      {
+        "id": "14",
+        "name": "cleanup",
+        "description": "Cleanup: Docker, volumes orphelins, logs",
+        "model": "sonnet",
+        "file": "../agents-vps/14-cleanup.md",
+        "useCases": ["Cleanup", "Disk space", "Maintenance"]
+      },
+      {
+        "id": "15",
+        "name": "environnements",
+        "description": "Gestion environnements: prod/staging/test isolation",
+        "model": "sonnet",
+        "file": "../agents-vps/15-environnements.md",
+        "useCases": ["Environments", "Isolation", "Multi-env"]
+      },
+      {
+        "id": "16",
+        "name": "installateur",
+        "description": "Magic installer: 30+ services (Ollama, PostgreSQL, Grafana, etc.)",
+        "model": "sonnet",
+        "file": "../agents-vps/16-installateur.md",
+        "useCases": ["One-click install", "Service setup", "Auto-config"],
+        "services": ["Ollama", "PostgreSQL", "MySQL", "MongoDB", "Redis", "Grafana", "Prometheus", "Portainer", "Nextcloud", "WordPress", "GitLab"]
+      }
+    ]
+  }
+}

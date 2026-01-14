@@ -1,8 +1,8 @@
 ---
 title: "Woodman - Guide Complet Claude Code & Speckit"
 description: "Guide de référence rapide pour Claude Code et Speckit avec raccourcis, commandes et workflows"
-version: "1.0.0"
-created: "2025-11-17T12:04:23.877Z"
+version: "2.0.0"
+created: "2026-01-13T08:18:59.585Z"
 logo: "woodman.png"
 logo_mini: "woodman-mini.png"
 tags: ["woodman", "claude-code", "speckit", "cheatsheet", "référence"]
@@ -116,7 +116,7 @@ claude config remove <clé>      # Supprimer
 
 | Modèle | ID | Caractéristique |
 |--------|-----|-----------------|
-| **Opus 4.1** | `claude-opus-4-1-20250805` | Plus capable |
+| **Opus 4.5** | `claude-opus-4-5-20251101` | Plus capable avec thinking |
 | **Sonnet 4** | `claude-sonnet-4-20250514` | Performance équilibrée |
 | **Haiku 3.5** | `claude-3-5-haiku-20241022` | Plus rapide |
 
@@ -184,7 +184,7 @@ Créer dans `.claude/commands/`:
 argument-hint: [param1] [param2]
 description: Description affichée
 allowed-tools: Bash(git add:*), Read
-model: claude-opus-4-1-20250805
+model: claude-opus-4-5-20251101
 ---
 Votre prompt personnalisé ici.
 ```
@@ -328,11 +328,15 @@ Amazon Q Developer CLI (ne supporte pas arguments slash commands personnalisés)
 ✅ Subagents + Skills pour workflows complexes réutilisables
 ✅ Hooks pour automatiser formatage/logging
 
+> 💡 **Voir aussi**: [Boris Bible](boris-bible.html) pour patterns pratiques de Boris Cherny (créateur de Claude Code)
+
 ### Speckit
 ✅ Intent-first development: Définir requirements avant détails
 ✅ Raffinement multi-étapes avec guides AI
 ✅ Spécifications riches avec principes organisationnels
 ✅ Utiliser comme tests unitaires pour English
+
+> 💡 **Voir aussi**: [Agents Software](agents-software.html) pour automatiser le workflow Speckit
 
 ---
 
@@ -362,8 +366,8 @@ Amazon Q Developer CLI (ne supporte pas arguments slash commands personnalisés)
 - Le guide complet Speckit de GitHub
 - Les cheatsheets visuels de la communauté
 
-**Version**: 1.0.0
-**Dernière mise à jour**: 17 novembre 2025
+**Version**: 2.0.0
+**Dernière mise à jour**: 13 janvier 2026
 
 ---
 

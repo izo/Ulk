@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🪵 Woodman - Guide Complet Claude Code & Speckit</title>
-    <meta name="description" content="Guide de référence complet pour Claude Code et Speckit avec raccourcis, commandes et workflows">
+    <title>🪵 Woodman - AI Development Toolkit</title>
+    <meta name="description" content="Documentation complète: Claude Code référence, patterns Boris Cherny, agents software & VPS">
     <meta name="author" content="Woodman Contributors">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css">
     <link rel="icon" href="woodman-mini.png" type="image/png">
@@ -13,45 +13,124 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Nord Theme colors (https://www.nordtheme.com) */
+        /* Nord Theme colors */
         :root {
             /* Light theme (Snow Storm) */
-            --nord-bg: #ECEFF4;          /* nord6 */
-            --nord-bg-alt: #E5E9F0;      /* nord5 */
-            --nord-fg: #2E3440;          /* nord0 */
-            --nord-fg-dim: #4C566A;      /* nord3 */
-            --nord-border: #D8DEE9;      /* nord4 */
-            --nord-primary: #5E81AC;     /* nord10 - frost blue */
-            --nord-primary-hover: #81A1C1; /* nord9 */
-            --nord-accent: #88C0D0;      /* nord8 - frost cyan */
-            --nord-code-bg: #E5E9F0;     /* nord5 */
-            --nord-link: #5E81AC;        /* nord10 */
+            --nord-bg: #ECEFF4;
+            --nord-bg-alt: #E5E9F0;
+            --nord-fg: #2E3440;
+            --nord-fg-dim: #4C566A;
+            --nord-border: #D8DEE9;
+            --nord-primary: #5E81AC;
+            --nord-primary-hover: #81A1C1;
+            --nord-accent: #88C0D0;
+            --nord-code-bg: #E5E9F0;
+            --nord-link: #5E81AC;
+            --nord-tab-active: #88C0D0;
+            --nord-tab-hover: #D8DEE9;
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
                 /* Dark theme (Polar Night) */
-                --nord-bg: #2E3440;          /* nord0 */
-                --nord-bg-alt: #3B4252;      /* nord1 */
-                --nord-fg: #ECEFF4;          /* nord6 */
-                --nord-fg-dim: #D8DEE9;      /* nord4 */
-                --nord-border: #4C566A;      /* nord3 */
-                --nord-primary: #88C0D0;     /* nord8 - frost cyan */
-                --nord-primary-hover: #8FBCBB; /* nord7 */
-                --nord-accent: #81A1C1;      /* nord9 - frost blue */
-                --nord-code-bg: #3B4252;     /* nord1 */
-                --nord-link: #88C0D0;        /* nord8 */
+                --nord-bg: #2E3440;
+                --nord-bg-alt: #3B4252;
+                --nord-fg: #ECEFF4;
+                --nord-fg-dim: #D8DEE9;
+                --nord-border: #4C566A;
+                --nord-primary: #88C0D0;
+                --nord-primary-hover: #8FBCBB;
+                --nord-accent: #81A1C1;
+                --nord-code-bg: #3B4252;
+                --nord-link: #88C0D0;
+                --nord-tab-active: #88C0D0;
+                --nord-tab-hover: #4C566A;
             }
         }
 
-        body {
+        * {
             box-sizing: border-box;
-            min-width: 200px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--nord-bg);
+            font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--nord-fg);
+        }
+
+        /* Header with logo and title */
+        .header {
+            background-color: var(--nord-bg-alt);
+            border-bottom: 2px solid var(--nord-border);
+            padding: 20px 45px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: var(--nord-fg);
+        }
+
+        .header p {
+            margin: 5px 0 0 0;
+            color: var(--nord-fg-dim);
+            font-size: 0.95em;
+        }
+
+        /* Tab navigation */
+        .tabs {
+            background-color: var(--nord-bg-alt);
+            border-bottom: 2px solid var(--nord-border);
+            padding: 0 45px;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--nord-fg-dim);
+            font-family: "IBM Plex Sans", sans-serif;
+            font-size: 0.95em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            background-color: var(--nord-tab-hover);
+            color: var(--nord-fg);
+        }
+
+        .tab.active {
+            color: var(--nord-tab-active);
+            border-bottom-color: var(--nord-tab-active);
+        }
+
+        .tab .emoji {
+            margin-right: 6px;
+        }
+
+        /* Content area */
+        .container {
             max-width: 980px;
             margin: 0 auto;
             padding: 45px;
-            background-color: var(--nord-bg);
-            font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         .markdown-body {
@@ -137,6 +216,16 @@
             border-color: var(--nord-border);
         }
 
+        /* Tab content areas */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Back to top button */
         .back-to-top {
             position: fixed;
             bottom: 20px;
@@ -163,6 +252,7 @@
             display: block;
         }
 
+        /* Loading state */
         .loading {
             text-align: center;
             padding: 50px;
@@ -170,74 +260,214 @@
             color: var(--nord-fg-dim);
         }
 
+        /* Mobile responsive */
         @media (max-width: 767px) {
-            body {
-                padding: 15px;
+            .header {
+                padding: 15px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.3em;
+            }
+
+            .header img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .tabs {
+                padding: 0 20px;
+            }
+
+            .tab {
+                padding: 12px 15px;
+                font-size: 0.85em;
+            }
+
+            .container {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <article class="markdown-body" id="content">
-        <div class="loading">
-            <img src="woodman.png" alt="Woodman" width="100" style="opacity: 0.5;">
-            <p>Chargement de la documentation...</p>
+    <!-- Header -->
+    <div class="header">
+        <img src="woodman.png" alt="Woodman Logo">
+        <div>
+            <h1>🪵 Woodman</h1>
+            <p>AI Development Toolkit - Documentation Complète</p>
         </div>
-    </article>
+    </div>
 
+    <!-- Tab Navigation -->
+    <div class="tabs">
+        <button class="tab active" data-tab="reference">
+            <span class="emoji">📚</span>Référence
+        </button>
+        <button class="tab" data-tab="boris">
+            <span class="emoji">💡</span>Pratiques
+        </button>
+        <button class="tab" data-tab="agents-software">
+            <span class="emoji">🤖</span>Agents Software
+        </button>
+        <button class="tab" data-tab="agents-vps">
+            <span class="emoji">🖥️</span>Agents VPS
+        </button>
+    </div>
+
+    <!-- Content Container -->
+    <div class="container">
+        <!-- Reference Tab -->
+        <div id="reference-content" class="tab-content active">
+            <article class="markdown-body">
+                <div class="loading">
+                    <img src="woodman.png" alt="Woodman" width="100" style="opacity: 0.5;">
+                    <p>Chargement de la référence Claude Code...</p>
+                </div>
+            </article>
+        </div>
+
+        <!-- Boris Bible Tab -->
+        <div id="boris-content" class="tab-content">
+            <article class="markdown-body">
+                <div class="loading">
+                    <img src="woodman.png" alt="Woodman" width="100" style="opacity: 0.5;">
+                    <p>Chargement des patterns Boris...</p>
+                </div>
+            </article>
+        </div>
+
+        <!-- Agents Software Tab -->
+        <div id="agents-software-content" class="tab-content">
+            <article class="markdown-body">
+                <div class="loading">
+                    <img src="woodman.png" alt="Woodman" width="100" style="opacity: 0.5;">
+                    <p>Chargement des agents software...</p>
+                </div>
+            </article>
+        </div>
+
+        <!-- Agents VPS Tab -->
+        <div id="agents-vps-content" class="tab-content">
+            <article class="markdown-body">
+                <div class="loading">
+                    <img src="woodman.png" alt="Woodman" width="100" style="opacity: 0.5;">
+                    <p>Chargement des agents VPS...</p>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
     <a href="#" class="back-to-top" id="backToTop">⬆ Haut</a>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
     <script>
-        // Charger et afficher le markdown
-        fetch('woodman.md')
-            .then(response => {
+        // Configuration
+        const tabs = {
+            'reference': { file: 'woodman.md', title: 'Référence Claude Code' },
+            'boris': { file: 'boris-bible.md', title: 'Patterns Boris Cherny' },
+            'agents-software': { file: 'agents-software.md', title: 'Agents Software' },
+            'agents-vps': { file: 'agents-vps.md', title: 'Agents VPS' }
+        };
+
+        const loadedContent = {};
+
+        // Marked configuration
+        marked.setOptions({
+            breaks: true,
+            gfm: true,
+            headerIds: true,
+            mangle: false
+        });
+
+        // Strip YAML frontmatter
+        function stripFrontmatter(text) {
+            const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+            const match = text.match(frontmatterRegex);
+            return match ? match[2] : text;
+        }
+
+        // Load markdown content
+        async function loadContent(tabId) {
+            if (loadedContent[tabId]) {
+                return loadedContent[tabId];
+            }
+
+            try {
+                const response = await fetch(tabs[tabId].file);
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error(`HTTP ${response.status}`);
                 }
-                return response.text();
-            })
-            .then(text => {
-                // Extraire le frontmatter YAML
-                const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
-                const match = text.match(frontmatterRegex);
-                const markdown = match ? match[2] : text;
+                const text = await response.text();
+                const markdown = stripFrontmatter(text);
+                const html = marked.parse(markdown);
+                loadedContent[tabId] = html;
+                return html;
+            } catch (error) {
+                console.error(`Error loading ${tabs[tabId].file}:`, error);
+                return `
+                    <div style="text-align: center; padding: 50px;">
+                        <h1>❌ Erreur de Chargement</h1>
+                        <p>Impossible de charger ${tabs[tabId].file}</p>
+                        <p style="color: #8b949e; font-size: 0.9em;">Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
 
-                // Configurer marked
-                marked.setOptions({
-                    breaks: true,
-                    gfm: true,
-                    headerIds: true,
-                    mangle: false
-                });
+        // Switch tab
+        async function switchTab(tabId) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
 
-                // Convertir et afficher
-                document.getElementById('content').innerHTML = marked.parse(markdown);
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            const contentElement = document.getElementById(`${tabId}-content`);
+            contentElement.classList.add('active');
 
-                // Ajouter des ancres aux titres
-                document.querySelectorAll('h2, h3, h4').forEach(heading => {
+            // Load content if not already loaded
+            const article = contentElement.querySelector('.markdown-body');
+            if (!loadedContent[tabId]) {
+                const html = await loadContent(tabId);
+                // Use DOMPurify to sanitize HTML before setting (XSS protection)
+                const cleanHtml = DOMPurify.sanitize(html);
+                article.innerHTML = cleanHtml;
+
+                // Add IDs to headings for anchor links
+                article.querySelectorAll('h2, h3, h4').forEach(heading => {
                     const id = heading.textContent.toLowerCase()
                         .replace(/[^\w\s-]/g, '')
                         .replace(/\s+/g, '-');
                     heading.id = id;
                 });
+            }
 
-                console.log('✅ Woodman documentation loaded successfully');
-            })
-            .catch(error => {
-                document.getElementById('content').innerHTML = `
-                    <div style="text-align: center; padding: 50px;">
-                        <h1>❌ Erreur de Chargement</h1>
-                        <p>Impossible de charger le document woodman.md</p>
-                        <p style="color: #8b949e; font-size: 0.9em;">Error: ${error.message}</p>
-                    </div>
-                `;
-                console.error('Error loading Woodman:', error);
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Update URL hash
+            window.location.hash = tabId;
+        }
+
+        // Initialize tabs
+        document.querySelectorAll('.tab').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                switchTab(tabId);
             });
+        });
 
-        // Gestion du bouton "Retour en haut"
+        // Back to top button
         const backToTop = document.getElementById('backToTop');
-
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTop.classList.add('show');
@@ -252,6 +482,24 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // Load initial tab
+        (async () => {
+            // Check URL hash
+            const hash = window.location.hash.slice(1);
+            const initialTab = tabs[hash] ? hash : 'reference';
+
+            await switchTab(initialTab);
+            console.log('✅ Woodman documentation loaded successfully');
+        })();
+
+        // Handle browser back/forward
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.slice(1);
+            if (tabs[hash]) {
+                switchTab(hash);
+            }
         });
     </script>
 </body>

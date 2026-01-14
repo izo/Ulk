@@ -1,0 +1,102 @@
+{
+  "patterns": [
+    {
+      "id": 1,
+      "title": "Parallel Terminal Sessions",
+      "description": "5 Claude instances parallèles avec tabs numérotés 1-5",
+      "category": "productivity",
+      "implementation": "Utiliser notifications système pour savoir quand Claude a besoin d'input"
+    },
+    {
+      "id": 2,
+      "title": "Web & Mobile Sessions",
+      "description": "5-10 sessions sur claude.ai/code + sessions iOS",
+      "category": "productivity",
+      "implementation": "Hand-off entre terminal et web via &, ou --teleport"
+    },
+    {
+      "id": 3,
+      "title": "Opus 4.5 with Thinking",
+      "description": "Opus 4.5 pour tout : meilleur tool use, moins d'itérations",
+      "category": "model-selection",
+      "implementation": "Même si plus lent, résultat final plus rapide grâce à moins de steering"
+    },
+    {
+      "id": 4,
+      "title": "Shared CLAUDE.md",
+      "description": "CLAUDE.md partagé dans git, toute l'équipe contribue",
+      "category": "documentation",
+      "implementation": "Ajouter à CLAUDE.md quand Claude fait une erreur → ne la refait plus",
+      "relatedAgents": ["agents/01-spec-writer", "agents/03-sync-local"]
+    },
+    {
+      "id": 5,
+      "title": "Code Review Integration",
+      "description": "@.claude sur PRs pour enrichir CLAUDE.md",
+      "category": "workflow",
+      "implementation": "/install-github-action - version de Compounding Engineering",
+      "relatedAgents": ["agents/05-code-auditor"]
+    },
+    {
+      "id": 6,
+      "title": "Plan Mode",
+      "description": "Démarrer avec shift+tab deux fois",
+      "category": "workflow",
+      "implementation": "Itérer sur le plan jusqu'à satisfaction, puis auto-accept mode",
+      "relatedAgents": ["agents/01-spec-writer", "agents/02-todo-generator"]
+    },
+    {
+      "id": 7,
+      "title": "Slash Commands",
+      "description": "Commandes pour inner-loop workflows répétitifs",
+      "category": "automation",
+      "implementation": "Stocker dans .claude/commands/, versionner dans git",
+      "example": "/commit-push-pr avec inline bash pour pre-compute git status"
+    },
+    {
+      "id": 8,
+      "title": "Subagents",
+      "description": "Agents réutilisables pour workflows communs",
+      "category": "automation",
+      "implementation": "code-simplifier, verify-app pour tâches post-PR",
+      "relatedAgents": ["agents/05-code-auditor", "agents/06-a11y-auditor", "agents/07-perf-auditor"]
+    },
+    {
+      "id": 9,
+      "title": "PostToolUse Hook for Formatting",
+      "description": "Hook pour formater le code généré par Claude",
+      "category": "automation",
+      "implementation": "Gère les 10% finaux pour éviter erreurs de formatage en CI"
+    },
+    {
+      "id": 10,
+      "title": "Permissions Management",
+      "description": "Pre-allow commandes bash sûres via /permissions",
+      "category": "security",
+      "implementation": "Stocker dans .claude/settings.json partagé avec équipe"
+    },
+    {
+      "id": 11,
+      "title": "Tool Integration",
+      "description": "MCP servers pour intégrations externes",
+      "category": "integration",
+      "implementation": "Slack, BigQuery, Sentry via MCP - config dans .mcp.json",
+      "relatedAgents": ["agents/08-external-sync"]
+    },
+    {
+      "id": 12,
+      "title": "Long-Running Tasks",
+      "description": "Background agents pour tâches longues",
+      "category": "productivity",
+      "implementation": "Stop hooks, ralph-wiggum plugin, --permission-mode=dontAsk"
+    },
+    {
+      "id": 13,
+      "title": "Verification Loop",
+      "description": "Donner à Claude un moyen de vérifier son travail",
+      "category": "quality",
+      "implementation": "Feedback loop = 2-3x amélioration qualité. Exemple: tests Chrome extension",
+      "relatedAgents": ["agents/05-code-auditor", "agents/06-a11y-auditor", "agents/07-perf-auditor"]
+    }
+  ]
+}
