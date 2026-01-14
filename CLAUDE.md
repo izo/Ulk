@@ -42,7 +42,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `07-perf-auditor.md` - Performs performance audits (Core Web Vitals, bundle analysis, etc.)
 - `08-external-sync.md` - Bidirectional sync with Notion/Linear ONLY
 - `09-context-generator.md` - Generates llm.txt snapshot (15K chars max)
-- `10-documentalist.md` - Manages /docs folder (organize, clean, validate frontmatter)
+- `13-documentalist.md` - Manages /docs folder (organize, clean, validate frontmatter)
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)

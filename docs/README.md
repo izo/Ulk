@@ -51,7 +51,7 @@ docs/
 
 ## Agent documentaliste
 
-L'agent **documentalist** (`10-documentalist.md`) gère automatiquement :
+L'agent **documentalist** (`13-documentalist.md`) gère automatiquement :
 
 - ✅ Organisation des fichiers par catégorie
 - ✅ Validation du frontmatter YAML
@@ -146,5 +146,5 @@ Le documentalist track les métriques dans `.claude/docs-metrics.json` :
 
 ---
 
-**Géré par** : Agent documentalist (`agents/10-documentalist.md`)
+**Géré par** : Agent documentalist (`agents/13-documentalist.md`)
 **Dernière mise à jour** : 2024-01-14
