@@ -45,6 +45,7 @@ Dans Claude Code, invoquez les agents avec :
 | `perf-auditor` | Audit performance |
 | `external-sync` | Sync Notion/Linear |
 | `context-generator` | Génère llm.txt (15K chars) |
+| `documentalist` | Gère /docs - organisation, nettoyage, frontmatter |
 
 ### Analyzers (`/woodman:analyze:*`)
 

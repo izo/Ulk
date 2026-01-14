@@ -38,6 +38,7 @@ model: opus | sonnet
 | **perf-auditor** | `07-perf-auditor.md` | sonnet | Performance audit (Core Web Vitals, bundle, backend) |
 | **external-sync** | `08-external-sync.md` | opus | Bidirectional sync with Notion/Linear ONLY (external tools) |
 | **context-generator** | `09-context-generator.md` | sonnet | Generate llm.txt snapshot (15K chars max) for instant LLM onboarding |
+| **documentalist** | `10-documentalist.md` | sonnet | Manage /docs folder - organize, clean, validate frontmatter, maintain documentation structure |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -202,6 +203,15 @@ Agents adapt their analysis, questions, and output format based on detected stac
 - Regenerate after significant changes or before sharing project
 - Output: Single llm.txt file at project root (Markdown format)
 
+### documentalist
+- Manages /docs folder: organizes, cleans, validates all documentation
+- Enforces frontmatter standards (YAML with required fields)
+- Categorizes documentation: specs, audits, guides, ADRs, reports
+- Maintains index, conventions, and health metrics
+- Detects and fixes: missing frontmatter, duplicates, obsolete files, naming issues
+- Generates audit reports and tracks documentation health score
+- Run after any agent that generates documentation (specs, audits, guides)
+
 ## Tool Usage
 
 ### Common Tools Across Agents
@@ -277,6 +287,11 @@ Agents generate these standard files in the project root:
 - **llm.txt**: Context snapshot for LLM onboarding (from 09-context-generator) - 15K chars max
 - **audit-YYYYMMDD.md**: Audit reports (from 05/06/07-auditor agents)
 - **.claude/sync-state.json**: External sync tracking (from 08-external-sync)
+- **docs/**: Organized documentation folder (managed by 10-documentalist)
+  - **docs/00-meta/index.md**: Documentation index (auto-generated)
+  - **docs/00-meta/conventions.md**: Documentation conventions (auto-generated)
+  - **docs/00-meta/audit-YYYY-MM-DD.md**: Documentation audit reports
+  - **.claude/docs-metrics.json**: Documentation health metrics
 
 ## Separation of Responsibilities
 
