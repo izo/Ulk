@@ -50,16 +50,26 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `10-analyze/spip.md` - In-depth SPIP analysis (squelettes, boucles, CVT)
 - `10-analyze/swiftui.md` - In-depth SwiftUI analysis (MVVM, TCA, multi-platform)
 
-**Deploy Agents (11-deploy/):**
-- `11-deploy/vercel.md` - Vercel deployment (Next.js, frameworks, preview/production)
-- `11-deploy/netlify.md` - Netlify deployment (JAMstack, serverless functions)
-- `11-deploy/cloudflare.md` - Cloudflare Pages/Workers (edge computing, KV/D1/R2)
-- `11-deploy/docker.md` - Docker containerization (multi-stage builds, docker-compose)
-- `11-deploy/aws.md` - AWS deployment (S3+CloudFront, ECS, Elastic Beanstalk)
+### Global Installation (Custom Commands)
 
-**Test Agents (12-test/):**
-- `12-test/unit.md` - Unit testing (Jest, Vitest, components, hooks, coverage)
-- `12-test/e2e.md` - End-to-end testing (Playwright, Cypress, multi-browser)
+Install agents globally to use them in any project:
+
+```bash
+# Install (creates symlink to ~/.claude/commands/woodman)
+./install.sh
+
+# Uninstall
+./uninstall.sh
+```
+
+Once installed, invoke agents anywhere with:
+```
+/woodman:agents:spec-writer
+/woodman:agents:todo-generator
+/woodman:analyze:nuxt
+```
+
+The `commands/` directory contains the installable version of agents formatted for Claude Code Custom Commands.
 
 ### Sifrei Scribe (Context Generator)
 
@@ -231,7 +241,7 @@ Woodman/
 │   ├── serve.sh
 │   └── README.md, DEPLOY.md, CLAUDE.md
 │
-├── agents/                       # AI agent definitions
+├── agents/                       # AI agent definitions (source)
 │   ├── 01-spec-writer.md
 │   ├── 02-todo-generator.md
 │   ├── 03-sync-local.md
@@ -248,20 +258,28 @@ Woodman/
 │   │   ├── spip.md
 │   │   ├── swiftui.md
 │   │   └── README.md
-│   ├── 11-deploy/               # Deployment automation
-│   │   ├── vercel.md
-│   │   ├── netlify.md
-│   │   ├── cloudflare.md
-│   │   ├── docker.md
-│   │   ├── aws.md
-│   │   └── README.md
-│   ├── 12-test/                 # Test automation
-│   │   ├── unit.md
-│   │   ├── e2e.md
-│   │   └── README.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
+│
+├── commands/                     # Installable Custom Commands
+│   ├── agents/                   # Workflow agents
+│   │   ├── spec-writer.md
+│   │   ├── todo-generator.md
+│   │   ├── task-runner.md
+│   │   ├── sync-local.md
+│   │   ├── code-auditor.md
+│   │   ├── a11y-auditor.md
+│   │   ├── perf-auditor.md
+│   │   ├── external-sync.md
+│   │   └── context-generator.md
+│   ├── analyze/                  # Stack analyzers
+│   │   ├── nuxt.md
+│   │   ├── next.md
+│   │   ├── astro.md
+│   │   ├── spip.md
+│   │   └── swiftui.md
+│   └── README.md
 │
 ├── sifrei - scribe/              # Context generator (concept only)
 │   ├── scribe.md
@@ -273,6 +291,8 @@ Woodman/
 ├── .claude/
 │   └── settings.local.json
 │
+├── install.sh                    # Global installation script
+├── uninstall.sh                  # Uninstallation script
 ├── woodman.png                   # Main logo (1.8MB)
 ├── woodman-mini.png              # Favicon (16x16)
 ├── spec.md                       # Project specification
