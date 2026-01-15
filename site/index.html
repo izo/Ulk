@@ -462,13 +462,27 @@
             }
         });
 
-        // Keyboard shortcut: T to toggle theme
+        // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
-            if (e.key === 't' || e.key === 'T') {
-                if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            switch(e.key.toLowerCase()) {
+                case 't':
                     e.preventDefault();
                     toggleTheme();
-                }
+                    break;
+                case 'd':
+                    e.preventDefault();
+                    document.getElementById('install').scrollIntoView({ behavior: 'smooth' });
+                    break;
+                case 'c':
+                    e.preventDefault();
+                    window.open('https://github.com/izo/Woodman', '_blank');
+                    break;
+                case 's':
+                    e.preventDefault();
+                    window.open('https://github.com/izo/Woodman', '_blank');
+                    break;
             }
         });
 
