@@ -32,7 +32,7 @@ jobs:
 
       - name: Generate Woodman Documentation
         run: |
-          node generate-claude-cheatsheet.js
+          cd cheatheet && node generate-unified-docs.js
           echo "✅ Woodman documentation generated"
 
       - name: Setup Pages

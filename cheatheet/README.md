@@ -48,7 +48,7 @@ cd woodman
 Woodman/
 ├── README.md                        # Ce fichier
 ├── DEPLOY.md                        # Guide déploiement GitHub Pages
-├── generate-claude-cheatsheet.js   # Script de génération
+├── generate-unified-docs.js   # Script de génération
 ├── woodman.md                       # Document généré
 ├── index.html                       # Page web pour GitHub Pages
 ├── woodman.png                      # Logo principal
@@ -70,7 +70,7 @@ Woodman/
 ### Générer le Document
 
 ```bash
-node generate-claude-cheatsheet.js
+node generate-unified-docs.js
 ```
 
 ### Sortie
@@ -144,7 +144,7 @@ Voir [DEPLOY.md](DEPLOY.md) pour le guide de déploiement complet avec:
 
 ```bash
 # Générer la documentation
-node generate-claude-cheatsheet.js
+node generate-unified-docs.js
 
 # Servir localement
 python3 -m http.server 8000
@@ -222,7 +222,7 @@ Toutes les sources avec liens et mainteneurs
 
 ### Modifier les Sources
 
-Éditez le tableau `sources` dans `generate-claude-cheatsheet.js`:
+Éditez le tableau `sources` dans `generate-unified-docs.js`:
 
 ```javascript
 const sources = [
@@ -275,10 +275,10 @@ Toutes les sources sont créditées en bas du document généré.
 
 ```bash
 # Ouvrir dans votre éditeur
-code generate-claude-cheatsheet.js
+code generate-unified-docs.js
 
 # Tester les modifications
-node generate-claude-cheatsheet.js
+node generate-unified-docs.js
 
 # Vérifier le résultat
 cat woodman.md

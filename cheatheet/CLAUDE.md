@@ -149,9 +149,6 @@ gh workflow run deploy.yml
 - `serve.sh` - Local development server script
 - `.github/workflows/deploy.yml` - CI/CD configuration
 
-### Legacy Files (Deprecated)
-- `generate-claude-cheatsheet.js` - Old generator (replaced by generate-unified-docs.js)
-
 ## Version Management
 
 Version is managed centrally:

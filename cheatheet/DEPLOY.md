@@ -52,7 +52,7 @@ Le workflow GitHub Actions (`.github/workflows/deploy.yml`) s'exécute automatiq
 
 1. **Checkout**: Récupère le code du repository
 2. **Setup Node.js**: Installe Node.js 18
-3. **Generate Documentation**: Exécute `generate-claude-cheatsheet.js`
+3. **Generate Documentation**: Exécute `generate-unified-docs.js`
 4. **Convert to HTML**: Crée `index.html` avec le markdown
 5. **Deploy**: Déploie sur GitHub Pages
 
@@ -159,7 +159,7 @@ Ajoutez dans votre README.md:
 ### Erreur dans le Workflow
 
 1. Consultez les logs dans **Actions**
-2. Vérifiez que `generate-claude-cheatsheet.js` fonctionne localement
+2. Vérifiez que `generate-unified-docs.js` fonctionne localement
 3. Assurez-vous que `woodman.md` est bien généré
 
 ### Les Images Ne S'Affichent Pas
@@ -190,10 +190,10 @@ GitHub Pages fonctionne avec les repositories privés si vous avez GitHub Pro.
 
 ```bash
 # Modifier le script ou les sources
-code generate-claude-cheatsheet.js
+code generate-unified-docs.js
 
 # Tester localement
-node generate-claude-cheatsheet.js
+node generate-unified-docs.js
 
 # Commiter et pousser
 git add .
@@ -216,7 +216,7 @@ Pour tester avant de déployer:
 
 ```bash
 # Générer la documentation
-node generate-claude-cheatsheet.js
+node generate-unified-docs.js
 
 # Servir localement avec Python
 python3 -m http.server 8000

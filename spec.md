@@ -98,7 +98,7 @@ Un développeur utilisant Claude Code doit jongler entre :
 ```
 Woodman/
 ├── cheatheet/                    # Générateur de cheatsheet
-│   ├── generate-claude-cheatsheet.js   # Script Node.js
+│   ├── generate-unified-docs.js   # Script Node.js
 │   ├── index.html                       # Interface web (Nord theme)
 │   ├── woodman.md                       # Document généré
 │   ├── woodman.png                      # Logo principal
@@ -172,8 +172,8 @@ Woodman/
 ### Parcours 2 : Régénérer le cheatsheet
 
 ```
-1. Modifier generate-claude-cheatsheet.js
-2. Exécuter : node cheatheet/generate-claude-cheatsheet.js
+1. Modifier generate-unified-docs.js
+2. Exécuter : node cheatheet/generate-unified-docs.js
 3. Commit + push vers main
 4. GitHub Actions déclenche le déploiement
 5. Site mis à jour (~2-3 min)
@@ -297,7 +297,7 @@ Transformer Woodman d'une **collection de fichiers** en un **toolkit documenté 
 | # | Action | Fichier(s) concerné(s) |
 |---|--------|------------------------|
 | 1 | **Vérifier la structure de déploiement** : les fichiers `index.html` et `woodman.md` doivent être à la racine pour GitHub Pages, or ils semblent être dans `cheatheet/` | `cheatheet/` → racine |
-| 2 | **Corriger le workflow si nécessaire** : `deploy.yml` exécute `node generate-claude-cheatsheet.js` mais le fichier est dans `cheatheet/` | `.github/workflows/deploy.yml` |
+| 2 | **Corriger le workflow si nécessaire** : `deploy.yml` exécute `node generate-unified-docs.js` mais le fichier est dans `cheatheet/` | `.github/workflows/deploy.yml` |
 | 3 | **Optimiser le logo** : `woodman.png` fait 1.8 MB, le convertir en WebP ou compresser | `woodman.png` |
 
 ### 🟠 Court terme (1-2 semaines)
@@ -306,7 +306,7 @@ Transformer Woodman d'une **collection de fichiers** en un **toolkit documenté 
 |---|--------|------------------------|
 | 4 | **Ajouter un README à la racine** pointant vers les différents composants | `README.md` (nouveau) |
 | 5 | **Compléter la constitution Speckit** avec les vrais principes du projet | `.specify/memory/constitution.md` |
-| 6 | **Mettre à jour le contenu du cheatsheet** avec les dernières fonctionnalités Claude Code | `cheatheet/generate-claude-cheatsheet.js` |
+| 6 | **Mettre à jour le contenu du cheatsheet** avec les dernières fonctionnalités Claude Code | `cheatheet/generate-unified-docs.js` |
 | 7 | **Ajouter les templates d'audit manquants** (Swift, Tauri sont vides ?) | `audit - commands/` |
 
 ### 🟡 Moyen terme (1-2 mois)
@@ -336,7 +336,7 @@ Transformer Woodman d'une **collection de fichiers** en un **toolkit documenté 
 
 ```bash
 # Générer le cheatsheet localement
-node cheatheet/generate-claude-cheatsheet.js
+node cheatheet/generate-unified-docs.js
 
 # Servir localement (Python)
 python3 -m http.server 8000

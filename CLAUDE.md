@@ -16,7 +16,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Generate woodman.md from all sources
-node cheatheet/generate-claude-cheatsheet.js
+node cheatheet/generate-unified-docs.js
 
 # Test locally (runs generator + starts dev server)
 cd cheatheet && ./serve.sh [port]  # Default: 8000
@@ -87,7 +87,7 @@ Located in `sifrei - scribe/`:
 ### Documentation Pipeline (cheatheet/)
 
 ```
-generate-claude-cheatsheet.js
+generate-unified-docs.js
     ├── sources[] array
     │   ├── awesomeclaude.ai/code-cheatsheet
     │   ├── github.com/github/spec-kit
@@ -123,7 +123,7 @@ generate-claude-cheatsheet.js
 **Pipeline**:
 1. Checkout repository
 2. Setup Node.js 18
-3. Run `node generate-claude-cheatsheet.js` to regenerate docs
+3. Run `node generate-unified-docs.js` to regenerate docs
 4. Use existing `index.html` from repository (Nord theme, IBM Plex fonts)
 5. Deploy to GitHub Pages
 
@@ -162,7 +162,7 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 
 | File | Purpose |
 |------|---------|
-| `cheatheet/generate-claude-cheatsheet.js` | Core generator - modify `sources[]` array and `content` template |
+| `cheatheet/generate-unified-docs.js` | Core generator - modify `sources[]` array and `content` template |
 | `cheatheet/index.html` | GitHub Pages interface (Nord theme, marked.js rendering) |
 | `cheatheet/serve.sh` | Local dev server script (runs generator + HTTP server) |
 | `.github/workflows/deploy.yml` | CI/CD configuration (Node 18, weekly cron schedule) |
@@ -189,10 +189,10 @@ Located at repository root:
 
 ### When Adding Documentation Sources
 
-1. Edit `cheatheet/generate-claude-cheatsheet.js`
+1. Edit `cheatheet/generate-unified-docs.js`
 2. Add to `sources[]` array with: name, url, description, maintainer
 3. Add corresponding content section in the `content` template string
-4. Test: `node cheatheet/generate-claude-cheatsheet.js`
+4. Test: `node cheatheet/generate-unified-docs.js`
 5. Verify: `cd cheatheet && ./serve.sh` and check http://localhost:8000
 6. Commit and push to trigger automatic deployment
 
@@ -201,7 +201,7 @@ Located at repository root:
 Always test locally before committing:
 ```bash
 # Test generation
-node cheatheet/generate-claude-cheatsheet.js
+node cheatheet/generate-unified-docs.js
 
 # Verify output
 cat cheatheet/woodman.md | head -50
@@ -213,7 +213,7 @@ cd cheatheet && ./serve.sh 8000
 ### Version Management
 
 Keep version synchronized across three locations:
-1. `cheatheet/generate-claude-cheatsheet.js` - Line 40: `version: "X.Y.Z"`
+1. `cheatheet/generate-unified-docs.js` - Line 40: `version: "X.Y.Z"`
 2. `cheatheet/README.md` - Badge section
 3. Generated `cheatheet/woodman.md` frontmatter (auto-updated by script)
 
@@ -239,7 +239,7 @@ The repository has an intentional naming choice using spaces in folder names for
 ```
 Woodman/
 ├── cheatheet/                    # Documentation generator module
-│   ├── generate-claude-cheatsheet.js
+│   ├── generate-unified-docs.js
 │   ├── index.html
 │   ├── woodman.md (generated)
 │   ├── serve.sh
