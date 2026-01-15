@@ -46,6 +46,7 @@ Dans Claude Code, invoquez les agents avec :
 | `external-sync` | Sync Notion/Linear |
 | `context-generator` | Génère llm.txt (15K chars) |
 | `documentalist` | Gère /docs - organisation, nettoyage, frontmatter |
+| `figma-shadcn` | Analyse Figma → implémentation shadcn/ui + Tailwind |
 
 ### Analyzers (`/woodman:analyze:*`)
 

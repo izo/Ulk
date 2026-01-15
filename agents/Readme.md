@@ -18,7 +18,8 @@ agents/
 ├── 06-a11y-auditor.md     # Audit accessibilité WCAG 2.1/2.2
 ├── 07-perf-auditor.md     # Audit performance (Core Web Vitals, bundle, DB)
 ├── 08-external-sync.md    # Sync bidirectionnelle Notion/Linear
-└── 09-context-generator.md # Génère llm.txt (snapshot 15K pour onboarding LLM)
+├── 09-context-generator.md # Génère llm.txt (snapshot 15K pour onboarding LLM)
+└── 14-figma-shadcn.md     # Analyse Figma → implémentation shadcn/ui + Tailwind
 ```
 
 ### Stack Analyzers (10-analyze/)
@@ -83,6 +84,29 @@ agents/12-test/
 ```
 
 **Voir** : `12-test/README.md` pour la documentation complète
+
+### Design Integration (14)
+
+Agent spécialisé pour l'analyse Figma et l'intégration shadcn/ui :
+
+```
+agents/
+└── 14-figma-shadcn.md    # Analyse Figma Dev Mode → shadcn/ui + Tailwind
+```
+
+**Usage :**
+```bash
+"Analyse ce composant Figma: [URL]"
+"Implémente ce design avec shadcn/ui"
+"Trouve l'équivalent shadcn/ui pour ce composant"
+```
+
+**Fonctionnalités :**
+- Analyse design Figma (Dev Mode)
+- Mapping vers composants shadcn/ui
+- Génération code production-ready
+- Styling Tailwind fidèle au design
+- Code Connect mapping (bonus)
 
 ---
 
@@ -205,6 +229,14 @@ agents/12-test/
 "Setup l'espace Notion"
 ```
 
+### Design
+```
+"Analyse ce composant Figma: [URL]"
+"Implémente ce design avec shadcn/ui"
+"Trouve l'équivalent shadcn pour ce composant"
+"Mappe ce composant dans Figma"
+```
+
 ---
 
 ## 🔄 Flow Recommandé
@@ -284,6 +316,7 @@ Corrections
 | 07-perf-auditor | sonnet | Mesures et analyse |
 | 08-external-sync | opus | Résolution conflits, bidirectionnalité |
 | 09-context-generator | sonnet | Compilation et synthèse (15K max) |
+| 14-figma-shadcn | opus | Analyse design + mapping composants complexes |
 
 ---
 

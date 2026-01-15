@@ -43,6 +43,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `08-external-sync.md` - Bidirectional sync with Notion/Linear ONLY
 - `09-context-generator.md` - Generates llm.txt snapshot (15K chars max)
 - `13-documentalist.md` - Manages /docs folder (organize, clean, validate frontmatter)
+- `14-figma-shadcn.md` - Analyzes Figma designs and generates shadcn/ui + Tailwind implementations
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -67,6 +68,7 @@ Once installed, invoke agents anywhere with:
 ```
 /woodman:agents:spec-writer
 /woodman:agents:todo-generator
+/woodman:agents:figma-shadcn
 /woodman:analyze:nuxt
 ```
 
