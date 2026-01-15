@@ -22,7 +22,8 @@ agents/
 ├── 13-documentalist.md    # Gère /docs (organise, valide, maintient)
 ├── 14-figma-shadcn.md     # Analyse Figma → implémentation shadcn/ui + Tailwind
 ├── 15-tw2shad.md          # Transforme Tailwind/HTML → composants shadcn/ui Vue (Nuxt)
-└── 16-frontend-qa.md      # Audit frontend complet (UX, UI, Tailwind, shadcn, code)
+├── 16-frontend-qa.md      # Audit frontend complet (UX, UI, Tailwind, shadcn, code)
+└── 17-code-simplifier.md  # Audit simplification codebase + plugin code-simplifier
 ```
 
 ### Stack Analyzers (10-analyze/)
@@ -129,6 +130,36 @@ agents/
 - Code Connect mapping (bonus)
 - Transformation Tailwind → Vue/Nuxt
 
+### Code Simplifier (17)
+
+Agent d'audit de simplification du code :
+
+```
+agents/
+└── 17-code-simplifier.md    # Audit simplification + plugin code-simplifier
+```
+
+**Prérequis :**
+```bash
+claude plugin install code-simplifier
+```
+
+**Usage :**
+```bash
+"Audit de simplification"       # Audit complet du codebase
+"Simplifie le projet"           # Audit + application
+"Quels fichiers simplifier ?"   # Rapport sans modification
+"Score de complexité"           # Métriques rapides
+```
+
+**Fonctionnalités :**
+- Cartographie complète du codebase
+- Détection patterns problématiques (fichiers longs, nesting, ternaires, etc.)
+- Top 10 fichiers à simplifier avec score
+- Application via plugin officiel `code-simplifier` d'Anthropic
+- Validation après chaque simplification (typecheck, lint, tests)
+- Rapport avant/après avec métriques
+
 ### Frontend QA (16-frontend-qa/)
 
 Agent d'assurance qualité frontend complet avec checklists de référence :
@@ -211,6 +242,7 @@ agents/16-frontend-qa/
 "Audit code" → 05
 "Audit accessibilité" → 06
 "Audit performance" → 07
+"Audit simplification" → 17
 
 # Audits spécifiques
 "Analyse le bundle" → 07 (focus bundle size)
@@ -271,6 +303,7 @@ agents/16-frontend-qa/
 "Audit code complet"
 "Audit performance"
 "Audit accessibilité"
+"Audit simplification"
 "Quick wins perf"
 ```
 
@@ -373,6 +406,7 @@ Corrections
 | 14-figma-shadcn | opus | Analyse design + mapping composants complexes |
 | 15-tw2shad | sonnet | Transformation Tailwind → Vue/shadcn |
 | 16-frontend-qa | sonnet | Audit frontend (UX, UI, Tailwind, shadcn, code) |
+| 17-code-simplifier | opus | Audit simplification codebase + plugin code-simplifier |
 
 ---
 
