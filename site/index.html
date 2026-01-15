@@ -199,7 +199,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
+            gap: 6px;
+            padding: 0 10px;
             height: 36px;
             border-radius: 8px;
             border: 1px solid #e5e5e5;
@@ -239,9 +240,10 @@
                 </div>
             </div>
             <div class="flex items-center gap-3">
-                <button onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle theme">
+                <button onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle theme (T)">
                     <i data-lucide="sun" class="w-4 h-4 sun"></i>
                     <i data-lucide="moon" class="w-4 h-4 moon"></i>
+                    <span class="kbd ml-1">T</span>
                 </button>
                 <a href="https://github.com/izo/Woodman" target="_blank"
                    class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-zed-text border border-zed-border rounded-lg hover:bg-white transition-colors">
@@ -457,6 +459,16 @@
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
             if (!localStorage.getItem('theme')) {
                 applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // Keyboard shortcut: T to toggle theme
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 't' || e.key === 'T') {
+                if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    toggleTheme();
+                }
             }
         });
 
