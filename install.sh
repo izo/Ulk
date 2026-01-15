@@ -1,76 +1,88 @@
 #!/bin/bash
-# Woodman Agents - Installation Script
+# Woodman - Installation Script
 # Installe les agents comme Custom Commands dans Claude Code
+#
+# Usage:
+#   ./install.sh          # Installation standard
+#   ./install.sh --flat   # Installation plate (agents à la racine)
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 COMMANDS_SOURCE="$SCRIPT_DIR/commands"
 CLAUDE_COMMANDS="$HOME/.claude/commands"
-WOODMAN_TARGET="$CLAUDE_COMMANDS/woodman"
 
-echo "🪵 Woodman Agents Installer"
-echo "==========================="
+# Couleurs
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo ""
+echo -e "${GREEN}🪵 Woodman Installer${NC}"
+echo "===================="
 echo ""
 
 # Vérifier que le dossier commands existe
 if [ ! -d "$COMMANDS_SOURCE" ]; then
     echo "❌ Erreur: Dossier commands/ non trouvé"
-    echo "   Chemin attendu: $COMMANDS_SOURCE"
     exit 1
 fi
 
 # Créer le dossier .claude/commands s'il n'existe pas
-if [ ! -d "$CLAUDE_COMMANDS" ]; then
-    echo "📁 Création de $CLAUDE_COMMANDS"
-    mkdir -p "$CLAUDE_COMMANDS"
-fi
+mkdir -p "$CLAUDE_COMMANDS"
 
-# Vérifier si woodman existe déjà
-if [ -e "$WOODMAN_TARGET" ]; then
-    if [ -L "$WOODMAN_TARGET" ]; then
-        echo "🔗 Symlink existant détecté, mise à jour..."
-        rm "$WOODMAN_TARGET"
-    else
-        echo "⚠️  Un dossier woodman existe déjà (pas un symlink)"
-        echo "   $WOODMAN_TARGET"
-        echo ""
-        read -p "   Voulez-vous le remplacer ? [y/N] " -n 1 -r
-        echo ""
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            echo "❌ Installation annulée"
-            exit 1
-        fi
-        rm -rf "$WOODMAN_TARGET"
+# Fonction pour créer/mettre à jour un symlink
+create_symlink() {
+    local target="$1"
+    local link_name="$2"
+
+    if [ -e "$link_name" ] || [ -L "$link_name" ]; then
+        rm -rf "$link_name"
     fi
-fi
+    ln -s "$target" "$link_name"
+}
 
-# Créer le symlink
-echo "🔗 Création du symlink..."
-ln -s "$COMMANDS_SOURCE" "$WOODMAN_TARGET"
-
-echo ""
-echo "✅ Installation réussie!"
-echo ""
-echo "📍 Source:  $COMMANDS_SOURCE"
-echo "📍 Target:  $WOODMAN_TARGET"
-echo ""
-echo "🚀 Agents disponibles:"
+# Installation des alias
+echo -e "${BLUE}📦 Installation des commandes...${NC}"
 echo ""
 
-# Lister les agents
-for dir in agents analyze; do
-    if [ -d "$COMMANDS_SOURCE/$dir" ]; then
-        echo "   /woodman:$dir:"
-        for file in "$COMMANDS_SOURCE/$dir"/*.md; do
-            if [ -f "$file" ]; then
-                name=$(basename "$file" .md)
-                echo "     - /woodman:$dir:$name"
-            fi
-        done
-        echo ""
-    fi
-done
+# Créer les symlinks principaux (woodman et wm pointent vers le même dossier)
+create_symlink "$COMMANDS_SOURCE" "$CLAUDE_COMMANDS/woodman"
+create_symlink "$COMMANDS_SOURCE" "$CLAUDE_COMMANDS/wm"
 
-echo "💡 Usage: Tapez /woodman:agents:spec-writer dans Claude Code"
+echo "   ✅ /woodman → installé"
+echo "   ✅ /wm      → installé (alias)"
+echo ""
+
+# Compter les commandes
+AGENT_COUNT=$(find "$COMMANDS_SOURCE/agents" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+ANALYZE_COUNT=$(find "$COMMANDS_SOURCE/analyze" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+DEPLOY_COUNT=$(find "$COMMANDS_SOURCE/deploy" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+TEST_COUNT=$(find "$COMMANDS_SOURCE/test" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+
+echo -e "${GREEN}✅ Installation réussie!${NC}"
+echo ""
+echo "📊 Commandes installées:"
+echo "   • Agents:    $AGENT_COUNT commandes"
+echo "   • Analyze:   $ANALYZE_COUNT commandes"
+echo "   • Deploy:    $DEPLOY_COUNT commandes"
+echo "   • Test:      $TEST_COUNT commandes"
+echo ""
+
+echo -e "${YELLOW}🚀 Usage:${NC}"
+echo ""
+echo "   Forme longue:    /woodman:agents:spec-writer"
+echo "   Forme courte:    /wm:agents:spec-writer"
+echo ""
+echo "   Exemples:"
+echo "     /wm:agents:code-simplifier    # Audit simplification"
+echo "     /wm:agents:spec-writer        # Générer spec.md"
+echo "     /wm:agents:todo-generator     # Générer todo.md"
+echo "     /wm:agents:code-auditor       # Audit code complet"
+echo "     /wm:analyze:nuxt              # Analyse Nuxt"
+echo "     /wm:deploy:vercel             # Déployer sur Vercel"
+echo ""
+
+echo "📍 Chemin: $CLAUDE_COMMANDS/woodman"
 echo ""

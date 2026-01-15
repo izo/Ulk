@@ -1,31 +1,39 @@
 #!/bin/bash
-# Woodman Agents - Uninstall Script
+# Woodman - Uninstall Script
 
 set -e
 
-WOODMAN_TARGET="$HOME/.claude/commands/woodman"
+CLAUDE_COMMANDS="$HOME/.claude/commands"
+WOODMAN_TARGET="$CLAUDE_COMMANDS/woodman"
+WM_TARGET="$CLAUDE_COMMANDS/wm"
 
-echo "🪵 Woodman Agents Uninstaller"
-echo "============================="
+echo ""
+echo "🪵 Woodman Uninstaller"
+echo "======================"
 echo ""
 
-if [ -L "$WOODMAN_TARGET" ]; then
-    echo "🔗 Suppression du symlink..."
-    rm "$WOODMAN_TARGET"
+removed=0
+
+# Supprimer woodman
+if [ -L "$WOODMAN_TARGET" ] || [ -e "$WOODMAN_TARGET" ]; then
+    rm -rf "$WOODMAN_TARGET"
+    echo "   ✅ /woodman supprimé"
+    removed=$((removed + 1))
+fi
+
+# Supprimer wm (alias)
+if [ -L "$WM_TARGET" ] || [ -e "$WM_TARGET" ]; then
+    rm -rf "$WM_TARGET"
+    echo "   ✅ /wm supprimé"
+    removed=$((removed + 1))
+fi
+
+echo ""
+
+if [ $removed -gt 0 ]; then
     echo "✅ Désinstallation réussie!"
-elif [ -d "$WOODMAN_TARGET" ]; then
-    echo "📁 Dossier détecté (pas un symlink)"
-    read -p "   Voulez-vous le supprimer ? [y/N] " -n 1 -r
-    echo ""
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        rm -rf "$WOODMAN_TARGET"
-        echo "✅ Dossier supprimé"
-    else
-        echo "❌ Désinstallation annulée"
-        exit 1
-    fi
 else
-    echo "ℹ️  Woodman n'est pas installé"
+    echo "ℹ️  Woodman n'était pas installé"
 fi
 
 echo ""
