@@ -1,0 +1,115 @@
+# Woodman
+
+AI Development Toolkit pour Claude Code.
+
+[![Live Demo](https://img.shields.io/badge/demo-live-blue)](https://izo.github.io/Woodman/)
+[![GitHub](https://img.shields.io/github/stars/izo/Woodman?style=social)](https://github.com/izo/Woodman)
+
+## Installation
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash
+```
+
+Après installation, utilisez `/wm:update` pour mettre à jour.
+
+## Commandes disponibles
+
+### Agents de développement (`/wm:agents:*`)
+
+| Commande | Description |
+|----------|-------------|
+| `spec-writer` | Génère un fichier spec.md complet |
+| `todo-generator` | Crée todo.md avec tâches actionnables |
+| `task-runner` | Exécute les tâches du todo.md |
+| `sync-local` | Synchronise spec.md, CLAUDE.md, README.md |
+| `code-auditor` | Audit qualité et architecture du code |
+| `code-simplifier` | Simplifie et réduit la complexité |
+| `a11y-auditor` | Audit accessibilité WCAG 2.1/2.2 |
+| `perf-auditor` | Audit performance et Core Web Vitals |
+| `external-sync` | Synchronisation Notion/Linear |
+| `context-generator` | Génère llm.txt pour onboarding LLM |
+| `documentalist` | Gère et organise le dossier /docs |
+| `figma-shadcn` | Convertit designs Figma en shadcn/ui |
+| `tw2shad` | Transforme Tailwind/HTML en shadcn/ui Vue |
+| `frontend-qa` | Audit frontend UX/UI et Tailwind |
+
+### Analyseurs de stack (`/wm:analyze:*`)
+
+| Commande | Description |
+|----------|-------------|
+| `nuxt` | Analyse Nuxt 3/4, SSR, Nuxt UI |
+| `next` | Analyse Next.js 13-15, App Router, RSC |
+| `astro` | Analyse Astro 3-5, Islands Architecture |
+| `swiftui` | Analyse SwiftUI, MVVM/TCA |
+| `spip` | Analyse SPIP 3-5, squelettes, CVT |
+
+### Déploiement (`/wm:deploy:*`)
+
+| Commande | Description |
+|----------|-------------|
+| `vercel` | Déploie sur Vercel |
+| `netlify` | Déploie sur Netlify |
+| `cloudflare` | Déploie sur Cloudflare Pages/Workers |
+| `docker` | Build et déploie containers Docker |
+| `aws` | Déploie sur AWS S3/CloudFront/ECS |
+
+### Tests (`/wm:test:*`)
+
+| Commande | Description |
+|----------|-------------|
+| `unit` | Configure tests unitaires Jest/Vitest |
+| `e2e` | Configure tests E2E Playwright/Cypress |
+
+### Agents VPS (`/wm:vps:*`)
+
+17 agents pour gérer vos serveurs multi-projets :
+
+`orchestrateur` · `audit` · `securite` · `reseau` · `docker` · `deploiement` · `cicd` · `monitoring` · `backups` · `incidents` · `migration` · `cleanup` · `documentation` · `compliance` · `couts-ressources` · `environnements` · `installateur`
+
+## Site web
+
+Le site de documentation est disponible sur [izo.github.io/Woodman](https://izo.github.io/Woodman/).
+
+### Raccourcis clavier
+
+| Touche | Action |
+|--------|--------|
+| `T` | Toggle light/dark mode |
+| `D` | Scroll vers Installation |
+| `C` | Ouvrir GitHub (clone) |
+| `S` | Ouvrir GitHub (source) |
+
+### Design
+
+- Style inspiré de [Zed.dev](https://zed.dev)
+- Police IBM Plex Mono / IBM Plex Sans
+- Dark mode avec persistance localStorage
+- Respect de `prefers-color-scheme`
+
+## Workflows recommandés
+
+### Nouveau projet
+```
+/wm:agents:spec-writer → /wm:agents:todo-generator → /wm:agents:task-runner
+```
+
+### Audit complet
+```
+/wm:agents:code-auditor → /wm:agents:perf-auditor → /wm:agents:a11y-auditor
+```
+
+### Nouveau serveur VPS
+```
+/wm:vps:audit → /wm:vps:securite → /wm:vps:docker → /wm:vps:reseau
+```
+
+## Contribution
+
+Les commandes sont définies dans [`site/data/commands.json`](site/data/commands.json).
+
+Pour proposer un nouvel agent : [Ouvrir une issue](https://github.com/izo/Woodman/issues/new)
+
+## Licence
+
+MIT
