@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +17,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -43,16 +44,30 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <style>
+        /* Light mode */
         body {
             background-color: #fafafa;
             background-image:
                 radial-gradient(circle at 1px 1px, #e5e5e5 1px, transparent 0);
             background-size: 24px 24px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Dark mode */
+        html.dark body {
+            background-color: #09090b;
+            background-image:
+                radial-gradient(circle at 1px 1px, #27272a 1px, transparent 0);
+            color: #fafafa;
         }
         .gradient-text {
             background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        html.dark .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
             background-clip: text;
         }
         .card {
@@ -64,6 +79,14 @@
         .card:hover {
             border-color: #d4d4d4;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        html.dark .card {
+            background: #18181b;
+            border-color: #27272a;
+        }
+        html.dark .card:hover {
+            border-color: #3f3f46;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         .kbd {
             display: inline-flex;
@@ -80,6 +103,11 @@
             color: #525252;
             font-family: 'IBM Plex Mono', monospace;
         }
+        html.dark .kbd {
+            background: #27272a;
+            border-color: #3f3f46;
+            color: #a1a1aa;
+        }
         .nav-link {
             color: #525252;
             font-weight: 500;
@@ -87,6 +115,12 @@
         }
         .nav-link:hover {
             color: #171717;
+        }
+        html.dark .nav-link {
+            color: #a1a1aa;
+        }
+        html.dark .nav-link:hover {
+            color: #fafafa;
         }
         .code-block {
             background: #1e1e1e;
@@ -116,6 +150,9 @@
         .command-item:hover {
             background: #f5f5f5;
         }
+        html.dark .command-item:hover {
+            background: #27272a;
+        }
         .section-title {
             font-size: 0.75rem;
             font-weight: 600;
@@ -123,6 +160,66 @@
             letter-spacing: 0.05em;
             color: #737373;
         }
+        html.dark .section-title {
+            color: #71717a;
+        }
+        /* Dark mode overrides for specific sections */
+        html.dark .bg-white {
+            background-color: #18181b !important;
+        }
+        html.dark .bg-zed-bg\/80 {
+            background-color: rgba(9, 9, 11, 0.8) !important;
+        }
+        html.dark .border-zed-border {
+            border-color: #27272a !important;
+        }
+        html.dark .text-zed-text {
+            color: #fafafa !important;
+        }
+        html.dark .text-zed-muted {
+            color: #a1a1aa !important;
+        }
+        html.dark .bg-gray-100 {
+            background-color: #27272a !important;
+        }
+        html.dark .bg-gray-50 {
+            background-color: #18181b !important;
+        }
+        html.dark .hover\:bg-white:hover {
+            background-color: #27272a !important;
+        }
+        html.dark .hover\:bg-gray-50:hover {
+            background-color: #27272a !important;
+        }
+        html.dark .bg-blue-50 {
+            background-color: rgba(37, 99, 235, 0.15) !important;
+        }
+        /* Theme toggle button */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .theme-toggle:hover {
+            background: #f5f5f5;
+        }
+        html.dark .theme-toggle {
+            border-color: #3f3f46;
+        }
+        html.dark .theme-toggle:hover {
+            background: #27272a;
+        }
+        .theme-toggle .sun { display: none; }
+        .theme-toggle .moon { display: block; }
+        html.dark .theme-toggle .sun { display: block; }
+        html.dark .theme-toggle .moon { display: none; }
     </style>
 </head>
 <body class="font-sans text-zed-text antialiased">
@@ -142,6 +239,10 @@
                 </div>
             </div>
             <div class="flex items-center gap-3">
+                <button onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle theme">
+                    <i data-lucide="sun" class="w-4 h-4 sun"></i>
+                    <i data-lucide="moon" class="w-4 h-4 moon"></i>
+                </button>
                 <a href="https://github.com/izo/Woodman" target="_blank"
                    class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-zed-text border border-zed-border rounded-lg hover:bg-white transition-colors">
                     <i data-lucide="github" class="w-4 h-4"></i>
@@ -329,6 +430,36 @@
     </footer>
 
     <script>
+        // Theme management
+        function getThemePreference() {
+            const stored = localStorage.getItem('theme');
+            if (stored) return stored;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function applyTheme(theme) {
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(theme);
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+            lucide.createIcons();
+        }
+
+        // Apply theme immediately to prevent flash
+        applyTheme(getThemePreference());
+
+        // Listen for system preference changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
         // Icon mapping
         const iconMap = {
             'file-text': 'file-text', 'list-checks': 'list-checks', 'play': 'play',
