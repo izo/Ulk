@@ -41,6 +41,7 @@ model: opus | sonnet
 | **documentalist** | `13-documentalist.md` | sonnet | Manage /docs folder - organize, clean, validate frontmatter, maintain documentation structure |
 | **figma-shadcn** | `14-figma-shadcn.md` | opus | Analyze Figma designs and generate faithful shadcn/ui + Tailwind implementations |
 | **tw2shad** | `15-tw2shad.md` | sonnet | Transform Tailwind/HTML components into shadcn/ui-compatible Vue components for Nuxt projects |
+| **frontend-qa** | `16-frontend-qa.md` | sonnet | Comprehensive frontend QA (UX, UI, Tailwind, shadcn, code coherence) |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -86,6 +87,20 @@ Test automation agents for unit and E2E testing:
 **All test agents use sonnet model** for structured test generation and automation.
 
 **See**: `12-test/README.md` for complete documentation.
+
+### Frontend QA Checklists (16-frontend-qa/)
+
+Reference checklists for comprehensive frontend quality assurance:
+
+| Checklist | File | Focus |
+|-----------|------|-------|
+| **ux-checklist** | `16-frontend-qa/ux-checklist.md` | Navigation, user flows, accessibility, interactions, mobile |
+| **ui-checklist** | `16-frontend-qa/ui-checklist.md` | Visual consistency, typography, colors, spacing, dark mode |
+| **tailwind-checklist** | `16-frontend-qa/tailwind-checklist.md` | Configuration, class patterns, responsive, performance, v4 |
+| **shadcn-checklist** | `16-frontend-qa/shadcn-checklist.md` | Setup, component usage, theming, accessibility compliance |
+| **code-checklist** | `16-frontend-qa/code-checklist.md` | Architecture, components, state, naming, TypeScript, patterns |
+
+**See**: `16-frontend-qa/README.md` for complete documentation.
 
 ## Agent Workflow Patterns
 
@@ -320,8 +335,8 @@ Agents generate these standard files in the project root:
   - 08-external-sync: Bidirectional conflict resolution
   - 14-figma-shadcn: Design interpretation and component mapping
 
-- **sonnet** (22 agents): Structured tasks, automation, performance optimization
-  - All other agents (02-04, 06-07, 09, 10-*, 11-*, 12-*, 13, 15)
+- **sonnet** (23 agents): Structured tasks, automation, performance optimization
+  - All other agents (02-04, 06-07, 09, 10-*, 11-*, 12-*, 13, 15, 16)
 
 ## Agent Invocation
 

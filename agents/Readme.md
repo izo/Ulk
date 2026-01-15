@@ -19,7 +19,10 @@ agents/
 ├── 07-perf-auditor.md     # Audit performance (Core Web Vitals, bundle, DB)
 ├── 08-external-sync.md    # Sync bidirectionnelle Notion/Linear
 ├── 09-context-generator.md # Génère llm.txt (snapshot 15K pour onboarding LLM)
-└── 14-figma-shadcn.md     # Analyse Figma → implémentation shadcn/ui + Tailwind
+├── 13-documentalist.md    # Gère /docs (organise, valide, maintient)
+├── 14-figma-shadcn.md     # Analyse Figma → implémentation shadcn/ui + Tailwind
+├── 15-tw2shad.md          # Transforme Tailwind/HTML → composants shadcn/ui Vue (Nuxt)
+└── 16-frontend-qa.md      # Audit frontend complet (UX, UI, Tailwind, shadcn, code)
 ```
 
 ### Stack Analyzers (10-analyze/)
@@ -85,20 +88,37 @@ agents/12-test/
 
 **Voir** : `12-test/README.md` pour la documentation complète
 
-### Design Integration (14)
+### Documentation Management (13)
 
-Agent spécialisé pour l'analyse Figma et l'intégration shadcn/ui :
+Agent de gestion de la documentation :
 
 ```
 agents/
-└── 14-figma-shadcn.md    # Analyse Figma Dev Mode → shadcn/ui + Tailwind
+└── 13-documentalist.md    # Gère /docs (organise, valide, maintient)
+```
+
+**Usage :**
+```bash
+"Organise la documentation"
+"Valide le frontmatter des docs"
+"Audit de la documentation"
+```
+
+### Design Integration (14-15)
+
+Agents spécialisés pour l'analyse Figma et l'intégration shadcn/ui :
+
+```
+agents/
+├── 14-figma-shadcn.md    # Analyse Figma Dev Mode → shadcn/ui + Tailwind
+└── 15-tw2shad.md         # Transforme Tailwind/HTML → composants shadcn/ui Vue (Nuxt)
 ```
 
 **Usage :**
 ```bash
 "Analyse ce composant Figma: [URL]"
 "Implémente ce design avec shadcn/ui"
-"Trouve l'équivalent shadcn/ui pour ce composant"
+"Transforme ce code Tailwind en composant shadcn/ui Vue"
 ```
 
 **Fonctionnalités :**
@@ -107,6 +127,39 @@ agents/
 - Génération code production-ready
 - Styling Tailwind fidèle au design
 - Code Connect mapping (bonus)
+- Transformation Tailwind → Vue/Nuxt
+
+### Frontend QA (16-frontend-qa/)
+
+Agent d'assurance qualité frontend complet avec checklists de référence :
+
+```
+agents/16-frontend-qa/
+├── code-checklist.md      # Architecture, patterns, state, naming, TypeScript
+├── shadcn-checklist.md    # Installation, usage, theming, accessibilité
+├── tailwind-checklist.md  # Configuration, classes, responsive, performance
+├── ui-checklist.md        # Visual consistency, typography, colors, spacing
+├── ux-checklist.md        # Navigation, user flows, a11y, interactions
+└── README.md              # Documentation des checklists
+```
+
+**Usage :**
+```bash
+"Audit frontend complet"
+"Audit UX uniquement"
+"Vérifie l'intégration shadcn/ui"
+"Audit Tailwind CSS"
+"Audit cohérence du code frontend"
+```
+
+**Fonctionnalités :**
+- Audit UX (navigation, flows, a11y, interactions)
+- Audit UI (visual consistency, typography, colors)
+- Audit Tailwind CSS (config, patterns, v4)
+- Audit shadcn/ui (setup, theming, accessibility)
+- Audit code (architecture, state, TypeScript)
+- Score par catégorie + score global
+- Rapport structuré avec recommandations
 
 ---
 
@@ -316,7 +369,10 @@ Corrections
 | 07-perf-auditor | sonnet | Mesures et analyse |
 | 08-external-sync | opus | Résolution conflits, bidirectionnalité |
 | 09-context-generator | sonnet | Compilation et synthèse (15K max) |
+| 13-documentalist | sonnet | Organisation et validation documentation |
 | 14-figma-shadcn | opus | Analyse design + mapping composants complexes |
+| 15-tw2shad | sonnet | Transformation Tailwind → Vue/shadcn |
+| 16-frontend-qa | sonnet | Audit frontend (UX, UI, Tailwind, shadcn, code) |
 
 ---
 
