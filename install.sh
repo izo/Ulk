@@ -91,6 +91,7 @@ AGENT_COUNT=$(find "$COMMANDS_SOURCE/agents" -name "*.md" 2>/dev/null | wc -l | 
 ANALYZE_COUNT=$(find "$COMMANDS_SOURCE/analyze" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 DEPLOY_COUNT=$(find "$COMMANDS_SOURCE/deploy" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 TEST_COUNT=$(find "$COMMANDS_SOURCE/test" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+VPS_COUNT=$(find "$COMMANDS_SOURCE/vps" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 
 echo ""
 echo -e "${GREEN}✅ Installation réussie!${NC}"
@@ -100,13 +101,16 @@ echo "   • Agents:    $AGENT_COUNT"
 echo "   • Analyze:   $ANALYZE_COUNT"
 echo "   • Deploy:    $DEPLOY_COUNT"
 echo "   • Test:      $TEST_COUNT"
+echo "   • VPS:       $VPS_COUNT"
 echo ""
 
 echo -e "${YELLOW}🚀 Usage:${NC}"
 echo ""
 echo "   /wm:agents:spec-writer        # Générer spec.md"
 echo "   /wm:agents:code-simplifier    # Audit simplification"
-echo "   /wm:agents:code-auditor       # Audit code"
 echo "   /wm:analyze:nuxt              # Analyse Nuxt"
 echo "   /wm:deploy:vercel             # Déployer Vercel"
+echo "   /wm:vps:orchestrateur         # Orchestrateur VPS"
+echo "   /wm:vps:audit                 # Audit VPS"
+echo "   /wm:vps:docker                # Gestion Docker"
 echo ""

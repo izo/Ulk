@@ -75,6 +75,7 @@ AGENT_COUNT=$(find "$WOODMAN_DIR/agents" -name "*.md" 2>/dev/null | wc -l | tr -
 ANALYZE_COUNT=$(find "$WOODMAN_DIR/analyze" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 DEPLOY_COUNT=$(find "$WOODMAN_DIR/deploy" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 TEST_COUNT=$(find "$WOODMAN_DIR/test" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+VPS_COUNT=$(find "$WOODMAN_DIR/vps" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 
 echo ""
 echo -e "${GREEN}✅ Installation réussie!${NC}"
@@ -84,6 +85,7 @@ echo "   • Agents:    $AGENT_COUNT"
 echo "   • Analyze:   $ANALYZE_COUNT"
 echo "   • Deploy:    $DEPLOY_COUNT"
 echo "   • Test:      $TEST_COUNT"
+echo "   • VPS:       $VPS_COUNT"
 echo ""
 echo "📌 Version: $VERSION"
 echo ""
@@ -92,6 +94,8 @@ echo -e "${YELLOW}🚀 Usage:${NC}"
 echo ""
 echo "   /wm:agents:spec-writer        # Générer spec.md"
 echo "   /wm:agents:code-simplifier    # Audit simplification"
+echo "   /wm:vps:orchestrateur         # Orchestrateur VPS"
+echo "   /wm:vps:docker                # Gestion Docker"
 echo "   /wm:update                    # Mettre à jour"
 echo ""
 
