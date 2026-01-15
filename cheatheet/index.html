@@ -1,1056 +1,451 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Woodman - AI Development Toolkit</title>
     <meta name="description" content="Woodman: Collection d'agents AI pour Claude Code. Agents de développement, analyseurs de stack, déploiement et gestion VPS.">
     <link rel="icon" href="../woodman-mini.png" type="image/png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(240 3.7% 15.9%)",
+                        input: "hsl(240 3.7% 15.9%)",
+                        ring: "hsl(142.1 76.2% 36.3%)",
+                        background: "hsl(240 10% 3.9%)",
+                        foreground: "hsl(0 0% 98%)",
+                        primary: {
+                            DEFAULT: "hsl(142.1 76.2% 36.3%)",
+                            foreground: "hsl(144.9 80.4% 10%)",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(240 3.7% 15.9%)",
+                            foreground: "hsl(0 0% 98%)",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(240 3.7% 15.9%)",
+                            foreground: "hsl(240 5% 64.9%)",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(240 3.7% 15.9%)",
+                            foreground: "hsl(0 0% 98%)",
+                        },
+                        card: {
+                            DEFAULT: "hsl(240 10% 3.9%)",
+                            foreground: "hsl(0 0% 98%)",
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <!-- DOMPurify for XSS protection -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+
     <style>
-        :root {
-            --bg-primary: #0a0a0b;
-            --bg-secondary: #111113;
-            --bg-tertiary: #1a1a1d;
-            --bg-card: #16161a;
-            --text-primary: #fafafa;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --accent: #22c55e;
-            --accent-dim: #16a34a;
-            --accent-glow: rgba(34, 197, 94, 0.15);
-            --border: #27272a;
-            --border-light: #3f3f46;
-            --gradient-start: #22c55e;
-            --gradient-end: #10b981;
-            --code-bg: #1e1e22;
-            --orange: #f97316;
-            --blue: #3b82f6;
-            --purple: #a855f7;
-            --pink: #ec4899;
-            --yellow: #eab308;
-            --cyan: #06b6d4;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: rgba(10, 10, 11, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .nav-brand img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-cta {
-            background: var(--accent);
-            color: var(--bg-primary);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .nav-cta:hover {
-            background: var(--accent-dim);
-            transform: translateY(-1px);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 160px 24px 100px;
-            text-align: center;
-            background: radial-gradient(ellipse at top, var(--accent-glow) 0%, transparent 50%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-
-        .hero-badge span {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero h1 .accent {
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 28px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--bg-primary);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-dim);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px var(--accent-glow);
-        }
-
-        .btn-secondary {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-card);
-            border-color: var(--border-light);
-        }
-
-        /* Stats Bar */
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid var(--border);
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* Install Section */
-        .install-section {
-            padding: 80px 24px;
-            background: var(--bg-secondary);
-        }
-
-        .install-section .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .install-box {
-            background: var(--code-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .install-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            background: var(--bg-tertiary);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .install-header span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .copy-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .copy-btn:hover {
-            background: var(--accent);
-            color: var(--bg-primary);
-            border-color: var(--accent);
-        }
-
-        .install-code {
-            padding: 24px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            color: var(--accent);
-            overflow-x: auto;
-        }
-
-        .install-code .comment {
-            color: var(--text-muted);
-        }
-
-        /* Commands Section */
-        .commands-section {
-            padding: 100px 24px;
-        }
-
-        .commands-section .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Category Grid */
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
-        }
-
-        .category-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px;
-            transition: all 0.3s;
-        }
-
-        .category-card:hover {
-            border-color: var(--border-light);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-
-        .category-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .category-icon.agents { background: linear-gradient(135deg, var(--purple), var(--pink)); }
-        .category-icon.analyze { background: linear-gradient(135deg, var(--blue), var(--cyan)); }
-        .category-icon.deploy { background: linear-gradient(135deg, var(--orange), var(--yellow)); }
-        .category-icon.test { background: linear-gradient(135deg, var(--accent), var(--cyan)); }
-        .category-icon.vps { background: linear-gradient(135deg, var(--pink), var(--purple)); }
-
-        .category-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .category-count {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        .command-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .command-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .command-item:hover {
-            background: var(--bg-secondary);
-        }
-
-        .command-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent);
-            white-space: nowrap;
-        }
-
-        .command-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            flex: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        /* VPS Section */
-        .vps-section {
-            padding: 100px 24px;
-            background: var(--bg-secondary);
-        }
-
-        .vps-section .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .vps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .vps-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            transition: all 0.2s;
-        }
-
-        .vps-card:hover {
-            border-color: var(--pink);
-            background: var(--bg-tertiary);
-        }
-
-        .vps-card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .vps-card-icon {
-            font-size: 1.2rem;
-        }
-
-        .vps-card-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--pink);
-        }
-
-        .vps-card-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Workflow Section */
-        .workflow-section {
-            padding: 100px 24px;
-        }
-
-        .workflow-section .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .workflow-grid {
-            display: grid;
-            gap: 24px;
-        }
-
-        .workflow-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px;
-        }
-
-        .workflow-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .workflow-steps {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .workflow-step {
-            background: var(--bg-tertiary);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent);
-        }
-
-        .workflow-arrow {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 24px;
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
-
-        footer .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 20px;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 120px 20px 60px;
-            }
-
-            .stats-bar {
-                flex-wrap: wrap;
-                gap: 24px;
-            }
-
-            .category-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .vps-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .workflow-steps {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .workflow-arrow {
-                transform: rotate(90deg);
-            }
-        }
+        html { scroll-behavior: smooth; }
+        .gradient-border {
+            background: linear-gradient(to right, hsl(142.1 76.2% 36.3%), hsl(142.1 70.6% 45.3%));
+            padding: 1px;
+        }
+        .category-violet { --category-color: rgb(139 92 246); }
+        .category-blue { --category-color: rgb(59 130 246); }
+        .category-orange { --category-color: rgb(249 115 22); }
+        .category-green { --category-color: rgb(34 197 94); }
+        .category-pink { --category-color: rgb(236 72 153); }
+        .category-card:hover { border-color: var(--category-color); }
+        .category-icon { background: var(--category-color); }
     </style>
 </head>
-<body>
+<body class="bg-background text-foreground min-h-screen font-sans antialiased">
+
     <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="#" class="nav-brand">
-                <img src="../woodman.png" alt="Woodman">
-                Woodman
-            </a>
-            <div class="nav-links">
-                <a href="#install">Installation</a>
-                <a href="#commands">Commandes</a>
-                <a href="#vps">VPS</a>
-                <a href="#workflows">Workflows</a>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="../woodman.png" alt="Woodman" class="w-8 h-8 rounded-lg">
+                    <span class="font-bold text-lg">Woodman</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#install" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Installation</a>
+                    <a href="#commands" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Commandes</a>
+                    <a href="#vps" class="text-sm text-muted-foreground hover:text-foreground transition-colors">VPS</a>
+                    <a href="#workflows" class="text-sm text-muted-foreground hover:text-foreground transition-colors">Workflows</a>
+                </div>
+                <a href="https://github.com/izo/Woodman" target="_blank"
+                   class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">GitHub</span>
+                </a>
             </div>
-            <a href="https://github.com/izo/Woodman" class="nav-cta" target="_blank">GitHub</a>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span>v1.0</span> • 43 commandes disponibles
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 bg-secondary border border-border rounded-full px-4 py-1.5 text-sm mb-8">
+                <span class="text-primary font-semibold" id="version-badge">v1.0.0</span>
+                <span class="text-muted-foreground">•</span>
+                <span class="text-muted-foreground"><span id="total-commands">43</span> commandes</span>
             </div>
-            <h1>AI Development <span class="accent">Toolkit</span> pour Claude Code</h1>
-            <p>Collection d'agents spécialisés pour accélérer votre développement. Génération de specs, audits, déploiement et gestion VPS.</p>
-            <div class="hero-buttons">
-                <a href="#install" class="btn btn-primary">
+
+            <!-- Title -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+                AI Development
+                <span class="text-primary">Toolkit</span>
+                <br class="hidden sm:block">
+                pour Claude Code
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+                Collection d'agents spécialisés pour accélérer votre développement.
+                Génération de specs, audits, déploiement et gestion VPS.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#install"
+                   class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all hover:-translate-y-0.5">
+                    <i data-lucide="download" class="w-5 h-5"></i>
                     Installer maintenant
                 </a>
-                <a href="https://github.com/izo/Woodman" class="btn btn-secondary" target="_blank">
-                    Voir sur GitHub
+                <a href="https://github.com/izo/Woodman" target="_blank"
+                   class="inline-flex items-center justify-center gap-2 bg-secondary border border-border text-foreground px-6 py-3 rounded-lg font-semibold hover:bg-accent transition-colors">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                    Documentation
                 </a>
             </div>
-            <div class="stats-bar">
-                <div class="stat">
-                    <div class="stat-value">14</div>
-                    <div class="stat-label">Agents</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">5</div>
-                    <div class="stat-label">Analyzers</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">5</div>
-                    <div class="stat-label">Deploy</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">2</div>
-                    <div class="stat-label">Test</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">17</div>
-                    <div class="stat-label">VPS</div>
-                </div>
+
+            <!-- Stats -->
+            <div class="flex flex-wrap justify-center gap-8 sm:gap-12 mt-16 pt-8 border-t border-border" id="stats-container">
+                <!-- Stats injected by JS -->
             </div>
         </div>
     </section>
 
     <!-- Install Section -->
-    <section id="install" class="install-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Installation rapide</h2>
-                <p>Une seule commande pour installer toutes les commandes Woodman</p>
+    <section id="install" class="py-20 px-4 bg-secondary/30">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4">Installation rapide</h2>
+                <p class="text-muted-foreground">Une seule commande pour installer toutes les commandes Woodman</p>
             </div>
-            <div class="install-box">
-                <div class="install-header">
-                    <span>Terminal</span>
-                    <button class="copy-btn" onclick="copyInstall()">Copier</button>
+
+            <div class="bg-card border border-border rounded-xl overflow-hidden">
+                <div class="flex items-center justify-between px-4 py-3 bg-secondary/50 border-b border-border">
+                    <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                        <i data-lucide="terminal" class="w-4 h-4"></i>
+                        <span>Terminal</span>
+                    </div>
+                    <button onclick="copyInstall()" id="copy-btn"
+                            class="inline-flex items-center gap-1.5 text-xs bg-secondary hover:bg-primary hover:text-primary-foreground px-3 py-1.5 rounded-md transition-colors">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                        <span>Copier</span>
+                    </button>
                 </div>
-                <div class="install-code">
-                    <span class="comment"># Installation globale via curl</span><br>
-                    curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash
+                <div class="p-6 font-mono text-sm overflow-x-auto">
+                    <div class="text-muted-foreground mb-2"># Installation globale via curl</div>
+                    <div class="text-primary" id="install-command">curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash</div>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 24px; color: var(--text-muted); font-size: 0.9rem;">
-                Après installation, utilisez <code style="background: var(--code-bg); padding: 4px 8px; border-radius: 4px; color: var(--accent);">/wm:update</code> pour mettre à jour
+
+            <p class="text-center text-sm text-muted-foreground mt-6">
+                Après installation, utilisez
+                <code class="bg-secondary px-2 py-1 rounded text-primary font-mono">/wm:update</code>
+                pour mettre à jour
             </p>
         </div>
     </section>
 
     <!-- Commands Section -->
-    <section id="commands" class="commands-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Commandes disponibles</h2>
-                <p>Agents spécialisés pour chaque aspect du développement</p>
+    <section id="commands" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Commandes disponibles</h2>
+                <p class="text-muted-foreground">Agents spécialisés pour chaque aspect du développement</p>
             </div>
-            <div class="category-grid">
-                <!-- Agents -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon agents">🤖</div>
-                        <div>
-                            <div class="category-title">/wm:agents</div>
-                            <div class="category-count">14 commandes</div>
-                        </div>
-                    </div>
-                    <div class="command-list">
-                        <div class="command-item">
-                            <span class="command-name">spec-writer</span>
-                            <span class="command-desc">Génère spec.md complet</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">todo-generator</span>
-                            <span class="command-desc">Crée todo.md depuis spec</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">task-runner</span>
-                            <span class="command-desc">Exécute les tâches todo</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">code-auditor</span>
-                            <span class="command-desc">Audit qualité du code</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">code-simplifier</span>
-                            <span class="command-desc">Audit simplification</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">a11y-auditor</span>
-                            <span class="command-desc">Audit accessibilité WCAG</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">perf-auditor</span>
-                            <span class="command-desc">Audit performance</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">context-generator</span>
-                            <span class="command-desc">Génère llm.txt</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Analyze -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon analyze">🔍</div>
-                        <div>
-                            <div class="category-title">/wm:analyze</div>
-                            <div class="category-count">5 commandes</div>
-                        </div>
-                    </div>
-                    <div class="command-list">
-                        <div class="command-item">
-                            <span class="command-name">nuxt</span>
-                            <span class="command-desc">Analyse Nuxt 3/4</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">next</span>
-                            <span class="command-desc">Analyse Next.js 13-15</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">astro</span>
-                            <span class="command-desc">Analyse Astro 3-5</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">swiftui</span>
-                            <span class="command-desc">Analyse SwiftUI</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">spip</span>
-                            <span class="command-desc">Analyse SPIP 3-5</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Deploy -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon deploy">🚀</div>
-                        <div>
-                            <div class="category-title">/wm:deploy</div>
-                            <div class="category-count">5 commandes</div>
-                        </div>
-                    </div>
-                    <div class="command-list">
-                        <div class="command-item">
-                            <span class="command-name">vercel</span>
-                            <span class="command-desc">Déploie sur Vercel</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">netlify</span>
-                            <span class="command-desc">Déploie sur Netlify</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">cloudflare</span>
-                            <span class="command-desc">Déploie sur Cloudflare</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">docker</span>
-                            <span class="command-desc">Build et deploy Docker</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">aws</span>
-                            <span class="command-desc">Déploie sur AWS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Test -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <div class="category-icon test">🧪</div>
-                        <div>
-                            <div class="category-title">/wm:test</div>
-                            <div class="category-count">2 commandes</div>
-                        </div>
-                    </div>
-                    <div class="command-list">
-                        <div class="command-item">
-                            <span class="command-name">unit</span>
-                            <span class="command-desc">Tests unitaires Jest/Vitest</span>
-                        </div>
-                        <div class="command-item">
-                            <span class="command-name">e2e</span>
-                            <span class="command-desc">Tests E2E Playwright/Cypress</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="commands-grid">
+                <!-- Commands injected by JS -->
             </div>
         </div>
     </section>
 
     <!-- VPS Section -->
-    <section id="vps" class="vps-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Agents VPS</h2>
-                <p>17 agents pour gérer et configurer vos serveurs VPS multi-projets</p>
+    <section id="vps" class="py-20 px-4 bg-secondary/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Agents VPS</h2>
+                <p class="text-muted-foreground">17 agents pour gérer et configurer vos serveurs VPS multi-projets</p>
             </div>
-            <div class="vps-grid">
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">🎯</span>
-                        <span class="vps-card-name">/wm:vps:orchestrateur</span>
-                    </div>
-                    <div class="vps-card-desc">Point d'entrée - coordonne tous les agents</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">📊</span>
-                        <span class="vps-card-name">/wm:vps:audit</span>
-                    </div>
-                    <div class="vps-card-desc">Analyse complète du serveur</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">🔒</span>
-                        <span class="vps-card-name">/wm:vps:securite</span>
-                    </div>
-                    <div class="vps-card-desc">Durcissement et sécurisation</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">🌐</span>
-                        <span class="vps-card-name">/wm:vps:reseau</span>
-                    </div>
-                    <div class="vps-card-desc">DNS, reverse-proxy, TLS</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">🐳</span>
-                        <span class="vps-card-name">/wm:vps:docker</span>
-                    </div>
-                    <div class="vps-card-desc">Infrastructure conteneurisée</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">📦</span>
-                        <span class="vps-card-name">/wm:vps:deploiement</span>
-                    </div>
-                    <div class="vps-card-desc">Déploiements applicatifs</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">🔄</span>
-                        <span class="vps-card-name">/wm:vps:cicd</span>
-                    </div>
-                    <div class="vps-card-desc">Intégration continue</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">📈</span>
-                        <span class="vps-card-name">/wm:vps:monitoring</span>
-                    </div>
-                    <div class="vps-card-desc">Supervision des services</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">💾</span>
-                        <span class="vps-card-name">/wm:vps:backups</span>
-                    </div>
-                    <div class="vps-card-desc">Sauvegardes automatisées</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">🔥</span>
-                        <span class="vps-card-name">/wm:vps:incidents</span>
-                    </div>
-                    <div class="vps-card-desc">Diagnostic et résolution</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">🚚</span>
-                        <span class="vps-card-name">/wm:vps:migration</span>
-                    </div>
-                    <div class="vps-card-desc">Transfert d'infrastructure</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">🧹</span>
-                        <span class="vps-card-name">/wm:vps:cleanup</span>
-                    </div>
-                    <div class="vps-card-desc">Nettoyage et maintenance</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">📝</span>
-                        <span class="vps-card-name">/wm:vps:documentation</span>
-                    </div>
-                    <div class="vps-card-desc">Documentation serveur</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">✅</span>
-                        <span class="vps-card-name">/wm:vps:compliance</span>
-                    </div>
-                    <div class="vps-card-desc">Conformité et sécurité</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">💰</span>
-                        <span class="vps-card-name">/wm:vps:couts-ressources</span>
-                    </div>
-                    <div class="vps-card-desc">Optimisation ressources</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">🏗️</span>
-                        <span class="vps-card-name">/wm:vps:environnements</span>
-                    </div>
-                    <div class="vps-card-desc">Isolation prod/staging/test</div>
-                </div>
-                <div class="vps-card">
-                    <div class="vps-card-header">
-                        <span class="vps-card-icon">⚡</span>
-                        <span class="vps-card-name">/wm:vps:installateur</span>
-                    </div>
-                    <div class="vps-card-desc">Installation complète</div>
-                </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="vps-grid">
+                <!-- VPS commands injected by JS -->
             </div>
         </div>
     </section>
 
-    <!-- Workflow Section -->
-    <section id="workflows" class="workflow-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Workflows recommandés</h2>
-                <p>Enchaînez les commandes pour des workflows complets</p>
+    <!-- Workflows Section -->
+    <section id="workflows" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Workflows recommandés</h2>
+                <p class="text-muted-foreground">Enchaînez les commandes pour des workflows complets</p>
             </div>
-            <div class="workflow-grid">
-                <div class="workflow-card">
-                    <div class="workflow-title">
-                        🆕 Nouveau projet
-                    </div>
-                    <div class="workflow-steps">
-                        <span class="workflow-step">/wm:agents:spec-writer</span>
-                        <span class="workflow-arrow">→</span>
-                        <span class="workflow-step">/wm:agents:todo-generator</span>
-                        <span class="workflow-arrow">→</span>
-                        <span class="workflow-step">/wm:agents:task-runner</span>
-                    </div>
-                </div>
-                <div class="workflow-card">
-                    <div class="workflow-title">
-                        🔍 Audit complet
-                    </div>
-                    <div class="workflow-steps">
-                        <span class="workflow-step">/wm:agents:code-auditor</span>
-                        <span class="workflow-arrow">→</span>
-                        <span class="workflow-step">/wm:agents:perf-auditor</span>
-                        <span class="workflow-arrow">→</span>
-                        <span class="workflow-step">/wm:agents:a11y-auditor</span>
-                    </div>
-                </div>
-                <div class="workflow-card">
-                    <div class="workflow-title">
-                        🖥️ Nouveau serveur VPS
-                    </div>
-                    <div class="workflow-steps">
-                        <span class="workflow-step">/wm:vps:audit</span>
-                        <span class="workflow-arrow">→</span>
-                        <span class="workflow-step">/wm:vps:securite</span>
-                        <span class="workflow-arrow">→</span>
-                        <span class="workflow-step">/wm:vps:docker</span>
-                        <span class="workflow-arrow">→</span>
-                        <span class="workflow-step">/wm:vps:reseau</span>
-                    </div>
-                </div>
-                <div class="workflow-card">
-                    <div class="workflow-title">
-                        🚀 Déploiement projet VPS
-                    </div>
-                    <div class="workflow-steps">
-                        <span class="workflow-step">/wm:vps:orchestrateur</span>
-                        <span class="workflow-arrow">→</span>
-                        <span class="workflow-step">"Déployer mon app Node.js"</span>
-                    </div>
-                </div>
+
+            <div class="space-y-4" id="workflows-grid">
+                <!-- Workflows injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contribute Section -->
+    <section class="py-16 px-4 bg-secondary/30 border-t border-border">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-xl mb-6">
+                <i data-lucide="git-pull-request" class="w-6 h-6 text-primary"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-4">Contribuer</h2>
+            <p class="text-muted-foreground mb-6">
+                Les commandes sont définies dans un fichier JSON contributable.
+                Ajoutez vos propres agents ou améliorez les existants.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://github.com/izo/Woodman/blob/main/cheatheet/data/commands.json" target="_blank"
+                   class="inline-flex items-center justify-center gap-2 bg-secondary border border-border px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
+                    <i data-lucide="file-json" class="w-4 h-4"></i>
+                    Voir commands.json
+                </a>
+                <a href="https://github.com/izo/Woodman/issues/new" target="_blank"
+                   class="inline-flex items-center justify-center gap-2 bg-secondary border border-border px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-accent transition-colors">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    Proposer un agent
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="https://github.com/izo/Woodman">GitHub</a>
-                <a href="https://github.com/izo/Woodman/issues">Issues</a>
-                <a href="https://github.com/izo/Woodman/blob/main/LICENSE">License</a>
+    <footer class="py-12 px-4 border-t border-border">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="https://github.com/izo/Woodman" class="text-muted-foreground hover:text-foreground transition-colors">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                <a href="https://github.com/izo/Woodman/issues" class="text-muted-foreground hover:text-foreground transition-colors">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                </a>
             </div>
-            <p>
-                Made with ❤️ for <a href="https://claude.ai/code">Claude Code</a>
+            <p class="text-sm text-muted-foreground">
+                Made with
+                <i data-lucide="heart" class="w-4 h-4 inline text-primary"></i>
+                for
+                <a href="https://claude.ai/code" class="text-primary hover:underline">Claude Code</a>
             </p>
         </div>
     </footer>
 
     <script>
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.textContent;
+        }
+
+        // Safe DOM element creation
+        function createElement(tag, attrs = {}, children = []) {
+            const el = document.createElement(tag);
+            Object.entries(attrs).forEach(([key, value]) => {
+                if (key === 'className') el.className = value;
+                else if (key === 'textContent') el.textContent = value;
+                else el.setAttribute(key, value);
+            });
+            children.forEach(child => {
+                if (typeof child === 'string') {
+                    el.appendChild(document.createTextNode(child));
+                } else {
+                    el.appendChild(child);
+                }
+            });
+            return el;
+        }
+
+        // Load and render data from JSON
+        async function loadData() {
+            try {
+                const response = await fetch('data/commands.json');
+                const data = await response.json();
+                renderPage(data);
+            } catch (error) {
+                console.error('Error loading commands:', error);
+            }
+        }
+
+        function renderPage(data) {
+            // Update meta using textContent (safe)
+            document.getElementById('version-badge').textContent = 'v' + escapeHtml(data.meta.version);
+            document.getElementById('total-commands').textContent = escapeHtml(String(data.meta.totalCommands));
+            document.getElementById('install-command').textContent = escapeHtml(data.installation.curl);
+
+            // Render stats using DOM API
+            const statsContainer = document.getElementById('stats-container');
+            statsContainer.replaceChildren(); // Clear safely
+
+            const nonVpsCategories = data.categories.filter(c => c.id !== 'vps');
+            const vpsCategory = data.categories.find(c => c.id === 'vps');
+
+            nonVpsCategories.forEach(cat => {
+                const statDiv = createElement('div', { className: 'text-center' }, [
+                    createElement('div', { className: 'text-3xl font-bold text-primary', textContent: String(cat.commands.length) }),
+                    createElement('div', { className: 'text-sm text-muted-foreground', textContent: cat.name })
+                ]);
+                statsContainer.appendChild(statDiv);
+            });
+
+            if (vpsCategory) {
+                const vpsStatDiv = createElement('div', { className: 'text-center' }, [
+                    createElement('div', { className: 'text-3xl font-bold text-primary', textContent: String(vpsCategory.commands.length) }),
+                    createElement('div', { className: 'text-sm text-muted-foreground', textContent: 'VPS' })
+                ]);
+                statsContainer.appendChild(vpsStatDiv);
+            }
+
+            // Render command categories using DOM API
+            const commandsGrid = document.getElementById('commands-grid');
+            commandsGrid.replaceChildren();
+
+            nonVpsCategories.forEach(cat => {
+                const card = createElement('div', {
+                    className: `category-${escapeHtml(cat.color)} category-card bg-card border border-border rounded-xl p-6 transition-all hover:shadow-lg`
+                });
+
+                // Header
+                const header = createElement('div', { className: 'flex items-center gap-4 mb-5' });
+                const iconWrapper = createElement('div', { className: 'category-icon w-12 h-12 rounded-xl flex items-center justify-center' });
+                const icon = createElement('i', { 'data-lucide': escapeHtml(cat.icon), className: 'w-6 h-6 text-white' });
+                iconWrapper.appendChild(icon);
+
+                const headerText = createElement('div', {}, [
+                    createElement('h3', { className: 'font-semibold text-lg', textContent: cat.prefix }),
+                    createElement('p', { className: 'text-sm text-muted-foreground', textContent: cat.commands.length + ' commandes' })
+                ]);
+                header.appendChild(iconWrapper);
+                header.appendChild(headerText);
+                card.appendChild(header);
+
+                // Commands list
+                const cmdList = createElement('div', { className: 'space-y-2' });
+                cat.commands.forEach(cmd => {
+                    const cmdItem = createElement('div', { className: 'flex items-center gap-3 p-3 bg-secondary/50 rounded-lg hover:bg-secondary transition-colors' });
+                    const cmdIcon = createElement('i', { 'data-lucide': escapeHtml(cmd.icon), className: 'w-4 h-4 text-muted-foreground flex-shrink-0' });
+                    const cmdInfo = createElement('div', { className: 'min-w-0' }, [
+                        createElement('span', { className: 'font-mono text-sm text-primary', textContent: cmd.name }),
+                        createElement('p', { className: 'text-xs text-muted-foreground truncate', textContent: cmd.description })
+                    ]);
+                    cmdItem.appendChild(cmdIcon);
+                    cmdItem.appendChild(cmdInfo);
+                    cmdList.appendChild(cmdItem);
+                });
+                card.appendChild(cmdList);
+                commandsGrid.appendChild(card);
+            });
+
+            // Render VPS commands using DOM API
+            if (vpsCategory) {
+                const vpsGrid = document.getElementById('vps-grid');
+                vpsGrid.replaceChildren();
+
+                vpsCategory.commands.forEach(cmd => {
+                    const vpsCard = createElement('div', { className: 'category-pink category-card bg-card border border-border rounded-lg p-4 transition-all hover:shadow-lg' });
+
+                    const vpsHeader = createElement('div', { className: 'flex items-center gap-3 mb-2' });
+                    vpsHeader.appendChild(createElement('i', { 'data-lucide': escapeHtml(cmd.icon), className: 'w-5 h-5 text-pink-500' }));
+                    vpsHeader.appendChild(createElement('span', { className: 'font-mono text-sm text-pink-500', textContent: vpsCategory.prefix + ':' + cmd.name }));
+
+                    vpsCard.appendChild(vpsHeader);
+                    vpsCard.appendChild(createElement('p', { className: 'text-sm text-muted-foreground', textContent: cmd.description }));
+                    vpsGrid.appendChild(vpsCard);
+                });
+            }
+
+            // Render workflows using DOM API
+            const workflowsGrid = document.getElementById('workflows-grid');
+            workflowsGrid.replaceChildren();
+
+            data.workflows.forEach(wf => {
+                const wfCard = createElement('div', { className: 'bg-card border border-border rounded-xl p-6' });
+
+                // Workflow header
+                const wfHeader = createElement('div', { className: 'flex items-center gap-3 mb-4' });
+                const wfIconWrapper = createElement('div', { className: 'w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center' });
+                wfIconWrapper.appendChild(createElement('i', { 'data-lucide': escapeHtml(wf.icon), className: 'w-5 h-5 text-primary' }));
+                wfHeader.appendChild(wfIconWrapper);
+
+                const wfInfo = createElement('div', {}, [
+                    createElement('h3', { className: 'font-semibold', textContent: wf.name }),
+                    createElement('p', { className: 'text-sm text-muted-foreground', textContent: wf.description })
+                ]);
+                wfHeader.appendChild(wfInfo);
+                wfCard.appendChild(wfHeader);
+
+                // Workflow steps
+                const stepsContainer = createElement('div', { className: 'flex flex-wrap items-center gap-3' });
+                wf.steps.forEach((step, i) => {
+                    stepsContainer.appendChild(createElement('code', { className: 'bg-secondary px-3 py-1.5 rounded-lg font-mono text-sm text-primary', textContent: step }));
+                    if (i < wf.steps.length - 1) {
+                        stepsContainer.appendChild(createElement('i', { 'data-lucide': 'arrow-right', className: 'w-4 h-4 text-muted-foreground' }));
+                    }
+                });
+                wfCard.appendChild(stepsContainer);
+                workflowsGrid.appendChild(wfCard);
+            });
+
+            // Initialize Lucide icons
+            lucide.createIcons();
+        }
+
         function copyInstall() {
-            const cmd = 'curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash';
+            const cmd = document.getElementById('install-command').textContent;
             navigator.clipboard.writeText(cmd).then(() => {
-                const btn = document.querySelector('.copy-btn');
-                btn.textContent = 'Copié !';
-                setTimeout(() => btn.textContent = 'Copier', 2000);
+                const btn = document.getElementById('copy-btn');
+                btn.replaceChildren();
+                btn.appendChild(createElement('i', { 'data-lucide': 'check', className: 'w-3.5 h-3.5' }));
+                btn.appendChild(createElement('span', { textContent: 'Copié!' }));
+                lucide.createIcons();
+                setTimeout(() => {
+                    btn.replaceChildren();
+                    btn.appendChild(createElement('i', { 'data-lucide': 'copy', className: 'w-3.5 h-3.5' }));
+                    btn.appendChild(createElement('span', { textContent: 'Copier' }));
+                    lucide.createIcons();
+                }, 2000);
             });
         }
 
-        // Smooth scroll for nav links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1060,6 +455,9 @@
                 }
             });
         });
+
+        // Load data on page load
+        loadData();
     </script>
 </body>
 </html>

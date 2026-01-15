@@ -1,0 +1,335 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "totalCommands": 43,
+    "lastUpdated": "2025-01-15"
+  },
+  "categories": [
+    {
+      "id": "agents",
+      "name": "Agents",
+      "prefix": "/wm:agents",
+      "description": "Agents de développement et d'audit",
+      "icon": "bot",
+      "color": "violet",
+      "commands": [
+        {
+          "name": "spec-writer",
+          "description": "Génère un fichier spec.md complet pour le projet",
+          "icon": "file-text"
+        },
+        {
+          "name": "todo-generator",
+          "description": "Crée todo.md avec tâches actionnables depuis spec.md",
+          "icon": "list-checks"
+        },
+        {
+          "name": "task-runner",
+          "description": "Exécute les tâches du todo.md une par une",
+          "icon": "play"
+        },
+        {
+          "name": "sync-local",
+          "description": "Synchronise spec.md, CLAUDE.md et README.md",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "code-auditor",
+          "description": "Audit complet de la qualité et architecture du code",
+          "icon": "search-code"
+        },
+        {
+          "name": "code-simplifier",
+          "description": "Audit de simplification et réduction de complexité",
+          "icon": "minimize-2"
+        },
+        {
+          "name": "a11y-auditor",
+          "description": "Audit d'accessibilité WCAG 2.1/2.2",
+          "icon": "accessibility"
+        },
+        {
+          "name": "perf-auditor",
+          "description": "Audit de performance et Core Web Vitals",
+          "icon": "gauge"
+        },
+        {
+          "name": "external-sync",
+          "description": "Synchronisation bidirectionnelle Notion/Linear",
+          "icon": "arrow-left-right"
+        },
+        {
+          "name": "context-generator",
+          "description": "Génère llm.txt pour onboarding LLM",
+          "icon": "brain"
+        },
+        {
+          "name": "documentalist",
+          "description": "Gère et organise le dossier /docs",
+          "icon": "folder-open"
+        },
+        {
+          "name": "figma-shadcn",
+          "description": "Convertit designs Figma en shadcn/ui",
+          "icon": "figma"
+        },
+        {
+          "name": "tw2shad",
+          "description": "Transforme Tailwind/HTML en shadcn/ui Vue",
+          "icon": "repeat"
+        },
+        {
+          "name": "frontend-qa",
+          "description": "Audit frontend UX/UI et Tailwind",
+          "icon": "layout"
+        }
+      ]
+    },
+    {
+      "id": "analyze",
+      "name": "Analyze",
+      "prefix": "/wm:analyze",
+      "description": "Analyseurs de stack spécifiques",
+      "icon": "search",
+      "color": "blue",
+      "commands": [
+        {
+          "name": "nuxt",
+          "description": "Analyse approfondie Nuxt 3/4, SSR, Nuxt UI",
+          "icon": "hexagon"
+        },
+        {
+          "name": "next",
+          "description": "Analyse Next.js 13-15, App Router, RSC",
+          "icon": "triangle"
+        },
+        {
+          "name": "astro",
+          "description": "Analyse Astro 3-5, Islands Architecture",
+          "icon": "rocket"
+        },
+        {
+          "name": "swiftui",
+          "description": "Analyse SwiftUI, MVVM/TCA, multi-platform",
+          "icon": "smartphone"
+        },
+        {
+          "name": "spip",
+          "description": "Analyse SPIP 3-5, squelettes, boucles CVT",
+          "icon": "database"
+        }
+      ]
+    },
+    {
+      "id": "deploy",
+      "name": "Deploy",
+      "prefix": "/wm:deploy",
+      "description": "Déploiement automatisé",
+      "icon": "rocket",
+      "color": "orange",
+      "commands": [
+        {
+          "name": "vercel",
+          "description": "Déploie sur Vercel avec configuration automatique",
+          "icon": "triangle"
+        },
+        {
+          "name": "netlify",
+          "description": "Déploie sur Netlify avec functions serverless",
+          "icon": "globe"
+        },
+        {
+          "name": "cloudflare",
+          "description": "Déploie sur Cloudflare Pages/Workers",
+          "icon": "cloud"
+        },
+        {
+          "name": "docker",
+          "description": "Build et déploie containers Docker",
+          "icon": "container"
+        },
+        {
+          "name": "aws",
+          "description": "Déploie sur AWS S3/CloudFront/ECS",
+          "icon": "server"
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "name": "Test",
+      "prefix": "/wm:test",
+      "description": "Automatisation des tests",
+      "icon": "flask-conical",
+      "color": "green",
+      "commands": [
+        {
+          "name": "unit",
+          "description": "Configure et génère tests unitaires Jest/Vitest",
+          "icon": "check-circle"
+        },
+        {
+          "name": "e2e",
+          "description": "Configure tests E2E Playwright/Cypress",
+          "icon": "monitor-check"
+        }
+      ]
+    },
+    {
+      "id": "vps",
+      "name": "VPS",
+      "prefix": "/wm:vps",
+      "description": "Gestion de serveurs VPS multi-projets",
+      "icon": "server",
+      "color": "pink",
+      "commands": [
+        {
+          "name": "orchestrateur",
+          "description": "Point d'entrée - coordonne tous les agents VPS",
+          "icon": "network"
+        },
+        {
+          "name": "audit",
+          "description": "Analyse complète du serveur (OS, services, ressources)",
+          "icon": "clipboard-list"
+        },
+        {
+          "name": "securite",
+          "description": "Durcissement et sécurisation du serveur",
+          "icon": "shield"
+        },
+        {
+          "name": "reseau",
+          "description": "DNS, reverse-proxy Traefik, certificats TLS",
+          "icon": "network"
+        },
+        {
+          "name": "docker",
+          "description": "Infrastructure conteneurisée, docker-compose",
+          "icon": "container"
+        },
+        {
+          "name": "deploiement",
+          "description": "Déploiements applicatifs sur VPS",
+          "icon": "upload"
+        },
+        {
+          "name": "cicd",
+          "description": "Configuration CI/CD GitHub Actions/GitLab",
+          "icon": "git-branch"
+        },
+        {
+          "name": "monitoring",
+          "description": "Supervision des services et alertes",
+          "icon": "activity"
+        },
+        {
+          "name": "backups",
+          "description": "Sauvegardes automatisées et vérifications",
+          "icon": "hard-drive"
+        },
+        {
+          "name": "incidents",
+          "description": "Diagnostic et résolution de problèmes",
+          "icon": "alert-triangle"
+        },
+        {
+          "name": "migration",
+          "description": "Transfert d'infrastructure entre serveurs",
+          "icon": "move"
+        },
+        {
+          "name": "cleanup",
+          "description": "Nettoyage et maintenance du serveur",
+          "icon": "trash-2"
+        },
+        {
+          "name": "documentation",
+          "description": "Documentation serveur et inventaire",
+          "icon": "book-open"
+        },
+        {
+          "name": "compliance",
+          "description": "Vérification conformité et sécurité",
+          "icon": "shield-check"
+        },
+        {
+          "name": "couts-ressources",
+          "description": "Optimisation de l'utilisation des ressources",
+          "icon": "coins"
+        },
+        {
+          "name": "environnements",
+          "description": "Isolation prod/staging/test",
+          "icon": "layers"
+        },
+        {
+          "name": "installateur",
+          "description": "Installation complète d'un nouveau serveur",
+          "icon": "download"
+        }
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "id": "new-project",
+      "name": "Nouveau projet",
+      "description": "Démarrer un nouveau projet avec spec et todo",
+      "icon": "plus-circle",
+      "steps": [
+        "/wm:agents:spec-writer",
+        "/wm:agents:todo-generator",
+        "/wm:agents:task-runner"
+      ]
+    },
+    {
+      "id": "full-audit",
+      "name": "Audit complet",
+      "description": "Auditer code, performance et accessibilité",
+      "icon": "search",
+      "steps": [
+        "/wm:agents:code-auditor",
+        "/wm:agents:perf-auditor",
+        "/wm:agents:a11y-auditor"
+      ]
+    },
+    {
+      "id": "new-vps",
+      "name": "Nouveau serveur VPS",
+      "description": "Configurer un nouveau serveur de A à Z",
+      "icon": "server",
+      "steps": [
+        "/wm:vps:audit",
+        "/wm:vps:securite",
+        "/wm:vps:docker",
+        "/wm:vps:reseau"
+      ]
+    },
+    {
+      "id": "vps-deploy",
+      "name": "Déploiement VPS",
+      "description": "Déployer une application sur VPS",
+      "icon": "upload",
+      "steps": [
+        "/wm:vps:orchestrateur"
+      ]
+    },
+    {
+      "id": "maintenance",
+      "name": "Maintenance hebdo",
+      "description": "Maintenance régulière du serveur",
+      "icon": "calendar",
+      "steps": [
+        "/wm:vps:backups",
+        "/wm:vps:cleanup",
+        "/wm:vps:audit"
+      ]
+    }
+  ],
+  "installation": {
+    "curl": "curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash",
+    "update": "/wm:update",
+    "github": "https://github.com/izo/Woodman"
+  }
+}
