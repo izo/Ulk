@@ -30,23 +30,13 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Generate Woodman Documentation
-        run: |
-          cd cheatheet && node generate-unified-docs.js
-          echo "✅ Woodman documentation generated"
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
-      - name: Use index.html from repository
-        run: |
-          echo "✅ Using index.html with Nord theme and IBM Plex fonts from repository"
-          ls -lh index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'site'
 
   deploy:
     environment:
