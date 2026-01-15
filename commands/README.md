@@ -47,6 +47,7 @@ Dans Claude Code, invoquez les agents avec :
 | `context-generator` | Génère llm.txt (15K chars) |
 | `documentalist` | Gère /docs - organisation, nettoyage, frontmatter |
 | `figma-shadcn` | Analyse Figma → implémentation shadcn/ui + Tailwind |
+| `tw2shad` | Transforme Tailwind/HTML → composants shadcn/ui Vue (Nuxt) |
 
 ### Analyzers (`/woodman:analyze:*`)
 
@@ -58,6 +59,23 @@ Dans Claude Code, invoquez les agents avec :
 | `spip` | SPIP 3-5 |
 | `swiftui` | SwiftUI iOS/macOS |
 
+### Deploy (`/woodman:deploy:*`)
+
+| Agent | Platform |
+|-------|----------|
+| `vercel` | Vercel (Next.js, Nuxt, Astro, SvelteKit, static) |
+| `netlify` | Netlify (JAMstack, serverless functions) |
+| `cloudflare` | Cloudflare Pages + Workers |
+| `docker` | Docker containerization + docker-compose |
+| `aws` | AWS (S3+CloudFront, ECS, Elastic Beanstalk) |
+
+### Test (`/woodman:test:*`)
+
+| Agent | Framework |
+|-------|-----------|
+| `unit` | Jest, Vitest - tests unitaires |
+| `e2e` | Playwright, Cypress - tests end-to-end |
+
 ## Structure
 
 ```
@@ -65,11 +83,24 @@ commands/
 ├── agents/           # Agents workflow
 │   ├── spec-writer.md
 │   ├── todo-generator.md
+│   ├── figma-shadcn.md
+│   ├── tw2shad.md
 │   └── ...
 ├── analyze/          # Stack analyzers
 │   ├── nuxt.md
 │   ├── next.md
-│   └── ...
+│   ├── astro.md
+│   ├── spip.md
+│   └── swiftui.md
+├── deploy/           # Deployment agents
+│   ├── vercel.md
+│   ├── netlify.md
+│   ├── cloudflare.md
+│   ├── docker.md
+│   └── aws.md
+├── test/             # Test agents
+│   ├── unit.md
+│   └── e2e.md
 └── README.md
 ```
 

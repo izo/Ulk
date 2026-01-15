@@ -44,6 +44,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `09-context-generator.md` - Generates llm.txt snapshot (15K chars max)
 - `13-documentalist.md` - Manages /docs folder (organize, clean, validate frontmatter)
 - `14-figma-shadcn.md` - Analyzes Figma designs and generates shadcn/ui + Tailwind implementations
+- `15-tw2shad.md` - Transforms Tailwind/HTML components into shadcn/ui Vue components (Nuxt)
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)

@@ -40,6 +40,7 @@ model: opus | sonnet
 | **context-generator** | `09-context-generator.md` | sonnet | Generate llm.txt snapshot (15K chars max) for instant LLM onboarding |
 | **documentalist** | `13-documentalist.md` | sonnet | Manage /docs folder - organize, clean, validate frontmatter, maintain documentation structure |
 | **figma-shadcn** | `14-figma-shadcn.md` | opus | Analyze Figma designs and generate faithful shadcn/ui + Tailwind implementations |
+| **tw2shad** | `15-tw2shad.md` | sonnet | Transform Tailwind/HTML components into shadcn/ui-compatible Vue components for Nuxt projects |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -310,6 +311,17 @@ Agents generate these standard files in the project root:
 - ❌ Does NOT touch local documentation files
 
 **Use together:** `03-sync-local` → `08-external-sync` for complete workflow
+
+## Model Distribution
+
+- **opus** (4 agents): Complex analysis requiring deep reasoning
+  - 01-spec-writer: Multi-stack project analysis
+  - 05-code-auditor: Comprehensive code audit
+  - 08-external-sync: Bidirectional conflict resolution
+  - 14-figma-shadcn: Design interpretation and component mapping
+
+- **sonnet** (22 agents): Structured tasks, automation, performance optimization
+  - All other agents (02-04, 06-07, 09, 10-*, 11-*, 12-*, 13, 15)
 
 ## Agent Invocation
 
