@@ -110,6 +110,10 @@ Les commandes sont définies dans [`site/data/commands.json`](site/data/commands
 
 Pour proposer un nouvel agent : [Ouvrir une issue](https://github.com/izo/Woodman/issues/new)
 
+## Auteur
+
+Réalisé par **Mathieu Drouer** pour [regrets.app](https://regrets.app)
+
 ## Licence
 
 MIT
