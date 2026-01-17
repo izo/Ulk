@@ -189,7 +189,7 @@ Lister les composants Nuxt UI disponibles mais pas encore utilisés dans le proj
 
 ## Phase 5 : Génération du rapport
 
-Créer `liste-composants.md` avec :
+Créer `docs/analyze-nuxt-YYYYMMDD.md` (où YYYYMMDD = date du jour) avec :
 
 1. **Résumé de la stack**
 2. **Tableau des composants Nuxt UI** (avec comptage)

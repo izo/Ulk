@@ -240,7 +240,7 @@ grep -rn "typeof window" --include="*.tsx" | grep -v "useEffect\|if.*typeof"
 
 ## Phase 5 : Génération du rapport
 
-Créer `liste-composants.md` avec :
+Créer `docs/analyze-next-YYYYMMDD.md` (où YYYYMMDD = date du jour) avec :
 
 ```markdown
 # Liste des Composants - [Projet]

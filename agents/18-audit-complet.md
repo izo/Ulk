@@ -167,14 +167,14 @@ Voir `todo.md` pour la liste complète des tâches priorisées.
 ## Fichiers Générés
 
 - ✅ `spec.md` - Spécification du projet
-- ✅ `audit-code-YYYYMMDD.md` - Audit code
-- ✅ `audit-perf-YYYYMMDD.md` - Audit performance
-- ✅ `audit-a11y-YYYYMMDD.md` - Audit accessibilité
+- ✅ `docs/audit-code-YYYYMMDD.md` - Audit code
+- ✅ `docs/audit-perf-YYYYMMDD.md` - Audit performance
+- ✅ `docs/audit-a11y-YYYYMMDD.md` - Audit accessibilité
 - ✅ `todo.md` - Plan d'action priorisé
-- ✅ `audit-summary-YYYYMMDD.md` - Ce rapport
+- ✅ `docs/audit-summary-YYYYMMDD.md` - Ce rapport
 ```
 
-**Fichier :** `audit-summary-YYYYMMDD.md`
+**Fichier :** `docs/audit-summary-YYYYMMDD.md`
 
 ---
 
@@ -223,11 +223,11 @@ Avant de lancer l'audit complet, demander :
 
 📄 **Fichiers générés :**
 - spec.md
-- audit-code-YYYYMMDD.md
-- audit-perf-YYYYMMDD.md
-- audit-a11y-YYYYMMDD.md
+- docs/audit-code-YYYYMMDD.md
+- docs/audit-perf-YYYYMMDD.md
+- docs/audit-a11y-YYYYMMDD.md
 - todo.md
-- audit-summary-YYYYMMDD.md
+- docs/audit-summary-YYYYMMDD.md
 
 📊 **Scores globaux :**
 - Code: X/10

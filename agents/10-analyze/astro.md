@@ -245,6 +245,8 @@ grep -q "@astrojs/sitemap" package.json && echo "✅ Sitemap" || echo "❌ Sitem
 
 ## Phase 5 : Génération du rapport
 
+Créer `docs/analyze-astro-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
+
 ```markdown
 # Liste des Composants - [Projet Astro]
 

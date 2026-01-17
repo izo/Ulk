@@ -406,7 +406,7 @@ Ces tests ne peuvent pas être automatisés :
 
 ## Phase 6 : Génération du rapport
 
-Créer `AUDIT-A11Y.md` :
+Créer `docs/audit-a11y-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
 
 ```markdown
 # Audit d'accessibilité — [Nom du projet]
@@ -698,7 +698,7 @@ Conformité WCAG 2.1 niveau AA
 5. Vérifier chaque critère WCAG A et AA
 6. Auditer les composants individuellement
 7. Lister les tests manuels à faire
-8. Générer AUDIT-A11Y.md
+8. Générer docs/audit-a11y-YYYYMMDD.md
 9. Mettre à jour spec.md (section a11y)
 10. Ajouter les tâches dans todo.md
 11. Afficher le résumé

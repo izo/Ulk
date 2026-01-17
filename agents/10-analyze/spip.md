@@ -285,6 +285,8 @@ grep -rn "ereg\|split(\|mysql_" plugins/*/inc/*.php squelettes/*.php 2>/dev/null
 
 ## Phase 6 : Génération du rapport
 
+Créer `docs/analyze-spip-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
+
 ```markdown
 # Liste des Squelettes et Composants - [Projet SPIP]
 

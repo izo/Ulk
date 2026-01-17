@@ -307,6 +307,8 @@ find . -name "*Constants*" -o -name "*Theme*" -o -name "*Design*" 2>/dev/null | 
 
 ## Phase 6 : Génération du rapport
 
+Créer `docs/analyze-swiftui-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
+
 ```markdown
 # Liste des Composants SwiftUI - [Projet]
 
