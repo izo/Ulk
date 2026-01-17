@@ -539,6 +539,9 @@
         document.addEventListener('keydown', (e) => {
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
+            // Ignore if modifier keys are pressed (Cmd, Ctrl, Alt, Shift)
+            if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+
             switch(e.key.toLowerCase()) {
                 case 't':
                     e.preventDefault();
