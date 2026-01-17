@@ -87,6 +87,21 @@
           "name": "frontend-qa",
           "description": "Audit frontend UX/UI et Tailwind",
           "icon": "layout"
+        },
+        {
+          "name": "audit-complet",
+          "description": "Audit complet : spec + code + perf + a11y + todo (5 agents, 15-30min)",
+          "icon": "clipboard-list"
+        },
+        {
+          "name": "legacy-revival",
+          "description": "Revival code legacy : doc + simplify + fix + optimize (6 agents, 30-60min)",
+          "icon": "refresh-ccw"
+        },
+        {
+          "name": "pre-release",
+          "description": "Checklist pre-release + GO/NO-GO (5-6 agents, 20-45min)",
+          "icon": "rocket"
         }
       ]
     },
