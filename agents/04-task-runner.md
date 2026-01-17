@@ -15,6 +15,27 @@ Implémenter les tâches définies dans `todo.md`, une par une, en mettant à jo
 
 ---
 
+## Ralph Loop Mode (Optionnel)
+
+Pour exécuter **toutes** les tâches restantes de manière autonome jusqu'à complétion :
+
+```bash
+/ralph-loop "Execute all pending tasks from todo.md one by one until all are completed" --max-iterations 50 --completion-promise "All tasks marked as completed"
+```
+
+**Quand utiliser Ralph Loop :**
+- ✅ Tu as 10+ tâches simples et répétitives
+- ✅ Les tâches sont bien définies dans todo.md
+- ✅ Tu veux travailler de manière autonome pendant plusieurs heures
+- ❌ Les tâches nécessitent des décisions créatives ou de l'input utilisateur
+
+**Recommandations :**
+- Toujours définir `--max-iterations` (recommandé: 20-50 selon nombre de tâches)
+- S'assurer que todo.md contient des tâches claires et atomiques
+- Vérifier régulièrement la progression via le rapport de session
+
+---
+
 ## Phase 1 : État des lieux
 
 ### 1.1 - Charger todo.md

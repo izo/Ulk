@@ -19,6 +19,38 @@ S'assurer qu'une release est prête en vérifiant :
 5. Tests (unit + e2e)
 6. Documentation (changelog, migration)
 
+---
+
+## Ralph Loop Mode (Optionnel)
+
+Pour itérer automatiquement jusqu'à obtenir un verdict **GO** :
+
+```bash
+/ralph-loop "Run pre-release checks and fix all blockers until GO verdict" --max-iterations 10 --completion-promise "Verdict: GO - Release approved"
+```
+
+**Quand utiliser Ralph Loop :**
+- ✅ Release candidate avec quelques issues mineures à corriger
+- ✅ Pipeline CI qui échoue et doit être corrigé automatiquement
+- ✅ Équipe veut une release "sans intervention" en overnight
+- ❌ Issues architecturales majeures
+- ❌ Breaking changes nécessitant décisions stratégiques
+
+**Recommandations :**
+- Toujours définir `--max-iterations` (recommandé: 5-10 pour pre-release)
+- Ralph loop va ré-exécuter l'orchestrateur complet à chaque itération
+- S'assurer que les blockers identifiés sont automatiquement fixables (tests, lint, etc.)
+- Surveillance humaine recommandée : la release reste une décision critique
+
+**Comportement attendu :**
+1. Exécute tous les audits (code, perf, a11y)
+2. Si NO-GO : identifie les blockers
+3. Lance robocop pour corriger les blockers
+4. Re-run pre-release check
+5. Répète jusqu'à GO ou max-iterations
+
+---
+
 ## Workflow d'Orchestration
 
 ### Phase 1: Audit Code Pre-Release

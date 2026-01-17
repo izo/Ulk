@@ -19,6 +19,48 @@ Revitaliser un projet legacy en :
 5. Optimisant les performances
 6. Mettant à jour la documentation
 
+---
+
+## Ralph Loop Mode (Optionnel)
+
+Pour revitaliser complètement un projet legacy de manière autonome :
+
+```bash
+/ralph-loop "Revitalize legacy project: document, audit, simplify, fix, optimize until fully modernized" --max-iterations 15 --completion-promise "All phases completed and documentation updated"
+```
+
+**Quand utiliser Ralph Loop :**
+- ✅ Projet legacy abandonné avec peu de documentation
+- ✅ Code ancien mais avec tests existants (> 50% coverage)
+- ✅ Migration sur plusieurs jours sans intervention constante
+- ❌ Projet legacy critique en production sans tests
+- ❌ Architecture nécessitant des décisions stratégiques majeures
+- ❌ Code nécessitant une compréhension métier approfondie
+
+**Recommandations :**
+- Toujours définir `--max-iterations` (recommandé: 10-15 pour legacy revival)
+- Ralph loop va ré-exécuter l'orchestrateur complet avec les 6 phases
+- S'assurer d'avoir un backup complet avant de lancer
+- Créer une branche dédiée pour la modernisation
+- Monitorer la progression : legacy revival est un processus long
+- Prévoir des points de validation manuelle entre les phases
+
+**Risques et mitigations :**
+- **Risque :** Breaking changes involontaires → **Mitigation :** Tests automatisés obligatoires
+- **Risque :** Perte de contexte métier → **Mitigation :** Revue manuelle des simplifications majeures
+- **Risque :** Boucle infinie sur erreurs complexes → **Mitigation :** --max-iterations bien défini
+
+**Workflow en Ralph Loop :**
+1. Documentation complète (spec-writer)
+2. Audit exhaustif (code-auditor)
+3. Simplification progressive (code-simplifier)
+4. Correction des erreurs (robocop)
+5. Optimisation performances (perf-auditor)
+6. Mise à jour docs (sync-local)
+7. Répète si incomplet ou max-iterations atteinte
+
+---
+
 ## Workflow d'Orchestration
 
 ### Phase 1: Archéologie du Projet

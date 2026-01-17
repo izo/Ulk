@@ -17,6 +17,38 @@ claude plugin install code-simplifier
 
 ---
 
+## Ralph Loop Mode (Optionnel)
+
+Pour simplifier **tous** les fichiers complexes de manière autonome :
+
+```bash
+/ralph-loop "Simplify all complex files identified in the audit until all are processed" --max-iterations 30 --completion-promise "All priority files simplified and tests passing"
+```
+
+**Quand utiliser Ralph Loop :**
+- ✅ Codebase avec 20+ fichiers à simplifier
+- ✅ Refactoring massif sur plusieurs jours
+- ✅ Legacy code avec beaucoup de complexité accumulée
+- ❌ Code avec tests fragiles qui pourraient casser
+- ❌ Refactoring nécessitant revue manuelle pour chaque fichier
+
+**Recommandations :**
+- Toujours définir `--max-iterations` (recommandé: 20-30 selon nombre de fichiers)
+- S'assurer que la suite de tests est robuste (> 80% coverage)
+- Ralph loop va simplifier fichier par fichier, en vérifiant les tests entre chaque
+- Faire des commits intermédiaires pour pouvoir rollback si nécessaire
+- Surveillance recommandée : la simplification peut changer la sémantique
+
+**Workflow en Ralph Loop :**
+1. Identifie le prochain fichier complexe
+2. Simplifie avec le plugin code-simplifier
+3. Vérifie que les tests passent
+4. Commit si succès, rollback sinon
+5. Passe au fichier suivant
+6. Répète jusqu'à tous traités ou max-iterations
+
+---
+
 ## Phase 1 : Cartographie du codebase
 
 ### 1.1 - Inventaire des fichiers
