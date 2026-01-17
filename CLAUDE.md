@@ -42,7 +42,11 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `07-perf-auditor.md` - Performs performance audits (Core Web Vitals, bundle analysis, etc.)
 - `08-external-sync.md` - Bidirectional sync with Notion/Linear ONLY
 - `09-context-generator.md` - Generates llm.txt snapshot (15K chars max)
+- `11-robocop.md` - Detective and fixer for all error types (runtime, compilation, tests, linting) - works directly or via GitHub issues
 - `13-documentalist.md` - Manages /docs folder (organize, clean, validate frontmatter)
+- `18-audit-complet.md` - Orchestrator: full repo audit (spec, code, perf, a11y) with consolidated report
+- `19-legacy-revival.md` - Orchestrator: legacy code revival (doc, simplify, fix, optimize)
+- `20-pre-release.md` - Orchestrator: pre-release checklist (audit, tests, docs) with GO/NO-GO decision
 - `14-figma-shadcn.md` - Analyzes Figma designs and generates shadcn/ui + Tailwind implementations
 - `15-tw2shad.md` - Transforms Tailwind/HTML components into shadcn/ui Vue components (Nuxt)
 
@@ -69,6 +73,7 @@ Once installed, invoke agents anywhere with:
 ```
 /woodman:agents:spec-writer
 /woodman:agents:todo-generator
+/woodman:agents:robocop
 /woodman:agents:figma-shadcn
 /woodman:analyze:nuxt
 ```
@@ -146,7 +151,16 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 # Development session
 "What's the next task?" → "Continue" → "Report progress"
 
-# Pre-release checks
+# Error fixing
+"Fix this error: [error message]" → robocop diagnoses and fixes
+"Fix GitHub issue #42" → robocop reads, fixes, verifies, closes issue
+
+# Audit orchestrators (combined workflows)
+"Audit complet" → audit-complet runs 5 agents: spec, code, perf, a11y, todo
+"Legacy revival" → legacy-revival runs 6 agents: spec, audit, simplify, fix, optimize, doc
+"Pre-release check" → pre-release runs 5-6 agents: audits, tests, docs → GO/NO-GO
+
+# Pre-release checks (manual)
 "Audit performance" → "Audit accessibility" → "Audit code"
 
 # Maintenance
@@ -262,6 +276,10 @@ Woodman/
 │   │   ├── spip.md
 │   │   ├── swiftui.md
 │   │   └── README.md
+│   ├── 11-robocop.md
+│   ├── 18-audit-complet.md
+│   ├── 19-legacy-revival.md
+│   ├── 20-pre-release.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -276,7 +294,11 @@ Woodman/
 │   │   ├── a11y-auditor.md
 │   │   ├── perf-auditor.md
 │   │   ├── external-sync.md
-│   │   └── context-generator.md
+│   │   ├── context-generator.md
+│   │   ├── robocop.md
+│   │   ├── audit-complet.md
+│   │   ├── legacy-revival.md
+│   │   └── pre-release.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md

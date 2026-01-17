@@ -38,7 +38,11 @@ model: opus | sonnet
 | **perf-auditor** | `07-perf-auditor.md` | sonnet | Performance audit (Core Web Vitals, bundle, backend) |
 | **external-sync** | `08-external-sync.md` | opus | Bidirectional sync with Notion/Linear ONLY (external tools) |
 | **context-generator** | `09-context-generator.md` | sonnet | Generate llm.txt snapshot (15K chars max) for instant LLM onboarding |
+| **robocop** | `11-robocop.md` | opus | Detective and fixer for all error types (runtime, compilation, tests, linting) - works directly or via GitHub issues |
 | **documentalist** | `13-documentalist.md` | sonnet | Manage /docs folder - organize, clean, validate frontmatter, maintain documentation structure |
+| **audit-complet** | `18-audit-complet.md` | opus | Orchestrator: full repo audit (spec + code + perf + a11y + todo) with consolidated report |
+| **legacy-revival** | `19-legacy-revival.md` | opus | Orchestrator: legacy code revival (spec + audit + simplify + fix + optimize + doc) |
+| **pre-release** | `20-pre-release.md` | opus | Orchestrator: pre-release checklist (audits + tests + docs) with GO/NO-GO decision |
 | **figma-shadcn** | `14-figma-shadcn.md` | opus | Analyze Figma designs and generate faithful shadcn/ui + Tailwind implementations |
 | **tw2shad** | `15-tw2shad.md` | sonnet | Transform Tailwind/HTML components into shadcn/ui-compatible Vue components for Nuxt projects |
 | **frontend-qa** | `16-frontend-qa.md` | sonnet | Comprehensive frontend QA (UX, UI, Tailwind, shadcn, code coherence) |
@@ -121,7 +125,29 @@ Reference checklists for comprehensive frontend quality assurance:
 "Report progress" → task-runner (04) - summary
 ```
 
-### Pre-Release Quality Checks
+### Error Fixing & Debugging
+```
+"Fix this error: [error message]" → robocop (11) - diagnose and fix
+"Fix GitHub issue #42" → robocop (11) - read, fix, verify, close
+"Tests are failing" → robocop (11) - investigate and resolve
+```
+
+### Audit Orchestrators (Combined Workflows)
+```
+"Audit complet de ce repo" → audit-complet (18)
+  → Runs: spec-writer → code-auditor → perf-auditor → a11y-auditor → todo-generator
+  → Generates: consolidated report + action plan
+
+"Revitaliser ce code legacy" → legacy-revival (19)
+  → Runs: spec-writer → code-auditor → code-simplifier → robocop → perf-auditor → sync-local
+  → Generates: before/after metrics + modernization roadmap
+
+"Check avant release" → pre-release (20)
+  → Runs: code-auditor → perf-auditor → a11y-auditor → robocop → tests
+  → Generates: GO/NO-GO decision + quality gates report
+```
+
+### Pre-Release Quality Checks (Manual)
 ```
 "Audit code" → code-auditor (05)
 "Audit accessibility" → a11y-auditor (06)
@@ -220,6 +246,44 @@ Agents adapt their analysis, questions, and output format based on detected stac
 - Use cases: New session, collaboration, context sharing, project history
 - Regenerate after significant changes or before sharing project
 - Output: Single llm.txt file at project root (Markdown format)
+
+### robocop (11)
+- Detective and fixer for all error types: runtime, compilation, tests, linting, type errors
+- Works in two modes: direct fix or via GitHub issues
+- Minimal context gathering: starts at error location, expands only if needed
+- Verification workflow: diagnose → fix → test → verify no regressions
+- GitHub integration: reads issue, reproduces error, fixes, comments, closes
+- Uses Task/Explore for complex multi-file errors
+- Supports all stacks: JS/TS, Python, Rust, Swift, Go, etc.
+
+### audit-complet (18)
+- Orchestrator that runs full repo audit combining 5 agents sequentially
+- Workflow: spec-writer → code-auditor → perf-auditor → a11y-auditor → todo-generator
+- Generates consolidated report with global scores (code, perf, a11y, security)
+- Creates prioritized action plan in todo.md
+- Interactive: asks scope, depth, focus before starting
+- Duration: 15-30 minutes depending on repo size
+- Output: 6 files including audit-summary-YYYYMMDD.md
+
+### legacy-revival (19)
+- Orchestrator specialized in legacy code revival and modernization
+- Workflow: spec-writer → code-auditor → code-simplifier → robocop → perf-auditor → sync-local → todo-generator
+- Focuses on: documentation, simplification, error fixing, optimization
+- Handles risks: tests missing, breaking changes, deprecated dependencies
+- Generates before/after metrics showing transformation impact
+- Interactive: asks about risk tolerance, breaking changes acceptance
+- Duration: 30-60 minutes depending on legacy size
+- Output: legacy-revival-YYYYMMDD.md with modernization roadmap
+
+### pre-release (20)
+- Orchestrator that runs comprehensive pre-release checklist
+- Workflow: code-auditor → perf-auditor → a11y-auditor → robocop → test:unit → test:e2e → docs check
+- Validates quality gates: build, tests, performance, accessibility, security
+- Makes GO/NO-GO decision based on strict criteria
+- Checks documentation: CHANGELOG, version bump, migration guide
+- Interactive: asks manual confirmations (features tested, DB migration ready, etc.)
+- Duration: 20-45 minutes depending on project size
+- Output: pre-release-YYYYMMDD.md with verdict and blockers list
 
 ### documentalist (13)
 - Manages /docs folder: organizes, cleans, validates all documentation
@@ -330,14 +394,18 @@ Agents generate these standard files in the project root:
 
 ## Model Distribution
 
-- **opus** (4 agents): Complex analysis requiring deep reasoning
+- **opus** (8 agents): Complex analysis requiring deep reasoning
   - 01-spec-writer: Multi-stack project analysis
   - 05-code-auditor: Comprehensive code audit
   - 08-external-sync: Bidirectional conflict resolution
+  - 11-robocop: Error diagnosis and fixing (all error types)
   - 14-figma-shadcn: Design interpretation and component mapping
+  - 18-audit-complet: Orchestration of 5 agents with complex decision making
+  - 19-legacy-revival: Orchestration with risk assessment and modernization strategy
+  - 20-pre-release: Orchestration with GO/NO-GO decision logic
 
-- **sonnet** (23 agents): Structured tasks, automation, performance optimization
-  - All other agents (02-04, 06-07, 09, 10-*, 11-*, 12-*, 13, 15, 16)
+- **sonnet** (22 agents): Structured tasks, automation, performance optimization
+  - All other agents (02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 17)
 
 ## Agent Invocation
 

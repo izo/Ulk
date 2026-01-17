@@ -19,7 +19,11 @@ agents/
 ├── 07-perf-auditor.md     # Audit performance (Core Web Vitals, bundle, DB)
 ├── 08-external-sync.md    # Sync bidirectionnelle Notion/Linear
 ├── 09-context-generator.md # Génère llm.txt (snapshot 15K pour onboarding LLM)
+├── 11-robocop.md          # Détective et fixeur d'erreurs (runtime, compilation, tests, linting)
 ├── 13-documentalist.md    # Gère /docs (organise, valide, maintient)
+├── 18-audit-complet.md    # Orchestrateur : audit complet (spec + code + perf + a11y + todo)
+├── 19-legacy-revival.md   # Orchestrateur : revival code legacy (doc + simplify + fix + optimize)
+├── 20-pre-release.md      # Orchestrateur : checklist pre-release + décision GO/NO-GO
 ├── 14-figma-shadcn.md     # Analyse Figma → implémentation shadcn/ui + Tailwind
 ├── 15-tw2shad.md          # Transforme Tailwind/HTML → composants shadcn/ui Vue (Nuxt)
 ├── 16-frontend-qa.md      # Audit frontend complet (UX, UI, Tailwind, shadcn, code)
@@ -402,7 +406,11 @@ Corrections
 | 07-perf-auditor | sonnet | Mesures et analyse |
 | 08-external-sync | opus | Résolution conflits, bidirectionnalité |
 | 09-context-generator | sonnet | Compilation et synthèse (15K max) |
+| 11-robocop | opus | Diagnostic et résolution d'erreurs (tous types) |
 | 13-documentalist | sonnet | Organisation et validation documentation |
+| 18-audit-complet | opus | Orchestration 5 agents : audit complet repo |
+| 19-legacy-revival | opus | Orchestration 6 agents : revival code legacy |
+| 20-pre-release | opus | Orchestration 5-6 agents : checklist pre-release |
 | 14-figma-shadcn | opus | Analyse design + mapping composants complexes |
 | 15-tw2shad | sonnet | Transformation Tailwind → Vue/shadcn |
 | 16-frontend-qa | sonnet | Audit frontend (UX, UI, Tailwind, shadcn, code) |

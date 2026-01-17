@@ -45,7 +45,11 @@ Dans Claude Code, invoquez les agents avec :
 | `perf-auditor` | Audit performance |
 | `external-sync` | Sync Notion/Linear |
 | `context-generator` | Génère llm.txt (15K chars) |
+| `robocop` | Détective et fixeur d'erreurs (runtime, compilation, tests, linting) |
 | `documentalist` | Gère /docs - organisation, nettoyage, frontmatter |
+| `audit-complet` | Orchestrateur : audit complet repo (5 agents) |
+| `legacy-revival` | Orchestrateur : revival code legacy (6 agents) |
+| `pre-release` | Orchestrateur : checklist pre-release + GO/NO-GO |
 | `figma-shadcn` | Analyse Figma → implémentation shadcn/ui + Tailwind |
 | `tw2shad` | Transforme Tailwind/HTML → composants shadcn/ui Vue (Nuxt) |
 
@@ -75,6 +79,50 @@ Dans Claude Code, invoquez les agents avec :
 |-------|-----------|
 | `unit` | Jest, Vitest - tests unitaires |
 | `e2e` | Playwright, Cypress - tests end-to-end |
+
+## Orchestrateurs
+
+Les orchestrateurs combinent plusieurs agents en un workflow automatisé :
+
+### 🎯 audit-complet
+**Usage :** `/woodman:agents:audit-complet`
+
+Audit exhaustif d'un repo en 5 phases :
+1. spec-writer → documentation
+2. code-auditor → audit code
+3. perf-auditor → audit performance
+4. a11y-auditor → audit accessibilité
+5. todo-generator → plan d'action
+
+**Durée :** 15-30 min | **Output :** 6 fichiers incluant rapport consolidé
+
+### 🔄 legacy-revival
+**Usage :** `/woodman:agents:legacy-revival`
+
+Remise à niveau code legacy en 7 phases :
+1. spec-writer → documentation existant
+2. code-auditor → diagnostic complet
+3. code-simplifier → simplification
+4. robocop → correction erreurs
+5. perf-auditor → optimisation
+6. sync-local → mise à jour docs
+7. todo-generator → roadmap modernisation
+
+**Durée :** 30-60 min | **Output :** Métriques avant/après + roadmap
+
+### 🚀 pre-release
+**Usage :** `/woodman:agents:pre-release`
+
+Checklist pre-release avec décision GO/NO-GO :
+1. code-auditor → qualité code
+2. perf-auditor → performance
+3. a11y-auditor → accessibilité
+4. robocop → fix erreurs critiques
+5. test:unit + test:e2e → validation
+6. Docs check → CHANGELOG, version bump
+7. Checklist manuelle → confirmations
+
+**Durée :** 20-45 min | **Output :** Verdict ✅ GO / ⚠️ WARNINGS / ❌ NO-GO
 
 ## Structure
 
