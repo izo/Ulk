@@ -112,7 +112,7 @@ Pour proposer un nouvel agent : [Ouvrir une issue](https://github.com/izo/Woodma
 
 ## Auteur
 
-Réalisé par **Mathieu Drouer** pour [regrets.app](https://regrets.app)
+Réalisé par **Mathieu Drouet** pour [regrets.app](https://regrets.app)
 
 ## Licence
 
