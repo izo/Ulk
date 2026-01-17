@@ -29,10 +29,21 @@ Après installation, utilisez `/wm:update` pour mettre à jour.
 | `perf-auditor` | Audit performance et Core Web Vitals |
 | `external-sync` | Synchronisation Notion/Linear |
 | `context-generator` | Génère llm.txt pour onboarding LLM |
+| `robocop` | Détective et fixeur d'erreurs (all types) |
 | `documentalist` | Gère et organise le dossier /docs |
 | `figma-shadcn` | Convertit designs Figma en shadcn/ui |
 | `tw2shad` | Transforme Tailwind/HTML en shadcn/ui Vue |
 | `frontend-qa` | Audit frontend UX/UI et Tailwind |
+
+### Orchestrateurs (`/wm:agents:*`)
+
+Workflows automatisés combinant plusieurs agents :
+
+| Commande | Description |
+|----------|-------------|
+| `audit-complet` | Audit complet : spec + code + perf + a11y + todo (5 agents, 15-30min) |
+| `legacy-revival` | Revival code legacy : doc + simplify + fix + optimize (6 agents, 30-60min) |
+| `pre-release` | Checklist pre-release + GO/NO-GO (5-6 agents, 20-45min) |
 
 ### Analyseurs de stack (`/wm:analyze:*`)
 
@@ -94,7 +105,25 @@ Le site de documentation est disponible sur [izo.github.io/Woodman](https://izo.
 /wm:agents:spec-writer → /wm:agents:todo-generator → /wm:agents:task-runner
 ```
 
-### Audit complet
+### Audit complet (automatisé)
+```
+/wm:agents:audit-complet
+# Lance automatiquement : spec-writer → code-auditor → perf-auditor → a11y-auditor → todo-generator
+```
+
+### Code legacy
+```
+/wm:agents:legacy-revival
+# Lance automatiquement : spec-writer → code-auditor → code-simplifier → robocop → perf-auditor → sync-local
+```
+
+### Pre-release check
+```
+/wm:agents:pre-release
+# Lance automatiquement : audits + tests + docs → Verdict GO/NO-GO
+```
+
+### Audit manuel (pas à pas)
 ```
 /wm:agents:code-auditor → /wm:agents:perf-auditor → /wm:agents:a11y-auditor
 ```
