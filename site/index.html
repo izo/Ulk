@@ -234,6 +234,7 @@
                 </a>
                 <div class="hidden md:flex items-center gap-6">
                     <a href="#install" class="nav-link text-sm">Installation</a>
+                    <a href="#orchestrators" class="nav-link text-sm">Orchestrateurs</a>
                     <a href="#commands" class="nav-link text-sm">Commandes</a>
                     <a href="#vps" class="nav-link text-sm">VPS</a>
                     <a href="#workflows" class="nav-link text-sm">Workflows</a>
@@ -302,7 +303,7 @@
                         <span class="font-semibold">Intelligent</span>
                     </div>
                     <p class="text-sm text-zed-muted leading-relaxed">
-                        43 agents specialises pour chaque aspect du developpement et de l'infrastructure.
+                        47 agents specialises pour chaque aspect du developpement et de l'infrastructure.
                     </p>
                 </div>
                 <div class="card p-6">
@@ -344,6 +345,75 @@
             <p class="text-center text-sm text-zed-muted mt-6">
                 Apres installation, utilisez <code class="font-mono bg-gray-100 px-2 py-1 rounded">/wm:update</code> pour mettre a jour
             </p>
+        </div>
+    </section>
+
+    <!-- Orchestrators -->
+    <section id="orchestrators" class="py-16 px-6 bg-white border-y border-zed-border">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <p class="section-title mb-3">Orchestrateurs</p>
+                <h2 class="text-3xl font-semibold mb-4">Workflows automatises</h2>
+                <p class="text-zed-muted">Combinez plusieurs agents en un seul workflow</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Audit Complet -->
+                <div class="card p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
+                            <i data-lucide="clipboard-list" class="w-6 h-6 text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-mono font-semibold">audit-complet</h3>
+                            <p class="text-xs text-zed-muted">5 agents · 15-30min</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zed-muted mb-4">
+                        Audit exhaustif : spec + code + perf + a11y + todo
+                    </p>
+                    <code class="text-xs font-mono bg-gray-100 px-3 py-1.5 rounded block">/wm:agents:audit-complet</code>
+                </div>
+
+                <!-- Legacy Revival -->
+                <div class="card p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
+                            <i data-lucide="refresh-ccw" class="w-6 h-6 text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-mono font-semibold">legacy-revival</h3>
+                            <p class="text-xs text-zed-muted">6 agents · 30-60min</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zed-muted mb-4">
+                        Revival code legacy : doc + simplify + fix + optimize
+                    </p>
+                    <code class="text-xs font-mono bg-gray-100 px-3 py-1.5 rounded block">/wm:agents:legacy-revival</code>
+                </div>
+
+                <!-- Pre-Release -->
+                <div class="card p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
+                            <i data-lucide="rocket" class="w-6 h-6 text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-mono font-semibold">pre-release</h3>
+                            <p class="text-xs text-zed-muted">5-6 agents · 20-45min</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zed-muted mb-4">
+                        Checklist pre-release + verdict GO/NO-GO
+                    </p>
+                    <code class="text-xs font-mono bg-gray-100 px-3 py-1.5 rounded block">/wm:agents:pre-release</code>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <p class="text-sm text-zed-muted">
+                    + <span class="font-mono font-semibold">robocop</span> pour fixer les erreurs automatiquement
+                    <code class="ml-2 text-xs font-mono bg-gray-100 px-2 py-1 rounded">/wm:agents:robocop</code>
+                </p>
+            </div>
         </div>
     </section>
 
