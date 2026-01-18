@@ -1,9 +1,15 @@
 ---
 name: spec-writer
 type: custom-command
-description: Analyse un projet existant pour produire un document spec.md clair, réaliste et actionnable. Utiliser cet agent quand on demande de créer des spécifications techniques, d'analyser l'architecture d'un projet, ou de documenter une codebase existante. Supporte toutes les stacks (Nuxt, Laravel, WordPress, SPIP, Swift, Python, Go, etc.).
+description: |
+  Analyse un projet existant pour produire un document spec.md clair, réaliste et actionnable.
+  Triggers: "generate spec", "create specifications", "analyze architecture", "document codebase", "spec ce projet".
+  Supporte toutes les stacks (Nuxt, Laravel, WordPress, SPIP, Swift, Python, Go, Rust, etc.).
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, AskUserQuestionTool
 model: opus
+metadata:
+  author: woodman
+  version: "1.0.0"
 invocation: /wm:agents:spec-writer or "spec-writer"
 ---
 

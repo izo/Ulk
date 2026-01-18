@@ -307,6 +307,43 @@ Agents adapt their analysis, questions, and output format based on detected stac
 - **mcp__linear__***: Linear API integration (external-sync, sync-docs)
 - **mcp__notion__***: Notion API integration (external-sync, sync-docs)
 
+## Context Efficiency Guidelines
+
+Agents are loaded on-demand. To minimize token usage and improve performance:
+
+1. **Keep agent files under 500 lines** — extract detailed rules to `rules/` directory
+2. **Write specific descriptions** — include trigger phrases for auto-activation
+3. **Use progressive disclosure** — reference supporting files that load only when needed
+4. **Prefer Quick Reference Tables** — summarize rules at-a-glance before detailed sections
+5. **Use checklists** — more efficient than prose for auditors
+6. **Extract reusable rules** — common patterns in `rules/{category}-{rule}.md`
+
+### Progressive Disclosure Pattern
+
+```
+Agent file (main)
+├── Quick Reference Table (always loaded)
+├── Phase descriptions (always loaded)
+└── "See rules/{category}-{rule}.md for details" (loaded on-demand)
+```
+
+### Rules Directory Structure
+
+```
+agents/rules/
+├── _template.md          # Rule template for consistency
+├── _sections.md          # Category definitions with impact levels
+├── sec-secrets-exposed.md
+├── sec-xss-vulnerability.md
+├── arch-god-file.md
+├── perf-n-plus-one.md
+└── ...
+```
+
+**Reference:** Inspired by [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) patterns.
+
+---
+
 ## Creating New Agents
 
 When adding a new agent to this collection:
@@ -317,9 +354,16 @@ When adding a new agent to this collection:
    ```yaml
    ---
    name: agent-name
-   description: Clear description and when to use this agent
+   type: custom-command
+   description: |
+     Clear description of what the agent does.
+     Triggers: "phrase 1", "phrase 2", etc.
    tools: Tool1, Tool2, Tool3
    model: opus | sonnet
+   metadata:
+     author: woodman
+     version: "1.0.0"
+   invocation: /wm:agents:agent-name or "natural trigger"
    ---
    ```
 

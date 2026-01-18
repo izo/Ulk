@@ -30,7 +30,9 @@ gh run list --workflow=deploy.yml
 
 ### Agent Skills
 
-The `agents/` directory contains specialized AI agents that can be invoked as needed:
+The `agents/` directory contains specialized AI agents that can be invoked as needed.
+
+**See also:** `AGENTS.md` for skill format conventions and context efficiency guidelines (inspired by [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)).
 
 **Workflow Agents (01-09):**
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive spec.md files (supports all stacks)
