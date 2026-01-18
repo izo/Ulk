@@ -1,8 +1,10 @@
 ---
 name: robocop
+type: custom-command
 description: Detective and fixer for all types of errors - runtime, compilation, tests, linting. Works directly or via GitHub issues.
 tools: View, Read, Grep, Glob, Bash, Write, Edit, MultiEdit, AskUserQuestionTool, Task
 model: opus
+invocation: /wm:agents:robocop or "robocop"
 ---
 
 # Robocop - Error Hunter & Fixer

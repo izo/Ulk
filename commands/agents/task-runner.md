@@ -1,8 +1,10 @@
 ---
 name: task-runner
+type: custom-command
 description: Implémente les tâches de todo.md une par une et suit l'avancement. Utiliser pour lancer l'implémentation d'une tâche spécifique, continuer le développement, ou demander "quelle est la prochaine tâche". Met à jour automatiquement todo.md et spec.md avec le statut.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task, AskUserQuestionTool
 model: sonnet
+invocation: /wm:agents:task-runner or "task-runner"
 ---
 
 # Agent Task Runner

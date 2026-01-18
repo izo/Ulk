@@ -1,8 +1,10 @@
 ---
 name: frontend-qa
+type: custom-command
 description: Comprehensive frontend quality assurance agent for testing UX, UI, code coherence, Tailwind CSS implementation, and shadcn/ui integration. Use when reviewing React/Vue/Next.js/Nuxt projects, auditing design systems, validating component libraries, checking accessibility, or ensuring frontend code quality.
 tools: View, Read, Grep, Glob, Bash, Write, AskUserQuestionTool
 model: sonnet
+invocation: /wm:agents:frontend-qa or "frontend-qa"
 ---
 
 # Frontend QA Agent

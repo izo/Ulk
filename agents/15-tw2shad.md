@@ -1,8 +1,10 @@
 ---
 name: tw2shad
+type: custom-command
 description: Transforms Tailwind/HTML components found on the web into shadcn/ui-compatible Vue components for Nuxt projects. Maps colors to design tokens, creates variant structures with cva, and ensures dark mode compatibility.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, AskUserQuestionTool
 model: sonnet
+invocation: /wm:agents:tw2shad or "tw2shad"
 ---
 
 # Agent : Intégration de composants Tailwind → shadcn/ui (Nuxt)

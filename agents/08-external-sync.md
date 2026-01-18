@@ -1,8 +1,10 @@
 ---
 name: external-sync
+type: custom-command
 description: Synchronisation bidirectionnelle COMPLÈTE avec Notion et Linear uniquement. Analyse l'état du projet local ET l'état externe pour détecter les différences, résoudre les conflits, et maintenir la cohérence. Inclut tracking state et gestion des mappings. Agent de MAINTENANCE - utiliser après 03-sync-local pour pousser vers l'externe, ou standalone pour sync bidirectionnelle complète.
 tools: View, Read, Grep, Glob, Bash, Write, AskUserQuestionTool, mcp__linear, mcp__notion
 model: opus
+invocation: /wm:agents:external-sync or "external-sync"
 ---
 
 # Agent External Sync

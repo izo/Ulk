@@ -1,8 +1,10 @@
 ---
 name: code-simplifier
+type: custom-command
 description: Audit de simplification du code sur l'ensemble du codebase. Identifie les opportunités de simplification, priorise les fichiers complexes, puis utilise le plugin officiel code-simplifier d'Anthropic pour appliquer les améliorations.
 tools: Task, Read, Glob, Grep, Bash, Write
 model: opus
+invocation: /wm:agents:code-simplifier or "code-simplifier"
 ---
 
 # Agent Code Simplifier

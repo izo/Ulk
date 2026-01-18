@@ -1,8 +1,10 @@
 ---
 name: analyze-next
+type: custom-command
 description: Analyse un projet Next.js (App Router / Pages Router) pour inventorier tous les composants, identifier les Server vs Client Components, détecter les problèmes de performance et hydration, et proposer des migrations vers des UI libraries (shadcn/ui, Radix). Supporte Next.js 13/14/15.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: sonnet
+invocation: /wm:analyze:next or "analyze next"
 ---
 
 # Agent Next.js Analyzer

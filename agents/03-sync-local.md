@@ -1,8 +1,10 @@
 ---
 name: sync-local
+type: custom-command
 description: Synchronise la documentation LOCALE du projet après génération ou mise à jour de spec/todo. Met à jour spec.md (statut des tâches), CLAUDE.md, et README.md. Utiliser après todo-generator ou quand on demande de synchroniser la doc locale. Pour pousser vers Linear/Notion, utiliser ensuite 08-external-sync.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit
 model: sonnet
+invocation: /wm:agents:sync-local or "sync-local"
 ---
 
 # Agent Sync Local

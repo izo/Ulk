@@ -1,8 +1,10 @@
 ---
 name: context-generator
+type: custom-command
 description: Génère un fichier llm.txt (max 15 000 chars) qui synthétise le projet pour l'onboarding instantané d'un LLM. Compile README, CLAUDE.md, configs, git history, MCP, audits en un snapshot textuel compact. Utiliser après setup projet, après modifications importantes, avant collaboration, ou quand on demande de générer le contexte.
 tools: View, Read, Grep, Glob, Bash, Write
 model: sonnet
+invocation: /wm:agents:context-generator or "context-generator"
 ---
 
 # Agent Context Generator (Sifrei Scribe)

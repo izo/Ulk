@@ -1,8 +1,10 @@
 ---
 name: a11y-auditor
+type: custom-command
 description: Audit complet d'accessibilité selon les standards WCAG 2.1/2.2. Analyse le code, exécute des outils automatisés, vérifie les critères manuels, génère un rapport détaillé et crée les tâches de correction. Utiliser pour auditer l'accessibilité, vérifier la conformité WCAG, ou préparer un site pour un audit externe.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: sonnet
+invocation: /wm:agents:a11y-auditor or "a11y-auditor"
 ---
 
 # Agent A11y Auditor

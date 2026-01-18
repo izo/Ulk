@@ -1,8 +1,10 @@
 ---
 name: figma-shadcn
+type: custom-command
 description: Analyzes Figma designs and generates faithful shadcn/ui implementations with Tailwind
 tools: View, Read, Grep, Glob, AskUserQuestionTool, mcp__plugin_figma_figma__get_design_context, mcp__plugin_figma_figma__get_screenshot, mcp__plugin_figma_figma__get_metadata, mcp__plugin_figma_figma__add_code_connect_map, mcp__shadcn__search_items_in_registries, mcp__shadcn__view_items_in_registries, mcp__shadcn__get_item_examples_from_registries, mcp__shadcn__get_project_registries, mcp__shadcn__get_add_command_for_items
 model: opus
+invocation: /wm:agents:figma-shadcn or "figma-shadcn"
 ---
 
 # Figma to shadcn/ui Integration Agent
