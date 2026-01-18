@@ -4,7 +4,22 @@
 > Auteur : Claude Code Auditor
 > Scope : agents/, commands/, subdirectories
 
-## Resume executif
+---
+
+## CORRECTIONS APPLIQUEES
+
+| Action | Fichiers | Gain |
+|--------|----------|------|
+| Symlinks commands/agents/ | 10 fichiers | -137 KB |
+| Symlinks commands/analyze/ | 5 fichiers | -49 KB |
+| Deplacement vers docs/ | 3 fichiers | -48 KB |
+| **TOTAL** | **18 fichiers** | **-234 KB (~58,500 tokens)** |
+
+**Nouveau total : ~441 KB (~110,000 tokens)**
+
+---
+
+## Resume executif (avant corrections)
 
 **Volume total : ~675 KB de prompts**
 **Estimation tokens : ~169,000 tokens** (4 chars/token moyenne)
