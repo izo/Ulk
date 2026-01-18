@@ -143,6 +143,12 @@ Pour proposer un nouvel agent : [Ouvrir une issue](https://github.com/izo/Woodma
 
 Réalisé par **Mathieu Drouet** pour [regrets.app](https://regrets.app)
 
+## Crédits & Inspirations
+
+- **[vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)** — Structure des agents, context efficiency guidelines, et pattern de règles (AGENTS.md, rules/)
+- **[Zed.dev](https://zed.dev)** — Design du site web
+- **[Claude Code](https://claude.ai/code)** — Plateforme cible
+
 ## Licence
 
 MIT

@@ -48,3 +48,14 @@ Rules are referenced from agent files using progressive disclosure:
 ```
 
 This keeps the main agent file under 500 lines while providing comprehensive documentation on demand.
+
+## Credits
+
+This rules system is inspired by the **[vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)** repository, specifically:
+
+- Rule template structure with frontmatter (title, impact, tags)
+- Category organization with impact levels (CRITICAL → LOW)
+- Progressive disclosure pattern for context efficiency
+- Before/After code examples format
+
+See also: [AGENTS.md](../../AGENTS.md) for complete skill conventions.

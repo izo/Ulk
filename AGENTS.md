@@ -225,8 +225,20 @@ Agents activate based on natural language patterns:
 | robocop | "fix error", "debug", "fix issue #N" |
 | context-generator | "generate llm.txt", "create context snapshot" |
 
-## References
+## Credits & References
 
-- [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills) — Inspiration for structure
+### Inspiration
+
+The Woodman agent system is heavily inspired by **[vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)**. Key patterns adopted:
+
+- **SKILL.md format** with YAML frontmatter (name, description, metadata)
+- **Context efficiency** guidelines (<500 lines, progressive disclosure)
+- **Rule categories** with impact levels (CRITICAL → LOW)
+- **Rule templates** with Before/After code examples
+- **Quick Reference Tables** for at-a-glance discovery
+
+### Links
+
+- [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills) — Original inspiration
 - [Agent Skills Format](https://agentskills.io) — Skill specification standard
 - [Claude Code Custom Commands](https://docs.anthropic.com/claude-code) — Installation guide
