@@ -92,6 +92,7 @@ ANALYZE_COUNT=$(find "$COMMANDS_SOURCE/analyze" -name "*.md" 2>/dev/null | wc -l
 DEPLOY_COUNT=$(find "$COMMANDS_SOURCE/deploy" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 TEST_COUNT=$(find "$COMMANDS_SOURCE/test" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 VPS_COUNT=$(find "$COMMANDS_SOURCE/vps" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+RULES_COUNT=$(find "$SCRIPT_DIR/agents/rules" -name "*.md" ! -name "_*" 2>/dev/null | wc -l | tr -d ' ')
 
 echo ""
 echo -e "${GREEN}✅ Installation réussie!${NC}"
@@ -102,6 +103,7 @@ echo "   • Analyze:   $ANALYZE_COUNT"
 echo "   • Deploy:    $DEPLOY_COUNT"
 echo "   • Test:      $TEST_COUNT"
 echo "   • VPS:       $VPS_COUNT"
+echo "   • Rules:     $RULES_COUNT (audit rules)"
 echo ""
 
 echo -e "${YELLOW}🚀 Usage:${NC}"
@@ -114,4 +116,8 @@ echo "   /wm:agents:pre-release        # Checklist pre-release + GO/NO-GO"
 echo "   /wm:analyze:nuxt              # Analyse Nuxt"
 echo "   /wm:deploy:vercel             # Déployer Vercel"
 echo "   /wm:vps:orchestrateur         # Orchestrateur VPS"
+echo ""
+echo -e "${BLUE}📚 Documentation:${NC}"
+echo "   AGENTS.md    → Conventions & best practices (agent-skills pattern)"
+echo "   agents/rules → Règles d'audit détaillées (sec-*, perf-*, etc.)"
 echo ""

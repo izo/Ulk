@@ -234,10 +234,10 @@
                 </a>
                 <div class="hidden md:flex items-center gap-6">
                     <a href="#install" class="nav-link text-sm">Installation</a>
+                    <a href="#best-practices" class="nav-link text-sm">Best Practices</a>
                     <a href="#orchestrators" class="nav-link text-sm">Orchestrateurs</a>
                     <a href="#commands" class="nav-link text-sm">Commandes</a>
                     <a href="#vps" class="nav-link text-sm">VPS</a>
-                    <a href="#workflows" class="nav-link text-sm">Workflows</a>
                 </div>
             </div>
             <div class="flex items-center gap-3">
@@ -315,6 +315,62 @@
                         Open source et contributable. Ajoutez vos propres agents facilement.
                     </p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section id="best-practices" class="py-16 px-6 bg-white border-y border-zed-border">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <p class="section-title mb-3">Best Practices</p>
+                <h2 class="text-3xl font-semibold mb-4">Context Efficiency</h2>
+                <p class="text-zed-muted">Structure des agents inspirée de <a href="https://github.com/vercel-labs/agent-skills" target="_blank" class="text-zed-accent hover:underline">vercel-labs/agent-skills</a></p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="file-minus" class="w-5 h-5 text-zed-accent"></i>
+                        <span class="font-semibold">&lt; 500 lignes</span>
+                    </div>
+                    <p class="text-sm text-zed-muted leading-relaxed">
+                        Agents concis avec règles détaillées extraites dans <code class="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-xs">rules/</code>
+                    </p>
+                </div>
+                <div class="card p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="table" class="w-5 h-5 text-zed-accent"></i>
+                        <span class="font-semibold">Quick Reference</span>
+                    </div>
+                    <p class="text-sm text-zed-muted leading-relaxed">
+                        Tables de référence rapide avec priorités CRITICAL → LOW pour chaque catégorie.
+                    </p>
+                </div>
+                <div class="card p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="layers" class="w-5 h-5 text-zed-accent"></i>
+                        <span class="font-semibold">Progressive Disclosure</span>
+                    </div>
+                    <p class="text-sm text-zed-muted leading-relaxed">
+                        Règles chargées à la demande via références <code class="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-xs">sec-*</code>, <code class="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-xs">perf-*</code>
+                    </p>
+                </div>
+                <div class="card p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-zed-accent"></i>
+                        <span class="font-semibold">Trigger Phrases</span>
+                    </div>
+                    <p class="text-sm text-zed-muted leading-relaxed">
+                        Descriptions avec phrases déclenchantes pour auto-activation des agents.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <a href="https://github.com/izo/Woodman/blob/main/AGENTS.md" target="_blank"
+                   class="inline-flex items-center gap-2 text-sm text-zed-accent hover:underline">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    <span>Voir AGENTS.md pour les conventions complètes</span>
+                </a>
             </div>
         </div>
     </section>
