@@ -49,6 +49,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `20-pre-release.md` - Orchestrator: pre-release checklist (audit, tests, docs) with GO/NO-GO decision
 - `14-figma-shadcn.md` - Analyzes Figma designs and generates shadcn/ui + Tailwind implementations
 - `15-tw2shad.md` - Transforms Tailwind/HTML components into shadcn/ui Vue components (Nuxt)
+- `21-notion-importer.md` - Imports Notion page with links → generates spec_notion.md + todo_notion.md in /docs
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -74,6 +75,7 @@ Once installed, invoke agents anywhere with:
 /woodman:agents:spec-writer
 /woodman:agents:todo-generator
 /woodman:agents:robocop
+/woodman:agents:notion-importer
 /woodman:agents:figma-shadcn
 /woodman:analyze:nuxt
 ```
@@ -162,6 +164,10 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 
 # Pre-release checks (manual)
 "Audit performance" → "Audit accessibility" → "Audit code"
+
+# Import from Notion
+"Import from Notion" → notion-importer extracts page + links → generates spec_notion.md + todo_notion.md
+"Import + sync to Linear" → notion-importer then external-sync
 
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"

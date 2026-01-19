@@ -27,7 +27,8 @@ agents/
 ├── 14-figma-shadcn.md     # Analyse Figma → implémentation shadcn/ui + Tailwind
 ├── 15-tw2shad.md          # Transforme Tailwind/HTML → composants shadcn/ui Vue (Nuxt)
 ├── 16-frontend-qa.md      # Audit frontend complet (UX, UI, Tailwind, shadcn, code)
-└── 17-code-simplifier.md  # Audit simplification codebase + plugin code-simplifier
+├── 17-code-simplifier.md  # Audit simplification codebase + plugin code-simplifier
+└── 21-notion-importer.md  # Import page Notion + liens → spec_notion.md + todo_notion.md
 ```
 
 ### Stack Analyzers (10-analyze/)

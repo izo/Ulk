@@ -47,6 +47,7 @@ model: opus | sonnet
 | **tw2shad** | `15-tw2shad.md` | sonnet | Transform Tailwind/HTML components into shadcn/ui-compatible Vue components for Nuxt projects |
 | **frontend-qa** | `16-frontend-qa.md` | sonnet | Comprehensive frontend QA (UX, UI, Tailwind, shadcn, code coherence) |
 | **code-simplifier** | `17-code-simplifier.md` | opus | Audit de simplification du codebase complet, puis applique via le plugin officiel code-simplifier |
+| **notion-importer** | `21-notion-importer.md` | opus | Import Notion page + links → generates spec_notion.md + todo_notion.md in /docs (unidirectional) |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -154,6 +155,16 @@ Reference checklists for comprehensive frontend quality assurance:
 "Audit performance" → perf-auditor (07)
 ```
 
+### Notion Import
+```
+"Import from Notion" → notion-importer (21)
+  → Reads master page + all linked pages recursively
+  → Generates: docs/spec_notion.md + docs/todo_notion.md
+
+"Import + sync to Linear" → notion-importer (21) → external-sync (08)
+  → Import from Notion first, then push to Linear
+```
+
 ### Documentation Maintenance
 ```
 "Update local documentation" → sync-local (03)
@@ -238,6 +249,17 @@ Agents adapt their analysis, questions, and output format based on detected stac
 - Resolves conflicts, tracks state in `.claude/sync-state.json`
 - Does NOT handle local documentation (use sync-local for that)
 - Run after sync-local for complete workflow
+
+### notion-importer
+- Unidirectional import (Notion → Local only)
+- Reads master Notion page + recursively follows all linked pages
+- Extracts content from Notion databases (optional)
+- Categorizes content (spec, tasks, notes, architecture)
+- Generates `/docs/spec_notion.md` with all specifications
+- Generates `/docs/todo_notion.md` with all tasks prioritized
+- Tracks import metadata in `.notion-import-meta.json`
+- Use cases: onboarding, backup, migration prep
+- Different from external-sync: no bidirectional sync, focused on one-time import
 
 ### context-generator
 - Generates llm.txt: compact 15K character snapshot of entire project
@@ -370,6 +392,9 @@ Agents generate these standard files in the project root:
 - **audit-YYYYMMDD.md**: Audit reports (from 05/06/07-auditor agents)
 - **.claude/sync-state.json**: External sync tracking (from 08-external-sync)
 - **docs/**: Organized documentation folder (managed by 13-documentalist)
+  - **docs/spec_notion.md**: Notion import - specifications (from 21-notion-importer)
+  - **docs/todo_notion.md**: Notion import - tasks (from 21-notion-importer)
+  - **docs/.notion-import-meta.json**: Notion import metadata (from 21-notion-importer)
   - **docs/00-meta/index.md**: Documentation index (auto-generated)
   - **docs/00-meta/conventions.md**: Documentation conventions (auto-generated)
   - **docs/00-meta/audit-YYYY-MM-DD.md**: Documentation audit reports
@@ -390,22 +415,32 @@ Agents generate these standard files in the project root:
 - ✅ Tracks state
 - ❌ Does NOT touch local documentation files
 
+### 21-notion-importer (Notion Import Only)
+- ✅ Reads Notion pages recursively (master + links)
+- ✅ Generates docs/spec_notion.md + docs/todo_notion.md
+- ✅ One-time import/extraction
+- ❌ Does NOT sync back to Notion
+- ❌ Does NOT touch spec.md, todo.md at root (uses _notion suffix in /docs)
+
 **Use together:** `03-sync-local` → `08-external-sync` for complete workflow
+**Or:** `21-notion-importer` → `08-external-sync` for Notion→Linear migration
 
 ## Model Distribution
 
-- **opus** (8 agents): Complex analysis requiring deep reasoning
+- **opus** (9 agents): Complex analysis requiring deep reasoning
   - 01-spec-writer: Multi-stack project analysis
   - 05-code-auditor: Comprehensive code audit
   - 08-external-sync: Bidirectional conflict resolution
   - 11-robocop: Error diagnosis and fixing (all error types)
   - 14-figma-shadcn: Design interpretation and component mapping
+  - 17-code-simplifier: Codebase simplification audit
   - 18-audit-complet: Orchestration of 5 agents with complex decision making
   - 19-legacy-revival: Orchestration with risk assessment and modernization strategy
   - 20-pre-release: Orchestration with GO/NO-GO decision logic
+  - 21-notion-importer: Notion content extraction and consolidation
 
 - **sonnet** (22 agents): Structured tasks, automation, performance optimization
-  - All other agents (02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 17)
+  - All other agents (02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16)
 
 ## Agent Invocation
 

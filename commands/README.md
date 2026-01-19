@@ -52,6 +52,7 @@ Dans Claude Code, invoquez les agents avec :
 | `pre-release` | Orchestrateur : checklist pre-release + GO/NO-GO |
 | `figma-shadcn` | Analyse Figma → implémentation shadcn/ui + Tailwind |
 | `tw2shad` | Transforme Tailwind/HTML → composants shadcn/ui Vue (Nuxt) |
+| `notion-importer` | Import page Notion + liens → spec_notion.md + todo_notion.md |
 
 ### Analyzers (`/woodman:analyze:*`)
 
