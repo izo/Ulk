@@ -146,7 +146,7 @@ grep -rn "console.log" src/ --include="*.ts" --include="*.tsx"
 - Fonctions >50 lignes
 - Nesting >3 niveaux
 - `any` excessifs (TypeScript)
-- `!` assertions excessives
+- Assertions TypeScript (!) excessives
 - Catch vides ou avec juste console.log
 - Code commenté
 - Imports non utilisés
@@ -196,7 +196,7 @@ grep -rn "raw(\|execute(\|query(" src/ --include="*.ts"
 - SQL/NoSQL injection
 - XSS via innerHTML
 - Désérialisation non sécurisée
-- CORS trop permissif (`*`)
+- CORS trop permissif (wildcard *)
 - JWT sans expiration
 - Mots de passe en clair
 - Dépendances avec CVE
