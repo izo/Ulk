@@ -3,10 +3,10 @@ title: Documentation Woodman
 type: meta
 category: meta
 date: 2026-01-14
-updated: 2026-01-14
+updated: 2026-01-19
 status: active
 author: human
-tags: [readme, documentation]
+tags: [readme, documentation, guides]
 ---
 
 # Documentation Woodman
@@ -115,6 +115,14 @@ Chaque document doit être dans la bonne catégorie selon son type :
 | guide | `08-guides/setup/` | `guide-setup-local.md` |
 | adr | `09-decisions/` | `adr-001-migration-nuxt4.md` |
 
+## Guides disponibles
+
+| Guide | Agent | Description | Lien |
+|-------|-------|-------------|------|
+| **Notion Importer** | 21-notion-importer | Import unidirectionnel depuis Notion (master page + liens → spec + todo) | [notion-importer-guide.md](./notion-importer-guide.md) |
+
+Plus de guides à venir pour tous les agents.
+
 ## Workflow agents → documentation
 
 Les agents Woodman documentent automatiquement leurs actions :
@@ -124,6 +132,7 @@ spec-writer → docs/01-specs/spec-YYYY-MM-DD.md
 code-auditor → docs/03-audits/code/audit-code-YYYY-MM-DD.md
 perf-auditor → docs/03-audits/performance/audit-perf-YYYY-MM-DD.md
 analyze-nuxt → docs/04-analysis/stack/analysis-nuxt-YYYY-MM-DD.md
+notion-importer → docs/spec_notion.md + docs/todo_notion.md
 ```
 
 Après génération, lancer `documentalist` pour validation et organisation.
