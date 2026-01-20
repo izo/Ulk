@@ -1,28 +1,45 @@
 ---
 title: Guide d'Audit de Landing Pages
-description: Guide complet pour auditer vos landing pages avec l'agent landing-page-auditor
+description: Guide complet pour auditer vos landing pages avec l'agent landing-page-auditor basé sur les meilleures pratiques 2025-2026
 date: 2026-01-20
 category: guide
-tags: [landing-page, audit, conversion, chrome-devtools, ux]
+tags: [landing-page, audit, conversion, chrome-devtools, ux, geo, ai, personalization]
 ---
 
 # Guide d'Audit de Landing Pages
 
 ## Vue d'ensemble
 
-L'agent **landing-page-auditor** (22) est un outil spécialisé qui utilise Chrome DevTools pour analyser vos landing pages et évaluer leur efficacité en matière de conversion.
+L'agent **landing-page-auditor** (22) est un outil spécialisé qui utilise Chrome DevTools pour analyser vos landing pages selon les standards 2025-2026 et évaluer leur efficacité en matière de conversion.
 
-## Objectifs d'une Landing Page
+**Basé sur** : Analyse de 100,000+ landing pages et statistiques vérifiées 2025-2026
+
+## Objectifs d'une Landing Page (2025-2026)
 
 Une landing page efficace doit :
 
 1. **Convertir** : Encourager les utilisateurs à passer à l'action (leads, ventes, inscriptions)
-2. **Engager** : Capturer et maintenir l'attention des visiteurs
+2. **Engager** : Capturer et maintenir l'attention des visiteurs à travers l'interactivité
 3. **Inspirer** : Créer le désir et établir une connexion émotionnelle
+4. **Adapter** : Personnaliser le contenu selon le contexte utilisateur (2026)
+5. **Citer** : Être optimisé pour GEO (Generative Engine Optimization) pour citations IA
+
+## Statistiques Clés 2025-2026
+
+- **Taux de conversion moyen** : 6.6% (benchmark)
+- **Top performers** : 10-20%
+- **Trafic mobile** : 82.9% du trafic total
+- **Impact temps de chargement** : -7% conversions par seconde de délai
+- **Champs formulaire** : 1-5 champs double les conversions vs 6+ champs
+- **CTA unique** : 13.5% conversion vs CTAs multiples (10.5%)
+- **CTAs personnalisés** : +202% conversions
+- **Vidéo** : +86% conversions
+- **Email trafic** : 19.3% taux de conversion (meilleur canal)
+- **Webinaires** : 22.3% taux de conversion
 
 ## Critères d'Évaluation
 
-L'agent évalue 9 catégories principales pour un score total sur 100 points :
+L'agent évalue **12 catégories** pour un score total sur **150 points** :
 
 ### 1. Hero Section & Première Impression (20 points)
 - **Titre/Headline** (8 pts) : Valeur immédiate, impact, concision
@@ -58,13 +75,30 @@ L'agent évalue 9 catégories principales pour un score total sur 100 points :
 - **Performance Mobile** (3 pts) : Chargement rapide, images optimisées
 - **UX Mobile** (2 pts) : Formulaires faciles, CTA thumb-friendly, texte lisible
 
-### 8. Performance & Technique (5 points)
-- **Vitesse Page** (3 pts) : Load time < 3s, FCP rapide, pas de layout shifts
-- **Qualité Technique** (2 pts) : Pas d'erreurs console, liens fonctionnels, meta tags
+### 8. Performance & Technique (10 points) - **UPGRADED**
+- **Vitesse Page** (5 pts) : Load time < 2s (< 1s = 31.79%!), FCP < 2s, CLS < 0.1, LCP < 2.5s
+- **Qualité Technique** (3 pts) : Pas d'erreurs console, liens fonctionnels, meta tags, Schema.org (2026)
+- **Optimisation Images** (2 pts) : < 500KB, WebP/AVIF, lazy loading
 
-### 9. Qualité Contenu (5 points)
-- **Efficacité Copy** (3 pts) : Focus bénéfices, scannable, voix active
-- **Longueur Contenu** (2 pts) : Appropriée, pas d'info superflue
+### 9. Qualité Contenu (10 points) - **UPGRADED**
+- **Efficacité Copy** (5 pts) : Focus bénéfices, scannable, voix active, niveau collège, bénéfices quantifiés
+- **Longueur Contenu** (3 pts) : < 100 mots = 14.30%, 100-500 = 11.10%, > 500 = -50%
+- **Optimisation GEO** (2 pts - **NEW 2026**) : Structure pour IA, E-E-A-T, schema.org
+
+### 10. Interactivité & Multimédia (10 points) - **NEW 2026**
+- **Contenu Vidéo** (5 pts) : Vidéo explicative (+86%), 60-90s, sous-titres, testimonials vidéo
+- **Éléments Interactifs** (5 pts) : Quiz/calculateurs (+30-50%), démos interactives (+40-60%), live chat (+20%)
+
+### 11. Personnalisation & IA (10 points) - **NEW 2026**
+- **Contenu Dynamique** (5 pts) : Adapté par source de trafic, géo, visiteur nouveau/récurrent
+- **Fonctionnalités IA** (5 pts) : Chatbot IA, CTAs personnalisés (+202%), recommandations, A/B testing temps réel
+
+### 12. Confidentialité & Conformité (5 points) - **NEW 2026**
+- Conformité GDPR/CCPA visible
+- Consentement cookies (options granulaires)
+- Divulgation IA (si fonctionnalités génératives)
+- Politique confidentialité accessible
+- Stratégie données first-party
 
 ## Usage
 
@@ -113,27 +147,42 @@ L'agent exécute 4 phases :
 - Vérification CTA, formulaires, texte, images
 - Test interactions
 
-**Phase 4 : Scoring & Rapport**
-- Calcul scores par catégorie
+**Phase 4 : Scoring & Analyse**
+- Calcul scores pour 12 catégories (150 points total)
+- Détermination du grade
+
+**Phase 5 : Génération Rapport**
 - Génération rapport détaillé
+- Screenshots (desktop, mobile, full-page)
+- Quick wins (top 5 corrections faciles)
+
+**Phase 6 : Génération Spec & Todo**
+- spec_landing.md : Spécifications détaillées
+- todo_landing.md : Liste de tâches priorisées (P0-P3)
+
+**Phase 7 : Offre Sync Externe**
+- Proposition sync Notion/Linear
+- Intégration gestion de projet
 
 ## Outputs
 
 L'agent génère plusieurs fichiers dans `/docs/audits/landing-page-[timestamp]/` :
 
-1. **audit-report.md** - Rapport détaillé complet avec scores et recommandations
-2. **screenshot-desktop.png** - Vue desktop
-3. **screenshot-mobile.png** - Vue mobile
-4. **screenshot-full-page.png** - Capture complète de la page
-5. **quick-wins.md** - Top 5 des corrections faciles à fort impact
+1. **audit-report.md** - Rapport détaillé complet avec scores (12 catégories) et recommandations
+2. **spec_landing.md** - Document de spécifications détaillées
+3. **todo_landing.md** - Liste de tâches priorisées avec acceptance criteria
+4. **screenshot-desktop.png** - Vue desktop
+5. **screenshot-mobile.png** - Vue mobile
+6. **screenshot-full-page.png** - Capture complète de la page
+7. **quick-wins.md** - Top 5 des corrections faciles à fort impact
 
-## Interprétation des Scores
+## Interprétation des Scores (sur 150 points)
 
-- **90-100** : Excellent - Optimisations mineures uniquement
-- **75-89** : Bon - Plusieurs améliorations boosteront les conversions
-- **60-74** : Moyen - Opportunités significatives d'amélioration
-- **45-59** : Sous la moyenne - Redesign majeur recommandé
-- **0-44** : Faible - Refonte complète nécessaire
+- **135-150 (90-100%)** : Excellent - Optimisations mineures uniquement
+- **113-134 (75-89%)** : Bon - Plusieurs améliorations boosteront les conversions significativement
+- **90-112 (60-74%)** : Moyen - Opportunités significatives d'amélioration
+- **68-89 (45-59%)** : Sous la moyenne - Redesign majeur recommandé
+- **0-67 (0-44%)** : Faible - Refonte complète nécessaire
 
 ## Red Flags
 
@@ -245,7 +294,9 @@ L'agent signale immédiatement :
 - **Accessibility Tree** : Analyse structure page
 - **JavaScript Evaluation** : Extraction métriques performance
 - **Screenshots** : Documentation visuelle
-- **Mobile Emulation** : Test responsive
+- **Mobile Emulation** : Test responsive (iPhone SE - 375x667)
+- **Network Analysis** : Analyse requêtes et ressources
+- **Console Monitoring** : Détection erreurs JavaScript
 
 ## Limitations
 
@@ -255,13 +306,18 @@ L'agent signale immédiatement :
 - Performance mesurée localement (peut varier selon connexion)
 - Certains éléments dynamiques peuvent nécessiter interaction manuelle
 
-## Best Practices
+## Best Practices 2025-2026
 
 1. **Auditez régulièrement** : Au moins avant chaque campagne majeure
-2. **Testez mobile d'abord** : 60%+ du trafic vient du mobile
+2. **Testez mobile d'abord** : 82.9% du trafic vient du mobile
 3. **Suivez les métriques** : Trackez impact des changements
-4. **A/B testez** : Validez les hypothèses avec de vrais utilisateurs
+4. **A/B testez** : Validez les hypothèses avec de vrais utilisateurs (minimum 1,000 visiteurs par variante)
 5. **Itérez continuellement** : L'optimisation est un processus, pas un événement
+6. **Priorisez la vitesse** : Chaque seconde = -7% conversions
+7. **Simplifiez les formulaires** : Maximum 5 champs (idéalement 3)
+8. **CTA unique** : Un seul CTA primaire répété (13.5% vs 10.5%)
+9. **Personnalisez** : CTAs personnalisés = +202% conversions
+10. **Vidéo** : Intégrez vidéo explicative (+86% conversions)
 
 ## Support & Questions
 
