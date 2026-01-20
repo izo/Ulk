@@ -48,6 +48,7 @@ model: opus | sonnet
 | **frontend-qa** | `16-frontend-qa.md` | sonnet | Comprehensive frontend QA (UX, UI, Tailwind, shadcn, code coherence) |
 | **code-simplifier** | `17-code-simplifier.md` | opus | Audit de simplification du codebase complet, puis applique via le plugin officiel code-simplifier |
 | **notion-importer** | `21-notion-importer.md` | opus | Import Notion page + links → generates spec_notion.md + todo_notion.md in /docs (unidirectional) |
+| **landing-page-auditor** | `22-landing-page-auditor.md` | opus | Comprehensive landing page audit using Chrome DevTools - conversion elements, design, mobile optimization |
 
 ### Stack Analyzers (10-analyze/)
 

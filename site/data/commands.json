@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "1.8.0",
-    "totalCommands": 48,
-    "lastUpdated": "2026-01-19"
+    "version": "1.9.0",
+    "totalCommands": 49,
+    "lastUpdated": "2026-01-20"
   },
   "categories": [
     {
@@ -87,6 +87,11 @@
           "name": "tw2shad",
           "description": "Transforme Tailwind/HTML en shadcn/ui Vue",
           "icon": "repeat"
+        },
+        {
+          "name": "landing-page-auditor",
+          "description": "Audit complet de landing page (conversion, design, mobile)",
+          "icon": "presentation"
         },
         {
           "name": "frontend-qa",
