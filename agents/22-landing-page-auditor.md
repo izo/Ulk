@@ -1,7 +1,7 @@
 ---
 name: landing-page-auditor
 description: Comprehensive landing page audit using Chrome DevTools based on 2025-2026 conversion best practices - generates spec_landing.md and todo_landing.md with Notion/Linear integration
-tools: mcp__claude-in-chrome__tabs_context_mcp, mcp__claude-in-chrome__tabs_create_mcp, mcp__claude-in-chrome__navigate, mcp__claude-in-chrome__read_page, mcp__claude-in-chrome__take_screenshot, mcp__claude-in-chrome__resize_window, mcp__claude-in-chrome__find, mcp__claude-in-chrome__javascript_tool, mcp__claude-in-chrome__read_console_messages, mcp__claude-in-chrome__read_network_requests, Write, Read, Grep, Glob, Task, AskUserQuestionTool
+tools: mcp__chrome-devtools__list_pages, mcp__chrome-devtools__new_page, mcp__chrome-devtools__select_page, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__take_screenshot, mcp__chrome-devtools__resize_page, mcp__chrome-devtools__evaluate_script, mcp__chrome-devtools__list_console_messages, mcp__chrome-devtools__list_network_requests, Write, Read, Grep, Glob, Task, AskUserQuestionTool
 model: opus
 ---
 
@@ -249,8 +249,8 @@ A successful landing page must achieve these goals:
 
 ### Phase 1: Initial Setup & Context Gathering
 
-1. Use `tabs_context_mcp` to check existing tabs
-2. Create new tab with `tabs_create_mcp`
+1. Use `list_pages` to check existing browser pages
+2. Create new page with `new_page` if needed, or select existing page with `select_page`
 3. Ask user critical questions via `AskUserQuestionTool`:
    - Landing page URL (if not provided)
    - Primary goal: leads / sales / signups / product promo / event registration
@@ -261,9 +261,9 @@ A successful landing page must achieve these goals:
 
 ### Phase 2: Desktop Analysis
 
-1. Navigate to the landing page with `navigate`
+1. Navigate to the landing page with `navigate_page`
 2. Take full-page screenshot with `take_screenshot` (fullPage: true)
-3. Use `read_page` to analyze structure:
+3. Use `take_snapshot` to analyze structure:
    - Identify headings (h1, h2, h3)
    - Locate CTA buttons (count and text)
    - Find forms and input fields (count fields)
@@ -271,14 +271,14 @@ A successful landing page must achieve these goals:
    - Check for testimonials section
    - Identify navigation presence
 
-4. Use `find` to search for specific elements:
+4. Analyze snapshot text for specific keywords:
    - "testimonial", "review", "customer", "client"
    - "guarantee", "secure", "trusted", "certified"
    - Form elements
    - CTA buttons
    - Video players
 
-5. Use `javascript_tool` to extract:
+5. Use `evaluate_script` to extract:
    - Meta tags (title, description, Open Graph)
    - Load performance metrics (performance.timing)
    - Form field counts and types
@@ -287,8 +287,8 @@ A successful landing page must achieve these goals:
    - Reading level estimation
    - Structured data presence (JSON-LD)
 
-6. Use `read_console_messages` with pattern for errors
-7. Use `read_network_requests` to check:
+6. Use `list_console_messages` with types filter for errors
+7. Use `list_network_requests` to check:
    - Image sizes and formats
    - Render-blocking resources
    - CDN usage
@@ -296,21 +296,21 @@ A successful landing page must achieve these goals:
 
 ### Phase 3: Mobile Analysis
 
-1. Use `resize_window` to mobile (375x667 - iPhone SE)
-2. Take mobile screenshot
-3. Verify with `read_page`:
+1. Use `resize_page` to mobile (375x667 - iPhone SE)
+2. Take mobile screenshot with `take_screenshot`
+3. Verify with `take_snapshot`:
    - CTA visibility and tap targets (check sizes)
    - Form usability
    - Text readability (font sizes)
    - Image rendering
    - Navigation behavior
 
-4. Test key interactions:
-   - Scroll behavior
-   - CTA tap simulation
-   - Form field focus
+4. Test key interactions (via snapshot analysis):
+   - Scroll behavior visibility
+   - CTA tap target sizes
+   - Form field visibility
 
-5. Use `javascript_tool` to extract mobile-specific metrics:
+5. Use `evaluate_script` to extract mobile-specific metrics:
    - Touch target sizes
    - Viewport meta tag
    - Mobile performance metrics
