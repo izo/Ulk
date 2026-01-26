@@ -3,7 +3,7 @@ name: pre-release
 type: custom-command
 description: Checklist complète avant release - audit code/perf/a11y, fix erreurs critiques, run tests, vérification finale - garantit une release de qualité
 tools: Task, Read, Write, Bash, AskUserQuestionTool
-model: opus
+model: sonnet
 invocation: /wm:agents:pre-release or "pre-release"
 ---
 

@@ -2,7 +2,7 @@
 name: landing-page-auditor
 description: Comprehensive landing page audit using Chrome DevTools based on 2025-2026 conversion best practices - generates spec_landing.md and todo_landing.md with Notion/Linear integration
 tools: mcp__chrome-devtools__list_pages, mcp__chrome-devtools__new_page, mcp__chrome-devtools__select_page, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__take_screenshot, mcp__chrome-devtools__resize_page, mcp__chrome-devtools__evaluate_script, mcp__chrome-devtools__list_console_messages, mcp__chrome-devtools__list_network_requests, Write, Read, Grep, Glob, Task, AskUserQuestionTool
-model: opus
+model: sonnet
 ---
 
 # Landing Page Auditor

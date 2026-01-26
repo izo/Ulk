@@ -3,7 +3,7 @@ name: notion-importer
 type: custom-command
 description: Lit une page Notion maîtresse contenant des liens vers d'autres pages, explore récursivement le contenu, puis génère spec_notion.md et todo_notion.md dans /docs. Import unidirectionnel (Notion → local uniquement).
 tools: View, Read, Write, AskUserQuestionTool, mcp__notion
-model: opus
+model: sonnet
 invocation: /wm:agents:notion-importer or "notion-importer"
 ---
 
