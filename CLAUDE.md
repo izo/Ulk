@@ -55,6 +55,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `22-landing-page-auditor.md` - Comprehensive landing page audit (conversion, design, mobile optimization)
 - `23-shadcn-auditor.md` - Dedicated shadcn/ui audit (config, imports, theming, a11y, anti-patterns)
 - `24-brigitte.md` - Friendly communications for non-tech teams (commits → human-readable updates)
+- `25-c3po.md` - Product Manager orchestrator: transforms ideas into projects (spec → todo → tasks → audits)
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -82,6 +83,7 @@ Once installed, invoke agents anywhere with:
 /woodman:agents:robocop
 /woodman:agents:notion-importer
 /woodman:agents:figma-shadcn
+/woodman:agents:c3po
 /woodman:analyze:nuxt
 ```
 

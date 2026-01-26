@@ -1,7 +1,7 @@
 {
   "meta": {
-    "version": "1.9.2",
-    "totalCommands": 51,
+    "version": "1.10.0",
+    "totalCommands": 52,
     "lastUpdated": "2026-01-26"
   },
   "categories": [
@@ -102,6 +102,11 @@
           "name": "brigitte",
           "description": "Communications bienveillantes pour equipes non-tech (commits → textes humains)",
           "icon": "message-circle-heart"
+        },
+        {
+          "name": "c3po",
+          "description": "Product Manager - idée → projet complet (spec, todo, tasks, audits, Notion, Linear)",
+          "icon": "bot"
         },
         {
           "name": "frontend-qa",

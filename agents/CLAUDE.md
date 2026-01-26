@@ -51,6 +51,7 @@ model: opus | sonnet
 | **landing-page-auditor** | `22-landing-page-auditor.md` | opus | Comprehensive landing page audit using Chrome DevTools - conversion elements, design, mobile optimization |
 | **shadcn-auditor** | `23-shadcn-auditor.md` | sonnet | Dedicated shadcn/ui audit - configuration, imports, theming, accessibility, anti-patterns with detailed report |
 | **brigitte** | `24-brigitte.md` | sonnet | Transforms commits/changelog into friendly, jargon-free communications for non-technical teams |
+| **c3po** | `25-c3po.md` | opus | Product Manager orchestrator - transforms ideas into structured projects by orchestrating all agents (spec, todo, tasks, audits) |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -149,6 +150,11 @@ Reference checklists for comprehensive frontend quality assurance:
 "Check avant release" → pre-release (20)
   → Runs: code-auditor → perf-auditor → a11y-auditor → robocop → tests
   → Generates: GO/NO-GO decision + quality gates report
+
+"J'ai une idée de projet" → c3po (25)
+  → Discovery: comprend l'idée, pose des questions
+  → Runs: spec-writer → todo-generator → task-runner → audits
+  → Accompanies: from idea to implementation with checkpoints
 ```
 
 ### Pre-Release Quality Checks (Manual)
@@ -430,7 +436,7 @@ Agents generate these standard files in the project root:
 
 ## Model Distribution
 
-- **opus** (9 agents): Complex analysis requiring deep reasoning
+- **opus** (11 agents): Complex analysis requiring deep reasoning
   - 01-spec-writer: Multi-stack project analysis
   - 05-code-auditor: Comprehensive code audit
   - 08-external-sync: Bidirectional conflict resolution
@@ -441,9 +447,10 @@ Agents generate these standard files in the project root:
   - 19-legacy-revival: Orchestration with risk assessment and modernization strategy
   - 20-pre-release: Orchestration with GO/NO-GO decision logic
   - 21-notion-importer: Notion content extraction and consolidation
+  - 25-c3po: Product Manager orchestration from idea to implementation
 
 - **sonnet** (24 agents): Structured tasks, automation, performance optimization
-  - All other agents (02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 23, 24)
+  - All other agents (02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 22, 23, 24)
 
 ## Agent Invocation
 

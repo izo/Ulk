@@ -5,6 +5,26 @@ All notable changes to Woodman will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.10.0] - 2026-01-26
+
+### Added
+
+- **New Agent: C3PO (25)** - Product Manager orchestrator
+  - Transforms ideas into structured projects through conversational workflow
+  - Orchestrates all agents: spec-writer → todo-generator → task-runner → audits → external-sync
+  - Synchronizes with Notion (documentation) and Linear (tasks) at the end
+  - Conversational personality inspired by the protocol droid
+  - Phase-based workflow: Discovery → Specification → Planning → Implementation → Quality → External Sync → Finalization
+  - Multiple modes: Assisted, Autonomous (Ralph Loop), Manual
+  - Checkpoints and confirmations at each major step
+  - Model: opus (complex orchestration and strategic decisions)
+
+### Use Cases
+
+- Start a new project from a vague idea
+- Get guided through the entire development process
+- Have a PM that orchestrates everything for you
+
 ## [1.9.2] - 2026-01-26
 
 ### Changed
@@ -137,6 +157,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.10.0]: https://github.com/izo/Woodman/compare/v1.9.2...v1.10.0
 [1.9.2]: https://github.com/izo/Woodman/compare/v1.9.1...v1.9.2
 [1.9.1]: https://github.com/izo/Woodman/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/izo/Woodman/compare/v1.8.0...v1.9.0
