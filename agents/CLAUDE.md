@@ -50,6 +50,7 @@ model: opus | sonnet
 | **notion-importer** | `21-notion-importer.md` | opus | Import Notion page + links → generates spec_notion.md + todo_notion.md in /docs (unidirectional) |
 | **landing-page-auditor** | `22-landing-page-auditor.md` | opus | Comprehensive landing page audit using Chrome DevTools - conversion elements, design, mobile optimization |
 | **shadcn-auditor** | `23-shadcn-auditor.md` | sonnet | Dedicated shadcn/ui audit - configuration, imports, theming, accessibility, anti-patterns with detailed report |
+| **brigitte** | `24-brigitte.md` | sonnet | Transforms commits/changelog into friendly, jargon-free communications for non-technical teams |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -441,8 +442,8 @@ Agents generate these standard files in the project root:
   - 20-pre-release: Orchestration with GO/NO-GO decision logic
   - 21-notion-importer: Notion content extraction and consolidation
 
-- **sonnet** (23 agents): Structured tasks, automation, performance optimization
-  - All other agents (02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 23)
+- **sonnet** (24 agents): Structured tasks, automation, performance optimization
+  - All other agents (02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 23, 24)
 
 ## Agent Invocation
 

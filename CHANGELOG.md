@@ -5,6 +5,26 @@ All notable changes to Woodman will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.1] - 2026-01-26
+
+### Added
+
+- **New Agent: brigitte (24)** - Friendly communications for non-technical teams
+  - Transforms commits, changelog, and code evolution into human-readable updates
+  - Multiple output formats: email, Slack/Teams, weekly report, release notes
+  - Zero jargon: explains "why" before "what" with everyday metaphors
+  - Warm, celebratory tone that values the team's work
+  - Automatically filters out internal technical details
+  - Model: sonnet
+
+### Use Cases
+
+- Weekly team updates without technical jargon
+- Client-facing release notes
+- Internal newsletters
+- Slack/Teams announcements
+- Executive summaries
+
 ## [1.9.0] - 2026-01-26
 
 ### Added
@@ -98,6 +118,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.9.1]: https://github.com/izo/Woodman/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/izo/Woodman/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/izo/Woodman/compare/v1.7.3...v1.8.0
 [1.7.3]: https://github.com/izo/Woodman/compare/v1.7.2...v1.7.3

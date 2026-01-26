@@ -1,7 +1,7 @@
 {
   "meta": {
-    "version": "1.9.0",
-    "totalCommands": 50,
+    "version": "1.9.1",
+    "totalCommands": 51,
     "lastUpdated": "2026-01-26"
   },
   "categories": [
@@ -97,6 +97,11 @@
           "name": "shadcn-auditor",
           "description": "Audit shadcn/ui - config, imports, theming, a11y, anti-patterns (scoring 5 categories)",
           "icon": "component"
+        },
+        {
+          "name": "brigitte",
+          "description": "Communications bienveillantes pour equipes non-tech (commits → textes humains)",
+          "icon": "message-circle-heart"
         },
         {
           "name": "frontend-qa",

@@ -54,6 +54,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `21-notion-importer.md` - Imports Notion page with links → generates spec_notion.md + todo_notion.md in /docs
 - `22-landing-page-auditor.md` - Comprehensive landing page audit (conversion, design, mobile optimization)
 - `23-shadcn-auditor.md` - Dedicated shadcn/ui audit (config, imports, theming, a11y, anti-patterns)
+- `24-brigitte.md` - Friendly communications for non-tech teams (commits → human-readable updates)
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
