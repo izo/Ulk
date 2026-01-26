@@ -1,7 +1,7 @@
 {
   "meta": {
-    "version": "1.10.0",
-    "totalCommands": 52,
+    "version": "1.11.0",
+    "totalCommands": 53,
     "lastUpdated": "2026-01-26"
   },
   "categories": [
@@ -13,6 +13,11 @@
       "icon": "bot",
       "color": "violet",
       "commands": [
+        {
+          "name": "gybe",
+          "description": "Point d'entrée - analyse le projet et propose les agents pertinents",
+          "icon": "compass"
+        },
         {
           "name": "spec-writer",
           "description": "Génère un fichier spec.md complet pour le projet",

@@ -32,7 +32,8 @@ gh run list --workflow=deploy.yml
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
-**Workflow Agents (01-09):**
+**Workflow Agents (00-25):**
+- `00-gybe.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
 - `03-sync-local.md` - Synchronizes LOCAL documentation (spec, CLAUDE, README)
@@ -80,6 +81,7 @@ Once installed, invoke agents anywhere with:
 ```
 /woodman:agents:spec-writer
 /woodman:agents:todo-generator
+/woodman:agents:gybe
 /woodman:agents:robocop
 /woodman:agents:notion-importer
 /woodman:agents:figma-shadcn

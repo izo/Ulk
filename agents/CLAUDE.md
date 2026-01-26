@@ -29,6 +29,7 @@ model: opus | sonnet
 
 | Agent | File | Model | Purpose |
 |-------|------|-------|---------|
+| **gybe** | `00-gybe.md` | sonnet | Entry point - analyzes project state and suggests relevant agents/actions |
 | **spec-writer** | `01-spec-writer.md` | opus | Analyze projects and generate spec.md (all stacks) |
 | **todo-generator** | `02-todo-generator.md` | sonnet | Convert spec.md into actionable todo.md |
 | **sync-local** | `03-sync-local.md` | sonnet | Sync LOCAL documentation (spec, CLAUDE, README) |
@@ -113,6 +114,14 @@ Reference checklists for comprehensive frontend quality assurance:
 **See**: `16-frontend-qa/README.md` for complete documentation.
 
 ## Agent Workflow Patterns
+
+### Entry Point (Start Here)
+```
+"Where should I start?" → gybe (00)
+"What should I do?" → gybe (00)
+  → Scans project, detects state, suggests best next action
+  → Proposes relevant agents based on context
+```
 
 ### Setup New Project
 ```
@@ -449,8 +458,8 @@ Agents generate these standard files in the project root:
   - 21-notion-importer: Notion content extraction and consolidation
   - 25-c3po: Product Manager orchestration from idea to implementation
 
-- **sonnet** (24 agents): Structured tasks, automation, performance optimization
-  - All other agents (02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 22, 23, 24)
+- **sonnet** (25 agents): Structured tasks, automation, performance optimization
+  - All other agents (00, 02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 22, 23, 24)
 
 ## Agent Invocation
 
