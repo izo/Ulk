@@ -5,6 +5,25 @@ All notable changes to Woodman will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.2] - 2026-01-26
+
+### Changed
+
+- **BREAKING: Standardized /docs output structure** - All agent reports now go to organized subdirectories
+  - `docs/audits/` - All audit reports (code, perf, a11y, shadcn, frontend, landing)
+  - `docs/reports/` - Orchestrator outputs (pre-release, legacy-revival, simplifier, audit-summary)
+  - `docs/imports/` - External imports (spec_notion, todo_notion, spec_landing)
+  - `docs/communications/` - Brigitte outputs (update-YYYYMMDD)
+
+### Fixed
+
+- All commands in `commands/` are now symlinks to `agents/` (was 12 divergent copies)
+- 12 agents updated to use new /docs structure
+
+### Added
+
+- `docs/00-structure.md` - Convention documentation for /docs organization
+
 ## [1.9.1] - 2026-01-26
 
 ### Added
@@ -118,6 +137,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.9.2]: https://github.com/izo/Woodman/compare/v1.9.1...v1.9.2
 [1.9.1]: https://github.com/izo/Woodman/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/izo/Woodman/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/izo/Woodman/compare/v1.7.3...v1.8.0
