@@ -444,7 +444,7 @@ grep -rn "gtag\|analytics\|facebook\|twitter\|linkedin" src/
 
 ## Phase 6 : Génération du rapport
 
-Créer `docs/audit-perf-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
+Créer `docs/audits/audit-perf-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
 
 ```markdown
 # Audit de performance — [Nom du projet]
@@ -745,7 +745,7 @@ Préfixe `#PERF-XXX` pour les tâches de performance.
 6. Auditer backend (DB, API, cache)
 7. Calculer les métriques
 8. Identifier les quick wins
-9. Générer docs/audit-perf-YYYYMMDD.md
+9. Générer docs/audits/audit-perf-YYYYMMDD.md
 10. Mettre à jour spec.md et todo.md
 11. Afficher le résumé avec gains estimés
 ```

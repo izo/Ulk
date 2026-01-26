@@ -377,10 +377,10 @@ Des blockers critiques empêchent la release.
 
 ## Fichiers Générés
 
-- ✅ `docs/audit-code-YYYYMMDD.md`
-- ✅ `docs/audit-perf-YYYYMMDD.md`
-- ✅ `docs/audit-a11y-YYYYMMDD.md`
-- ✅ `docs/pre-release-YYYYMMDD.md` (ce rapport)
+- ✅ `docs/audits/audit-code-YYYYMMDD.md`
+- ✅ `docs/audits/audit-perf-YYYYMMDD.md`
+- ✅ `docs/audits/audit-a11y-YYYYMMDD.md`
+- ✅ `docs/reports/pre-release-YYYYMMDD.md` (ce rapport)
 
 ## Rollback Plan
 
@@ -392,7 +392,7 @@ En cas de problème post-release :
 4. **Post-mortem :** [Template]
 ```
 
-**Fichier :** `docs/pre-release-YYYYMMDD.md`
+**Fichier :** `docs/reports/pre-release-YYYYMMDD.md`
 
 ---
 
@@ -459,10 +459,10 @@ Avant de lancer pre-release :
 - Security: ✅ (0 critical)
 
 📄 **Reports :**
-- docs/audit-code-YYYYMMDD.md
-- docs/audit-perf-YYYYMMDD.md
-- docs/audit-a11y-YYYYMMDD.md
-- docs/pre-release-YYYYMMDD.md
+- docs/audits/audit-code-YYYYMMDD.md
+- docs/audits/audit-perf-YYYYMMDD.md
+- docs/audits/audit-a11y-YYYYMMDD.md
+- docs/reports/pre-release-YYYYMMDD.md
 
 🎯 **Next Steps :**
 [Action items based on verdict]

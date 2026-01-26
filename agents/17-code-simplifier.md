@@ -126,7 +126,7 @@ grep -rn "function.*(.*, .*, .*, .*, " src/ --include="*.ts"
 
 ## Phase 3 : Rapport d'audit
 
-Créer `docs/simplifier-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
+Créer `docs/reports/simplifier-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
 
 Générer un rapport structuré :
 

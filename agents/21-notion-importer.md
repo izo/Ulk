@@ -14,8 +14,8 @@ Tu es un sous-agent spécialisé dans l'extraction et la consolidation de conten
 ## Mission
 
 Lire une page Notion maîtresse (qui contient des liens vers d'autres pages Notion), explorer récursivement toutes les pages liées, extraire et consolider le contenu, puis générer deux fichiers dans `/docs` :
-- `spec_notion.md` : Spécifications, contexte, architecture extraits
-- `todo_notion.md` : Tâches, roadmap, actions à faire
+- `docs/imports/spec_notion.md` : Spécifications, contexte, architecture extraits
+- `docs/imports/todo_notion.md` : Tâches, roadmap, actions à faire
 
 **Import unidirectionnel** : Notion → Local uniquement (pas de synchronisation bidirectionnelle).
 
@@ -239,7 +239,7 @@ Où placer ce contenu ?
 
 ### 5.1 - Structure du fichier spec
 
-Génère `/docs/spec_notion.md` avec cette structure :
+Génère `/docs/imports/spec_notion.md` avec cette structure :
 
 ```markdown
 ---
@@ -362,7 +362,7 @@ _Pour mettre à jour : relancer l'import ou éditer manuellement_
 
 ### 5.2 - Préservation du contenu existant
 
-Si `/docs/spec_notion.md` existe déjà :
+Si `/docs/imports/spec_notion.md` existe déjà :
 
 ```
 ⚠️ spec_notion.md existe déjà
@@ -383,7 +383,7 @@ Options :
 
 ### 6.1 - Structure du fichier todo
 
-Génère `/docs/todo_notion.md` avec cette structure :
+Génère `/docs/imports/todo_notion.md` avec cette structure :
 
 ```markdown
 ---
@@ -490,7 +490,7 @@ Si les tâches viennent d'une database Notion, mapper les propriétés :
 
 ### 6.3 - Préservation du contenu existant
 
-Si `/docs/todo_notion.md` existe déjà :
+Si `/docs/imports/todo_notion.md` existe déjà :
 
 ```
 ⚠️ todo_notion.md existe déjà
@@ -536,12 +536,12 @@ Durée          : [X]s
 ┌─────────────────────────────────────────────────────────────┐
 │ 📝 FICHIERS GÉNÉRÉS                                          │
 ├─────────────────────────────────────────────────────────────┤
-│ ✅ docs/spec_notion.md                                      │
+│ ✅ docs/imports/spec_notion.md                                      │
 │    • [X] sections                                           │
 │    • [X] lignes                                             │
 │    • [X] pages sources                                      │
 │                                                             │
-│ ✅ docs/todo_notion.md                                      │
+│ ✅ docs/imports/todo_notion.md                                      │
 │    • [X] tâches totales                                     │
 │    • [X] P0, [X] P1, [X] P2, [X] P3                        │
 │    • [X] phases                                             │
@@ -566,14 +566,14 @@ Durée          : [X]s
 
 📎 LIENS RAPIDES
 
-- Spec Notion   : docs/spec_notion.md
-- TODO Notion   : docs/todo_notion.md
+- Spec Notion   : docs/imports/spec_notion.md
+- TODO Notion   : docs/imports/todo_notion.md
 - Page maîtresse: [URL Notion]
 ```
 
 ### 7.2 - Fichier de métadonnées
 
-Crée `/docs/.notion-import-meta.json` pour tracking :
+Crée `docs/imports/.notion-import-meta.json` pour tracking :
 
 ```json
 {
@@ -590,8 +590,8 @@ Crée `/docs/.notion-import-meta.json` pour tracking :
     "databaseRowsRead": 42
   },
   "generated": {
-    "specPath": "docs/spec_notion.md",
-    "todoPath": "docs/todo_notion.md",
+    "specPath": "docs/imports/spec_notion.md",
+    "todoPath": "docs/imports/todo_notion.md",
     "specLines": 234,
     "todoTasks": 28
   },
@@ -648,7 +648,7 @@ L'agent répond à ces intentions :
 |---------|---------------------|-------------------|
 | Direction | Unidirectionnel (Notion → Local) | Bidirectionnel (↔) |
 | Scope | Une page + ses liens | Workspace complet |
-| Fichiers | `docs/spec_notion.md`, `docs/todo_notion.md` | `spec.md`, `todo.md`, `.claude/sync-state.json` |
+| Fichiers | `docs/imports/spec_notion.md`, `docs/imports/todo_notion.md` | `spec.md`, `todo.md`, `.claude/sync-state.json` |
 | Databases | Lecture seule | Lecture + Écriture |
 | Conflits | N/A (import only) | Résolution interactive |
 | Tracking | `.notion-import-meta.json` | `.claude/sync-state.json` |
@@ -666,8 +666,8 @@ L'agent répond à ces intentions :
 5. Explorer récursivement les pages liées
 6. Lire les databases (si demandé)
 7. Catégoriser et analyser le contenu
-8. Générer docs/spec_notion.md
-9. Générer docs/todo_notion.md
+8. Générer docs/imports/spec_notion.md
+9. Générer docs/imports/todo_notion.md
 10. Créer .notion-import-meta.json
 11. Afficher le rapport final
 ```
@@ -696,12 +696,12 @@ User: "Importer mon projet Notion puis sync vers Linear"
 
 Agent (notion-importer):
 1. Import complet depuis Notion
-2. Génère docs/spec_notion.md + docs/todo_notion.md
+2. Génère docs/imports/spec_notion.md + docs/imports/todo_notion.md
 
 User: "Maintenant sync vers Linear"
 
 Agent (external-sync):
-1. Lit docs/todo_notion.md
+1. Lit docs/imports/todo_notion.md
 2. Crée le projet Linear
 3. Push toutes les tâches
 ```

@@ -427,7 +427,7 @@ Légende : 🟢 8-10 | 🟡 5-7 | 🔴 0-4
 
 ## Phase 4 : Génération du rapport
 
-Créer `docs/audit-code-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
+Créer `docs/audits/audit-code-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
 
 ```markdown
 # Audit de code — [Nom du projet]
@@ -669,7 +669,7 @@ Avant d'ajouter une tâche, vérifier si elle n'existe pas déjà dans `todo.md`
 3. Collecter tous les findings
 4. Scorer chaque catégorie
 5. Prioriser les findings
-6. Générer docs/audit-code-YYYYMMDD.md
+6. Générer docs/audits/audit-code-YYYYMMDD.md
 7. Mettre à jour spec.md (section audit)
 8. Ajouter les tâches dans todo.md
 9. Afficher le résumé

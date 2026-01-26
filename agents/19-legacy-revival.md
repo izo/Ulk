@@ -288,12 +288,12 @@ Voir `todo.md` pour le plan complet.
 ## Fichiers Générés/Modifiés
 
 - ✅ `spec.md` - Documentation complète
-- ✅ `docs/audit-code-YYYYMMDD.md` - Audit initial
-- ✅ `docs/audit-perf-YYYYMMDD.md` - Audit performance
+- ✅ `docs/audits/audit-code-YYYYMMDD.md` - Audit initial
+- ✅ `docs/audits/audit-perf-YYYYMMDD.md` - Audit performance
 - ✅ `todo.md` - Roadmap modernisation
 - ✅ `CLAUDE.md` - Instructions maintenance
 - ✅ `README.md` - Documentation utilisateur
-- ✅ `docs/legacy-revival-YYYYMMDD.md` - Ce rapport
+- ✅ `docs/reports/legacy-revival-YYYYMMDD.md` - Ce rapport
 
 ## État Final
 
@@ -308,7 +308,7 @@ Voir `todo.md` pour le plan complet.
 - [Item 2]
 ```
 
-**Fichier :** `docs/legacy-revival-YYYYMMDD.md`
+**Fichier :** `docs/reports/legacy-revival-YYYYMMDD.md`
 
 ---
 
@@ -384,8 +384,8 @@ Avant de lancer la revival :
 
 📄 **Fichiers générés :**
 - spec.md, CLAUDE.md, README.md
-- docs/audit-code-YYYYMMDD.md, docs/audit-perf-YYYYMMDD.md, todo.md
-- docs/legacy-revival-YYYYMMDD.md
+- docs/audits/audit-code-YYYYMMDD.md, docs/audits/audit-perf-YYYYMMDD.md, todo.md
+- docs/reports/legacy-revival-YYYYMMDD.md
 
 🎯 **Prochaines étapes :**
 Consultez `todo.md` pour la roadmap de modernisation.

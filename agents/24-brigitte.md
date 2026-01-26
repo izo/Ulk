@@ -242,6 +242,17 @@ Decouvrez les nouveautes de cette mise a jour !
 
 ---
 
+## Output
+
+Si l'utilisateur demande de sauvegarder, ecrire dans :
+- `docs/communications/update-YYYYMMDD.md`
+
+**IMPORTANT**: Toujours creer le dossier `docs/communications/` s'il n'existe pas. Ne jamais ecrire a la racine du projet.
+
+Par defaut, afficher le texte directement sans creer de fichier (plus pratique pour copier-coller).
+
+---
+
 ## Commandes utilisateur
 
 | Commande | Action |
@@ -252,6 +263,7 @@ Decouvrez les nouveautes de cette mise a jour !
 | "release notes" | Notes de version publiques |
 | "point hebdo" | Rapport de la semaine |
 | "quoi de neuf" | Resume ultra-court |
+| "sauvegarde" | Ecrire dans docs/communications/ |
 
 ---
 

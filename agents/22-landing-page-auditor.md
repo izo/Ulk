@@ -328,15 +328,20 @@ Determine grade:
 
 ### Phase 5: Report Generation
 
-Create `/docs/audits/landing-page-[timestamp]/` directory and generate:
+Create files in `/docs/` following this structure:
 
-1. **audit-report.md** - Full detailed report (see Report Structure below)
-2. **screenshot-desktop.png** - Desktop view
-3. **screenshot-mobile.png** - Mobile view
-4. **screenshot-full-page.png** - Complete page capture
-5. **quick-wins.md** - Top 5 easy fixes with high impact
-6. **spec_landing.md** - Detailed specification document
-7. **todo_landing.md** - Prioritized task list for implementation
+**Audits** (`docs/audits/`):
+1. `audit-landing-YYYYMMDD.md` - Full detailed report (see Report Structure below)
+
+**Imports** (`docs/imports/`):
+2. `spec_landing.md` - Detailed specification document
+3. `todo_landing.md` - Prioritized task list for implementation
+
+**Assets** (`docs/audits/assets/`):
+4. `landing-desktop-YYYYMMDD.png` - Desktop screenshot
+5. `landing-mobile-YYYYMMDD.png` - Mobile screenshot
+
+**IMPORTANT**: Toujours créer les dossiers s'ils n'existent pas. Ne jamais écrire à la racine du projet.
 
 ### Phase 6: Spec & Todo Generation
 

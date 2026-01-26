@@ -345,7 +345,7 @@ Score global = Moyenne des 5 categories
 
 ### 4.1 - Rapport d'audit
 
-Creer `docs/audit-shadcn-YYYYMMDD.md` :
+Creer `docs/audits/audit-shadcn-YYYYMMDD.md` :
 
 ```markdown
 # Audit shadcn/ui — [Nom du projet]
@@ -542,7 +542,7 @@ Ajouter les taches avec prefixe `#SHAD-XXX` :
 4. Inventorier les composants installes/utilises
 5. Executer les 5 audits (config, imports, theming, a11y, anti-patterns)
 6. Calculer les scores par categorie
-7. Generer docs/audit-shadcn-YYYYMMDD.md
+7. Generer docs/audits/audit-shadcn-YYYYMMDD.md
 8. Mettre a jour spec.md (section audit shadcn)
 9. Ajouter les taches dans todo.md (#SHAD-XXX)
 10. Afficher le resume avec le score global

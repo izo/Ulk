@@ -317,8 +317,9 @@ npx vite-bundle-visualizer
 ## Output
 
 Report is saved to:
-- `docs/audits/frontend-qa-YYYY-MM-DD.md` (if /docs exists)
-- `audit-frontend-qa-YYYY-MM-DD.md` (project root otherwise)
+- `docs/audits/audit-frontend-YYYYMMDD.md`
+
+**IMPORTANT**: Toujours créer le dossier `docs/audits/` s'il n'existe pas. Ne jamais écrire à la racine du projet.
 
 ---
 
