@@ -5,6 +5,33 @@ All notable changes to Woodman will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2026-01-26
+
+### Added
+
+- **New Agent: shadcn-auditor (23)** - Dedicated shadcn/ui audit for React/Next.js projects
+  - Configuration audit: components.json, CSS variables, cn() utility, aliases
+  - Imports/Usage audit: local imports vs direct Radix, variants, composition patterns
+  - Theming audit: dark mode, CSS variables (20+), hardcoded colors detection
+  - Accessibility audit: DialogTitle/Description, FormLabel, focus visible
+  - Anti-patterns detection: reimplementations, incorrect cn() usage, inline CSS
+  - Scoring system: 5 categories with 0-10 scale and severity levels
+  - Generates detailed report: `docs/audit-shadcn-YYYYMMDD.md`
+  - Updates spec.md and todo.md with #SHAD-XXX prefixed tasks
+  - Model: sonnet (structured analysis)
+
+### Documentation
+
+- Updated `CLAUDE.md` with shadcn-auditor agent reference
+- Updated `agents/CLAUDE.md` with agent in table and model distribution
+- Added `commands/agents/shadcn-auditor.md` for global installation
+
+### Technical Details
+
+- Scope: React/Next.js only (shadcn/ui original)
+- Non-destructive: audit only, no code modifications
+- Output: scoring report with actionable corrections
+
 ## [1.8.0] - 2026-01-19
 
 ### Added
@@ -71,6 +98,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.9.0]: https://github.com/izo/Woodman/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/izo/Woodman/compare/v1.7.3...v1.8.0
 [1.7.3]: https://github.com/izo/Woodman/compare/v1.7.2...v1.7.3
 [1.7.2]: https://github.com/izo/Woodman/compare/v1.7.1...v1.7.2

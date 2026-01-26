@@ -1,8 +1,8 @@
 {
   "meta": {
     "version": "1.9.0",
-    "totalCommands": 49,
-    "lastUpdated": "2026-01-20"
+    "totalCommands": 50,
+    "lastUpdated": "2026-01-26"
   },
   "categories": [
     {
@@ -92,6 +92,11 @@
           "name": "landing-page-auditor",
           "description": "Audit landing page 150pts - conversion, design, mobile, GEO (stats 2025-2026)",
           "icon": "presentation"
+        },
+        {
+          "name": "shadcn-auditor",
+          "description": "Audit shadcn/ui - config, imports, theming, a11y, anti-patterns (scoring 5 categories)",
+          "icon": "component"
         },
         {
           "name": "frontend-qa",

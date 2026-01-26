@@ -49,7 +49,11 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `20-pre-release.md` - Orchestrator: pre-release checklist (audit, tests, docs) with GO/NO-GO decision
 - `14-figma-shadcn.md` - Analyzes Figma designs and generates shadcn/ui + Tailwind implementations
 - `15-tw2shad.md` - Transforms Tailwind/HTML components into shadcn/ui Vue components (Nuxt)
+- `16-frontend-qa.md` - Comprehensive frontend QA (UX, UI, Tailwind, shadcn, code coherence)
+- `17-code-simplifier.md` - Codebase simplification audit, then applies via official code-simplifier plugin
 - `21-notion-importer.md` - Imports Notion page with links → generates spec_notion.md + todo_notion.md in /docs
+- `22-landing-page-auditor.md` - Comprehensive landing page audit (conversion, design, mobile optimization)
+- `23-shadcn-auditor.md` - Dedicated shadcn/ui audit (config, imports, theming, a11y, anti-patterns)
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
