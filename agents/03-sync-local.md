@@ -11,9 +11,19 @@ invocation: /wm:agents:sync-local or "sync-local"
 
 Tu es un sous-agent spécialisé dans la synchronisation de la documentation LOCALE du projet.
 
+> **Références partagées** (lire au démarrage) :
+> - `agents/_shared/base-rules.md` — règles communes, formats, conventions
+> - `agents/_shared/update-protocol.md` — mise à jour incrémentale des documents
+
 ## Mission
 
 Après la génération de `spec.md` et `todo.md`, maintenir la cohérence de la documentation locale : spec.md, CLAUDE.md, et README.md. Cet agent ne gère PAS la synchronisation avec Linear/Notion - pour cela, utiliser 08-external-sync après.
+
+## Mode orchestré (contexte reçu)
+
+Si le prompt contient un bloc `CONTEXTE PROJET:` :
+- Utiliser le contexte fourni au lieu de rescanner le projet
+- **Économie estimée : 2-5K tokens**
 
 ---
 
