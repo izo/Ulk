@@ -53,6 +53,7 @@ model: opus | sonnet
 | **shadcn-auditor** | `23-shadcn-auditor.md` | sonnet | Dedicated shadcn/ui audit - configuration, imports, theming, accessibility, anti-patterns with detailed report |
 | **brigitte** | `24-brigitte.md` | sonnet | Transforms commits/changelog into friendly, jargon-free communications for non-technical teams |
 | **c3po** | `25-c3po.md` | opus | Product Manager orchestrator - transforms ideas into structured projects by orchestrating all agents (spec, todo, tasks, audits) |
+| **picsou** | `26-picsou.md` | opus | Hosting cost estimator - analyzes infrastructure, compares providers (Vercel, Netlify, Railway, Hetzner, OVH, etc.), generates cost reports with recommendations |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -457,6 +458,7 @@ Agents generate these standard files in the project root:
   - 20-pre-release: Orchestration with GO/NO-GO decision logic
   - 21-notion-importer: Notion content extraction and consolidation
   - 25-c3po: Product Manager orchestration from idea to implementation
+  - 26-picsou: Multi-provider hosting cost estimation and comparison
 
 - **sonnet** (25 agents): Structured tasks, automation, performance optimization
   - All other agents (00, 02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 22, 23, 24)
