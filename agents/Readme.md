@@ -29,7 +29,8 @@ agents/
 ├── 16-frontend-qa.md      # Audit frontend complet (UX, UI, Tailwind, shadcn, code)
 ├── 17-code-simplifier.md  # Audit simplification codebase + plugin code-simplifier
 ├── 21-notion-importer.md  # Import page Notion + liens → spec_notion.md + todo_notion.md
-└── 22-landing-page-auditor.md  # Audit complet landing page (conversion, design, mobile)
+├── 22-landing-page-auditor.md  # Audit complet landing page (conversion, design, mobile)
+└── 27-steve.md                # Orchestrateur API mobile (audit web → API → doc → parité iOS/Android)
 ```
 
 ### Stack Analyzers (10-analyze/)
@@ -417,6 +418,7 @@ Corrections
 | 15-tw2shad | sonnet | Transformation Tailwind → Vue/shadcn |
 | 16-frontend-qa | sonnet | Audit frontend (UX, UI, Tailwind, shadcn, code) |
 | 17-code-simplifier | opus | Audit simplification codebase + plugin code-simplifier |
+| 27-steve | opus | Orchestrateur API mobile : audit web, conception API, documentation parité |
 
 ---
 

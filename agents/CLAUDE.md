@@ -54,6 +54,7 @@ model: opus | sonnet
 | **brigitte** | `24-brigitte.md` | sonnet | Transforms commits/changelog into friendly, jargon-free communications for non-technical teams |
 | **c3po** | `25-c3po.md` | opus | Product Manager orchestrator - transforms ideas into structured projects by orchestrating all agents (spec, todo, tasks, audits) |
 | **picsou** | `26-picsou.md` | opus | Hosting cost estimator - analyzes infrastructure, compares providers (Vercel, Netlify, Railway, Hetzner, OVH, etc.), generates cost reports with recommendations |
+| **steve** | `27-steve.md` | opus | Mobile API orchestrator - audits web projects (Next.js, JS, PHP, Swift), designs complete API for iOS/Android connectivity with full web/mobile functional parity |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -171,6 +172,12 @@ Reference checklists for comprehensive frontend quality assurance:
   → Questions: traffic, budget, constraints, geography
   → Compares: Vercel, Railway, Hetzner, OVH, Supabase, etc.
   → Generates: docs/reports/estimation-couts-YYYYMMDD.md
+
+"API mobile pour ce projet" → steve (27)
+  → Audits: web project structure, features, existing API
+  → Designs: complete API architecture for mobile connectivity
+  → Documents: endpoints, schemas, auth flows, parity matrix
+  → Generates: docs/api/ (full documentation + implementation plan)
 ```
 
 ### Pre-Release Quality Checks (Manual)
@@ -424,6 +431,7 @@ Agents generate these standard files in the project root:
   - **docs/00-meta/conventions.md**: Documentation conventions (auto-generated)
   - **docs/00-meta/audit-YYYY-MM-DD.md**: Documentation audit reports
   - **docs/reports/estimation-couts-YYYYMMDD.md**: Hosting cost estimation report (from 26-picsou)
+  - **docs/api/**: Complete API documentation for mobile connectivity (from 27-steve)
   - **.claude/docs-metrics.json**: Documentation health metrics
 
 ## Separation of Responsibilities
@@ -453,7 +461,7 @@ Agents generate these standard files in the project root:
 
 ## Model Distribution
 
-- **opus** (12 agents): Complex analysis requiring deep reasoning
+- **opus** (13 agents): Complex analysis requiring deep reasoning
   - 01-spec-writer: Multi-stack project analysis
   - 05-code-auditor: Comprehensive code audit
   - 08-external-sync: Bidirectional conflict resolution
@@ -466,6 +474,7 @@ Agents generate these standard files in the project root:
   - 21-notion-importer: Notion content extraction and consolidation
   - 25-c3po: Product Manager orchestration from idea to implementation
   - 26-picsou: Multi-provider hosting cost estimation and comparison
+  - 27-steve: Mobile API orchestrator with architecture design and parity analysis
 
 - **sonnet** (25 agents): Structured tasks, automation, performance optimization
   - All other agents (00, 02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 22, 23, 24)

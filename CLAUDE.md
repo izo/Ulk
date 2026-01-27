@@ -32,7 +32,7 @@ gh run list --workflow=deploy.yml
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
-**Workflow Agents (00-26):**
+**Workflow Agents (00-27):**
 - `00-gybe.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
@@ -58,6 +58,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `24-brigitte.md` - Friendly communications for non-tech teams (commits → human-readable updates)
 - `25-c3po.md` - Product Manager orchestrator: transforms ideas into projects (spec → todo → tasks → audits)
 - `26-picsou.md` - Hosting cost estimator: analyzes infrastructure, compares providers, generates cost reports with recommendations
+- `27-steve.md` - Mobile API orchestrator: audits web projects, designs API for iOS/Android parity, generates full documentation
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -88,6 +89,7 @@ Once installed, invoke agents anywhere with:
 /woodman:agents:figma-shadcn
 /woodman:agents:c3po
 /woodman:agents:picsou
+/woodman:agents:steve
 /woodman:analyze:nuxt
 ```
 
@@ -183,6 +185,10 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 # Hosting cost estimation
 "Combien ça coûte ?" → picsou scans infrastructure, compares providers, generates report
 "Estime les coûts" → picsou analyzes stack + DB + services → docs/reports/estimation-couts.md
+
+# Mobile API
+"API mobile" → steve audits web project, designs API, documents endpoints for iOS/Android parity
+"Connecter une app mobile" → steve scans features, proposes API architecture, generates docs/api/
 
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
@@ -302,6 +308,7 @@ Woodman/
 │   ├── 19-legacy-revival.md
 │   ├── 20-pre-release.md
 │   ├── 26-picsou.md
+│   ├── 27-steve.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -321,7 +328,8 @@ Woodman/
 │   │   ├── audit-complet.md
 │   │   ├── legacy-revival.md
 │   │   ├── pre-release.md
-│   │   └── picsou.md
+│   │   ├── picsou.md
+│   │   └── steve.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md
