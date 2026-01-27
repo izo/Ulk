@@ -42,17 +42,17 @@ Avant de lancer l'audit complet, demander :
 
 ```
 Task tool → subagent_type: "spec-writer"
-Prompt: "Analyze this project and generate a comprehensive spec.md"
+Prompt: "Analyze this project and generate a comprehensive docs/spec.md"
 ```
 
 **Attendu :**
-- `spec.md` généré avec stack détectée
+- `docs/spec.md` généré avec stack détectée
 - Architecture documentée
 
 **Après complétion — EXTRAIRE LE CONTEXTE :**
 
 ```
-1. Lire spec.md généré
+1. Lire docs/spec.md généré
 2. Extraire : stack, langages, structure, métriques
 3. Construire le bloc CONTEXTE PROJET (voir context-protocol.md)
 4. Stocker ce bloc pour les phases suivantes
@@ -75,9 +75,9 @@ Chaque agent écrit UNIQUEMENT dans son propre fichier de rapport.
 ```
 Task tool → subagent_type: "code-auditor"
 Prompt: "Audit code complet couvrant architecture, qualité, sécurité, dette technique.
-CONTEXTE PROJET: [bloc extrait de spec.md — stack, langages, structure, métriques].
+CONTEXTE PROJET: [bloc extrait de docs/spec.md — stack, langages, structure, métriques].
 Sauter la reconnaissance, commencer directement l'audit.
-NE PAS modifier spec.md ni todo.md (l'orchestrateur s'en charge)."
+NE PAS modifier docs/spec.md ni docs/todo.md (l'orchestrateur s'en charge)."
 ```
 
 **Agent 2 :** `perf-auditor` (07)
@@ -85,9 +85,9 @@ NE PAS modifier spec.md ni todo.md (l'orchestrateur s'en charge)."
 ```
 Task tool → subagent_type: "perf-auditor"
 Prompt: "Audit performance : Core Web Vitals, bundle size, backend.
-CONTEXTE PROJET: [bloc extrait de spec.md].
+CONTEXTE PROJET: [bloc extrait de docs/spec.md].
 Sauter la reconnaissance, commencer directement l'audit.
-NE PAS modifier spec.md ni todo.md (l'orchestrateur s'en charge)."
+NE PAS modifier docs/spec.md ni docs/todo.md (l'orchestrateur s'en charge)."
 ```
 
 **Agent 3 :** `a11y-auditor` (06)
@@ -95,9 +95,9 @@ NE PAS modifier spec.md ni todo.md (l'orchestrateur s'en charge)."
 ```
 Task tool → subagent_type: "a11y-auditor"
 Prompt: "Audit accessibilité WCAG 2.1/2.2.
-CONTEXTE PROJET: [bloc extrait de spec.md].
+CONTEXTE PROJET: [bloc extrait de docs/spec.md].
 Sauter la reconnaissance, commencer directement l'audit.
-NE PAS modifier spec.md ni todo.md (l'orchestrateur s'en charge)."
+NE PAS modifier docs/spec.md ni docs/todo.md (l'orchestrateur s'en charge)."
 ```
 
 **Gains de la parallélisation :**
@@ -124,7 +124,7 @@ cat docs/audits/audit-perf-*.md 2>/dev/null | head -50
 cat docs/audits/audit-a11y-*.md 2>/dev/null | head -50
 ```
 
-**3.2 — Mettre à jour spec.md (une seule écriture) :**
+**3.2 — Mettre à jour docs/spec.md (une seule écriture) :**
 
 Suivre le protocole `update-protocol.md` :
 - Ajouter/mettre à jour la section `## 📊 Audit de code`
@@ -135,7 +135,7 @@ Suivre le protocole `update-protocol.md` :
 
 ```
 Task tool → subagent_type: "todo-generator"
-Prompt: "Génère un plan d'action priorisé basé sur spec.md et les rapports d'audit dans docs/audits/.
+Prompt: "Génère un plan d'action priorisé basé sur docs/spec.md et les rapports d'audit dans docs/audits/.
 CONTEXTE PROJET: [bloc].
 Les rapports disponibles sont : audit-code-YYYYMMDD.md, audit-perf-YYYYMMDD.md, audit-a11y-YYYYMMDD.md."
 ```
@@ -183,14 +183,14 @@ Générer `docs/reports/audit-summary-YYYYMMDD.md` :
 
 ## Plan d'Action
 
-Voir `todo.md` pour la liste complète des tâches priorisées.
+Voir `docs/todo.md` pour la liste complète des tâches priorisées.
 
 ## Fichiers Générés
-- ✅ `spec.md`
+- ✅ `docs/spec.md`
 - ✅ `docs/audits/audit-code-YYYYMMDD.md`
 - ✅ `docs/audits/audit-perf-YYYYMMDD.md`
 - ✅ `docs/audits/audit-a11y-YYYYMMDD.md`
-- ✅ `todo.md`
+- ✅ `docs/todo.md`
 - ✅ `docs/reports/audit-summary-YYYYMMDD.md`
 ```
 
@@ -211,11 +211,11 @@ Voir `todo.md` pour la liste complète des tâches priorisées.
 ✅ **Audit Complet Terminé**
 
 📄 **Fichiers générés :**
-- spec.md
+- docs/spec.md
 - docs/audits/audit-code-YYYYMMDD.md
 - docs/audits/audit-perf-YYYYMMDD.md
 - docs/audits/audit-a11y-YYYYMMDD.md
-- todo.md
+- docs/todo.md
 - docs/reports/audit-summary-YYYYMMDD.md
 
 📊 **Scores globaux :**
@@ -225,7 +225,7 @@ Voir `todo.md` pour la liste complète des tâches priorisées.
 - Sécurité: X/10
 
 🎯 **Prochaines étapes :**
-Consultez `todo.md` pour le plan d'action priorisé.
+Consultez `docs/todo.md` pour le plan d'action priorisé.
 ```
 
 ---
@@ -235,7 +235,7 @@ Consultez `todo.md` pour le plan d'action priorisé.
 1. **Agents lancés :** 5 agents (1 séquentiel + 3 parallèles + 1 séquentiel)
 2. **Mode :** Hybride (Phase 1 séquentielle, Phase 2 parallèle, Phase 3-4 séquentielles)
 3. **Contexte :** Transmis via bloc CONTEXTE PROJET (économie ~30% tokens)
-4. **Écriture :** spec.md et todo.md modifiés uniquement par l'orchestrateur (Phase 3)
+4. **Écriture :** docs/spec.md et docs/todo.md modifiés uniquement par l'orchestrateur (Phase 3)
 5. **Interruption :** L'utilisateur peut arrêter entre les phases
 
 ---

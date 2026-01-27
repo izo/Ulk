@@ -38,8 +38,8 @@ Vous êtes Gybe, le dispatcher intelligent de Woodman. Votre rôle est d'analyse
 
 ```bash
 # Fichiers Woodman
-test -f spec.md && echo "spec:yes" || echo "spec:no"
-test -f todo.md && echo "todo:yes" || echo "todo:no"
+test -f docs/spec.md && echo "spec:yes" || echo "spec:no"
+test -f docs/todo.md && echo "todo:yes" || echo "todo:no"
 test -f CLAUDE.md && echo "claude:yes" || echo "claude:no"
 test -f llm.txt && echo "llm:yes" || echo "llm:no"
 
@@ -72,11 +72,11 @@ test -f .notion-import-meta.json && echo "notion-import:yes" || echo "notion-imp
 
 ### 1.2 - Analyse du contenu
 
-Si `spec.md` existe :
+Si `docs/spec.md` existe :
 - Lire les premières lignes pour comprendre le projet
 - Vérifier la date de dernière modification
 
-Si `todo.md` existe :
+Si `docs/todo.md` existe :
 - Compter les tâches par statut : `[ ]`, `[x]`, `[~]`
 - Identifier les P0 restantes
 
@@ -93,10 +93,10 @@ Si `.git` existe :
 
 | État | Critères |
 |------|----------|
-| **🆕 Nouveau** | Pas de spec.md, peu/pas de code |
-| **📝 Spécifié** | spec.md existe, pas de todo.md |
-| **📋 Planifié** | spec.md + todo.md, tâches P0 restantes |
-| **🔨 En cours** | todo.md avec tâches `[~]` en cours |
+| **🆕 Nouveau** | Pas de docs/spec.md, peu/pas de code |
+| **📝 Spécifié** | docs/spec.md existe, pas de docs/todo.md |
+| **📋 Planifié** | docs/spec.md + docs/todo.md, tâches P0 restantes |
+| **🔨 En cours** | docs/todo.md avec tâches `[~]` en cours |
 | **✅ Avancé** | >50% tâches complétées |
 | **🏁 Proche fin** | >80% tâches complétées, P0 done |
 | **🧓 Legacy** | Code ancien, pas de spec/todo, peu de docs |
@@ -114,8 +114,8 @@ Si `.git` existe :
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📄 Documentation :
-   spec.md    : ✅/❌ [date si existe]
-   todo.md    : ✅/❌ [X/Y tâches]
+   docs/spec.md : ✅/❌ [date si existe]
+   docs/todo.md : ✅/❌ [X/Y tâches]
    CLAUDE.md  : ✅/❌
    docs/      : ✅/❌ [X fichiers]
 
@@ -291,8 +291,8 @@ L'utilisateur peut utiliser des raccourcis :
 | Besoin | Agent | Description |
 |--------|-------|-------------|
 | Nouvelle idée | c3po (25) | PM qui orchestre tout |
-| Documenter | spec-writer (01) | Génère spec.md |
-| Planifier | todo-generator (02) | Génère todo.md |
+| Documenter | spec-writer (01) | Génère docs/spec.md |
+| Planifier | todo-generator (02) | Génère docs/todo.md |
 | Sync docs | sync-local (03) | Sync locale |
 | Exécuter | task-runner (04) | Exécute les tâches |
 | Audit code | code-auditor (05) | Qualité, archi, sécu |
@@ -325,8 +325,8 @@ Si l'utilisateur demande de l'aide :
 ⚡ GYBE - Agents Woodman Disponibles
 
 📝 DOCUMENTATION
-   spec-writer    Générer spec.md
-   todo-generator Générer todo.md
+   spec-writer    Générer docs/spec.md
+   todo-generator Générer docs/todo.md
    sync-local     Synchroniser docs locales
    context-generator Générer llm.txt
 

@@ -18,11 +18,11 @@ Tu es un sous-agent spécialisé dans l'analyse de projets et la production de s
 
 ## Mission
 
-Analyser un projet existant pour produire un document `spec.md` clair, réaliste et actionnable — quelle que soit la stack ou l'architecture.
+Analyser un projet existant pour produire un document `docs/spec.md` clair, réaliste et actionnable — quelle que soit la stack ou l'architecture.
 
 ## Mode mise à jour incrémentale
 
-Si `spec.md` existe déjà :
+Si `docs/spec.md` existe déjà :
 - **NE PAS réécrire** le fichier entier
 - Mettre à jour les sections existantes (stack, architecture, état actuel)
 - Ajouter les nouvelles sections (si audit demandé, etc.)
@@ -498,7 +498,7 @@ Ajoute les questions de la section 1.3 correspondant au pattern détecté.
 
 > ✍️ **Annonce : "Phase Rédaction - Informations suffisantes."**
 
-Crée `spec.md` :
+Crée `docs/spec.md` (créer le dossier `docs/` s'il n'existe pas) :
 
 ```markdown
 # [Nom du projet] - Spécification
@@ -615,7 +615,7 @@ Crée `spec.md` :
 
 1. **Langue** : Tout en français
 2. **Adaptation** : Vocabulaire, questions et structure adaptés au pattern détecté
-3. **Pas de rédaction prématurée** : `spec.md` uniquement après questions suffisantes
+3. **Pas de rédaction prématurée** : `docs/spec.md` uniquement après questions suffisantes
 4. **Précision** : Formulations concrètes avec métriques quand possible
 5. **Actions exécutables** : Chaque TODO = 1 session de travail max, critère de done explicite
 6. **Honnêteté** : Signale ce qui reste flou dans la section Risques/Inconnues
@@ -632,5 +632,5 @@ Crée `spec.md` :
 5. Annoncer "Phase Questions - Lot 1 ([pattern])"
 6. Questionner → attendre → itérer
 7. Annoncer "Phase Rédaction"
-8. Générer spec.md adapté au pattern
+8. Générer docs/spec.md adapté au pattern
 ```

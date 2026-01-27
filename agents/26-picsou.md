@@ -480,7 +480,7 @@ Voulez-vous que je détaille une option en particulier ?
 
 ```
 💰 Souhaitez-vous que j'ajoute une section "Infrastructure & Coûts"
-dans votre spec.md ?
+dans votre docs/spec.md ?
 
 Options :
 1. Oui, ajouter la section
@@ -489,7 +489,7 @@ Options :
 
 ### 6.2 - Si accepté
 
-Ajouter une section concise dans `spec.md` :
+Ajouter une section concise dans `docs/spec.md` :
 
 ```markdown
 ## Infrastructure & Coûts

@@ -641,7 +641,7 @@ Avant de terminer, vérifie :
 
 ### spec-writer → documentalist
 ```
-01-spec-writer génère spec.md
+01-spec-writer génère docs/spec.md
 → documentalist déplace vers docs/01-specs/spec-YYYY-MM-DD.md
 → documentalist ajoute frontmatter
 → documentalist met à jour index
@@ -658,7 +658,7 @@ Avant de terminer, vérifie :
 ### task-runner → documentalist
 ```
 04-task-runner termine une tâche
-→ documentalist archive todo.md complété dans docs/02-tasks/completed/
+→ documentalist archive docs/todo.md complété dans docs/02-tasks/completed/
 → documentalist met à jour métriques de progression
 ```
 

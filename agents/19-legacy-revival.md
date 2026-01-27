@@ -47,13 +47,13 @@ Avant de lancer la revival :
 
 ```
 Task tool → subagent_type: "spec-writer"
-Prompt: "Document this legacy project: analyze architecture, identify patterns, detect stack, generate comprehensive spec.md"
+Prompt: "Document this legacy project: analyze architecture, identify patterns, detect stack, generate comprehensive docs/spec.md"
 ```
 
-**Attendu :** `spec.md` avec état actuel, stack, dépendances, architecture legacy.
+**Attendu :** `docs/spec.md` avec état actuel, stack, dépendances, architecture legacy.
 
 **Après complétion — EXTRAIRE LE CONTEXTE :**
-Lire spec.md, construire le bloc CONTEXTE PROJET (voir context-protocol.md).
+Lire docs/spec.md, construire le bloc CONTEXTE PROJET (voir context-protocol.md).
 
 ---
 
@@ -64,7 +64,7 @@ Lire spec.md, construire le bloc CONTEXTE PROJET (voir context-protocol.md).
 ```
 Task tool → subagent_type: "code-auditor"
 Prompt: "Audit ce codebase legacy : complexité, sécurité, dette technique, modernisation.
-CONTEXTE PROJET: [bloc extrait de spec.md].
+CONTEXTE PROJET: [bloc extrait de docs/spec.md].
 Sauter la reconnaissance. Focus legacy : patterns obsolètes, deps deprecated, hacks, code mort."
 ```
 
@@ -92,7 +92,7 @@ Task tool → subagent_type: "perf-auditor"
 Prompt: "Identifier les goulots de performance legacy.
 CONTEXTE PROJET: [bloc]. Sauter la reconnaissance.
 Focus : librairies obsolètes (moment.js→date-fns), polyfills inutiles, bundle, requêtes DB.
-NE PAS modifier spec.md ni todo.md (l'orchestrateur s'en charge)."
+NE PAS modifier docs/spec.md ni docs/todo.md (l'orchestrateur s'en charge)."
 ```
 
 ---
@@ -115,7 +115,7 @@ CONTEXTE PROJET: [bloc]. Simplifications déjà appliquées par code-simplifier.
 
 ### Phase 5: Mise à jour documentation + Plan (SÉQUENTIEL)
 
-**5.1 — Orchestrateur met à jour spec.md :**
+**5.1 — Orchestrateur met à jour docs/spec.md :**
 
 Suivre `update-protocol.md` :
 - Mettre à jour sections audit, performance
@@ -125,7 +125,7 @@ Suivre `update-protocol.md` :
 
 ```
 Task tool → subagent_type: "sync-local"
-Prompt: "Mettre à jour docs locaux : spec.md, CLAUDE.md, README.md.
+Prompt: "Mettre à jour docs locaux : docs/spec.md, CLAUDE.md, README.md.
 CONTEXTE PROJET: [bloc]. Le projet vient d'être modernisé."
 ```
 
@@ -133,7 +133,7 @@ CONTEXTE PROJET: [bloc]. Le projet vient d'être modernisé."
 
 ```
 Task tool → subagent_type: "todo-generator"
-Prompt: "Générer roadmap de modernisation depuis spec.md et rapports d'audit.
+Prompt: "Générer roadmap de modernisation depuis docs/spec.md et rapports d'audit.
 CONTEXTE PROJET: [bloc]. Catégories : migration, refactoring restant, tests manquants, documentation."
 ```
 
@@ -164,10 +164,10 @@ Générer `docs/reports/legacy-revival-YYYYMMDD.md` :
 1. **Simplification** : X fichiers refactorés, Y lignes simplifiées
 2. **Corrections** : X erreurs corrigées, Y warnings résolus
 3. **Optimisations** : Bundle X→Y (-Z%), Build X→Y (-Z%)
-4. **Documentation** : spec.md, CLAUDE.md, README.md, todo.md
+4. **Documentation** : docs/spec.md, CLAUDE.md, README.md, docs/todo.md
 
 ## Prochaines étapes
-Voir `todo.md` pour la roadmap de modernisation.
+Voir `docs/todo.md` pour la roadmap de modernisation.
 ```
 
 ---
@@ -197,7 +197,7 @@ Voir `todo.md` pour la roadmap de modernisation.
 📄 **Fichiers générés :**
 [liste des fichiers]
 
-🎯 **Prochaines étapes :** Consultez `todo.md`
+🎯 **Prochaines étapes :** Consultez `docs/todo.md`
 ```
 
 ---
@@ -206,7 +206,7 @@ Voir `todo.md` pour la roadmap de modernisation.
 
 1. **Agents lancés :** 6 agents (séquentiel + parallèle hybride)
 2. **Contexte :** Transmis via bloc CONTEXTE PROJET (économie ~30% tokens)
-3. **Écriture :** spec.md/todo.md modifiés par l'orchestrateur en Phase 5
+3. **Écriture :** docs/spec.md/docs/todo.md modifiés par l'orchestrateur en Phase 5
 4. **Modèle :** opus pour décisions complexes de refactoring
 5. **Backup :** Recommander git commit avant lancement
 
