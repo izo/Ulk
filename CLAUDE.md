@@ -32,7 +32,7 @@ gh run list --workflow=deploy.yml
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
-**Workflow Agents (00-25):**
+**Workflow Agents (00-26):**
 - `00-gybe.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
@@ -57,6 +57,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `23-shadcn-auditor.md` - Dedicated shadcn/ui audit (config, imports, theming, a11y, anti-patterns)
 - `24-brigitte.md` - Friendly communications for non-tech teams (commits → human-readable updates)
 - `25-c3po.md` - Product Manager orchestrator: transforms ideas into projects (spec → todo → tasks → audits)
+- `26-picsou.md` - Hosting cost estimator: analyzes infrastructure, compares providers, generates cost reports with recommendations
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -86,6 +87,7 @@ Once installed, invoke agents anywhere with:
 /woodman:agents:notion-importer
 /woodman:agents:figma-shadcn
 /woodman:agents:c3po
+/woodman:agents:picsou
 /woodman:analyze:nuxt
 ```
 
@@ -177,6 +179,10 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 # Import from Notion
 "Import from Notion" → notion-importer extracts page + links → generates spec_notion.md + todo_notion.md
 "Import + sync to Linear" → notion-importer then external-sync
+
+# Hosting cost estimation
+"Combien ça coûte ?" → picsou scans infrastructure, compares providers, generates report
+"Estime les coûts" → picsou analyzes stack + DB + services → docs/reports/estimation-couts.md
 
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
@@ -295,6 +301,7 @@ Woodman/
 │   ├── 18-audit-complet.md
 │   ├── 19-legacy-revival.md
 │   ├── 20-pre-release.md
+│   ├── 26-picsou.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -313,7 +320,8 @@ Woodman/
 │   │   ├── robocop.md
 │   │   ├── audit-complet.md
 │   │   ├── legacy-revival.md
-│   │   └── pre-release.md
+│   │   ├── pre-release.md
+│   │   └── picsou.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md

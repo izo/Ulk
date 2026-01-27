@@ -34,6 +34,7 @@ Après installation, utilisez `/wm:update` pour mettre à jour.
 | `figma-shadcn` | Convertit designs Figma en shadcn/ui |
 | `tw2shad` | Transforme Tailwind/HTML en shadcn/ui Vue |
 | `frontend-qa` | Audit frontend UX/UI et Tailwind |
+| `picsou` | Estimation coûts d'hébergement multi-providers |
 
 ### Orchestrateurs (`/wm:agents:*`)
 

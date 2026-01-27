@@ -5,6 +5,31 @@ All notable changes to Woodman will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.12.0] - 2026-01-27
+
+### Added
+
+- **New Agent: Picsou (26)** - Hosting cost estimator
+  - Scans project infrastructure: stack, database, storage, external services
+  - Interactive questionnaire: traffic, users, geography, budget, constraints (GDPR, HA)
+  - Resource matrix calculation: Hobby / Startup MVP / Production / Scale profiles
+  - Multi-provider comparison: Vercel, Netlify, Cloudflare, Railway, Render, Fly.io, Hetzner, Scaleway, OVH
+  - Managed DB comparison: Supabase, Neon, PlanetScale, Turso
+  - Object storage comparison: Cloudflare R2, Backblaze B2, AWS S3
+  - Decision matrix with weighted scoring (cost, simplicity, performance, scalability, GDPR, DevOps)
+  - 12-month cost projection with growth scenarios
+  - Hidden costs tracking: domain, SSL, monitoring, backups, emails, CI/CD
+  - Special cases: static sites (free), GPU/ML projects, unpredictable traffic
+  - Output: `docs/reports/estimation-couts-YYYYMMDD.md`
+  - Model: opus (multi-dimensional analysis)
+
+### Use Cases
+
+- Estimate hosting costs before launching a project
+- Compare providers for an existing infrastructure
+- Budget planning for startups and PMEs
+- GDPR-compliant hosting recommendations for European projects
+
 ## [1.11.0] - 2026-01-26
 
 ### Added
@@ -175,6 +200,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.12.0]: https://github.com/izo/Woodman/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/izo/Woodman/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/izo/Woodman/compare/v1.9.2...v1.10.0
 [1.9.2]: https://github.com/izo/Woodman/compare/v1.9.1...v1.9.2

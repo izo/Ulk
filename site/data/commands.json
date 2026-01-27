@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "1.11.0",
-    "totalCommands": 53,
-    "lastUpdated": "2026-01-26"
+    "version": "1.12.0",
+    "totalCommands": 54,
+    "lastUpdated": "2026-01-27"
   },
   "categories": [
     {
@@ -112,6 +112,11 @@
           "name": "c3po",
           "description": "Product Manager - idée → projet complet (spec, todo, tasks, audits, Notion, Linear)",
           "icon": "bot"
+        },
+        {
+          "name": "picsou",
+          "description": "Estimateur coûts hébergement - compare providers, génère rapports avec recommandations",
+          "icon": "coins"
         },
         {
           "name": "frontend-qa",

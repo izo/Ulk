@@ -165,6 +165,12 @@ Reference checklists for comprehensive frontend quality assurance:
   → Discovery: comprend l'idée, pose des questions
   → Runs: spec-writer → todo-generator → task-runner → audits
   → Accompanies: from idea to implementation with checkpoints
+
+"Combien coûtera l'hébergement ?" → picsou (26)
+  → Scans: stack, DB, storage, external services
+  → Questions: traffic, budget, constraints, geography
+  → Compares: Vercel, Railway, Hetzner, OVH, Supabase, etc.
+  → Generates: docs/reports/estimation-couts-YYYYMMDD.md
 ```
 
 ### Pre-Release Quality Checks (Manual)
@@ -417,6 +423,7 @@ Agents generate these standard files in the project root:
   - **docs/00-meta/index.md**: Documentation index (auto-generated)
   - **docs/00-meta/conventions.md**: Documentation conventions (auto-generated)
   - **docs/00-meta/audit-YYYY-MM-DD.md**: Documentation audit reports
+  - **docs/reports/estimation-couts-YYYYMMDD.md**: Hosting cost estimation report (from 26-picsou)
   - **.claude/docs-metrics.json**: Documentation health metrics
 
 ## Separation of Responsibilities
@@ -446,7 +453,7 @@ Agents generate these standard files in the project root:
 
 ## Model Distribution
 
-- **opus** (11 agents): Complex analysis requiring deep reasoning
+- **opus** (12 agents): Complex analysis requiring deep reasoning
   - 01-spec-writer: Multi-stack project analysis
   - 05-code-auditor: Comprehensive code audit
   - 08-external-sync: Bidirectional conflict resolution
