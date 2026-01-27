@@ -115,6 +115,55 @@ Reference checklists for comprehensive frontend quality assurance:
 
 **See**: `16-frontend-qa/README.md` for complete documentation.
 
+## Shared Architecture (_shared/)
+
+The `_shared/` directory contains common templates and protocols used across agents to reduce token consumption and ensure consistency.
+
+### Shared Files
+
+| File | Purpose | Used By |
+|------|---------|---------|
+| `_shared/base-rules.md` | Common rules, formats, conventions, scoring | All agents |
+| `_shared/auditor-base.md` | Report template, scoring system, spec/todo update protocol | Auditor agents (05, 06, 07, 16, 22, 23) |
+| `_shared/stack-detection.md` | Stack detection commands and output format | Agents doing project analysis (01, 05, 06, 07) |
+| `_shared/context-protocol.md` | Inter-agent context passing protocol | Orchestrators (18, 19, 20, 25, 27) |
+| `_shared/update-protocol.md` | Incremental document update rules | All agents modifying spec.md/todo.md |
+
+### Context Protocol (Token Optimization)
+
+Orchestrators transmit a `CONTEXTE PROJET:` block to sub-agents, allowing them to skip reconnaissance:
+
+```
+CONTEXTE PROJET:
+- Stack: Nuxt 3 + Nitro
+- Langages: TypeScript, Vue 3 SFC
+- DB: PostgreSQL via Prisma
+- Fichiers source: 142
+- Structure: src/{components,pages,server,composables}
+```
+
+**When present in prompt:** Sub-agents skip Phase 1 (reconnaissance) → **saves 3-10K tokens per agent**.
+
+### Orchestrator Parallelism
+
+Orchestrators now use hybrid execution:
+
+```
+SÉQUENTIEL: spec-writer (01) → produces context
+PARALLÈLE:  code-auditor (05) + perf-auditor (07) + a11y-auditor (06)
+SÉQUENTIEL: todo-generator (02) → consolidates findings
+```
+
+**Gains:** -40% wall-clock time, -30% tokens via context reuse.
+
+### Incremental Updates
+
+Agents follow `update-protocol.md` to avoid file conflicts:
+- Each agent owns specific sections in spec.md (identified by emoji headers)
+- Todo.md updates check for duplicates before adding tasks
+- Orchestrators consolidate writes to shared files (single write point)
+- Hash-based change detection avoids unnecessary rewrites
+
 ## Agent Workflow Patterns
 
 ### Entry Point (Start Here)
@@ -311,32 +360,31 @@ Agents adapt their analysis, questions, and output format based on detected stac
 - Supports all stacks: JS/TS, Python, Rust, Swift, Go, etc.
 
 ### audit-complet (18)
-- Orchestrator that runs full repo audit combining 5 agents sequentially
-- Workflow: spec-writer → code-auditor → perf-auditor → a11y-auditor → todo-generator
-- Generates consolidated report with global scores (code, perf, a11y, security)
-- Creates prioritized action plan in todo.md
+- Orchestrator using **hybrid execution** (sequential + parallel)
+- Workflow: spec-writer → **[code-auditor + perf-auditor + a11y-auditor] (parallel)** → todo-generator
+- Uses **context protocol**: extracts CONTEXTE PROJET after spec-writer, passes to all sub-agents
+- Sub-agents skip reconnaissance phase → saves ~30% tokens
+- Orchestrator consolidates spec.md/todo.md writes (single write point, no conflicts)
 - Interactive: asks scope, depth, focus before starting
-- Duration: 15-30 minutes depending on repo size
 - Output: 6 files including audit-summary-YYYYMMDD.md
 
 ### legacy-revival (19)
-- Orchestrator specialized in legacy code revival and modernization
-- Workflow: spec-writer → code-auditor → code-simplifier → robocop → perf-auditor → sync-local → todo-generator
-- Focuses on: documentation, simplification, error fixing, optimization
+- Orchestrator using **hybrid execution** for legacy modernization
+- Workflow: spec-writer → code-auditor → **[code-simplifier + perf-auditor] (parallel)** → robocop → sync-local → todo-generator
+- Uses **context protocol** throughout all phases
 - Handles risks: tests missing, breaking changes, deprecated dependencies
 - Generates before/after metrics showing transformation impact
 - Interactive: asks about risk tolerance, breaking changes acceptance
-- Duration: 30-60 minutes depending on legacy size
 - Output: legacy-revival-YYYYMMDD.md with modernization roadmap
 
 ### pre-release (20)
-- Orchestrator that runs comprehensive pre-release checklist
-- Workflow: code-auditor → perf-auditor → a11y-auditor → robocop → test:unit → test:e2e → docs check
-- Validates quality gates: build, tests, performance, accessibility, security
+- Orchestrator using **hybrid execution** for pre-release checks
+- Workflow: context detection → **[code-auditor + perf-auditor + a11y-auditor] (parallel)** → robocop (if blockers) → tests → docs check
+- Skips spec-writer if spec.md exists (fast context detection)
+- Uses **FOCUS PRE-RELEASE** flag: sub-agents report only P0/P1 issues
 - Makes GO/NO-GO decision based on strict criteria
 - Checks documentation: CHANGELOG, version bump, migration guide
 - Interactive: asks manual confirmations (features tested, DB migration ready, etc.)
-- Duration: 20-45 minutes depending on project size
 - Output: pre-release-YYYYMMDD.md with verdict and blockers list
 
 ### documentalist (13)

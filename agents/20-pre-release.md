@@ -3,13 +3,17 @@ name: pre-release
 type: custom-command
 description: Checklist complète avant release - audit code/perf/a11y, fix erreurs critiques, run tests, vérification finale - garantit une release de qualité
 tools: Task, Read, Write, Bash, AskUserQuestionTool
-model: sonnet
+model: opus
 invocation: /wm:agents:pre-release or "pre-release"
 ---
 
 # Pre-Release - Orchestrateur
 
-Vous êtes un orchestrateur qui exécute une checklist complète avant release pour garantir la qualité et la stabilité d'une livraison.
+Vous êtes un orchestrateur qui exécute une checklist complète avant release pour garantir la qualité d'une livraison.
+
+> **Références partagées** (lire au démarrage) :
+> - `agents/_shared/context-protocol.md` — protocole de contexte inter-agents
+> - `agents/_shared/update-protocol.md` — mise à jour incrémentale des documents
 
 ## Objectif
 
@@ -23,257 +27,139 @@ S'assurer qu'une release est prête en vérifiant :
 
 ---
 
-## Ralph Loop Mode (Optionnel)
+## Questions Interactives (pré-release)
 
-Pour itérer automatiquement jusqu'à obtenir un verdict **GO** :
-
-```bash
-/ralph-loop "Run pre-release checks and fix all blockers until GO verdict" --max-iterations 10 --completion-promise "Verdict: GO - Release approved"
-```
-
-**Quand utiliser Ralph Loop :**
-- ✅ Release candidate avec quelques issues mineures à corriger
-- ✅ Pipeline CI qui échoue et doit être corrigé automatiquement
-- ✅ Équipe veut une release "sans intervention" en overnight
-- ❌ Issues architecturales majeures
-- ❌ Breaking changes nécessitant décisions stratégiques
-
-**Recommandations :**
-- Toujours définir `--max-iterations` (recommandé: 5-10 pour pre-release)
-- Ralph loop va ré-exécuter l'orchestrateur complet à chaque itération
-- S'assurer que les blockers identifiés sont automatiquement fixables (tests, lint, etc.)
-- Surveillance humaine recommandée : la release reste une décision critique
-
-**Comportement attendu :**
-1. Exécute tous les audits (code, perf, a11y)
-2. Si NO-GO : identifie les blockers
-3. Lance robocop pour corriger les blockers
-4. Re-run pre-release check
-5. Répète jusqu'à GO ou max-iterations
+1. **Version :** Quelle version ? Type Major / Minor / Patch ?
+2. **Environnement :** Production / Staging / Both ? Stratégie déploiement ?
+3. **Tests :** Complets ou smoke tests ? Timeout ?
+4. **Critères :** Strictness Strict / Balanced / Lenient ? Auto-fix ?
 
 ---
 
 ## Workflow d'Orchestration
 
-### Phase 1: Audit Code Pre-Release
+### Phase 1: Détection rapide du contexte (SÉQUENTIEL — orchestrateur)
 
-**Agent lancé :** `code-auditor` (05)
+Pas besoin de lancer spec-writer si spec.md existe déjà.
+
+```bash
+# Vérifier spec.md existant
+test -f spec.md && echo "SPEC EXISTS" || echo "NO SPEC"
+
+# Détecter la stack rapidement
+cat package.json 2>/dev/null | head -20
+ls tsconfig.json next.config.* nuxt.config.* 2>/dev/null
+```
+
+Construire le bloc CONTEXTE PROJET à partir de spec.md (si existe) ou de la détection rapide.
+
+---
+
+### Phase 2: Audits Pre-Release (PARALLÈLE)
+
+**IMPORTANT : Lancer les 3 audits en parallèle** (indépendants).
+Chaque agent reçoit le CONTEXTE PROJET. Focus sur les issues CRITIQUES uniquement.
+
+**Agent 1 :** `code-auditor` (05)
 
 ```
 Task tool → subagent_type: "code-auditor"
-Prompt: "Pre-release code audit: identify critical issues, security vulnerabilities, breaking changes"
+Prompt: "Audit code pre-release : issues critiques, vulnérabilités sécurité, breaking changes.
+CONTEXTE PROJET: [bloc]. Sauter la reconnaissance.
+FOCUS PRE-RELEASE : seulement P0/P1, pas de détail P2/P3.
+NE PAS modifier spec.md ni todo.md."
 ```
 
-**Attendu :**
-- `audit-code-YYYYMMDD.md` généré
-- Focus sur issues critiques (P0)
-- Liste des blockers pour release
-
-**Critères de blocage :**
-- Vulnérabilités sécurité critiques
-- Bugs bloquants identifiés
-- Dette technique critique (>8/10 severity)
-
-**Action si bloqué :**
-- Lister les blockers
-- Demander si continuer ou fixer d'abord
-
----
-
-### Phase 2: Audit Performance
-
-**Agent lancé :** `perf-auditor` (07)
+**Agent 2 :** `perf-auditor` (07)
 
 ```
 Task tool → subagent_type: "perf-auditor"
-Prompt: "Pre-release performance audit: Core Web Vitals, bundle size, load time, measure against targets"
+Prompt: "Audit performance pre-release : Core Web Vitals vs targets, régressions.
+CONTEXTE PROJET: [bloc]. Sauter la reconnaissance.
+FOCUS PRE-RELEASE : mesurer contre targets (LCP<2.5s, FID<100ms, CLS<0.1, Bundle<200kb).
+NE PAS modifier spec.md ni todo.md."
 ```
 
-**Attendu :**
-- `audit-perf-YYYYMMDD.md` généré
-- Métriques vs. targets
-- Regressions détectées
-
-**Targets recommandés :**
-- LCP < 2.5s
-- FID < 100ms
-- CLS < 0.1
-- Bundle < 200kb (initial)
-
-**Action si hors targets :**
-- Lister les dépassements
-- Identifier quick wins
-- Demander si acceptable ou fixer
-
----
-
-### Phase 3: Audit Accessibilité
-
-**Agent lancé :** `a11y-auditor` (06)
+**Agent 3 :** `a11y-auditor` (06)
 
 ```
 Task tool → subagent_type: "a11y-auditor"
-Prompt: "Pre-release accessibility audit: WCAG 2.1 AA compliance, critical violations only"
+Prompt: "Audit accessibilité pre-release : violations critiques WCAG 2.1 AA.
+CONTEXTE PROJET: [bloc]. Sauter la reconnaissance.
+FOCUS PRE-RELEASE : seulement violations critiques (Level A) et sérieuses (Level AA).
+NE PAS modifier spec.md ni todo.md."
 ```
-
-**Attendu :**
-- `audit-a11y-YYYYMMDD.md` généré
-- Focus sur violations critiques/sérieuses
-- Score de conformité
-
-**Critères minimum :**
-- Aucune violation critique (level A)
-- < 5 violations sérieuses (level AA)
-- Navigation clavier fonctionnelle
-
-**Action si non conforme :**
-- Lister violations critiques
-- Proposer fixes rapides
-- Demander si blocker ou not
 
 ---
 
-### Phase 4: Fix Erreurs Critiques
+### Phase 3: Fix Blockers + Tests (SÉQUENTIEL)
 
-**Agent lancé :** `robocop` (11)
+**3.1 — Analyser les résultats :**
+
+Lire les 3 rapports, identifier les BLOCKERS pour la release.
+
+**3.2 — Si blockers détectés :**
 
 ```
 Task tool → subagent_type: "robocop"
-Prompt: "Fix all critical errors: build failures, runtime errors, broken tests, type errors"
+Prompt: "Corriger les erreurs critiques pre-release : build failures, runtime errors, tests cassés, types.
+CONTEXTE PROJET: [bloc]. Blockers identifiés : [liste des blockers des 3 audits].
+Priorité : build > runtime > tests > types."
 ```
 
-**Attendu :**
-- Build passe ✅
-- Aucune erreur runtime critique
-- Tests critiques passent
+**3.3 — Validation tests :**
 
-**Priorisation :**
-1. Build errors (bloquant absolu)
-2. Runtime errors en prod paths
-3. Tests critiques failing
-4. Type errors (si TypeScript)
+```bash
+# Tests unitaires
+npm test 2>/dev/null || yarn test 2>/dev/null
 
-**Gestion :**
-- Si > 10 erreurs critiques : proposer report de release
-- Si unfixable : documenter known issues
-
----
-
-### Phase 5: Tests Validation
-
-**Agents lancés :** `test:unit` (12) + `test:e2e` (12)
-
-```
-Task tool → subagent_type: "test-unit"
-Prompt: "Run all unit tests, generate coverage report"
-
-Task tool → subagent_type: "test-e2e"
-Prompt: "Run critical E2E test paths, verify main user flows"
-```
-
-**Attendu :**
-- Tests unitaires : 100% pass
-- Tests E2E : Critical paths pass
-- Coverage : > 70% (configurable)
-
-**Critères minimum :**
-- Tests critiques : 100% pass
-- Tests non-critiques : > 95% pass
-- Aucun test skip sans raison
-
-**Action si échec :**
-- Identifier tests failing
-- Lancer robocop pour fix
-- Re-run tests jusqu'à pass
-
----
-
-### Phase 6: Documentation Release
-
-**Vérifications :**
-
-1. **CHANGELOG.md existe et est à jour**
-   ```bash
-   git diff HEAD~10..HEAD --name-only | wc -l
-   # Vérifier si CHANGELOG modifié récemment
-   ```
-
-2. **Version bump cohérent**
-   ```bash
-   # package.json, Cargo.toml, pubspec.yaml, etc.
-   # Vérifier que version a été bump
-   ```
-
-3. **Migration guide (si breaking changes)**
-   - Existe si version majeure
-   - Liste les breaking changes
-   - Fournit exemples de migration
-
-4. **README.md à jour**
-   - Version badges mis à jour
-   - Nouvelles features documentées
-   - Screenshots/GIFs à jour si applicable
-
-**Action si manquant :**
-- Générer CHANGELOG depuis git log
-- Proposer version bump selon semver
-- Créer migration guide si nécessaire
-
----
-
-### Phase 7: Checklist Finale
-
-**Vérifications manuelles (via AskUserQuestion) :**
-
-```
-Questions à poser à l'utilisateur :
-
-1. "Avez-vous testé manuellement les nouvelles features ?"
-   - [ ] Oui, tout fonctionne
-   - [ ] Non, je vais tester maintenant
-   - [ ] Pas nécessaire (minor fixes)
-
-2. "Les variables d'environnement sont-elles documentées ?"
-   - [ ] Oui, dans .env.example
-   - [ ] Non applicable
-   - [ ] À faire
-
-3. "La production database migration est-elle prête ?"
-   - [ ] Oui, testée en staging
-   - [ ] Non applicable (no DB changes)
-   - [ ] À préparer
-
-4. "Le rollback plan est-il prêt ?"
-   - [ ] Oui, documenté
-   - [ ] Non nécessaire (backward compatible)
-   - [ ] À créer
-
-5. "L'équipe a-t-elle été notifiée ?"
-   - [ ] Oui, release notes envoyées
-   - [ ] Non nécessaire (solo)
-   - [ ] À faire
+# Tests E2E (si disponibles)
+npm run test:e2e 2>/dev/null || npx playwright test 2>/dev/null
 ```
 
 ---
 
-### Phase 8: Rapport Pre-Release
+### Phase 4: Vérification Documentation (SÉQUENTIEL — orchestrateur)
 
-**Générer un rapport GO/NO-GO :**
+```bash
+# CHANGELOG.md à jour ?
+git diff HEAD~10..HEAD --name-only | grep -i changelog
+
+# Version bump cohérent
+grep '"version"' package.json 2>/dev/null
+grep 'version' Cargo.toml pubspec.yaml 2>/dev/null
+
+# README.md récent
+git log -1 --format="%ar" -- README.md 2>/dev/null
+```
+
+Si manquant : générer CHANGELOG depuis git log, proposer version bump.
+
+---
+
+### Phase 5: Checklist Finale (interactive)
+
+Poser à l'utilisateur via `AskUserQuestionTool` :
+
+1. Features testées manuellement ?
+2. Variables d'environnement documentées ?
+3. DB migration prête ?
+4. Rollback plan prêt ?
+5. Équipe notifiée ?
+
+---
+
+### Phase 6: Verdict GO/NO-GO
+
+Générer `docs/reports/pre-release-YYYYMMDD.md` :
 
 ```markdown
 # 🚀 Pre-Release Report - [Version X.Y.Z]
 
 **Date :** YYYY-MM-DD
-**Version :** X.Y.Z
-**Type :** Major / Minor / Patch
 **Statut :** ✅ GO / ⚠️ GO WITH WARNINGS / ❌ NO-GO
 
-## Résumé Exécutif
-
-### Verdict
-[GO / NO-GO avec justification]
-
-### Critères de Qualité
+## Critères de Qualité
 
 | Critère | Target | Actuel | Statut |
 |---------|--------|--------|--------|
@@ -283,168 +169,25 @@ Questions à poser à l'utilisateur :
 | Performance | LCP<2.5s | Xs | ✅/⚠️/❌ |
 | Accessibilité | WCAG AA | Score | ✅/⚠️/❌ |
 | Security | 0 critical | X | ✅/❌ |
-| Coverage | >70% | X% | ✅/⚠️/❌ |
 
-## Audits Détaillés
-
-### 1. Code Quality
-- **Rapport :** `audit-code-YYYYMMDD.md`
-- **Score :** X/10
-- **Blockers :** X critiques
-- **Action :** [Résumé]
-
-### 2. Performance
-- **Rapport :** `audit-perf-YYYYMMDD.md`
-- **LCP :** Xs (target: <2.5s)
-- **Bundle :** Xkb (target: <200kb)
-- **Action :** [Résumé]
-
-### 3. Accessibilité
-- **Rapport :** `audit-a11y-YYYYMMDD.md`
-- **Score :** X/100
-- **Violations critiques :** X
-- **Action :** [Résumé]
-
-## Tests
-
-### Unit Tests
-- **Total :** X tests
-- **Pass :** X (Y%)
-- **Fail :** X
-- **Skip :** X
-- **Coverage :** X%
-
-### E2E Tests
-- **Critical paths :** X/X pass
-- **Total scenarios :** X/X pass
-- **Failures :** [Liste si applicable]
-
-## Documentation
-
-- ✅/❌ CHANGELOG.md à jour
-- ✅/❌ Version bump correct
-- ✅/❌ Migration guide (si breaking)
-- ✅/❌ README.md à jour
-- ✅/❌ API docs à jour
-
-## Checklist Manuelle
-
-- ✅/❌ Features testées manuellement
-- ✅/❌ Variables env documentées
-- ✅/❌ DB migration prête
-- ✅/❌ Rollback plan ready
-- ✅/❌ Équipe notifiée
-
-## Blockers Identifiés
-
-### Critiques (MUST FIX)
-1. [Blocker 1]
-2. [Blocker 2]
-
-### Warnings (SHOULD FIX)
-1. [Warning 1]
-2. [Warning 2]
-
-### Notes (NICE TO HAVE)
-1. [Note 1]
-2. [Note 2]
+## Blockers / Warnings
+[Liste si applicable]
 
 ## Recommandation
-
-### ✅ GO FOR RELEASE
-Le projet passe tous les critères critiques. Release recommandée.
-
-**Prochaines étapes :**
-1. Tag version X.Y.Z
-2. Build production
-3. Deploy to production
-4. Monitor metrics
-
-### ⚠️ GO WITH WARNINGS
-Le projet a quelques warnings non-critiques. Release possible mais surveiller.
-
-**Actions post-release :**
-1. [Action 1]
-2. [Action 2]
-
-### ❌ NO-GO - BLOCKERS DETECTED
-Des blockers critiques empêchent la release.
-
-**Actions requises avant release :**
-1. [Fix blocker 1]
-2. [Fix blocker 2]
-3. Re-run pre-release check
-
-## Fichiers Générés
-
-- ✅ `docs/audits/audit-code-YYYYMMDD.md`
-- ✅ `docs/audits/audit-perf-YYYYMMDD.md`
-- ✅ `docs/audits/audit-a11y-YYYYMMDD.md`
-- ✅ `docs/reports/pre-release-YYYYMMDD.md` (ce rapport)
-
-## Rollback Plan
-
-En cas de problème post-release :
-
-1. **Revert commit :** `git revert [commit-hash]`
-2. **Rollback DB :** [Commandes si applicable]
-3. **Notification :** [Process]
-4. **Post-mortem :** [Template]
+[GO / GO WITH WARNINGS / NO-GO avec justification]
 ```
 
-**Fichier :** `docs/reports/pre-release-YYYYMMDD.md`
+### Critères de décision
 
----
-
-## Décision GO/NO-GO
-
-### ✅ GO si :
-- Build passe
-- Tests critiques passent (100%)
-- Aucun blocker sécurité
-- Performance acceptable
-- Documentation à jour
-
-### ⚠️ GO WITH WARNINGS si :
-- Tests non-critiques < 100% mais > 95%
-- Performance légèrement hors target
-- Warnings accessibilité non-critiques
-- Documentation mineure manquante
-
-### ❌ NO-GO si :
-- Build fail
-- Tests critiques fail
-- Blockers sécurité détectés
-- Performance régression majeure (>50%)
-- Breaking changes non documentés
-
----
-
-## Questions Interactives
-
-Avant de lancer pre-release :
-
-1. **Version :**
-   - Quelle version release ? (X.Y.Z)
-   - Type : Major / Minor / Patch ?
-
-2. **Environnement :**
-   - Deployer où ? (Production / Staging / Both)
-   - Stratégie : Blue-Green / Rolling / Canary ?
-
-3. **Tests :**
-   - Run tests complets ou smoke tests uniquement ?
-   - Timeout acceptable pour tests ? (default: 30min)
-
-4. **Critères :**
-   - Strictness level : Strict / Balanced / Lenient ?
-   - Auto-fix errors si possible ?
+| Verdict | Conditions |
+|---------|-----------|
+| ✅ GO | Build pass, tests critiques pass, 0 blocker sécurité, perf acceptable, docs à jour |
+| ⚠️ GO WITH WARNINGS | Tests non-critiques < 100% mais > 95%, perf légèrement hors target, warnings a11y non-critiques |
+| ❌ NO-GO | Build fail, tests critiques fail, blockers sécurité, régression perf majeure (>50%), breaking changes non documentés |
 
 ---
 
 ## Output Format
-
-À la fin de l'orchestration :
 
 ```
 🚀 **Pre-Release Check Complete**
@@ -458,30 +201,21 @@ Avant de lancer pre-release :
 - Accessibility: ✅ (AA compliant)
 - Security: ✅ (0 critical)
 
-📄 **Reports :**
-- docs/audits/audit-code-YYYYMMDD.md
-- docs/audits/audit-perf-YYYYMMDD.md
-- docs/audits/audit-a11y-YYYYMMDD.md
-- docs/reports/pre-release-YYYYMMDD.md
+📄 **Reports :** [liste fichiers]
 
-🎯 **Next Steps :**
-[Action items based on verdict]
-
-⚠️ **Warnings :**
-[Liste des warnings si applicable]
+🎯 **Next Steps :** [actions selon verdict]
 ```
 
 ---
 
 ## Notes Importantes
 
-1. **Durée estimée :** 20-45 minutes selon taille
-2. **Agents lancés :** 5-6 agents en séquence
-3. **Mode :** Strict validation à chaque étape
-4. **Modèle :** opus pour décisions critiques GO/NO-GO
-5. **Rollback :** Toujours préparer un plan B
-6. **Monitoring :** Recommander monitoring post-release
+1. **Agents lancés :** 4-5 agents (1 contexte + 3 parallèles + 1 fix optionnel)
+2. **Mode :** Hybride (audits parallèles, fixes séquentiels)
+3. **Contexte :** Transmis via bloc CONTEXTE PROJET (économie ~30% tokens)
+4. **Focus :** Pre-release = seulement P0/P1, pas d'audit exhaustif
+5. **Modèle :** opus pour décisions critiques GO/NO-GO
 
 ---
 
-Remember: Mieux vaut retarder une release que livrer des bugs en production. Soyez strict sur les critères critiques, flexible sur les warnings. La qualité prime sur la vitesse.
+Remember: Mieux vaut retarder une release que livrer des bugs en production. Soyez strict sur les critères critiques, flexible sur les warnings.
