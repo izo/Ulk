@@ -17,7 +17,7 @@ Tu es un sous-agent spécialisé dans la synchronisation de la documentation LOC
 
 ## Mission
 
-Après la génération de `spec.md` et `todo.md`, maintenir la cohérence de la documentation locale : spec.md, CLAUDE.md, et README.md. Cet agent ne gère PAS la synchronisation avec Linear/Notion - pour cela, utiliser 08-external-sync après.
+Après la génération de `docs/spec.md` et `docs/todo.md`, maintenir la cohérence de la documentation locale : docs/spec.md, CLAUDE.md, et README.md. Cet agent ne gère PAS la synchronisation avec Linear/Notion - pour cela, utiliser 08-external-sync après.
 
 ## Mode orchestré (contexte reçu)
 
@@ -33,7 +33,7 @@ Si le prompt contient un bloc `CONTEXTE PROJET:` :
 
 ```bash
 # Fichiers à synchroniser
-ls -la spec.md todo.md CLAUDE.md README.md 2>/dev/null
+ls -la docs/spec.md docs/todo.md CLAUDE.md README.md 2>/dev/null
 ls -la docs/ 2>/dev/null
 ```
 
@@ -42,19 +42,19 @@ Produis cet inventaire :
 ```
 === État des fichiers ===
 
-📄 spec.md      : [✅ présent | ❌ absent] — modifié le [date]
-📋 todo.md      : [✅ présent | ❌ absent] — modifié le [date]
-🤖 CLAUDE.md    : [✅ présent | ❌ absent] — modifié le [date]
-📖 README.md    : [✅ présent | ❌ absent] — modifié le [date]
+📄 docs/spec.md  : [✅ présent | ❌ absent] — modifié le [date]
+📋 docs/todo.md  : [✅ présent | ❌ absent] — modifié le [date]
+🤖 CLAUDE.md     : [✅ présent | ❌ absent] — modifié le [date]
+📖 README.md     : [✅ présent | ❌ absent] — modifié le [date]
 ```
 
 ---
 
-## Phase 2 : Mise à jour de spec.md
+## Phase 2 : Mise à jour de docs/spec.md
 
 ### 2.1 - Tracking du progrès
 
-Ajoute ou met à jour une section en haut de `spec.md` :
+Ajoute ou met à jour une section en haut de `docs/spec.md` :
 
 ```markdown
 ## 📊 Statut du projet
@@ -117,8 +117,8 @@ Si des décisions ont changé ou des risques sont résolus, mets à jour :
 - Branches : [main, develop, feature/*, ...]
 
 ### Fichiers importants
-- `spec.md` — Spécification complète du projet
-- `todo.md` — Tâches priorisées et trackées
+- `docs/spec.md` — Spécification complète du projet
+- `docs/todo.md` — Tâches priorisées et trackées
 - [Autres fichiers clés]
 
 ## Commandes utiles
@@ -153,7 +153,7 @@ Si des décisions ont changé ou des risques sont résolus, mets à jour :
 
 ### 3.2 - Extraction automatique
 
-Extrais de `spec.md` et `todo.md` :
+Extrais de `docs/spec.md` et `docs/todo.md` :
 - Stack et architecture
 - Commandes (depuis package.json, Makefile, etc.)
 - Phase et tâche en cours
@@ -210,8 +210,8 @@ Extrais de `spec.md` et `todo.md` :
 
 ## 📖 Documentation
 
-- [spec.md](./spec.md) — Spécification technique complète
-- [todo.md](./todo.md) — Roadmap et tâches
+- [spec.md](./docs/spec.md) — Spécification technique complète
+- [todo.md](./docs/todo.md) — Roadmap et tâches
 
 ## 📝 Changelog
 
@@ -249,7 +249,7 @@ Affiche un résumé :
 ```
 === Sync locale terminée ===
 
-📄 spec.md
+📄 docs/spec.md
    ✅ Section statut ajoutée/mise à jour
    ✅ 3 risques marqués comme résolus
 
@@ -285,9 +285,9 @@ Affiche un résumé :
 ## Démarrage
 
 ```
-1. Inventorier les fichiers existants (spec, todo, CLAUDE, README)
-2. Lire spec.md et todo.md
-3. Mettre à jour spec.md (statut, progression)
+1. Inventorier les fichiers existants (docs/spec, docs/todo, CLAUDE, README)
+2. Lire docs/spec.md et docs/todo.md
+3. Mettre à jour docs/spec.md (statut, progression)
 4. Mettre à jour/créer CLAUDE.md (extraire stack, commandes)
 5. Mettre à jour/créer README.md (quick start, features)
 6. Afficher le rapport

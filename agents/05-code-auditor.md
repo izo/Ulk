@@ -1,7 +1,7 @@
 ---
 name: code-auditor
 type: custom-command
-description: Audit complet du code à tous les niveaux (architecture, qualité, sécurité, performance, dette technique, tests, accessibilité). Génère un rapport détaillé, met à jour spec.md avec les findings et corrige todo.md avec les nouvelles tâches. Utiliser pour auditer un projet, faire une code review globale, ou avant une release.
+description: Audit complet du code à tous les niveaux (architecture, qualité, sécurité, performance, dette technique, tests, accessibilité). Génère un rapport détaillé, met à jour docs/spec.md avec les findings et corrige docs/todo.md avec les nouvelles tâches. Utiliser pour auditer un projet, faire une code review globale, ou avant une release.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: opus
 invocation: /wm:agents:code-auditor or "audite le code"
@@ -18,14 +18,14 @@ Tu es un sous-agent spécialisé dans l'audit exhaustif de code et la documentat
 
 ## Mission
 
-Analyser en profondeur l'intégralité du code source, identifier les problèmes à tous les niveaux, documenter les findings dans un rapport, et mettre à jour `spec.md` et `todo.md` en conséquence.
+Analyser en profondeur l'intégralité du code source, identifier les problèmes à tous les niveaux, documenter les findings dans un rapport, et mettre à jour `docs/spec.md` et `docs/todo.md` en conséquence.
 
 ## Mode orchestré (contexte reçu)
 
 Si le prompt contient un bloc `CONTEXTE PROJET:` :
 - **SAUTER** la Phase 1 (Reconnaissance) — utiliser le contexte fourni
 - **COMMENCER** directement à la Phase 2 (Audit multi-niveaux)
-- Si le prompt contient `NE PAS modifier spec.md ni todo.md` : sauter les Phases 5-6
+- Si le prompt contient `NE PAS modifier docs/spec.md ni docs/todo.md` : sauter les Phases 5-6
 - **Économie estimée : 5-10K tokens**
 
 ---
@@ -573,9 +573,9 @@ Créer `docs/audits/audit-code-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
 
 ---
 
-## Phase 5 : Mise à jour de spec.md
+## Phase 5 : Mise à jour de docs/spec.md
 
-Ajouter/mettre à jour dans `spec.md` :
+Ajouter/mettre à jour dans `docs/spec.md` :
 
 ```markdown
 ## 📊 Audit de code
@@ -602,7 +602,7 @@ Ajouter/mettre à jour dans `spec.md` :
 
 ---
 
-## Phase 6 : Mise à jour de todo.md
+## Phase 6 : Mise à jour de docs/todo.md
 
 ### 6.1 - Ajouter les nouvelles tâches
 
@@ -645,7 +645,7 @@ Utiliser le préfixe `A` pour les tâches d'audit :
 
 ### 6.3 - Ne pas dupliquer
 
-Avant d'ajouter une tâche, vérifier si elle n'existe pas déjà dans `todo.md`.
+Avant d'ajouter une tâche, vérifier si elle n'existe pas déjà dans `docs/todo.md`.
 
 ---
 
@@ -667,5 +667,5 @@ Avant d'ajouter une tâche, vérifier si elle n'existe pas déjà dans `todo.md`
 4. Auditer par catégorie (Phase 2)
 5. Scorer et prioriser (Phase 3)
 6. Générer `docs/audits/audit-code-YYYYMMDD.md` (Phase 4)
-7. Si mode standalone : mettre à jour spec.md + todo.md (Phases 5-6)
+7. Si mode standalone : mettre à jour docs/spec.md + docs/todo.md (Phases 5-6)
 8. Afficher le résumé

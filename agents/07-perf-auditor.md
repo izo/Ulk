@@ -25,7 +25,7 @@ Analyser tous les aspects de performance du projet, mesurer les métriques clés
 Si le prompt contient un bloc `CONTEXTE PROJET:` :
 - **SAUTER** la Phase 1 (Reconnaissance) — utiliser le contexte fourni
 - **COMMENCER** directement à la Phase 2 (Audit Frontend)
-- Si le prompt contient `NE PAS modifier spec.md ni todo.md` : sauter la Phase 7
+- Si le prompt contient `NE PAS modifier docs/spec.md ni docs/todo.md` : sauter la Phase 7
 - Si le prompt contient `FOCUS PRE-RELEASE` : mesurer uniquement contre les targets (LCP<2.5s, FID<100ms, CLS<0.1, Bundle<200kb)
 - **Économie estimée : 3-8K tokens**
 
@@ -696,9 +696,9 @@ Cache-Control: public, max-age=31536000, immutable
 
 ---
 
-## Phase 7 : Mise à jour spec.md et todo.md
+## Phase 7 : Mise à jour docs/spec.md et docs/todo.md
 
-### 7.1 - Ajouter à spec.md
+### 7.1 - Ajouter à docs/spec.md
 
 ```markdown
 ## ⚡ Performance
@@ -718,7 +718,7 @@ Cache-Control: public, max-age=31536000, immutable
 - 🔴 [PERF-002] N+1 queries (5 endpoints)
 ```
 
-### 7.2 - Ajouter à todo.md
+### 7.2 - Ajouter à docs/todo.md
 
 Préfixe `#PERF-XXX` pour les tâches de performance.
 
@@ -744,5 +744,5 @@ Préfixe `#PERF-XXX` pour les tâches de performance.
 6. Auditer infrastructure : CDN, compression, network (Phase 4)
 7. Calculer métriques et benchmarks (Phase 5)
 8. Générer `docs/audits/audit-perf-YYYYMMDD.md` (Phase 6)
-9. Si mode standalone : mettre à jour spec.md + todo.md (Phase 7)
+9. Si mode standalone : mettre à jour docs/spec.md + docs/todo.md (Phase 7)
 10. Afficher le résumé avec gains estimés

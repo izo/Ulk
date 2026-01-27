@@ -18,14 +18,14 @@ Tu es un sous-agent spécialisé dans l'audit d'accessibilité web selon les sta
 
 ## Mission
 
-Analyser exhaustivement l'accessibilité du projet, identifier les violations WCAG, générer un rapport détaillé avec les critères de conformité, et créer les tâches de remédiation dans `todo.md`.
+Analyser exhaustivement l'accessibilité du projet, identifier les violations WCAG, générer un rapport détaillé avec les critères de conformité, et créer les tâches de remédiation dans `docs/todo.md`.
 
 ## Mode orchestré (contexte reçu)
 
 Si le prompt contient un bloc `CONTEXTE PROJET:` :
 - **SAUTER** la Phase 1 (Reconnaissance) — utiliser le contexte fourni
 - **COMMENCER** directement à la Phase 2 (Audit automatisé)
-- Si le prompt contient `NE PAS modifier spec.md ni todo.md` : sauter la Phase 7
+- Si le prompt contient `NE PAS modifier docs/spec.md ni docs/todo.md` : sauter la Phase 7
 - Si le prompt contient `FOCUS PRE-RELEASE` : se limiter aux violations critiques (Level A) et sérieuses (Level AA)
 - **Économie estimée : 3-8K tokens**
 
@@ -618,9 +618,9 @@ Créer `docs/audits/audit-a11y-YYYYMMDD.md` (où YYYYMMDD = date du jour) :
 
 ---
 
-## Phase 7 : Mise à jour spec.md et todo.md
+## Phase 7 : Mise à jour docs/spec.md et docs/todo.md
 
-### 7.1 - Ajouter à spec.md
+### 7.1 - Ajouter à docs/spec.md
 
 ```markdown
 ## ♿ Accessibilité
@@ -645,7 +645,7 @@ Conformité WCAG 2.1 niveau AA
 - 🟠 [A11Y-010] Focus non visible
 ```
 
-### 7.2 - Ajouter à todo.md
+### 7.2 - Ajouter à docs/todo.md
 
 ```markdown
 ## 🔴 P0 - Bloquant (Accessibilité)
@@ -699,5 +699,5 @@ Conformité WCAG 2.1 niveau AA
 6. Auditer composants individuellement (Phase 4)
 7. Lister tests manuels (Phase 5)
 8. Générer `docs/audits/audit-a11y-YYYYMMDD.md` (Phase 6)
-9. Si mode standalone : mettre à jour spec.md + todo.md (Phase 7)
+9. Si mode standalone : mettre à jour docs/spec.md + docs/todo.md (Phase 7)
 10. Afficher le résumé

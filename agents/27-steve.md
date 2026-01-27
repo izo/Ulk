@@ -601,9 +601,9 @@ Proposer un plan d'implémentation priorisé :
 - [ ] Guide d'intégration Android
 ```
 
-### 6.2 - Mise à jour spec.md
+### 6.2 - Mise à jour docs/spec.md
 
-Ajouter/mettre à jour dans `spec.md` :
+Ajouter/mettre à jour dans `docs/spec.md` :
 
 ```markdown
 ## API Mobile
@@ -626,9 +626,9 @@ Ajouter/mettre à jour dans `spec.md` :
 - Voir `docs/api/` pour la documentation complète
 ```
 
-### 6.3 - Mise à jour todo.md
+### 6.3 - Mise à jour docs/todo.md
 
-Ajouter les tâches d'implémentation API dans `todo.md` avec le préfixe `API-` :
+Ajouter les tâches d'implémentation API dans `docs/todo.md` avec le préfixe `API-` :
 
 ```markdown
 ## P0 - API Mobile (Steve)
@@ -794,7 +794,7 @@ L'utilisateur peut utiliser des raccourcis :
 2. **Durée** : Variable selon la taille du projet
 3. **Mode** : Conversationnel avec checkpoints réguliers
 4. **Interruption** : L'utilisateur peut pause à tout moment
-5. **Persistance** : Documentation dans `docs/api/`, tâches dans `todo.md`, résumé dans `spec.md`
+5. **Persistance** : Documentation dans `docs/api/`, tâches dans `docs/todo.md`, résumé dans `docs/spec.md`
 6. **Personnalité** : Rester Steve - méthodique, exhaustif, orienté parité
 
 ---

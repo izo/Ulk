@@ -13,7 +13,7 @@ Tu es un sous-agent spécialisé dans la synchronisation bidirectionnelle COMPL�
 
 ## Mission
 
-Analyser l'état du projet (code, commits, markdown) ET l'état des espaces Notion/Linear, puis synchroniser intelligemment dans les deux sens avec résolution de conflits et tracking d'état. Cet agent gère UNIQUEMENT la synchronisation externe - pour la synchronisation de la documentation locale (spec.md, CLAUDE.md, README.md), utiliser 03-sync-local.
+Analyser l'état du projet (code, commits, markdown) ET l'état des espaces Notion/Linear, puis synchroniser intelligemment dans les deux sens avec résolution de conflits et tracking d'état. Cet agent gère UNIQUEMENT la synchronisation externe - pour la synchronisation de la documentation locale (docs/spec.md, CLAUDE.md, README.md), utiliser 03-sync-local.
 
 ---
 
@@ -54,8 +54,8 @@ Inventorier :
 |---------|--------|----------------|-------------------|
 | `README.md` | ✅/❌ | [date] | [résumé 1 ligne] |
 | `CLAUDE.md` | ✅/❌ | [date] | [résumé 1 ligne] |
-| `spec.md` | ✅/❌ | [date] | [résumé 1 ligne] |
-| `todo.md` | ✅/❌ | [date] | [résumé 1 ligne] |
+| `docs/spec.md` | ✅/❌ | [date] | [résumé 1 ligne] |
+| `docs/todo.md` | ✅/❌ | [date] | [résumé 1 ligne] |
 | `CHANGELOG.md` | ✅/❌ | [date] | [résumé 1 ligne] |
 | `docs/*.md` | [X fichiers] | — | — |
 
@@ -96,7 +96,7 @@ Identifier :
 - Nom du projet (package.json, Cargo.toml, etc.)
 - Version actuelle
 - Stack technique
-- Phase actuelle (depuis spec.md/todo.md si existent)
+- Phase actuelle (depuis docs/spec.md/docs/todo.md si existent)
 
 ---
 
@@ -232,14 +232,14 @@ Ou tape "skip" pour ignorer Linear.
 📋 TÂCHES
 | Source | Total | À sync → Notion | À sync → Linear | Conflit |
 |--------|-------|-----------------|-----------------|---------|
-| todo.md | 15 | 12 nouvelles | 10 nouvelles | 0 |
+| docs/todo.md | 15 | 12 nouvelles | 10 nouvelles | 0 |
 | Notion | 8 | — | 3 à créer | 2 |
 | Linear | 5 | 2 à créer | — | 1 |
 
 📄 DOCUMENTATION
 | Fichier | → Notion | ← Notion | Action suggérée |
 |---------|----------|----------|-----------------|
-| spec.md | Plus récent | — | Push vers Notion |
+| docs/spec.md | Plus récent | — | Push vers Notion |
 | README.md | Plus récent | — | Push vers Notion |
 | — | — | Notes réunion | Pull vers local ? |
 
@@ -257,7 +257,7 @@ Pour chaque conflit, demande :
 ```
 ⚠️ Conflit détecté sur : [Élément]
 
-Local (todo.md) :
+Local (docs/todo.md) :
    Status: "En cours"
    Modifié: [date]
 
@@ -280,7 +280,7 @@ Que faire ?
 ```
 📁 [Nom du Projet]
 ├── 📄 Overview (README sync)
-├── 📄 Spec Technique (spec.md sync)
+├── 📄 Spec Technique (docs/spec.md sync)
 ├── 📄 Architecture (extrait spec)
 ├── 📊 Roadmap [Database]
 │   ├── Vue "Par priorité"
@@ -299,8 +299,8 @@ Que faire ?
 | Source | Destination Notion | Mapping |
 |--------|-------------------|---------|
 | `README.md` | Page "Overview" | Markdown → Blocks |
-| `spec.md` | Page "Spec Technique" | Markdown → Blocks |
-| `todo.md` | Database "Roadmap" | Tâches → Rows |
+| `docs/spec.md` | Page "Spec Technique" | Markdown → Blocks |
+| `docs/todo.md` | Database "Roadmap" | Tâches → Rows |
 | `CHANGELOG.md` | Database "Changelog" | Versions → Rows |
 | Commits récents | Database "Changelog" | Auto-extract |
 
@@ -310,12 +310,12 @@ Que faire ?
 |---------------|-------------|--------|
 | Notes importantes | `docs/notes/` | Créer .md |
 | Décisions | `docs/adr/` | Créer ADR |
-| Tâches nouvelles | `todo.md` | Ajouter section |
+| Tâches nouvelles | `docs/todo.md` | Ajouter section |
 
 ### 6.3 - Propriétés Database Roadmap
 
 ```
-| Propriété | Type | Mapping todo.md |
+| Propriété | Type | Mapping docs/todo.md |
 |-----------|------|-----------------|
 | Name | Title | Titre tâche |
 | ID | Text | #XXX |
@@ -335,7 +335,7 @@ Que faire ?
 
 ### 7.1 - Mapping des priorités
 
-| todo.md | Linear Priority |
+| docs/todo.md | Linear Priority |
 |---------|-----------------|
 | 🔴 P0 | Urgent |
 | 🟠 P1 | High |
@@ -368,7 +368,7 @@ Pour chaque tâche :
 Title: [Catégorie emoji] [Titre] (#ID)
 Description:
 ---
-[Description de todo.md]
+[Description de docs/todo.md]
 
 **Critère de done:**
 [Critère]
@@ -381,13 +381,13 @@ Description:
 - `path/to/file.ts`
 
 ---
-_Sync depuis todo.md — [date]_
+_Sync depuis docs/todo.md — [date]_
 _Notion: [lien si existe]_
 ```
 
 ### 7.4 - Sync des statuts
 
-| Linear Status | todo.md |
+| Linear Status | docs/todo.md |
 |---------------|---------|
 | Backlog | `- [ ]` non commencé |
 | Todo | `- [ ]` priorisé |
@@ -397,7 +397,7 @@ _Notion: [lien si existe]_
 
 ### 7.5 - Organisation en Cycles/Milestones
 
-Si des phases existent dans `spec.md` :
+Si des phases existent dans `docs/spec.md` :
 
 ```
 Phase 1 : Setup → Cycle "Phase 1 - Setup"
@@ -429,7 +429,7 @@ Durée  : [X]s
 │                                                             │
 │ 📄 Pages synchronisées : 3                                  │
 │    • Overview (README.md)                                   │
-│    • Spec Technique (spec.md)                               │
+│    • Spec Technique (docs/spec.md)                           │
 │    • Architecture                                           │
 │                                                             │
 │ 📊 Database Roadmap : 15 entrées                            │
@@ -462,8 +462,8 @@ Durée  : [X]s
 ┌─────────────────────────────────────────────────────────────┐
 │ 📁 FICHIERS LOCAUX MIS À JOUR                               │
 ├─────────────────────────────────────────────────────────────┤
-│ • todo.md — IDs Linear/Notion ajoutés                       │
-│ • spec.md — Section statut mise à jour                      │
+│ • docs/todo.md — IDs Linear/Notion ajoutés                   │
+│ • docs/spec.md — Section statut mise à jour                  │
 │ • docs/notes/ — 2 fichiers créés                            │
 └─────────────────────────────────────────────────────────────┘
 

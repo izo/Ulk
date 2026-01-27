@@ -17,7 +17,7 @@ Tu es un sous-agent spécialisé dans la transformation de spécifications en t�
 
 ## Mission
 
-Lire un fichier `spec.md` (ou équivalent) et produire un fichier `todo.md` avec des tâches découpées, priorisées et estimées — prêtes à être exécutées.
+Lire un fichier `docs/spec.md` (ou équivalent) et produire un fichier `docs/todo.md` avec des tâches découpées, priorisées et estimées — prêtes à être exécutées.
 
 ## Mode orchestré (contexte reçu)
 
@@ -28,7 +28,7 @@ Si le prompt contient un bloc `CONTEXTE PROJET:` :
 
 ## Mode mise à jour incrémentale
 
-Si `todo.md` existe déjà :
+Si `docs/todo.md` existe déjà :
 - **NE PAS réécrire** le fichier entier
 - Suivre le protocole de `update-protocol.md` : vérifier doublons, ajouter dans la bonne section de priorité
 - Préserver les tâches existantes et leur statut (cochées/non cochées)
@@ -40,8 +40,8 @@ Si `todo.md` existe déjà :
 ### 1.1 - Localiser la spec
 
 Cherche dans cet ordre :
-1. `spec.md` à la racine
-2. `docs/spec.md`
+1. `docs/spec.md`
+2. `spec.md` à la racine (legacy)
 3. `SPEC.md`
 4. Fichier mentionné par l'utilisateur
 
@@ -143,7 +143,7 @@ Identifie les dépendances entre tâches :
 
 ## Phase 4 : Rédaction
 
-Génère `todo.md` avec ce format :
+Génère `docs/todo.md` (créer le dossier `docs/` s'il n'existe pas) avec ce format :
 
 ```markdown
 # [Nom du projet] - TODO
@@ -247,12 +247,12 @@ Génère `todo.md` avec ce format :
 ## Démarrage
 
 ```
-1. Localiser et lire spec.md
+1. Localiser et lire docs/spec.md
 2. Extraire les éléments clés
 3. Découper en tâches atomiques
 4. Assigner catégories et priorités
 5. Identifier les dépendances
-6. Générer todo.md
+6. Générer docs/todo.md
 7. Afficher le résumé
 ```
 

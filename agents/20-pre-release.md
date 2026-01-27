@@ -40,18 +40,18 @@ S'assurer qu'une release est prête en vérifiant :
 
 ### Phase 1: Détection rapide du contexte (SÉQUENTIEL — orchestrateur)
 
-Pas besoin de lancer spec-writer si spec.md existe déjà.
+Pas besoin de lancer spec-writer si docs/spec.md existe déjà.
 
 ```bash
-# Vérifier spec.md existant
-test -f spec.md && echo "SPEC EXISTS" || echo "NO SPEC"
+# Vérifier docs/spec.md existant
+test -f docs/spec.md && echo "SPEC EXISTS" || echo "NO SPEC"
 
 # Détecter la stack rapidement
 cat package.json 2>/dev/null | head -20
 ls tsconfig.json next.config.* nuxt.config.* 2>/dev/null
 ```
 
-Construire le bloc CONTEXTE PROJET à partir de spec.md (si existe) ou de la détection rapide.
+Construire le bloc CONTEXTE PROJET à partir de docs/spec.md (si existe) ou de la détection rapide.
 
 ---
 
@@ -67,7 +67,7 @@ Task tool → subagent_type: "code-auditor"
 Prompt: "Audit code pre-release : issues critiques, vulnérabilités sécurité, breaking changes.
 CONTEXTE PROJET: [bloc]. Sauter la reconnaissance.
 FOCUS PRE-RELEASE : seulement P0/P1, pas de détail P2/P3.
-NE PAS modifier spec.md ni todo.md."
+NE PAS modifier docs/spec.md ni docs/todo.md."
 ```
 
 **Agent 2 :** `perf-auditor` (07)
@@ -77,7 +77,7 @@ Task tool → subagent_type: "perf-auditor"
 Prompt: "Audit performance pre-release : Core Web Vitals vs targets, régressions.
 CONTEXTE PROJET: [bloc]. Sauter la reconnaissance.
 FOCUS PRE-RELEASE : mesurer contre targets (LCP<2.5s, FID<100ms, CLS<0.1, Bundle<200kb).
-NE PAS modifier spec.md ni todo.md."
+NE PAS modifier docs/spec.md ni docs/todo.md."
 ```
 
 **Agent 3 :** `a11y-auditor` (06)
@@ -87,7 +87,7 @@ Task tool → subagent_type: "a11y-auditor"
 Prompt: "Audit accessibilité pre-release : violations critiques WCAG 2.1 AA.
 CONTEXTE PROJET: [bloc]. Sauter la reconnaissance.
 FOCUS PRE-RELEASE : seulement violations critiques (Level A) et sérieuses (Level AA).
-NE PAS modifier spec.md ni todo.md."
+NE PAS modifier docs/spec.md ni docs/todo.md."
 ```
 
 ---

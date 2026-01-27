@@ -1,35 +1,35 @@
 # Protocole de mise à jour des documents
 
 > Ce fichier définit comment les agents mettent à jour les documents partagés
-> (spec.md, todo.md, CLAUDE.md) de manière incrémentale et sans conflit.
+> (docs/spec.md, docs/todo.md, CLAUDE.md) de manière incrémentale et sans conflit.
 
 ---
 
 ## Problème
 
-Plusieurs agents modifient les mêmes fichiers (spec.md, todo.md) :
+Plusieurs agents modifient les mêmes fichiers (docs/spec.md, docs/todo.md) :
 
 ```
-code-auditor  → ajoute section "Audit de code" dans spec.md
-perf-auditor  → ajoute section "Performance" dans spec.md
-a11y-auditor  → ajoute section "Accessibilité" dans spec.md
-task-runner   → modifie statuts dans todo.md
-todo-generator → réécrit todo.md entier
+code-auditor  → ajoute section "Audit de code" dans docs/spec.md
+perf-auditor  → ajoute section "Performance" dans docs/spec.md
+a11y-auditor  → ajoute section "Accessibilité" dans docs/spec.md
+task-runner   → modifie statuts dans docs/todo.md
+todo-generator → réécrit docs/todo.md entier
 ```
 
 **Risques :**
-- Sections dupliquées dans spec.md
-- Tâches perdues dans todo.md
+- Sections dupliquées dans docs/spec.md
+- Tâches perdues dans docs/todo.md
 - Conflits d'écriture si agents parallèles
 
 ---
 
-## Règle 1 : Mise à jour incrémentale de spec.md
+## Règle 1 : Mise à jour incrémentale de docs/spec.md
 
 ### Procédure
 
 ```
-1. Lire spec.md entier
+1. Lire docs/spec.md entier
 2. Chercher la section cible (ex: "## 📊 Audit de code")
 3. SI la section existe :
    → Remplacer son contenu (entre ## et le prochain ##)
@@ -37,12 +37,12 @@ todo-generator → réécrit todo.md entier
 4. SI la section n'existe pas :
    → L'insérer AVANT la dernière section ou en fin de fichier
    → Respecter l'ordre logique des sections
-5. NE JAMAIS réécrire spec.md en entier
+5. NE JAMAIS réécrire docs/spec.md en entier
 ```
 
 ### Sections réservées par agent
 
-| Agent | Section spec.md | Emoji |
+| Agent | Section docs/spec.md | Emoji |
 |-------|----------------|-------|
 | spec-writer (01) | Tout le document initial | — |
 | code-auditor (05) | `## 📊 Audit de code` | 📊 |
@@ -54,21 +54,21 @@ todo-generator → réécrit todo.md entier
 ### Détection de section existante
 
 ```bash
-grep -n "^## 📊 Audit de code" spec.md
-grep -n "^## ♿ Accessibilité" spec.md
-grep -n "^## ⚡ Performance" spec.md
+grep -n "^## 📊 Audit de code" docs/spec.md
+grep -n "^## ♿ Accessibilité" docs/spec.md
+grep -n "^## ⚡ Performance" docs/spec.md
 ```
 
 Si le grep retourne un numéro de ligne, la section existe déjà.
 
 ---
 
-## Règle 2 : Mise à jour incrémentale de todo.md
+## Règle 2 : Mise à jour incrémentale de docs/todo.md
 
 ### Procédure
 
 ```
-1. Lire todo.md entier
+1. Lire docs/todo.md entier
 2. Pour chaque nouvelle tâche à ajouter :
    a. Chercher si #PREFIX-NNN existe déjà
    b. SI existe : mettre à jour (estimation, sous-tâches, fichiers)
@@ -81,7 +81,7 @@ Si le grep retourne un numéro de ligne, la section existe déjà.
 ### Détection de doublons
 
 ```bash
-grep -n "#A001\|#A11Y-001\|#PERF-001" todo.md
+grep -n "#A001\|#A11Y-001\|#PERF-001" docs/todo.md
 ```
 
 ### Zones de priorité
@@ -127,11 +127,11 @@ Phase parallèle :
 
 Phase séquentielle (après les parallèles) :
   orchestrateur → lit les 3 rapports
-  orchestrateur → met à jour spec.md (une seule écriture)
-  orchestrateur → met à jour todo.md (une seule écriture)
+  orchestrateur → met à jour docs/spec.md (une seule écriture)
+  orchestrateur → met à jour docs/todo.md (une seule écriture)
 ```
 
-Cela évite les conflits d'écriture sur spec.md et todo.md.
+Cela évite les conflits d'écriture sur docs/spec.md et docs/todo.md.
 
 ---
 
@@ -168,7 +168,7 @@ Avant de réécrire un fichier, vérifier si le contenu a changé :
 
 ```bash
 # Hash du fichier actuel
-CURRENT_HASH=$(md5sum spec.md | cut -d' ' -f1)
+CURRENT_HASH=$(md5sum docs/spec.md | cut -d' ' -f1)
 
 # Générer le nouveau contenu dans un fichier temporaire
 # ... (génération)
@@ -178,7 +178,7 @@ NEW_HASH=$(md5sum /tmp/new-spec.md | cut -d' ' -f1)
 
 # Ne réécrire que si différent
 if [ "$CURRENT_HASH" != "$NEW_HASH" ]; then
-  cp /tmp/new-spec.md spec.md
+  cp /tmp/new-spec.md docs/spec.md
 fi
 ```
 

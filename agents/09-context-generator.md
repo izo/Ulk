@@ -178,8 +178,8 @@ src/
 - **Branches** : [main, develop, feature/*, ...]
 
 ### Fichiers clés
-- `spec.md` — [si existe]
-- `todo.md` — [si existe]
+- `docs/spec.md` — [si existe]
+- `docs/todo.md` — [si existe]
 - [Autres fichiers importants]
 
 ## Configuration Claude
