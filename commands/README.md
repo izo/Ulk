@@ -54,6 +54,9 @@ Dans Claude Code, invoquez les agents avec :
 | `tw2shad` | Transforme Tailwind/HTML → composants shadcn/ui Vue (Nuxt) |
 | `landing-page-auditor` | Audit complet landing page (conversion, design, mobile) |
 | `notion-importer` | Import page Notion + liens → spec_notion.md + todo_notion.md |
+| `picsou` | Estimation coûts d'hébergement multi-providers |
+| `steve` | API mobile : audit web → design API → documentation iOS/Android |
+| `svg-analyzer` | Analyse React/Next.js → inventaire pages/composants → génère SVG via Shad2SVG |
 
 ### Analyzers (`/woodman:analyze:*`)
 
@@ -135,6 +138,9 @@ commands/
 │   ├── todo-generator.md
 │   ├── figma-shadcn.md
 │   ├── tw2shad.md
+│   ├── picsou.md
+│   ├── steve.md
+│   ├── svg-analyzer.md
 │   └── ...
 ├── analyze/          # Stack analyzers
 │   ├── nuxt.md

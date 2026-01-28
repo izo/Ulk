@@ -35,6 +35,8 @@ Après installation, utilisez `/wm:update` pour mettre à jour.
 | `tw2shad` | Transforme Tailwind/HTML en shadcn/ui Vue |
 | `frontend-qa` | Audit frontend UX/UI et Tailwind |
 | `picsou` | Estimation coûts d'hébergement multi-providers |
+| `steve` | API mobile : audit web → design API iOS/Android |
+| `svg-analyzer` | Analyse React/Next.js → génère SVG via Shad2SVG |
 
 ### Orchestrateurs (`/wm:agents:*`)
 
@@ -122,6 +124,13 @@ Le site de documentation est disponible sur [izo.github.io/Woodman](https://izo.
 ```
 /wm:agents:pre-release
 # Lance automatiquement : audits + tests + docs → Verdict GO/NO-GO
+```
+
+### Génération SVG de maquettes
+```
+/svg-analyzer
+# Phase 1 : Analyse projet → ANALYSE_PAGES.md
+# Phase 2 : Génération SVG → output/*.svg + index.html
 ```
 
 ### Audit manuel (pas à pas)

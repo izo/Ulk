@@ -5,6 +5,27 @@ All notable changes to Woodman will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.13.0] - 2026-01-28
+
+### Added
+
+- **New Agent: SVG Analyzer (28)** - React/Next.js project analysis and SVG mockup generation
+  - Phase 1 - Analysis: Scans project, identifies all pages, layouts, and shadcn/ui components
+  - Phase 2 - Generation: Generates SVG for each page via Shad2SVG API (localhost:3000)
+  - Framework detection: Next.js App/Pages Router, Vite, Remix, Astro
+  - Component tracing: follows custom components to shadcn/ui primitives
+  - Substitution strategies for unsupported components (Dialog, Sheet, Select, etc.)
+  - Output: `ANALYSE_PAGES.md` (component inventory) + `output/pages/*.svg` + `output/index.html` (preview gallery)
+  - Shortcut: `/svg-analyzer` (in addition to `/wm:agents:svg-analyzer`)
+  - Model: opus (complex analysis and faithful code generation)
+
+### Use Cases
+
+- Generate visual mockups of existing React/Next.js projects
+- Inventory all shadcn/ui components used across pages
+- Create SVG previews for design reviews
+- Document page layouts with ASCII art structures
+
 ## [1.12.0] - 2026-01-27
 
 ### Added
@@ -200,6 +221,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.13.0]: https://github.com/izo/Woodman/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/izo/Woodman/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/izo/Woodman/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/izo/Woodman/compare/v1.9.2...v1.10.0
