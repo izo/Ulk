@@ -32,7 +32,7 @@ gh run list --workflow=deploy.yml
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
-**Workflow Agents (00-27):**
+**Workflow Agents (00-28):**
 - `00-gybe.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive docs/spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
@@ -59,6 +59,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `25-c3po.md` - Product Manager orchestrator: transforms ideas into projects (spec → todo → tasks → audits)
 - `26-picsou.md` - Hosting cost estimator: analyzes infrastructure, compares providers, generates cost reports with recommendations
 - `27-steve.md` - Mobile API orchestrator: audits web projects, designs API for iOS/Android parity, generates full documentation
+- `28-svg-analyzer.md` - Analyzes React/Next.js projects, inventories pages and shadcn/ui components, generates SVG via Shad2SVG API
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -90,6 +91,7 @@ Once installed, invoke agents anywhere with:
 /woodman:agents:c3po
 /woodman:agents:picsou
 /woodman:agents:steve
+/woodman:agents:svg-analyzer
 /woodman:analyze:nuxt
 ```
 
@@ -189,6 +191,10 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 # Mobile API
 "API mobile" → steve audits web project, designs API, documents endpoints for iOS/Android parity
 "Connecter une app mobile" → steve scans features, proposes API architecture, generates docs/api/
+
+# SVG mockup generation
+"Analyse ce projet" → svg-analyzer Phase 1 → generates ANALYSE_PAGES.md with pages/components inventory
+"Génère les SVG" → svg-analyzer Phase 2 → calls Shad2SVG API → generates output/*.svg + preview index
 
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
@@ -310,6 +316,7 @@ Woodman/
 │   ├── 20-pre-release.md
 │   ├── 26-picsou.md
 │   ├── 27-steve.md
+│   ├── 28-svg-analyzer.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -330,7 +337,8 @@ Woodman/
 │   │   ├── legacy-revival.md
 │   │   ├── pre-release.md
 │   │   ├── picsou.md
-│   │   └── steve.md
+│   │   ├── steve.md
+│   │   └── svg-analyzer.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md

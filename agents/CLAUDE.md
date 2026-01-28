@@ -55,6 +55,7 @@ model: opus | sonnet
 | **c3po** | `25-c3po.md` | opus | Product Manager orchestrator - transforms ideas into structured projects by orchestrating all agents (spec, todo, tasks, audits) |
 | **picsou** | `26-picsou.md` | opus | Hosting cost estimator - analyzes infrastructure, compares providers (Vercel, Netlify, Railway, Hetzner, OVH, etc.), generates cost reports with recommendations |
 | **steve** | `27-steve.md` | opus | Mobile API orchestrator - audits web projects (Next.js, JS, PHP, Swift), designs complete API for iOS/Android connectivity with full web/mobile functional parity |
+| **svg-analyzer** | `28-svg-analyzer.md` | opus | Analyzes React/Next.js projects, inventories all pages and shadcn/ui components, generates SVG mockups via Shad2SVG API |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -509,7 +510,7 @@ Agents generate these standard files in the project root:
 
 ## Model Distribution
 
-- **opus** (13 agents): Complex analysis requiring deep reasoning
+- **opus** (14 agents): Complex analysis requiring deep reasoning
   - 01-spec-writer: Multi-stack project analysis
   - 05-code-auditor: Comprehensive code audit
   - 08-external-sync: Bidirectional conflict resolution
@@ -523,6 +524,7 @@ Agents generate these standard files in the project root:
   - 25-c3po: Product Manager orchestration from idea to implementation
   - 26-picsou: Multi-provider hosting cost estimation and comparison
   - 27-steve: Mobile API orchestrator with architecture design and parity analysis
+  - 28-svg-analyzer: React/Next.js project analysis and SVG mockup generation via Shad2SVG
 
 - **sonnet** (25 agents): Structured tasks, automation, performance optimization
   - All other agents (00, 02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 22, 23, 24)
