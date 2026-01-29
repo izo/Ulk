@@ -27,7 +27,7 @@ Analyser un projet existant et produire un plan de migration complet vers une no
 | Source | Cibles possibles |
 |--------|------------------|
 | WordPress | SPIP, Drupal, Strapi, Payload, Ghost |
-| SPIP | Astro, WordPress, Strapi, Nuxt Content |
+| SPIP | Astro, Next.js, Nuxt, WordPress, Strapi, Nuxt Content |
 | Kirby | SPIP, Astro, Nuxt Content, Strapi |
 | Drupal | WordPress, SPIP, Strapi |
 | Ghost | Astro, Nuxt Content, WordPress |
@@ -337,6 +337,22 @@ Produire un tableau de correspondance :
 | Formulaires CVT | API endpoints + forms | Custom |
 | Plugins | Integrations | Écosystème différent |
 | Base MySQL | Content Collections | Flat files ou API |
+
+#### SPIP → Next.js
+| SPIP | Next.js | Notes |
+|------|---------|-------|
+| Squelettes .html | Pages/App Router | JSX/TSX |
+| Boucles SPIP | getStaticProps/generateStaticParams | Data fetching |
+| #INCLURE | Components | Import ES |
+| Modèles | Components | Import ES |
+| Formulaires CVT | API Routes + Server Actions | App Router recommandé |
+| Plugins | npm packages | Écosystème JS |
+| Base MySQL | Prisma/Drizzle + API | ORM moderne |
+| #URL_ARTICLE | Dynamic routes [slug] | Convention Next |
+| Rubriques | Nested routes | Structure dossiers |
+| Mots-clés | Tags (custom) | À implémenter |
+| #CACHE | ISR (revalidate) | Caching Next.js |
+| ecrire/ (admin) | CMS headless (Payload, Strapi) | Pas d'admin natif |
 
 #### Kirby → Astro
 | Kirby | Astro | Notes |
