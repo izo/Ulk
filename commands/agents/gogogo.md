@@ -4,7 +4,7 @@ type: custom-command
 description: Orchestrateur de livraison rapide - simplifie le code, documente, sync externe (Notion/Linear), met à jour le README, et prépare la release en une seule commande
 tools: Task, Read, Write, Bash, AskUserQuestionTool
 model: opus
-invocation: /wm:agents:gogogo or "gogogo"
+invocation: /ulk:agents:gogogo or "gogogo"
 ---
 
 # GoGoGo - Orchestrateur de Livraison Rapide

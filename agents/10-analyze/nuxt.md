@@ -4,7 +4,7 @@ type: custom-command
 description: Analyse un projet Nuxt (3.x/4.x) pour inventorier tous les composants, compter leurs utilisations, identifier les composants custom remplaçables par Nuxt UI, détecter les anti-patterns SSR/hydration, et générer une TODO de migration. Supporte Nuxt UI v2/v3/v4.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: sonnet
-invocation: /wm:analyze:nuxt or "analyze nuxt"
+invocation: /ulk:analyze:nuxt or "analyze nuxt"
 ---
 
 # Agent Nuxt Analyzer

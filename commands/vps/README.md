@@ -1,4 +1,4 @@
-# Woodman VPS Commands
+# ulk VPS Commands
 
 Agents spécialisés pour la gestion et la configuration de serveurs VPS multi-projets.
 
@@ -7,64 +7,64 @@ Agents spécialisés pour la gestion et la configuration de serveurs VPS multi-p
 ### Point d'entrée
 | Commande | Description |
 |----------|-------------|
-| `/wm:vps:orchestrateur` | Coordonne tous les agents VPS, analyse les demandes et délègue |
+| `/ulk:vps:orchestrateur` | Coordonne tous les agents VPS, analyse les demandes et délègue |
 
 ### Diagnostic
 | Commande | Description |
 |----------|-------------|
-| `/wm:vps:audit` | Analyse complète de l'état du serveur (OS, services, ressources, sécurité) |
-| `/wm:vps:monitoring` | Configure et supervise les services |
-| `/wm:vps:incidents` | Diagnostique et résout les problèmes |
+| `/ulk:vps:audit` | Analyse complète de l'état du serveur (OS, services, ressources, sécurité) |
+| `/ulk:vps:monitoring` | Configure et supervise les services |
+| `/ulk:vps:incidents` | Diagnostique et résout les problèmes |
 
 ### Opérations
 | Commande | Description |
 |----------|-------------|
-| `/wm:vps:docker` | Gère l'infrastructure conteneurisée (docker-compose, réseaux, volumes) |
-| `/wm:vps:deploiement` | Exécute les déploiements applicatifs |
-| `/wm:vps:cicd` | Configure l'intégration et déploiement continus |
-| `/wm:vps:reseau` | Gère DNS, reverse-proxy et certificats TLS |
+| `/ulk:vps:docker` | Gère l'infrastructure conteneurisée (docker-compose, réseaux, volumes) |
+| `/ulk:vps:deploiement` | Exécute les déploiements applicatifs |
+| `/ulk:vps:cicd` | Configure l'intégration et déploiement continus |
+| `/ulk:vps:reseau` | Gère DNS, reverse-proxy et certificats TLS |
 
 ### Maintenance
 | Commande | Description |
 |----------|-------------|
-| `/wm:vps:backups` | Planifie et vérifie les sauvegardes |
-| `/wm:vps:cleanup` | Maintient le serveur propre |
-| `/wm:vps:documentation` | Produit et met à jour la documentation |
-| `/wm:vps:compliance` | Vérifie la conformité et la sécurité |
+| `/ulk:vps:backups` | Planifie et vérifie les sauvegardes |
+| `/ulk:vps:cleanup` | Maintient le serveur propre |
+| `/ulk:vps:documentation` | Produit et met à jour la documentation |
+| `/ulk:vps:compliance` | Vérifie la conformité et la sécurité |
 
 ### Infrastructure
 | Commande | Description |
 |----------|-------------|
-| `/wm:vps:securite` | Durcit et sécurise le serveur |
-| `/wm:vps:couts-ressources` | Optimise l'utilisation des ressources |
-| `/wm:vps:migration` | Gère les transferts d'infrastructure |
-| `/wm:vps:environnements` | Isole et configure prod/staging/test |
+| `/ulk:vps:securite` | Durcit et sécurise le serveur |
+| `/ulk:vps:couts-ressources` | Optimise l'utilisation des ressources |
+| `/ulk:vps:migration` | Gère les transferts d'infrastructure |
+| `/ulk:vps:environnements` | Isole et configure prod/staging/test |
 
 ### Installation
 | Commande | Description |
 |----------|-------------|
-| `/wm:vps:installateur` | Installation complète d'un nouveau serveur |
+| `/ulk:vps:installateur` | Installation complète d'un nouveau serveur |
 
 ## Scénarios courants
 
 ### Nouveau serveur
 ```
-/wm:vps:audit → /wm:vps:securite → /wm:vps:docker → /wm:vps:reseau → /wm:vps:deploiement
+/ulk:vps:audit → /ulk:vps:securite → /ulk:vps:docker → /ulk:vps:reseau → /ulk:vps:deploiement
 ```
 
 ### Nouveau projet
 ```
-/wm:vps:orchestrateur "Déployer un projet Node.js avec PostgreSQL"
+/ulk:vps:orchestrateur "Déployer un projet Node.js avec PostgreSQL"
 ```
 
 ### Incident production
 ```
-/wm:vps:incidents → /wm:vps:monitoring → /wm:vps:documentation
+/ulk:vps:incidents → /ulk:vps:monitoring → /ulk:vps:documentation
 ```
 
 ### Maintenance hebdomadaire
 ```
-/wm:vps:backups + /wm:vps:cleanup + /wm:vps:audit
+/ulk:vps:backups + /ulk:vps:cleanup + /ulk:vps:audit
 ```
 
 ## Niveaux de validation

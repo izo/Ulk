@@ -33,14 +33,14 @@ Guide complet pour utiliser l'agent **notion-importer (21)** qui extrait du cont
 ### Installation globale (recommandée)
 
 ```bash
-# Depuis la racine du repo Woodman
+# Depuis la racine du repo ulk
 ./install.sh
 ```
 
 L'agent sera disponible globalement dans tous tes projets :
 
 ```bash
-/woodman:agents:notion-importer
+/ulk:agents:notion-importer
 ```
 
 ---
@@ -53,7 +53,7 @@ Tu peux lancer l'agent de plusieurs façons :
 
 ```bash
 # Avec la commande
-/woodman:agents:notion-importer
+/ulk:agents:notion-importer
 
 # Ou naturellement en français
 "Importer depuis Notion"
@@ -442,7 +442,7 @@ L'agent convertit automatiquement :
 - **Agent source** : `agents/21-notion-importer.md`
 - **Custom Command** : `commands/agents/notion-importer.md`
 - **CHANGELOG** : `CHANGELOG.md` (version 1.8.0)
-- **Release notes** : https://github.com/izo/Woodman/releases/tag/v1.8.0
+- **Release notes** : https://github.com/izo/ulk/releases/tag/v1.8.0
 
 ---
 
@@ -485,7 +485,7 @@ Après l'import :
 1. **Édite manuellement** si besoin (sections ambiguës)
 2. **Utilise todo_notion.md** pour démarrer le travail
 3. **Sync vers Linear** si migration prévue
-4. **Convertis en spec.md** si tu veux une spec standard Woodman
+4. **Convertis en spec.md** si tu veux une spec standard ulk
 
 Pour sync bidirectionnelle : utilise **external-sync (08)** à la place.
 

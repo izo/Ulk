@@ -4,7 +4,7 @@ type: custom-command
 description: Audit complet du code à tous les niveaux (architecture, qualité, sécurité, performance, dette technique, tests, accessibilité). Génère un rapport détaillé, met à jour docs/spec.md avec les findings et corrige docs/todo.md avec les nouvelles tâches. Utiliser pour auditer un projet, faire une code review globale, ou avant une release.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: opus
-invocation: /wm:agents:code-auditor or "audite le code"
+invocation: /ulk:agents:code-auditor or "audite le code"
 ---
 
 # Agent Code Auditor

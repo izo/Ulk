@@ -380,7 +380,7 @@ All files           |   85.2  |   78.3   |   90.1  |   84.8
 
 - **`../Readme.md`** : Vue d'ensemble de tous les agents
 - **`../CLAUDE.md`** : Architecture complète du système
-- **`/CLAUDE.md`** : Instructions globales Woodman
+- **`/CLAUDE.md`** : Instructions globales ulk
 
 ---
 
@@ -402,4 +402,4 @@ All files           |   85.2  |   78.3   |   90.1  |   84.8
 
 ---
 
-_Woodman Agents · 12-test/ · Test Automation_
+_ulk Agents · 12-test/ · Test Automation_

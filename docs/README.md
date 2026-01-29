@@ -1,5 +1,5 @@
 ---
-title: Documentation Woodman
+title: Documentation ulk
 type: meta
 category: meta
 date: 2026-01-14
@@ -9,13 +9,13 @@ author: human
 tags: [readme, documentation, guides]
 ---
 
-# Documentation Woodman
+# Documentation ulk
 
-> Documentation centralisée générée et maintenue par les agents Woodman
+> Documentation centralisée générée et maintenue par les agents ulk
 
 ## Qu'est-ce que ce dossier ?
 
-Ce dossier `/docs` contient **toute la documentation générée par les agents** du projet Woodman :
+Ce dossier `/docs` contient **toute la documentation générée par les agents** du projet ulk :
 
 - ✅ Spécifications techniques
 - ✅ Rapports d'audit (code, performance, accessibilité)
@@ -125,7 +125,7 @@ Plus de guides à venir pour tous les agents.
 
 ## Workflow agents → documentation
 
-Les agents Woodman documentent automatiquement leurs actions :
+Les agents ulk documentent automatiquement leurs actions :
 
 ```
 spec-writer → docs/01-specs/spec-YYYY-MM-DD.md

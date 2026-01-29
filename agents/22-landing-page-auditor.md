@@ -618,11 +618,11 @@ This audit is based on:
 
 ---
 
-**Audited by**: Woodman landing-page-auditor v2.0
+**Audited by**: ulk landing-page-auditor v2.0
 **Based on**: 2025-2026 Conversion Research & Best Practices
 **Next Audit Recommended**: [Date + 30 days]
 
-**Questions?** Launch `/woodman:agents:landing-page-auditor` for re-audit or clarifications.
+**Questions?** Launch `/ulk:agents:landing-page-auditor` for re-audit or clarifications.
 ```
 
 ## spec_landing.md Structure

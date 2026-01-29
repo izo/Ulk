@@ -4,7 +4,7 @@ type: custom-command
 description: Analyse un projet Astro pour inventorier les composants (Astro, React, Vue, Svelte), les Content Collections, les Islands interactives, détecter les problèmes de performance et proposer des optimisations. Supporte Astro 3.x/4.x/5.x.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: sonnet
-invocation: /wm:analyze:astro or "analyze astro"
+invocation: /ulk:analyze:astro or "analyze astro"
 ---
 
 # Agent Astro Analyzer

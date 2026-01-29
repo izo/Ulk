@@ -429,7 +429,7 @@ Cette landing page SaaS présente une base solide avec un message clair et une p
 
 ---
 
-**Audit effectué par** : Woodman landing-page-auditor v1.0
+**Audit effectué par** : ulk landing-page-auditor v1.0
 **Prochaine révision recommandée** : 2026-02-20 (1 mois après implémentation)
-**Contact support** : Pour questions sur ce rapport, lancer `/woodman:agents:landing-page-auditor`
+**Contact support** : Pour questions sur ce rapport, lancer `/ulk:agents:landing-page-auditor`
 

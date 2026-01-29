@@ -276,7 +276,7 @@ Mettre à jour :
 
 - **`../Readme.md`** : Vue d'ensemble de tous les agents (01-09 + 10-analyze/)
 - **`../CLAUDE.md`** : Architecture complète du système d'agents
-- **`/CLAUDE.md`** : Instructions globales du projet Woodman
+- **`/CLAUDE.md`** : Instructions globales du projet ulk
 
 ---
 
@@ -305,4 +305,4 @@ Tous les analyzers utilisent **sonnet** :
 
 ---
 
-_Woodman Agents · 10-analyze/ · Stack Analyzers_
+_ulk Agents · 10-analyze/ · Stack Analyzers_

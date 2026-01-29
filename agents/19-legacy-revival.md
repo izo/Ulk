@@ -4,7 +4,7 @@ type: custom-command
 description: Remise à niveau d'un projet legacy - documentation, simplification, fixes, optimisation - génère un projet revitalisé et maintenable
 tools: Task, Read, Write, Bash, AskUserQuestionTool
 model: opus
-invocation: /wm:agents:legacy-revival or "legacy-revival"
+invocation: /ulk:agents:legacy-revival or "legacy-revival"
 ---
 
 # Legacy Revival - Orchestrateur

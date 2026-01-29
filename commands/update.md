@@ -1,17 +1,17 @@
 ---
-description: 'Met à jour Woodman vers la dernière version depuis GitHub'
+description: 'Met à jour ulk vers la dernière version depuis GitHub'
 ---
 
-# Woodman Update
+# ulk Update
 
-Met à jour les commandes Woodman vers la dernière version.
+Met à jour les commandes ulk vers la dernière version.
 
 ## Instructions
 
 Exécute cette commande bash pour mettre à jour :
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash
+curl -fsSL https://raw.githubusercontent.com/izo/ulk/main/install-remote.sh | bash
 ```
 
 ## Version actuelle
@@ -19,7 +19,7 @@ curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh 
 Pour voir la version installée :
 
 ```bash
-cat ~/.claude/commands/woodman/.version 2>/dev/null || echo "Version inconnue"
+cat ~/.claude/commands/ulk/.version 2>/dev/null || echo "Version inconnue"
 ```
 
 ## Vérification
@@ -27,5 +27,5 @@ cat ~/.claude/commands/woodman/.version 2>/dev/null || echo "Version inconnue"
 Après la mise à jour, vérifie que tout fonctionne :
 
 ```bash
-ls ~/.claude/commands/woodman/agents/
+ls ~/.claude/commands/ulk/agents/
 ```

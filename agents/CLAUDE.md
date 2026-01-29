@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This directory contains specialized AI agent definitions for the Woodman toolkit. Each agent is a markdown file with YAML frontmatter that defines a focused, autonomous sub-agent for specific development tasks.
+This directory contains specialized AI agent definitions for the ulk toolkit. Each agent is a markdown file with YAML frontmatter that defines a focused, autonomous sub-agent for specific development tasks.
 
 ## Agent Architecture
 

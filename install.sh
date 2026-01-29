@@ -1,5 +1,5 @@
 #!/bin/bash
-# Woodman - Installation Script
+# ulk - Installation Script
 #
 # Installation locale (symlink):
 #   ./install.sh
@@ -14,15 +14,14 @@
 #   ./install.sh --global --with-vps
 #
 # Installation one-liner depuis GitHub:
-#   curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/izo/ulk/main/install-remote.sh | bash
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 COMMANDS_SOURCE="$SCRIPT_DIR/commands"
 CLAUDE_COMMANDS="$HOME/.claude/commands"
-WOODMAN_DIR="$CLAUDE_COMMANDS/woodman"
-WM_DIR="$CLAUDE_COMMANDS/wm"
+ULK_DIR="$CLAUDE_COMMANDS/ulk"
 
 # Couleurs
 GREEN='\033[0;32m'
@@ -46,8 +45,8 @@ for arg in "$@"; do
 done
 
 echo ""
-echo -e "${GREEN}🪵 Woodman Installer${NC}"
-echo "===================="
+echo -e "${GREEN}⚡ ulk Installer${NC}"
+echo "================"
 echo ""
 
 # Vérifier que le dossier commands existe
@@ -59,8 +58,8 @@ fi
 # Créer le dossier .claude/commands s'il n'existe pas
 mkdir -p "$CLAUDE_COMMANDS"
 
-# Nettoyer les anciennes installations
-for target in "$WOODMAN_DIR" "$WM_DIR"; do
+# Nettoyer les anciennes installations (woodman, wm, ulk)
+for target in "$CLAUDE_COMMANDS/woodman" "$CLAUDE_COMMANDS/wm" "$ULK_DIR"; do
     if [ -e "$target" ] || [ -L "$target" ]; then
         rm -rf "$target"
     fi
@@ -104,11 +103,9 @@ if [ "$MODE" == "symlink" ]; then
     echo -e "${BLUE}📦 Installation locale (symlink)...${NC}"
     echo ""
 
-    install_dir "$WOODMAN_DIR" "symlink"
-    install_dir "$WM_DIR" "symlink"
+    install_dir "$ULK_DIR" "symlink"
 
-    echo "   ✅ /woodman → symlinks vers $COMMANDS_SOURCE"
-    echo "   ✅ /wm      → symlinks (alias)"
+    echo "   ✅ /ulk → symlinks vers $COMMANDS_SOURCE"
     echo ""
     echo -e "${YELLOW}📝 Pour mettre à jour:${NC}"
     echo "   cd $SCRIPT_DIR && git pull"
@@ -117,18 +114,15 @@ else
     echo -e "${BLUE}📦 Installation globale (copie)...${NC}"
     echo ""
 
-    install_dir "$WOODMAN_DIR" "copy"
-    install_dir "$WM_DIR" "copy"
+    install_dir "$ULK_DIR" "copy"
 
     # Créer un fichier de version
-    echo "$(git -C "$SCRIPT_DIR" rev-parse --short HEAD 2>/dev/null || echo 'unknown')" > "$WOODMAN_DIR/.version"
-    cp "$WOODMAN_DIR/.version" "$WM_DIR/.version"
+    echo "$(git -C "$SCRIPT_DIR" rev-parse --short HEAD 2>/dev/null || echo 'unknown')" > "$ULK_DIR/.version"
 
-    echo "   ✅ /woodman → copié dans ~/.claude/commands/"
-    echo "   ✅ /wm      → copié (alias)"
+    echo "   ✅ /ulk → copié dans ~/.claude/commands/"
     echo ""
     echo -e "${YELLOW}📝 Pour mettre à jour:${NC}"
-    echo "   /wm:update  (ou relancer ./install.sh --global)"
+    echo "   /ulk:update  (ou relancer ./install.sh --global)"
 fi
 
 echo ""
@@ -157,17 +151,17 @@ echo ""
 
 echo -e "${YELLOW}🚀 Usage:${NC}"
 echo ""
-echo "   /wm:agents:spec-writer        # Générer docs/spec.md"
-echo "   /wm:agents:robocop            # Fixer erreurs"
-echo "   /wm:agents:audit-complet      # Audit complet (5 agents)"
-echo "   /wm:agents:legacy-revival     # Revival code legacy (6 agents)"
-echo "   /wm:agents:pre-release        # Checklist pre-release + GO/NO-GO"
-echo "   /wm:agents:picsou             # Estimation coûts d'hébergement"
-echo "   /wm:agents:steve              # API mobile (audit web → API iOS/Android)"
-echo "   /wm:agents:jobs               # Implémentation Apple (SwiftUI multi-plateforme)"
-echo "   /wm:analyze:nuxt              # Analyse Nuxt"
-echo "   /wm:deploy:vercel             # Déployer Vercel"
+echo "   /ulk:agents:spec-writer        # Générer docs/spec.md"
+echo "   /ulk:agents:robocop            # Fixer erreurs"
+echo "   /ulk:agents:audit-complet      # Audit complet (5 agents)"
+echo "   /ulk:agents:legacy-revival     # Revival code legacy (6 agents)"
+echo "   /ulk:agents:pre-release        # Checklist pre-release + GO/NO-GO"
+echo "   /ulk:agents:picsou             # Estimation coûts d'hébergement"
+echo "   /ulk:agents:steve              # API mobile (audit web → API iOS/Android)"
+echo "   /ulk:agents:jobs               # Implémentation Apple (SwiftUI multi-plateforme)"
+echo "   /ulk:analyze:nuxt              # Analyse Nuxt"
+echo "   /ulk:deploy:vercel             # Déployer Vercel"
 if [ "$INSTALL_VPS" == "true" ]; then
-    echo "   /wm:vps:orchestrateur         # Orchestrateur VPS"
+    echo "   /ulk:vps:orchestrateur         # Orchestrateur VPS"
 fi
 echo ""

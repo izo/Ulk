@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Woodman** is a comprehensive AI-assisted development toolkit organized into three independent modules:
+**ulk** is a comprehensive AI-assisted development toolkit organized into three independent modules:
 
 1. **cheatheet/** - Documentation generator that combines Claude Code and Speckit references into a deployable GitHub Pages site
 2. **agents/** - Collection of specialized AI agents for common development tasks (spec writing, auditing, task generation, etc.)
@@ -15,7 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Documentation Generator (cheatheet/)
 
 ```bash
-# Generate woodman.md from all sources
+# Generate ulk.md from all sources
 node cheatheet/generate-unified-docs.js
 
 # Test locally (runs generator + starts dev server)
@@ -76,7 +76,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 Install agents globally to use them in any project:
 
 ```bash
-# Install (creates symlink to ~/.claude/commands/woodman)
+# Install (creates symlink to ~/.claude/commands/ulk)
 ./install.sh
 
 # Uninstall
@@ -85,20 +85,20 @@ Install agents globally to use them in any project:
 
 Once installed, invoke agents anywhere with:
 ```
-/woodman:agents:spec-writer
-/woodman:agents:todo-generator
-/woodman:agents:gybe
-/woodman:agents:robocop
-/woodman:agents:notion-importer
-/woodman:agents:figma-shadcn
-/woodman:agents:c3po
-/woodman:agents:picsou
-/woodman:agents:steve
-/woodman:agents:jobs
-/woodman:agents:svg-analyzer
-/woodman:agents:gogogo
-/woodman:agents:ranma
-/woodman:analyze:nuxt
+/ulk:agents:spec-writer
+/ulk:agents:todo-generator
+/ulk:agents:gybe
+/ulk:agents:robocop
+/ulk:agents:notion-importer
+/ulk:agents:figma-shadcn
+/ulk:agents:c3po
+/ulk:agents:picsou
+/ulk:agents:steve
+/ulk:agents:jobs
+/ulk:agents:svg-analyzer
+/ulk:agents:gogogo
+/ulk:agents:ranma
+/ulk:analyze:nuxt
 ```
 
 The `commands/` directory contains the installable version of agents formatted for Claude Code Custom Commands.
@@ -132,7 +132,7 @@ generate-unified-docs.js
     │   └── Credits & resources
     │
     └── Outputs
-        ├── woodman.md (generated markdown with frontmatter)
+        ├── ulk.md (generated markdown with frontmatter)
         └── index.html (GitHub Pages interface)
             ├── marked.js for rendering
             ├── Nord theme (dark/light)
@@ -155,7 +155,7 @@ generate-unified-docs.js
 4. Use existing `index.html` from repository (Nord theme, IBM Plex fonts)
 5. Deploy to GitHub Pages
 
-**Live URL**: https://izo.github.io/Woodman/
+**Live URL**: https://izo.github.io/ulk/
 
 ### Agent System
 
@@ -221,7 +221,7 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 ## Key Files & Responsibilities
 
 ### Generated Files (Never Edit Manually)
-- `cheatheet/woodman.md` - Always regenerate using the generator script
+- `cheatheet/ulk.md` - Always regenerate using the generator script
 
 ### Source Files (Edit These)
 
@@ -248,8 +248,8 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 ### Assets
 
 Located at repository root:
-- `woodman.png` (1.8MB) - Main logo for documentation header (⚠️ Should be optimized)
-- `woodman-mini.png` (16x16px) - Mini logo for footer/favicon
+- `ulk.png` (1.8MB) - Main logo for documentation header (⚠️ Should be optimized)
+- `ulk-mini.png` (16x16px) - Mini logo for footer/favicon
 
 ## Development Workflow
 
@@ -270,7 +270,7 @@ Always test locally before committing:
 node cheatheet/generate-unified-docs.js
 
 # Verify output
-cat cheatheet/woodman.md | head -50
+cat cheatheet/ulk.md | head -50
 
 # Test web interface
 cd cheatheet && ./serve.sh 8000
@@ -281,7 +281,7 @@ cd cheatheet && ./serve.sh 8000
 Keep version synchronized across three locations:
 1. `cheatheet/generate-unified-docs.js` - Line 40: `version: "X.Y.Z"`
 2. `cheatheet/README.md` - Badge section
-3. Generated `cheatheet/woodman.md` frontmatter (auto-updated by script)
+3. Generated `cheatheet/ulk.md` frontmatter (auto-updated by script)
 
 ### When Creating New Agents
 
@@ -303,11 +303,11 @@ Keep version synchronized across three locations:
 The repository has an intentional naming choice using spaces in folder names for aesthetic reasons:
 
 ```
-Woodman/
+ulk/
 ├── cheatheet/                    # Documentation generator module
 │   ├── generate-unified-docs.js
 │   ├── index.html
-│   ├── woodman.md (generated)
+│   ├── ulk.md (generated)
 │   ├── serve.sh
 │   └── README.md, DEPLOY.md, CLAUDE.md
 │
@@ -386,8 +386,8 @@ Woodman/
 │
 ├── install.sh                    # Global installation script (--with-vps for VPS agents)
 ├── uninstall.sh                  # Uninstallation script
-├── woodman.png                   # Main logo (1.8MB)
-├── woodman-mini.png              # Favicon (16x16)
+├── ulk.png                       # Main logo (1.8MB)
+├── ulk-mini.png                  # Favicon (16x16)
 ├── CLAUDE.md                     # This file
 └── .nojekyll                     # Disable Jekyll processing
 ```
@@ -423,7 +423,7 @@ Woodman/
 
 ### Known Constraints
 - **Folder names with spaces**: Aesthetic choice that may cause issues in some CLI contexts
-- **Large logo file**: `woodman.png` is 1.8MB and should be optimized (convert to WebP or compress)
+- **Large logo file**: `ulk.png` is 1.8MB and should be optimized (convert to WebP or compress)
 - **No package.json**: Intentional design decision to keep the project dependency-free
 - **Scribe not implemented**: `sifrei - scribe/` contains only conceptual documentation, no working implementation
 
@@ -432,7 +432,7 @@ Woodman/
 ### Documentation not updating on GitHub Pages
 - Check Actions tab for deployment logs
 - Verify workflow permissions (contents: read, pages: write)
-- Ensure woodman.md is being generated (check workflow logs)
+- Ensure ulk.md is being generated (check workflow logs)
 - Note: The workflow runs from root but generates files in cheatheet/
 
 ### Generator script fails

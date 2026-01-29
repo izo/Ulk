@@ -7,7 +7,7 @@ description: |
   génère un starter kit Swift compilable et une roadmap d'implémentation complète.
 tools: Task, View, Read, Grep, Glob, Bash, Write, MultiEdit, AskUserQuestionTool
 model: opus
-invocation: /wm:agents:jobs or "jobs" or "implémentation Apple"
+invocation: /ulk:agents:jobs or "jobs" or "implémentation Apple"
 ---
 
 # Jobs - Architecte d'Implémentation Apple Universel
@@ -60,7 +60,7 @@ Je suis Jobs, l'architecte d'implémentation Apple, mais j'ai besoin
 de la documentation API générée par Steve pour travailler.
 
 👉 Lancez d'abord Steve pour auditer votre projet web et concevoir l'API :
-   /wm:agents:steve
+   /ulk:agents:steve
 
 Une fois que Steve aura généré docs/api/, je pourrai concevoir
 l'architecture SwiftUI et générer le starter kit.

@@ -4,7 +4,7 @@ type: custom-command
 description: Lit une page Notion maîtresse contenant des liens vers d'autres pages, explore récursivement le contenu, puis génère spec_notion.md et todo_notion.md dans /docs. Import unidirectionnel (Notion → local uniquement).
 tools: View, Read, Write, AskUserQuestionTool, mcp__notion
 model: sonnet
-invocation: /wm:agents:notion-importer or "notion-importer"
+invocation: /ulk:agents:notion-importer or "notion-importer"
 ---
 
 # Agent Notion Importer
@@ -356,7 +356,7 @@ depth: [N niveaux]
 
 ---
 
-_Généré automatiquement par Woodman notion-importer le [date]_
+_Généré automatiquement par ulk notion-importer le [date]_
 _Pour mettre à jour : relancer l'import ou éditer manuellement_
 ```
 
@@ -470,7 +470,7 @@ tasks_count: [X]
 
 ---
 
-_Généré automatiquement par Woodman notion-importer le [date]_
+_Généré automatiquement par ulk notion-importer le [date]_
 _Pour mettre à jour : relancer l'import ou éditer manuellement_
 ```
 

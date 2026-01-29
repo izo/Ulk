@@ -4,7 +4,7 @@ type: custom-command
 description: Audit complet de performance frontend et backend. Analyse bundle size, Core Web Vitals, requêtes N+1, cache, lazy loading, memory leaks, temps de réponse API. Génère un rapport avec métriques concrètes et crée les tâches d'optimisation. Utiliser pour optimiser les performances, préparer une release, ou diagnostiquer des lenteurs.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: sonnet
-invocation: /wm:agents:perf-auditor or "perf-auditor"
+invocation: /ulk:agents:perf-auditor or "perf-auditor"
 ---
 
 # Agent Perf Auditor

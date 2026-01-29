@@ -1,21 +1,21 @@
-# Woodman
+# ulk
 
 AI Development Toolkit pour Claude Code.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-blue)](https://izo.github.io/Woodman/)
-[![GitHub](https://img.shields.io/github/stars/izo/Woodman?style=social)](https://github.com/izo/Woodman)
+[![Live Demo](https://img.shields.io/badge/demo-live-blue)](https://izo.github.io/ulk/)
+[![GitHub](https://img.shields.io/github/stars/izo/ulk?style=social)](https://github.com/izo/ulk)
 
 ## Installation
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash
+curl -fsSL https://raw.githubusercontent.com/izo/ulk/main/install-remote.sh | bash
 ```
 
-Après installation, utilisez `/wm:update` pour mettre à jour.
+Après installation, utilisez `/ulk:update` pour mettre à jour.
 
 ## Commandes disponibles
 
-### Agents de développement (`/wm:agents:*`)
+### Agents de développement (`/ulk:agents:*`)
 
 | Commande | Description |
 |----------|-------------|
@@ -39,7 +39,7 @@ Après installation, utilisez `/wm:update` pour mettre à jour.
 | `jobs` | Implémentation Apple : architecture SwiftUI multi-plateforme |
 | `svg-analyzer` | Analyse React/Next.js → génère SVG via Shad2SVG |
 
-### Orchestrateurs (`/wm:agents:*`)
+### Orchestrateurs (`/ulk:agents:*`)
 
 Workflows automatisés combinant plusieurs agents :
 
@@ -49,7 +49,7 @@ Workflows automatisés combinant plusieurs agents :
 | `legacy-revival` | Revival code legacy : doc + simplify + fix + optimize (6 agents, 30-60min) |
 | `pre-release` | Checklist pre-release + GO/NO-GO (5-6 agents, 20-45min) |
 
-### Analyseurs de stack (`/wm:analyze:*`)
+### Analyseurs de stack (`/ulk:analyze:*`)
 
 | Commande | Description |
 |----------|-------------|
@@ -59,7 +59,7 @@ Workflows automatisés combinant plusieurs agents :
 | `swiftui` | Analyse SwiftUI, MVVM/TCA |
 | `spip` | Analyse SPIP 3-5, squelettes, CVT |
 
-### Déploiement (`/wm:deploy:*`)
+### Déploiement (`/ulk:deploy:*`)
 
 | Commande | Description |
 |----------|-------------|
@@ -69,14 +69,14 @@ Workflows automatisés combinant plusieurs agents :
 | `docker` | Build et déploie containers Docker |
 | `aws` | Déploie sur AWS S3/CloudFront/ECS |
 
-### Tests (`/wm:test:*`)
+### Tests (`/ulk:test:*`)
 
 | Commande | Description |
 |----------|-------------|
 | `unit` | Configure tests unitaires Jest/Vitest |
 | `e2e` | Configure tests E2E Playwright/Cypress |
 
-### Agents VPS (`/wm:vps:*`)
+### Agents VPS (`/ulk:vps:*`)
 
 17 agents pour gérer vos serveurs multi-projets :
 
@@ -84,7 +84,7 @@ Workflows automatisés combinant plusieurs agents :
 
 ## Site web
 
-Le site de documentation est disponible sur [izo.github.io/Woodman](https://izo.github.io/Woodman/).
+Le site de documentation est disponible sur [izo.github.io/ulk](https://izo.github.io/ulk/).
 
 ### Raccourcis clavier
 
@@ -106,30 +106,30 @@ Le site de documentation est disponible sur [izo.github.io/Woodman](https://izo.
 
 ### Nouveau projet
 ```
-/wm:agents:spec-writer → /wm:agents:todo-generator → /wm:agents:task-runner
+/ulk:agents:spec-writer → /ulk:agents:todo-generator → /ulk:agents:task-runner
 ```
 
 ### Audit complet (automatisé)
 ```
-/wm:agents:audit-complet
+/ulk:agents:audit-complet
 # Lance automatiquement : spec-writer → code-auditor → perf-auditor → a11y-auditor → todo-generator
 ```
 
 ### Code legacy
 ```
-/wm:agents:legacy-revival
+/ulk:agents:legacy-revival
 # Lance automatiquement : spec-writer → code-auditor → code-simplifier → robocop → perf-auditor → sync-local
 ```
 
 ### Pre-release check
 ```
-/wm:agents:pre-release
+/ulk:agents:pre-release
 # Lance automatiquement : audits + tests + docs → Verdict GO/NO-GO
 ```
 
 ### App Apple native (Steve → Jobs)
 ```
-/wm:agents:steve → /wm:agents:jobs
+/ulk:agents:steve → /ulk:agents:jobs
 # steve : Audit web → design API → docs/api/
 # jobs : Architecture SwiftUI → docs/apple-starter-kit/ (compilable)
 ```
@@ -143,19 +143,19 @@ Le site de documentation est disponible sur [izo.github.io/Woodman](https://izo.
 
 ### Audit manuel (pas à pas)
 ```
-/wm:agents:code-auditor → /wm:agents:perf-auditor → /wm:agents:a11y-auditor
+/ulk:agents:code-auditor → /ulk:agents:perf-auditor → /ulk:agents:a11y-auditor
 ```
 
 ### Nouveau serveur VPS
 ```
-/wm:vps:audit → /wm:vps:securite → /wm:vps:docker → /wm:vps:reseau
+/ulk:vps:audit → /ulk:vps:securite → /ulk:vps:docker → /ulk:vps:reseau
 ```
 
 ## Contribution
 
 Les commandes sont définies dans [`site/data/commands.json`](site/data/commands.json).
 
-Pour proposer un nouvel agent : [Ouvrir une issue](https://github.com/izo/Woodman/issues/new)
+Pour proposer un nouvel agent : [Ouvrir une issue](https://github.com/izo/ulk/issues/new)
 
 ## Auteur
 

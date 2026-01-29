@@ -4,7 +4,7 @@ type: custom-command
 description: Audit complet de l'utilisation de shadcn/ui dans un projet React/Next.js. Verifie configuration, imports, theming, accessibilite et anti-patterns. Genere un rapport detaille avec scores par categorie et recommandations de correction.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: sonnet
-invocation: /wm:agents:shadcn-auditor or "audit shadcn"
+invocation: /ulk:agents:shadcn-auditor or "audit shadcn"
 ---
 
 # Agent shadcn-auditor

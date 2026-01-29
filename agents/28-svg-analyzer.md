@@ -4,7 +4,7 @@ type: custom-command
 description: Analyse exhaustive d'un projet React/Next.js - identifie pages, layouts et composants shadcn/ui, puis génère des SVG via l'API Shad2SVG
 tools: Task, View, Read, Grep, Glob, Bash, Write, AskUserQuestionTool
 model: opus
-invocation: /wm:agents:svg-analyzer or "svg-analyzer" or "analyse SVG"
+invocation: /ulk:agents:svg-analyzer or "svg-analyzer" or "analyse SVG"
 ---
 
 # SVG Analyzer - Analyseur de Projet & Générateur SVG

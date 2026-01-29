@@ -1,19 +1,18 @@
 #!/bin/bash
-# Woodman - Remote Installation Script
+# ulk - Remote Installation Script
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/izo/ulk/main/install-remote.sh | bash
 #
 # Ou avec wget:
-#   wget -qO- https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash
+#   wget -qO- https://raw.githubusercontent.com/izo/ulk/main/install-remote.sh | bash
 
 set -e
 
-REPO="izo/Woodman"
+REPO="izo/ulk"
 BRANCH="main"
 CLAUDE_COMMANDS="$HOME/.claude/commands"
-WOODMAN_DIR="$CLAUDE_COMMANDS/woodman"
-WM_DIR="$CLAUDE_COMMANDS/wm"
+ULK_DIR="$CLAUDE_COMMANDS/ulk"
 TMP_DIR=$(mktemp -d)
 
 # Couleurs
@@ -29,15 +28,15 @@ cleanup() {
 trap cleanup EXIT
 
 echo ""
-echo -e "${GREEN}🪵 Woodman Remote Installer${NC}"
-echo "============================"
+echo -e "${GREEN}⚡ ulk Remote Installer${NC}"
+echo "========================"
 echo ""
 
 # Télécharger depuis GitHub
 echo -e "${BLUE}📥 Téléchargement depuis GitHub...${NC}"
 curl -sL "https://github.com/$REPO/archive/$BRANCH.tar.gz" | tar xz -C "$TMP_DIR"
 
-COMMANDS_SOURCE="$TMP_DIR/Woodman-$BRANCH/commands"
+COMMANDS_SOURCE="$TMP_DIR/ulk-$BRANCH/commands"
 
 if [ ! -d "$COMMANDS_SOURCE" ]; then
     echo -e "${RED}❌ Erreur: Impossible de télécharger les commandes${NC}"
@@ -47,8 +46,8 @@ fi
 # Créer le dossier .claude/commands s'il n'existe pas
 mkdir -p "$CLAUDE_COMMANDS"
 
-# Nettoyer les anciennes installations
-for target in "$WOODMAN_DIR" "$WM_DIR"; do
+# Nettoyer les anciennes installations (woodman, wm, ulk)
+for target in "$CLAUDE_COMMANDS/woodman" "$CLAUDE_COMMANDS/wm" "$ULK_DIR"; do
     if [ -e "$target" ] || [ -L "$target" ]; then
         rm -rf "$target"
     fi
@@ -56,26 +55,22 @@ done
 
 # Copier les fichiers
 echo -e "${BLUE}📦 Installation des commandes...${NC}"
-cp -r "$COMMANDS_SOURCE" "$WOODMAN_DIR"
-cp -r "$COMMANDS_SOURCE" "$WM_DIR"
+cp -r "$COMMANDS_SOURCE" "$ULK_DIR"
 
 # Récupérer la version (commit hash)
 VERSION=$(curl -s "https://api.github.com/repos/$REPO/commits/$BRANCH" | grep '"sha"' | head -1 | cut -d'"' -f4 | cut -c1-7)
-echo "$VERSION" > "$WOODMAN_DIR/.version"
-echo "$VERSION" > "$WM_DIR/.version"
-echo "https://github.com/$REPO" > "$WOODMAN_DIR/.source"
-echo "https://github.com/$REPO" > "$WM_DIR/.source"
+echo "$VERSION" > "$ULK_DIR/.version"
+echo "https://github.com/$REPO" > "$ULK_DIR/.source"
 
 echo ""
-echo "   ✅ /woodman → installé"
-echo "   ✅ /wm      → installé (alias)"
+echo "   ✅ /ulk → installé"
 
 # Compter les commandes
-AGENT_COUNT=$(find "$WOODMAN_DIR/agents" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
-ANALYZE_COUNT=$(find "$WOODMAN_DIR/analyze" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
-DEPLOY_COUNT=$(find "$WOODMAN_DIR/deploy" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
-TEST_COUNT=$(find "$WOODMAN_DIR/test" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
-VPS_COUNT=$(find "$WOODMAN_DIR/vps" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+AGENT_COUNT=$(find "$ULK_DIR/agents" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+ANALYZE_COUNT=$(find "$ULK_DIR/analyze" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+DEPLOY_COUNT=$(find "$ULK_DIR/deploy" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+TEST_COUNT=$(find "$ULK_DIR/test" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+VPS_COUNT=$(find "$ULK_DIR/vps" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 
 echo ""
 echo -e "${GREEN}✅ Installation réussie!${NC}"
@@ -92,16 +87,16 @@ echo ""
 
 echo -e "${YELLOW}🚀 Usage:${NC}"
 echo ""
-echo "   /wm:agents:spec-writer        # Générer spec.md"
-echo "   /wm:agents:robocop            # Fixer erreurs"
-echo "   /wm:agents:audit-complet      # Audit complet (5 agents)"
-echo "   /wm:agents:legacy-revival     # Revival code legacy (6 agents)"
-echo "   /wm:agents:pre-release        # Checklist pre-release + GO/NO-GO"
-echo "   /wm:vps:orchestrateur         # Orchestrateur VPS"
-echo "   /wm:update                    # Mettre à jour"
+echo "   /ulk:agents:spec-writer        # Générer spec.md"
+echo "   /ulk:agents:robocop            # Fixer erreurs"
+echo "   /ulk:agents:audit-complet      # Audit complet (5 agents)"
+echo "   /ulk:agents:legacy-revival     # Revival code legacy (6 agents)"
+echo "   /ulk:agents:pre-release        # Checklist pre-release + GO/NO-GO"
+echo "   /ulk:vps:orchestrateur         # Orchestrateur VPS"
+echo "   /ulk:update                    # Mettre à jour"
 echo ""
 
 echo -e "${YELLOW}📝 Pour mettre à jour:${NC}"
-echo "   /wm:update"
+echo "   /ulk:update"
 echo "   # ou relancer: curl -fsSL https://raw.githubusercontent.com/$REPO/main/install-remote.sh | bash"
 echo ""
