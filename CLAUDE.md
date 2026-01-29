@@ -60,6 +60,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `26-picsou.md` - Hosting cost estimator: analyzes infrastructure, compares providers, generates cost reports with recommendations
 - `27-steve.md` - Mobile API orchestrator: audits web projects, designs API for iOS/Android parity, generates full documentation
 - `28-svg-analyzer.md` - Analyzes React/Next.js projects, inventories pages and shadcn/ui components, generates SVG via Shad2SVG API
+- `29-jobs.md` - Apple implementation architect: Steve's adjoint, designs multi-platform SwiftUI architecture, generates compilable starter kit
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -91,6 +92,7 @@ Once installed, invoke agents anywhere with:
 /woodman:agents:c3po
 /woodman:agents:picsou
 /woodman:agents:steve
+/woodman:agents:jobs
 /woodman:agents:svg-analyzer
 /woodman:analyze:nuxt
 ```

@@ -56,6 +56,7 @@ model: opus | sonnet
 | **picsou** | `26-picsou.md` | opus | Hosting cost estimator - analyzes infrastructure, compares providers (Vercel, Netlify, Railway, Hetzner, OVH, etc.), generates cost reports with recommendations |
 | **steve** | `27-steve.md` | opus | Mobile API orchestrator - audits web projects (Next.js, JS, PHP, Swift), designs complete API for iOS/Android connectivity with full web/mobile functional parity |
 | **svg-analyzer** | `28-svg-analyzer.md` | opus | Analyzes React/Next.js projects, inventories all pages and shadcn/ui components, generates SVG mockups via Shad2SVG API |
+| **jobs** | `29-jobs.md` | opus | Apple implementation architect - Steve's mandatory adjoint, designs multi-platform SwiftUI architecture (iOS, macOS, watchOS, tvOS, visionOS), generates compilable starter kit and implementation roadmap |
 
 ### Stack Analyzers (10-analyze/)
 
@@ -228,6 +229,13 @@ Agents follow `update-protocol.md` to avoid file conflicts:
   → Designs: complete API architecture for mobile connectivity
   → Documents: endpoints, schemas, auth flows, parity matrix
   → Generates: docs/api/ (full documentation + implementation plan)
+
+"Implémentation Apple" → jobs (29)
+  → Prerequisite: docs/api/ must exist (run steve first)
+  → Analyzes: API endpoints, schemas, auth flows from docs/api/
+  → Designs: multi-platform SwiftUI architecture (iOS, macOS, watchOS, tvOS, visionOS)
+  → Generates: docs/apple-starter-kit/ (compilable Swift code)
+  → Documents: docs/apple-implementation-guide-*.md + docs/apple-roadmap-*.md
 ```
 
 ### Pre-Release Quality Checks (Manual)
@@ -481,6 +489,9 @@ Agents generate these standard files in the project root:
   - **docs/00-meta/audit-YYYY-MM-DD.md**: Documentation audit reports
   - **docs/reports/estimation-couts-YYYYMMDD.md**: Hosting cost estimation report (from 26-picsou)
   - **docs/api/**: Complete API documentation for mobile connectivity (from 27-steve)
+  - **docs/apple-starter-kit/**: Compilable Swift Package for multi-platform Apple apps (from 29-jobs)
+  - **docs/apple-implementation-guide-YYYYMMDD.md**: SwiftUI architecture documentation (from 29-jobs)
+  - **docs/apple-roadmap-YYYYMMDD.md**: Implementation tasks with #SWIFT-NNN prefix (from 29-jobs)
   - **.claude/docs-metrics.json**: Documentation health metrics
 
 ## Separation of Responsibilities
@@ -508,9 +519,45 @@ Agents generate these standard files in the project root:
 **Use together:** `03-sync-local` → `08-external-sync` for complete workflow
 **Or:** `21-notion-importer` → `08-external-sync` for Notion→Linear migration
 
+### 27-steve + 29-jobs (Mobile API → Apple Implementation)
+
+The Steve → Jobs workflow is the complete path from web project to native Apple app:
+
+**Steve (27) - API Design Phase:**
+- ✅ Audits web project (Next.js, Nuxt, Laravel, etc.)
+- ✅ Maps all web features
+- ✅ Designs complete API for mobile connectivity
+- ✅ Generates docs/api/ (endpoints, schemas, auth, parity matrix)
+- ❌ Does NOT generate client-side code
+
+**Jobs (29) - Apple Implementation Phase:**
+- ⚠️ REQUIRES docs/api/ (refuses to start without it)
+- ✅ Parses Steve's API documentation
+- ✅ Designs multi-platform SwiftUI architecture (iOS, macOS, watchOS, tvOS, visionOS)
+- ✅ Generates docs/apple-starter-kit/ (compilable Swift code)
+- ✅ Creates implementation guide + roadmap (#SWIFT-NNN tasks)
+- ❌ Does NOT modify the API or web project
+
+**Complete Workflow:**
+```
+"API mobile" → steve (27) → docs/api/
+    ↓
+"Implémentation Apple" → jobs (29) → docs/apple-starter-kit/
+    ↓
+task-runner (04) → implement #SWIFT-NNN tasks
+    ↓
+robocop (11) → fix Swift compilation errors
+```
+
+**Key Outputs:**
+- `docs/api/` - Complete API documentation (Steve)
+- `docs/apple-starter-kit/` - Compilable Swift Package (Jobs)
+- `docs/apple-implementation-guide-*.md` - Architecture documentation (Jobs)
+- `docs/apple-roadmap-*.md` - Implementation tasks (Jobs)
+
 ## Model Distribution
 
-- **opus** (14 agents): Complex analysis requiring deep reasoning
+- **opus** (15 agents): Complex analysis requiring deep reasoning
   - 01-spec-writer: Multi-stack project analysis
   - 05-code-auditor: Comprehensive code audit
   - 08-external-sync: Bidirectional conflict resolution
@@ -525,6 +572,7 @@ Agents generate these standard files in the project root:
   - 26-picsou: Multi-provider hosting cost estimation and comparison
   - 27-steve: Mobile API orchestrator with architecture design and parity analysis
   - 28-svg-analyzer: React/Next.js project analysis and SVG mockup generation via Shad2SVG
+  - 29-jobs: Apple implementation architect with multi-platform SwiftUI architecture design
 
 - **sonnet** (25 agents): Structured tasks, automation, performance optimization
   - All other agents (00, 02-04, 06-07, 09, 10-*, 11-deploy/*, 12-*, 13, 15, 16, 22, 23, 24)

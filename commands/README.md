@@ -56,6 +56,7 @@ Dans Claude Code, invoquez les agents avec :
 | `notion-importer` | Import page Notion + liens → spec_notion.md + todo_notion.md |
 | `picsou` | Estimation coûts d'hébergement multi-providers |
 | `steve` | API mobile : audit web → design API → documentation iOS/Android |
+| `jobs` | Implémentation Apple : adjoint de Steve → architecture SwiftUI multi-plateforme → starter kit compilable |
 | `svg-analyzer` | Analyse React/Next.js → inventaire pages/composants → génère SVG via Shad2SVG |
 
 ### Analyzers (`/woodman:analyze:*`)
@@ -140,6 +141,7 @@ commands/
 │   ├── tw2shad.md
 │   ├── picsou.md
 │   ├── steve.md
+│   ├── jobs.md
 │   ├── svg-analyzer.md
 │   └── ...
 ├── analyze/          # Stack analyzers
