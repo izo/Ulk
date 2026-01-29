@@ -32,7 +32,7 @@ gh run list --workflow=deploy.yml
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
-**Workflow Agents (00-30):**
+**Workflow Agents (00-31):**
 - `00-gybe.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive docs/spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
@@ -62,6 +62,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `28-svg-analyzer.md` - Analyzes React/Next.js projects, inventories pages and shadcn/ui components, generates SVG via Shad2SVG API
 - `29-jobs.md` - Apple implementation architect: Steve's adjoint, designs multi-platform SwiftUI architecture, generates compilable starter kit
 - `30-gogogo.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
+- `31-ranma.md` - Migration planning agent: analyzes source project and generates detailed migration plan to target stack (WordPress→SPIP, Next→Nuxt, SPIP→Astro, Kirby→Astro, etc.)
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -96,6 +97,7 @@ Once installed, invoke agents anywhere with:
 /woodman:agents:jobs
 /woodman:agents:svg-analyzer
 /woodman:agents:gogogo
+/woodman:agents:ranma
 /woodman:analyze:nuxt
 ```
 
@@ -205,6 +207,12 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "gogogo" → simplify code → update docs → sync Notion/Linear → update README → prepare release
 "gogogo express" → same workflow with minimal questions, auto decisions
 "Ship it!" → gogogo orchestrates 6 agents: code-simplifier, spec-writer, todo-generator, external-sync, sync-local, robocop
+
+# Migration planning (ranma)
+"ranma" → analyze source project → ask target stack → generate migration plan in docs/migration/
+"Migration WordPress vers SPIP" → ranma detects WP, proposes SPIP mapping, generates plan-migration.md
+"Next to Nuxt" → ranma maps React→Vue concepts, API routes→Nitro, generates detailed plan
+"Kirby → Astro" → ranma maps blueprints→content collections, templates→.astro pages
 
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
@@ -329,6 +337,7 @@ Woodman/
 │   ├── 28-svg-analyzer.md
 │   ├── 29-jobs.md
 │   ├── 30-gogogo.md
+│   ├── 31-ranma.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -351,7 +360,8 @@ Woodman/
 │   │   ├── picsou.md
 │   │   ├── steve.md
 │   │   ├── svg-analyzer.md
-│   │   └── gogogo.md
+│   │   ├── gogogo.md
+│   │   └── ranma.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md
