@@ -64,6 +64,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `30-gogogo.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
 - `31-ranma.md` - Migration planning agent: analyzes source project and generates detailed migration plan to target stack (WordPress→SPIP, Next→Nuxt, SPIP→Astro, Kirby→Astro, etc.)
 - `32-seo-auditor.md` - SEO & GEO audit: technical SEO (meta, sitemap, schema.org), on-page (headings, content), performance (Core Web Vitals), and GEO (Generative Engine Optimization for AI citations)
+- `33-pencil-generator.md` - Next.js to Pencil: analyzes pages, layouts, shadcn/ui components and generates .pen files with design tokens
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -100,6 +101,7 @@ Once installed, invoke agents anywhere with:
 /ulk:agents:gogogo
 /ulk:agents:ranma
 /ulk:agents:seo-auditor
+/ulk:agents:pencil-generator
 /ulk:analyze:nuxt
 ```
 
@@ -220,6 +222,12 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "Audit SEO" → seo-auditor analyzes technical SEO, on-page, performance, GEO → generates audit-seo.md
 "Optimize for AI" → seo-auditor focuses on GEO: answer-first content, FAQ schemas, E-E-A-T signals
 "Check SEO before launch" → seo-auditor runs full audit with checklist → GO/NO-GO for SEO readiness
+
+# Pencil generation (pencil-generator)
+"pencil-generator" → scan Next.js project → identify pages/layouts → generate .pen files in design/
+"Génère les pencil" → pencil-generator analyzes all pages, extracts tokens from globals.css → design/*.pen
+"scan" → list all pages and layouts detected in the project
+"generate-all" → generate .pen files for all pages with _tokens.pen and _layouts/
 
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
@@ -346,6 +354,7 @@ ulk/
 │   ├── 30-gogogo.md
 │   ├── 31-ranma.md
 │   ├── 32-seo-auditor.md
+│   ├── 33-pencil-generator.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -370,7 +379,8 @@ ulk/
 │   │   ├── svg-analyzer.md
 │   │   ├── gogogo.md
 │   │   ├── ranma.md
-│   │   └── seo-auditor.md
+│   │   ├── seo-auditor.md
+│   │   └── pencil-generator.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md
