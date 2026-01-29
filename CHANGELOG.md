@@ -5,6 +5,48 @@ All notable changes to ulk will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-01-29
+
+### Added
+
+- **New Agent: SEO & GEO Auditor (32)** - Comprehensive SEO and AI optimization audit
+  - Technical SEO: meta tags, sitemap.xml, robots.txt, canonical URLs, schema.org markup
+  - On-page SEO: heading structure (H1-H6), content analysis, internal linking
+  - Performance: Core Web Vitals integration, page speed analysis
+  - GEO (Generative Engine Optimization): optimization for AI citations (ChatGPT, Claude, Perplexity)
+    - Answer-first content structure
+    - FAQ schema markup for AI extraction
+    - E-E-A-T signals (Experience, Expertise, Authoritativeness, Trustworthiness)
+    - Structured data for AI comprehension
+  - Output: `docs/audits/audit-seo-YYYYMMDD.md`
+  - GO/NO-GO checklist for launch readiness
+  - Model: opus (complex multi-dimensional analysis)
+
+- **New Agent: Pencil Page Generator (33)** - Next.js to Pencil file generator
+  - Nicknamed "Jean-Marie" - methodical and exhaustive analyzer
+  - Scans Next.js projects (App Router and Pages Router)
+  - Detects all pages, layouts, and their hierarchy
+  - Extracts design tokens from `globals.css` → `_tokens.pen`
+  - Generates `.pen` files for each page with:
+    - Layout imports (`_layouts/*.pen`)
+    - shadcn/ui component references with props/variants
+    - Visual structure preservation
+  - Supports advanced routing:
+    - Dynamic routes (`[id]`, `[...slug]`)
+    - Route groups (`(marketing)`)
+    - Parallel routes and intercepting routes
+  - Commands: `scan`, `generate [page]`, `generate-all`, `sync-tokens`, `status`
+  - Output: `design/` folder with organized .pen files
+  - Model: opus (complex analysis and faithful generation)
+
+### Updated
+
+- `install.sh`: Added pencil-generator to usage examples
+- `CLAUDE.md`: Added both agents to workflow examples and file structure
+- `commands/README.md`: Added both agents to command reference table
+
+---
+
 ## [2.0.0] - 2026-01-29
 
 ### Breaking Changes
@@ -284,6 +326,7 @@ curl -fsSL https://raw.githubusercontent.com/izo/ulk/main/install-remote.sh | ba
 
 ---
 
+[2.1.0]: https://github.com/izo/ulk/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/izo/ulk/compare/v1.14.0...v2.0.0
 [1.14.0]: https://github.com/izo/ulk/compare/v1.13.0...v1.14.0
 [1.13.0]: https://github.com/izo/ulk/compare/v1.12.0...v1.13.0
