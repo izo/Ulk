@@ -32,7 +32,7 @@ gh run list --workflow=deploy.yml
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
-**Workflow Agents (00-31):**
+**Workflow Agents (00-32):**
 - `00-gybe.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive docs/spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
@@ -63,6 +63,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `29-jobs.md` - Apple implementation architect: Steve's adjoint, designs multi-platform SwiftUI architecture, generates compilable starter kit
 - `30-gogogo.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
 - `31-ranma.md` - Migration planning agent: analyzes source project and generates detailed migration plan to target stack (WordPress→SPIP, Next→Nuxt, SPIP→Astro, Kirby→Astro, etc.)
+- `32-seo-auditor.md` - SEO & GEO audit: technical SEO (meta, sitemap, schema.org), on-page (headings, content), performance (Core Web Vitals), and GEO (Generative Engine Optimization for AI citations)
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -98,6 +99,7 @@ Once installed, invoke agents anywhere with:
 /ulk:agents:svg-analyzer
 /ulk:agents:gogogo
 /ulk:agents:ranma
+/ulk:agents:seo-auditor
 /ulk:analyze:nuxt
 ```
 
@@ -213,6 +215,11 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "Migration WordPress vers SPIP" → ranma detects WP, proposes SPIP mapping, generates plan-migration.md
 "Next to Nuxt" → ranma maps React→Vue concepts, API routes→Nitro, generates detailed plan
 "Kirby → Astro" → ranma maps blueprints→content collections, templates→.astro pages
+
+# SEO & GEO audit (seo-auditor)
+"Audit SEO" → seo-auditor analyzes technical SEO, on-page, performance, GEO → generates audit-seo.md
+"Optimize for AI" → seo-auditor focuses on GEO: answer-first content, FAQ schemas, E-E-A-T signals
+"Check SEO before launch" → seo-auditor runs full audit with checklist → GO/NO-GO for SEO readiness
 
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
@@ -338,6 +345,7 @@ ulk/
 │   ├── 29-jobs.md
 │   ├── 30-gogogo.md
 │   ├── 31-ranma.md
+│   ├── 32-seo-auditor.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -361,7 +369,8 @@ ulk/
 │   │   ├── steve.md
 │   │   ├── svg-analyzer.md
 │   │   ├── gogogo.md
-│   │   └── ranma.md
+│   │   ├── ranma.md
+│   │   └── seo-auditor.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md
