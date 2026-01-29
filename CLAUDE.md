@@ -32,7 +32,7 @@ gh run list --workflow=deploy.yml
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
-**Workflow Agents (00-28):**
+**Workflow Agents (00-30):**
 - `00-gybe.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive docs/spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
@@ -61,6 +61,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `27-steve.md` - Mobile API orchestrator: audits web projects, designs API for iOS/Android parity, generates full documentation
 - `28-svg-analyzer.md` - Analyzes React/Next.js projects, inventories pages and shadcn/ui components, generates SVG via Shad2SVG API
 - `29-jobs.md` - Apple implementation architect: Steve's adjoint, designs multi-platform SwiftUI architecture, generates compilable starter kit
+- `30-gogogo.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -94,6 +95,7 @@ Once installed, invoke agents anywhere with:
 /woodman:agents:steve
 /woodman:agents:jobs
 /woodman:agents:svg-analyzer
+/woodman:agents:gogogo
 /woodman:analyze:nuxt
 ```
 
@@ -197,6 +199,11 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 # SVG mockup generation
 "Analyse ce projet" → svg-analyzer Phase 1 → generates ANALYSE_PAGES.md with pages/components inventory
 "Génère les SVG" → svg-analyzer Phase 2 → calls Shad2SVG API → generates output/*.svg + preview index
+
+# Fast delivery (gogogo)
+"gogogo" → simplify code → update docs → sync Notion/Linear → update README → prepare release
+"gogogo express" → same workflow with minimal questions, auto decisions
+"Ship it!" → gogogo orchestrates 6 agents: code-simplifier, spec-writer, todo-generator, external-sync, sync-local, robocop
 
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
@@ -319,6 +326,8 @@ Woodman/
 │   ├── 26-picsou.md
 │   ├── 27-steve.md
 │   ├── 28-svg-analyzer.md
+│   ├── 29-jobs.md
+│   ├── 30-gogogo.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -340,7 +349,8 @@ Woodman/
 │   │   ├── pre-release.md
 │   │   ├── picsou.md
 │   │   ├── steve.md
-│   │   └── svg-analyzer.md
+│   │   ├── svg-analyzer.md
+│   │   └── gogogo.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md
