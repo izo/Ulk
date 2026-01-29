@@ -58,7 +58,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `24-brigitte.md` - Friendly communications for non-tech teams (commits → human-readable updates)
 - `25-c3po.md` - Product Manager orchestrator: transforms ideas into projects (spec → todo → tasks → audits)
 - `26-picsou.md` - Hosting cost estimator: analyzes infrastructure, compares providers, generates cost reports with recommendations
-- `27-steve.md` - Mobile API orchestrator: audits web projects, designs API for iOS/Android parity, generates full documentation
+- `27-steve.md` - Apple API orchestrator: audits web projects, designs API for Apple platforms (iOS, macOS, watchOS, tvOS, visionOS) parity, generates full documentation
 - `28-svg-analyzer.md` - Analyzes React/Next.js projects, inventories pages and shadcn/ui components, generates SVG via Shad2SVG API
 - `29-jobs.md` - Apple implementation architect: Steve's adjoint, designs multi-platform SwiftUI architecture, generates compilable starter kit
 
@@ -190,9 +190,10 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "Combien ça coûte ?" → picsou scans infrastructure, compares providers, generates report
 "Estime les coûts" → picsou analyzes stack + DB + services → docs/reports/estimation-couts.md
 
-# Mobile API
-"API mobile" → steve audits web project, designs API, documents endpoints for iOS/Android parity
-"Connecter une app mobile" → steve scans features, proposes API architecture, generates docs/api/
+# Apple API
+"API Apple" → steve audits web project, designs API, documents endpoints for Apple platforms parity
+"Connecter une app Apple" → steve scans features, proposes API architecture, generates docs/api/
+"API mobile" → steve + jobs for complete Apple ecosystem (API + SwiftUI starter kit)
 
 # SVG mockup generation
 "Analyse ce projet" → svg-analyzer Phase 1 → generates ANALYSE_PAGES.md with pages/components inventory
