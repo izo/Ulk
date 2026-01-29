@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "1.12.0",
-    "totalCommands": 54,
-    "lastUpdated": "2026-01-27"
+    "version": "1.14.0",
+    "totalCommands": 57,
+    "lastUpdated": "2026-01-29"
   },
   "categories": [
     {
@@ -117,6 +117,21 @@
           "name": "picsou",
           "description": "Estimateur coûts hébergement - compare providers, génère rapports avec recommandations",
           "icon": "coins"
+        },
+        {
+          "name": "steve",
+          "description": "API mobile : audit web → design API → documentation iOS/Android avec parité fonctionnelle",
+          "icon": "smartphone"
+        },
+        {
+          "name": "jobs",
+          "description": "Implémentation Apple : adjoint de Steve → architecture SwiftUI multi-plateforme → starter kit Swift compilable",
+          "icon": "apple"
+        },
+        {
+          "name": "svg-analyzer",
+          "description": "Analyse React/Next.js → inventaire pages/composants → génère SVG via Shad2SVG API",
+          "icon": "image"
         },
         {
           "name": "frontend-qa",
@@ -379,6 +394,16 @@
         "/wm:vps:backups",
         "/wm:vps:cleanup",
         "/wm:vps:audit"
+      ]
+    },
+    {
+      "id": "mobile-apple",
+      "name": "App Apple native",
+      "description": "API mobile + implémentation SwiftUI multi-plateforme",
+      "icon": "smartphone",
+      "steps": [
+        "/wm:agents:steve",
+        "/wm:agents:jobs"
       ]
     }
   ],

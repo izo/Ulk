@@ -36,6 +36,7 @@ Après installation, utilisez `/wm:update` pour mettre à jour.
 | `frontend-qa` | Audit frontend UX/UI et Tailwind |
 | `picsou` | Estimation coûts d'hébergement multi-providers |
 | `steve` | API mobile : audit web → design API iOS/Android |
+| `jobs` | Implémentation Apple : architecture SwiftUI multi-plateforme |
 | `svg-analyzer` | Analyse React/Next.js → génère SVG via Shad2SVG |
 
 ### Orchestrateurs (`/wm:agents:*`)
@@ -124,6 +125,13 @@ Le site de documentation est disponible sur [izo.github.io/Woodman](https://izo.
 ```
 /wm:agents:pre-release
 # Lance automatiquement : audits + tests + docs → Verdict GO/NO-GO
+```
+
+### App Apple native (Steve → Jobs)
+```
+/wm:agents:steve → /wm:agents:jobs
+# steve : Audit web → design API → docs/api/
+# jobs : Architecture SwiftUI → docs/apple-starter-kit/ (compilable)
 ```
 
 ### Génération SVG de maquettes
