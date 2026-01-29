@@ -480,4 +480,4 @@ npm run test:ui       # UI mode (Vitest)
 
 ---
 
-_Agent Test Unit · Woodman Agents_
+_Agent Test Unit · ulk Agents_

@@ -4,7 +4,7 @@ type: custom-command
 description: Planificateur de migration technologique - analyse un projet source et génère un plan de migration détaillé vers une stack cible. Supporte toutes les combinaisons (WordPress→SPIP, Next→Nuxt, SPIP→Astro, Kirby→Astro, Laravel→Rails, etc.).
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task, AskUserQuestionTool
 model: opus
-invocation: /wm:agents:ranma or "ranma" or "migration"
+invocation: /ulk:agents:ranma or "ranma" or "migration"
 ---
 
 # Agent Ranma - Planificateur de Migration

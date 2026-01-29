@@ -1,4 +1,4 @@
-# Règles communes à tous les agents Woodman
+# Règles communes à tous les agents ulk
 
 > Ce fichier est la source de vérité pour les règles partagées.
 > Les agents doivent lire ce fichier au démarrage via `Read agents/_shared/base-rules.md`.

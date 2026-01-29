@@ -4,7 +4,7 @@ type: custom-command
 description: Audit exhaustif d'un repo - spec, code, performance, accessibilité - génère un rapport consolidé et plan d'action
 tools: Task, Read, Write, Bash, AskUserQuestionTool
 model: opus
-invocation: /wm:agents:audit-complet or "audit-complet"
+invocation: /ulk:agents:audit-complet or "audit-complet"
 ---
 
 # Audit Complet - Orchestrateur

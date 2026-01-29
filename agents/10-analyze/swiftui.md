@@ -4,7 +4,7 @@ type: custom-command
 description: Analyse un projet SwiftUI pour inventorier les Views, Modifiers, composants custom, architecture (MVVM, TCA), détecter les problèmes de performance et proposer des optimisations. Supporte iOS/macOS/watchOS/tvOS/visionOS.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: sonnet
-invocation: /wm:analyze:swiftui or "analyze swiftui"
+invocation: /ulk:analyze:swiftui or "analyze swiftui"
 ---
 
 # Agent SwiftUI Analyzer

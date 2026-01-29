@@ -322,8 +322,8 @@ Multi-stage build pour :
 
 - **`../Readme.md`** : Vue d'ensemble de tous les agents
 - **`../CLAUDE.md`** : Architecture complète du système
-- **`/CLAUDE.md`** : Instructions globales Woodman
+- **`/CLAUDE.md`** : Instructions globales ulk
 
 ---
 
-_Woodman Agents · 11-deploy/ · Automated Deployment_
+_ulk Agents · 11-deploy/ · Automated Deployment_

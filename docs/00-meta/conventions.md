@@ -11,7 +11,7 @@ tags: [conventions, standards, frontmatter]
 
 # Conventions de Documentation
 
-> Conventions et standards pour toute la documentation générée par les agents Woodman
+> Conventions et standards pour toute la documentation générée par les agents ulk
 
 ## Principe général
 
@@ -206,14 +206,14 @@ docs/01-specs/spec-2024-01-15.md
 
 ```yaml
 ---
-title: Spécification Projet Woodman
+title: Spécification Projet ulk
 type: spec
 category: specs
 date: 2024-01-15
 updated: 2024-01-15
 status: active
 author: spec-writer
-tags: [woodman, spec, agents]
+tags: [ulk, spec, agents]
 version: 1.0.0
 stack: node
 scope: fullstack
@@ -357,7 +357,7 @@ Utiliser des liens relatifs :
 [Spec Projet](../01-specs/spec-2024-01-15.md)
 
 <!-- Mauvais -->
-[Spec Projet](/Users/izo/Sites/docs/Woodman/docs/01-specs/spec-2024-01-15.md)
+[Spec Projet](/Users/izo/Sites/docs/ulk/docs/01-specs/spec-2024-01-15.md)
 ```
 
 ---
@@ -394,14 +394,14 @@ docs/01-specs/spec-2023-01-15.md
 
 ```yaml
 ---
-title: Spécification Woodman v2
+title: Spécification ulk v2
 type: spec
 category: specs
 date: 2024-01-15
 updated: 2024-01-15
 status: active
 author: spec-writer
-tags: [woodman, spec, v2, agents]
+tags: [ulk, spec, v2, agents]
 version: 2.0.0
 stack: node
 scope: fullstack
@@ -412,7 +412,7 @@ scope: fullstack
 
 ```yaml
 ---
-title: Audit Performance Woodman
+title: Audit Performance ulk
 type: audit
 category: audits
 date: 2024-01-15
@@ -430,7 +430,7 @@ findings_count: 8
 
 ```yaml
 ---
-title: Guide Installation Woodman
+title: Guide Installation ulk
 type: guide
 category: guides
 date: 2024-01-15

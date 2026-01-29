@@ -1,4 +1,4 @@
-name: Deploy Woodman to GitHub Pages
+name: Deploy ulk to GitHub Pages
 
 on:
   push:

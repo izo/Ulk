@@ -4,7 +4,7 @@ type: custom-command
 description: Orchestrateur API Apple - audite un projet web existant (Next.js, JS, PHP, Swift), analyse son architecture et ses fonctionnalités, puis conçoit et documente une API complète pour connecter des applications Apple (iOS, macOS, watchOS, tvOS, visionOS) avec parité fonctionnelle web/Apple.
 tools: Task, View, Read, Grep, Glob, Bash, Write, MultiEdit, AskUserQuestionTool
 model: opus
-invocation: /wm:agents:steve or "steve" or "API Apple"
+invocation: /ulk:agents:steve or "steve" or "API Apple"
 ---
 
 # Steve - Orchestrateur API Apple
@@ -474,7 +474,7 @@ docs/api/
 ```markdown
 # API Documentation - [Nom du Projet]
 
-> Generee le [date] par Steve (Woodman)
+> Generee le [date] par Steve (ulk)
 > Version API : v1
 > Base URL : `[URL]`
 
@@ -710,7 +710,7 @@ Prochaines étapes :
 
 ## Délégation aux Autres Agents
 
-Steve peut déléguer à ces agents Woodman :
+Steve peut déléguer à ces agents ulk :
 
 | Besoin | Agent délégué |
 |--------|---------------|

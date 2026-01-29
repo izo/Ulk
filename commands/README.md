@@ -1,4 +1,4 @@
-# Woodman Commands
+# ulk Commands
 
 Custom Commands pour Claude Code - agents spécialisés pour le développement.
 
@@ -10,7 +10,7 @@ Depuis la racine du repo :
 ./install.sh
 ```
 
-Cela crée un symlink `~/.claude/commands/woodman` → `./commands/`
+Cela crée un symlink `~/.claude/commands/ulk` → `./commands/`
 
 ## Désinstallation
 
@@ -23,16 +23,16 @@ Cela crée un symlink `~/.claude/commands/woodman` → `./commands/`
 Dans Claude Code, invoquez les agents avec :
 
 ```
-/woodman:agents:spec-writer
-/woodman:agents:todo-generator
-/woodman:agents:code-auditor
-/woodman:analyze:nuxt
+/ulk:agents:spec-writer
+/ulk:agents:todo-generator
+/ulk:agents:code-auditor
+/ulk:analyze:nuxt
 ...
 ```
 
 ## Agents disponibles
 
-### Workflow (`/woodman:agents:*`)
+### Workflow (`/ulk:agents:*`)
 
 | Agent | Description |
 |-------|-------------|
@@ -59,7 +59,7 @@ Dans Claude Code, invoquez les agents avec :
 | `jobs` | Implémentation Apple : adjoint de Steve → architecture SwiftUI multi-plateforme → starter kit compilable |
 | `svg-analyzer` | Analyse React/Next.js → inventaire pages/composants → génère SVG via Shad2SVG |
 
-### Analyzers (`/woodman:analyze:*`)
+### Analyzers (`/ulk:analyze:*`)
 
 | Analyzer | Stack |
 |----------|-------|
@@ -69,7 +69,7 @@ Dans Claude Code, invoquez les agents avec :
 | `spip` | SPIP 3-5 |
 | `swiftui` | SwiftUI iOS/macOS |
 
-### Deploy (`/woodman:deploy:*`)
+### Deploy (`/ulk:deploy:*`)
 
 | Agent | Platform |
 |-------|----------|
@@ -79,7 +79,7 @@ Dans Claude Code, invoquez les agents avec :
 | `docker` | Docker containerization + docker-compose |
 | `aws` | AWS (S3+CloudFront, ECS, Elastic Beanstalk) |
 
-### Test (`/woodman:test:*`)
+### Test (`/ulk:test:*`)
 
 | Agent | Framework |
 |-------|-----------|
@@ -91,7 +91,7 @@ Dans Claude Code, invoquez les agents avec :
 Les orchestrateurs combinent plusieurs agents en un workflow automatisé :
 
 ### 🎯 audit-complet
-**Usage :** `/woodman:agents:audit-complet`
+**Usage :** `/ulk:agents:audit-complet`
 
 Audit exhaustif d'un repo en 5 phases :
 1. spec-writer → documentation
@@ -103,7 +103,7 @@ Audit exhaustif d'un repo en 5 phases :
 **Durée :** 15-30 min | **Output :** 6 fichiers incluant rapport consolidé
 
 ### 🔄 legacy-revival
-**Usage :** `/woodman:agents:legacy-revival`
+**Usage :** `/ulk:agents:legacy-revival`
 
 Remise à niveau code legacy en 7 phases :
 1. spec-writer → documentation existant
@@ -117,7 +117,7 @@ Remise à niveau code legacy en 7 phases :
 **Durée :** 30-60 min | **Output :** Métriques avant/après + roadmap
 
 ### 🚀 pre-release
-**Usage :** `/woodman:agents:pre-release`
+**Usage :** `/ulk:agents:pre-release`
 
 Checklist pre-release avec décision GO/NO-GO :
 1. code-auditor → qualité code

@@ -4,7 +4,7 @@ type: custom-command
 description: Gère le dossier /docs du projet - classe, range, nettoie et met à jour toute la documentation générée par les agents. Maintient une structure cohérente avec frontmatter YAML et catégories. Utiliser après génération de documentation ou pour réorganiser/nettoyer /docs.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, AskUserQuestionTool
 model: sonnet
-invocation: /wm:agents:documentalist or "documentalist"
+invocation: /ulk:agents:documentalist or "documentalist"
 ---
 
 # Agent Documentalist

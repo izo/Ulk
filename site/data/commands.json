@@ -8,7 +8,7 @@
     {
       "id": "agents",
       "name": "Agents",
-      "prefix": "/wm:agents",
+      "prefix": "/ulk:agents",
       "description": "Agents de développement et d'audit",
       "icon": "bot",
       "color": "violet",
@@ -158,7 +158,7 @@
     {
       "id": "analyze",
       "name": "Analyze",
-      "prefix": "/wm:analyze",
+      "prefix": "/ulk:analyze",
       "description": "Analyseurs de stack spécifiques",
       "icon": "search",
       "color": "blue",
@@ -193,7 +193,7 @@
     {
       "id": "deploy",
       "name": "Deploy",
-      "prefix": "/wm:deploy",
+      "prefix": "/ulk:deploy",
       "description": "Déploiement automatisé",
       "icon": "rocket",
       "color": "orange",
@@ -228,7 +228,7 @@
     {
       "id": "test",
       "name": "Test",
-      "prefix": "/wm:test",
+      "prefix": "/ulk:test",
       "description": "Automatisation des tests",
       "icon": "flask-conical",
       "color": "green",
@@ -248,7 +248,7 @@
     {
       "id": "vps",
       "name": "VPS",
-      "prefix": "/wm:vps",
+      "prefix": "/ulk:vps",
       "description": "Gestion de serveurs VPS multi-projets",
       "icon": "server",
       "color": "pink",
@@ -348,9 +348,9 @@
       "description": "Démarrer un nouveau projet avec spec et todo",
       "icon": "plus-circle",
       "steps": [
-        "/wm:agents:spec-writer",
-        "/wm:agents:todo-generator",
-        "/wm:agents:task-runner"
+        "/ulk:agents:spec-writer",
+        "/ulk:agents:todo-generator",
+        "/ulk:agents:task-runner"
       ]
     },
     {
@@ -359,9 +359,9 @@
       "description": "Auditer code, performance et accessibilité",
       "icon": "search",
       "steps": [
-        "/wm:agents:code-auditor",
-        "/wm:agents:perf-auditor",
-        "/wm:agents:a11y-auditor"
+        "/ulk:agents:code-auditor",
+        "/ulk:agents:perf-auditor",
+        "/ulk:agents:a11y-auditor"
       ]
     },
     {
@@ -370,10 +370,10 @@
       "description": "Configurer un nouveau serveur de A à Z",
       "icon": "server",
       "steps": [
-        "/wm:vps:audit",
-        "/wm:vps:securite",
-        "/wm:vps:docker",
-        "/wm:vps:reseau"
+        "/ulk:vps:audit",
+        "/ulk:vps:securite",
+        "/ulk:vps:docker",
+        "/ulk:vps:reseau"
       ]
     },
     {
@@ -382,7 +382,7 @@
       "description": "Déployer une application sur VPS",
       "icon": "upload",
       "steps": [
-        "/wm:vps:orchestrateur"
+        "/ulk:vps:orchestrateur"
       ]
     },
     {
@@ -391,9 +391,9 @@
       "description": "Maintenance régulière du serveur",
       "icon": "calendar",
       "steps": [
-        "/wm:vps:backups",
-        "/wm:vps:cleanup",
-        "/wm:vps:audit"
+        "/ulk:vps:backups",
+        "/ulk:vps:cleanup",
+        "/ulk:vps:audit"
       ]
     },
     {
@@ -402,14 +402,14 @@
       "description": "API mobile + implémentation SwiftUI multi-plateforme",
       "icon": "smartphone",
       "steps": [
-        "/wm:agents:steve",
-        "/wm:agents:jobs"
+        "/ulk:agents:steve",
+        "/ulk:agents:jobs"
       ]
     }
   ],
   "installation": {
-    "curl": "curl -fsSL https://raw.githubusercontent.com/izo/Woodman/main/install-remote.sh | bash",
-    "update": "/wm:update",
-    "github": "https://github.com/izo/Woodman"
+    "curl": "curl -fsSL https://raw.githubusercontent.com/izo/ulk/main/install-remote.sh | bash",
+    "update": "/ulk:update",
+    "github": "https://github.com/izo/ulk"
   }
 }

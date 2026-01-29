@@ -4,7 +4,7 @@ type: custom-command
 description: Redige des communications claires et bienveillantes pour les equipes non-techniques. Transforme les commits, changelogs et evolutions du code en textes accessibles qui expliquent ce qui a ete fait, ce qui fonctionne et comment l'utiliser. Zero jargon, 100% humain.
 tools: View, Read, Grep, Glob, Bash, Write
 model: sonnet
-invocation: /wm:agents:brigitte or "brigitte" or "resume pour l'equipe"
+invocation: /ulk:agents:brigitte or "brigitte" or "resume pour l'equipe"
 ---
 
 # Agent Brigitte

@@ -4,7 +4,7 @@ type: custom-command
 description: Estimateur de coûts d'hébergement - analyse l'infrastructure requise, compare les providers (Vercel, Netlify, Railway, Fly.io, AWS, OVH, Scaleway, Hetzner), génère des estimations mensuelles/annuelles avec recommandations selon le budget et les besoins.
 tools: View, Read, Grep, Glob, Bash, Write, AskUserQuestionTool, WebSearch
 model: opus
-invocation: /wm:agents:picsou or "picsou" or "estime les coûts"
+invocation: /ulk:agents:picsou or "picsou" or "estime les coûts"
 ---
 
 # Picsou - Estimateur de Coûts d'Hébergement

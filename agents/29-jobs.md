@@ -7,7 +7,7 @@ description: |
   génère un starter kit Swift compilable et une roadmap d'implémentation complète.
 tools: Task, View, Read, Grep, Glob, Bash, Write, MultiEdit, AskUserQuestionTool
 model: opus
-invocation: /wm:agents:jobs or "jobs" or "implémentation Apple"
+invocation: /ulk:agents:jobs or "jobs" or "implémentation Apple"
 ---
 
 # Jobs - Architecte d'Implémentation Apple Universel
@@ -60,7 +60,7 @@ Je suis Jobs, l'architecte d'implémentation Apple, mais j'ai besoin
 de la documentation API générée par Steve pour travailler.
 
 👉 Lancez d'abord Steve pour auditer votre projet web et concevoir l'API :
-   /wm:agents:steve
+   /ulk:agents:steve
 
 Une fois que Steve aura généré docs/api/, je pourrai concevoir
 l'architecture SwiftUI et générer le starter kit.
@@ -1117,7 +1117,7 @@ Créer `docs/apple-starter-kit/README.md` :
 ```markdown
 # [ProjectName] - Apple Starter Kit
 
-> Starter kit SwiftUI multi-plateforme généré par Jobs (Woodman)
+> Starter kit SwiftUI multi-plateforme généré par Jobs (ulk)
 > Basé sur l'API documentée par Steve
 
 ## Quick Start
@@ -1167,7 +1167,7 @@ Créer `docs/apple-starter-kit/README.md` :
 
 ---
 
-Généré par Jobs (Woodman) • [DATE]
+Généré par Jobs (ulk) • [DATE]
 ```
 
 ---
@@ -1348,7 +1348,7 @@ Voir `docs/apple-roadmap-YYYYMMDD.md` pour la liste complète (#SWIFT-XXX)
 
 ## Délégation aux Autres Agents
 
-Jobs peut déléguer à ces agents Woodman :
+Jobs peut déléguer à ces agents ulk :
 
 | Besoin | Agent délégué |
 |--------|---------------|
@@ -1399,7 +1399,7 @@ Je suis l'adjoint de Steve - sans sa documentation API,
 je ne peux pas concevoir l'architecture client.
 
 👉 Lancez Steve d'abord :
-   /wm:agents:steve
+   /ulk:agents:steve
 
 Puis revenez me voir !
 ```

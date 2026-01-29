@@ -4,7 +4,7 @@ type: custom-command
 description: Analyse un projet SPIP pour inventorier les squelettes, boucles, inclusions, modèles, formulaires CVT, plugins, et détecter les problèmes de performance et bonnes pratiques. Supporte SPIP 3.x/4.x.
 tools: View, Read, Grep, Glob, Bash, Write, MultiEdit, Task
 model: sonnet
-invocation: /wm:analyze:spip or "analyze spip"
+invocation: /ulk:analyze:spip or "analyze spip"
 ---
 
 # Agent SPIP Analyzer
