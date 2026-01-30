@@ -1,1 +1,0 @@
-../../agents/08-external-sync.md

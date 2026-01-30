@@ -1,1 +1,0 @@
-../../agents/22-landing-page-auditor.md
