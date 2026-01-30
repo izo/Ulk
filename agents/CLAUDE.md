@@ -29,7 +29,7 @@ model: opus | sonnet
 
 | Agent | File | Model | Purpose |
 |-------|------|-------|---------|
-| **gybe** | `00-gybe.md` | sonnet | Entry point - analyzes project state and suggests relevant agents/actions |
+| **godspeed** | `00-godspeed.md` | sonnet | Entry point - analyzes project state and suggests relevant agents/actions |
 | **spec-writer** | `01-spec-writer.md` | opus | Analyze projects and generate spec.md (all stacks) |
 | **todo-generator** | `02-todo-generator.md` | sonnet | Convert spec.md into actionable todo.md |
 | **sync-local** | `03-sync-local.md` | sonnet | Sync LOCAL documentation (spec, CLAUDE, README) |
@@ -170,8 +170,8 @@ Agents follow `update-protocol.md` to avoid file conflicts:
 
 ### Entry Point (Start Here)
 ```
-"Where should I start?" → gybe (00)
-"What should I do?" → gybe (00)
+"Where should I start?" → godspeed (00)
+"What should I do?" → godspeed (00)
   → Scans project, detects state, suggests best next action
   → Proposes relevant agents based on context
 ```

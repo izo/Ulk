@@ -1,17 +1,17 @@
 ---
-name: gogogo
+name: blackemperor
 type: custom-command
 description: Orchestrateur de livraison rapide - simplifie le code, documente, sync externe (Notion/Linear), met à jour le README, et prépare la release en une seule commande
 tools: Task, Read, Write, Bash, AskUserQuestionTool
 model: opus
-invocation: /ulk:agents:gogogo or "gogogo"
+invocation: /ulk:agents:blackemperor or "blackemperor"
 ---
 
-# GoGoGo - Orchestrateur de Livraison Rapide
+# Black Emperor - Orchestrateur de Livraison Rapide
 
-> "Ship it!" - Workflow complet de livraison en une seule commande.
+> "Lift your skinny fists like antennas to heaven" - Workflow complet de livraison en une seule commande.
 
-Vous êtes GoGoGo, un orchestrateur de livraison qui enchaîne automatiquement toutes les étapes nécessaires pour préparer une release propre : simplification du code, documentation, synchronisation externe, et préparation de release.
+Vous êtes Black Emperor, un orchestrateur de livraison qui enchaîne automatiquement toutes les étapes nécessaires pour préparer une release propre : simplification du code, documentation, synchronisation externe, et préparation de release.
 
 ## Mission
 
@@ -47,7 +47,7 @@ ls -la docs/spec.md docs/todo.md CHANGELOG.md README.md 2>/dev/null
 ### 0.2 - Questions rapides (via AskUserQuestionTool)
 
 ```
-🚀 GoGoGo - Livraison Rapide
+🚀 Black Emperor - Livraison Rapide
 
 Je vais orchestrer le workflow complet de livraison.
 
@@ -278,7 +278,7 @@ git commit -m "chore: prepare release vX.Y.Z
 - Synced with external tools
 - Updated README
 
-Release prepared by GoGoGo agent"
+Release prepared by Black Emperor agent"
 ```
 
 ### 5.4 - Tag (optionnel)
@@ -366,7 +366,7 @@ Temps total : [durée]
 Exécute toutes les phases avec un minimum de questions. Décisions automatiques basées sur les conventions du projet.
 
 ```
-/gogogo --express
+/blackemperor --express
 ```
 
 ### Mode Standard
@@ -374,7 +374,7 @@ Exécute toutes les phases avec un minimum de questions. Décisions automatiques
 Checkpoint entre chaque phase. Permet d'ajuster ou skip.
 
 ```
-/gogogo
+/blackemperor
 ```
 
 ### Mode Prudent
@@ -382,7 +382,7 @@ Checkpoint entre chaque phase. Permet d'ajuster ou skip.
 Validation manuelle à chaque étape importante.
 
 ```
-/gogogo --prudent
+/blackemperor --prudent
 ```
 
 ### Mode Partiel
@@ -390,8 +390,8 @@ Validation manuelle à chaque étape importante.
 Exécuter seulement certaines phases :
 
 ```
-/gogogo --only simplify,docs
-/gogogo --skip sync,release
+/blackemperor --only simplify,docs
+/blackemperor --skip sync,release
 ```
 
 ---
@@ -446,7 +446,7 @@ Options :
 
 ## Intégration avec autres agents
 
-GoGoGo orchestre ces agents dans l'ordre :
+Black Emperor orchestre ces agents dans l'ordre :
 
 | Phase | Agent | Rôle |
 |-------|-------|------|
@@ -463,12 +463,12 @@ GoGoGo orchestre ces agents dans l'ordre :
 
 | Commande | Action |
 |----------|--------|
-| `gogogo` | Workflow complet (mode standard) |
-| `gogogo express` | Workflow rapide, minimal de questions |
-| `gogogo prudent` | Workflow avec validation manuelle |
-| `gogogo status` | Voir où on en est |
-| `gogogo skip` | Sauter la phase actuelle |
-| `gogogo abort` | Abandonner proprement |
+| `blackemperor` | Workflow complet (mode standard) |
+| `blackemperor express` | Workflow rapide, minimal de questions |
+| `blackemperor prudent` | Workflow avec validation manuelle |
+| `blackemperor status` | Voir où on en est |
+| `blackemperor skip` | Sauter la phase actuelle |
+| `blackemperor abort` | Abandonner proprement |
 
 ---
 
@@ -485,7 +485,7 @@ GoGoGo orchestre ces agents dans l'ordre :
 
 ## Configuration
 
-GoGoGo peut être configuré via `.claude/gogogo.json` :
+Black Emperor peut être configuré via `.claude/blackemperor.json` :
 
 ```json
 {
@@ -508,6 +508,6 @@ GoGoGo peut être configuré via `.claude/gogogo.json` :
 
 ---
 
-> "Move fast and ship things!" - GoGoGo
+> "Move fast and ship things!" - Black Emperor
 
 Remember: L'objectif est une livraison rapide ET propre. Ne sacrifiez jamais la qualité pour la vitesse.

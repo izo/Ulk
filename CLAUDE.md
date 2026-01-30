@@ -33,7 +33,7 @@ gh run list --workflow=deploy.yml
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
 **Workflow Agents (00-32):**
-- `00-gybe.md` - Entry point: analyzes project state and suggests relevant agents/actions
+- `00-godspeed.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive docs/spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
 - `03-sync-local.md` - Synchronizes LOCAL documentation (spec, CLAUDE, README)
@@ -61,10 +61,11 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `27-steve.md` - Apple API orchestrator: audits web projects, designs API for Apple platforms (iOS, macOS, watchOS, tvOS, visionOS) parity, generates full documentation
 - `28-svg-analyzer.md` - Analyzes React/Next.js projects, inventories pages and shadcn/ui components, generates SVG via Shad2SVG API
 - `29-jobs.md` - Apple implementation architect: Steve's adjoint, designs multi-platform SwiftUI architecture, generates compilable starter kit
-- `30-gogogo.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
+- `30-blackemperor.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
 - `31-ranma.md` - Migration planning agent: analyzes source project and generates detailed migration plan to target stack (WordPress→SPIP, Next→Nuxt, SPIP→Astro, Kirby→Astro, etc.)
 - `32-seo-auditor.md` - SEO & GEO audit: technical SEO (meta, sitemap, schema.org), on-page (headings, content), performance (Core Web Vitals), and GEO (Generative Engine Optimization for AI citations)
 - `33-pencil-generator.md` - Next.js to Pencil: analyzes pages, layouts, shadcn/ui components and generates .pen files with design tokens
+- `34-gandalf.md` - Context guardian: monitors context usage, enforces session discipline, prevents context rot
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -89,7 +90,7 @@ Once installed, invoke agents anywhere with:
 ```
 /ulk:agents:spec-writer
 /ulk:agents:todo-generator
-/ulk:agents:gybe
+/ulk:agents:godspeed
 /ulk:agents:robocop
 /ulk:agents:notion-importer
 /ulk:agents:figma-shadcn
@@ -98,10 +99,11 @@ Once installed, invoke agents anywhere with:
 /ulk:agents:steve
 /ulk:agents:jobs
 /ulk:agents:svg-analyzer
-/ulk:agents:gogogo
+/ulk:agents:blackemperor
 /ulk:agents:ranma
 /ulk:agents:seo-auditor
 /ulk:agents:pencil-generator
+/ulk:agents:gandalf
 /ulk:analyze:nuxt
 ```
 
@@ -207,10 +209,10 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "Analyse ce projet" → svg-analyzer Phase 1 → generates ANALYSE_PAGES.md with pages/components inventory
 "Génère les SVG" → svg-analyzer Phase 2 → calls Shad2SVG API → generates output/*.svg + preview index
 
-# Fast delivery (gogogo)
-"gogogo" → simplify code → update docs → sync Notion/Linear → update README → prepare release
-"gogogo express" → same workflow with minimal questions, auto decisions
-"Ship it!" → gogogo orchestrates 6 agents: code-simplifier, spec-writer, todo-generator, external-sync, sync-local, robocop
+# Fast delivery (blackemperor)
+"blackemperor" → simplify code → update docs → sync Notion/Linear → update README → prepare release
+"blackemperor express" → same workflow with minimal questions, auto decisions
+"Ship it!" → blackemperor orchestrates 6 agents: code-simplifier, spec-writer, todo-generator, external-sync, sync-local, robocop
 
 # Migration planning (ranma)
 "ranma" → analyze source project → ask target stack → generate migration plan in docs/migration/
@@ -228,6 +230,12 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "Génère les pencil" → pencil-generator analyzes all pages, extracts tokens from globals.css → design/*.pen
 "scan" → list all pages and layouts detected in the project
 "generate-all" → generate .pen files for all pages with _tokens.pen and _layouts/
+
+# Context hygiene (gandalf)
+"gandalf" → health check: context %, focus, external state → recommendations
+"gandalf status" → quick context evaluation
+"gandalf save" → persist state before /clear
+"gandalf rules" → best practices reminder
 
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
@@ -351,10 +359,11 @@ ulk/
 │   ├── 27-steve.md
 │   ├── 28-svg-analyzer.md
 │   ├── 29-jobs.md
-│   ├── 30-gogogo.md
+│   ├── 30-blackemperor.md
 │   ├── 31-ranma.md
 │   ├── 32-seo-auditor.md
 │   ├── 33-pencil-generator.md
+│   ├── 34-gandalf.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -377,10 +386,11 @@ ulk/
 │   │   ├── picsou.md
 │   │   ├── steve.md
 │   │   ├── svg-analyzer.md
-│   │   ├── gogogo.md
+│   │   ├── blackemperor.md
 │   │   ├── ranma.md
 │   │   ├── seo-auditor.md
-│   │   └── pencil-generator.md
+│   │   ├── pencil-generator.md
+│   │   └── gandalf.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md
@@ -439,6 +449,92 @@ ulk/
 - Agents should announce phases clearly ("Phase 1: Exploration", "Phase 2: Questions", etc.)
 - Never generate content without sufficient information gathering
 - Most agents use `model: opus` for complex analysis tasks
+
+## LLM Session Best Practices
+
+These practices help maximize effectiveness when working with Claude Code and avoid common pitfalls.
+
+### Context Management (The 50% Rule)
+
+LLMs are non-deterministic by nature. Everything in the context window is either signal or noise:
+- What was signal 5 prompts ago is now noise
+- Models struggle to distinguish signal/noise beyond 40-50% context usage
+- "Context rot" causes sudden forgetfulness even with 50% remaining
+
+**Rules:**
+- **NEVER exceed 50% context** and expect good results
+- Use `/clear` proactively when approaching 40%
+- Persist state externally (issues, docs/todo.md) before clearing
+- Use subagents for exploration to avoid polluting the main context
+
+### One Session = One Task
+
+Avoid the "pair programming buddy" trap where entropy piles onto non-determinism:
+- Don't chain unrelated tasks in one session
+- Don't run marathon 3-hour sessions
+- Each task: start → implement → commit → /clear
+
+**Good:**
+```
+"Implement feature A" → commit → /clear
+"Implement feature B" → commit → /clear
+```
+
+**Bad:**
+```
+"Do feature A, then B, then fix that bug, also..."
+```
+
+### Predictable Workflows
+
+Use consistent patterns for each task:
+
+1. **START**: Read task from issue/todo, read relevant files
+2. **RESEARCH** (subagent): Explore code, identify impacts
+3. **PLAN** (subagent): Propose approach, list steps
+4. **IMPLEMENT**: Execute plan, test incrementally, commit often
+5. **REVIEW**: Verify result, update issue/todo, /clear
+
+### External State Persistence
+
+Never rely solely on context for critical state. Use:
+- **Issue trackers** (GitHub/Linear): Best for collaboration
+- **docs/todo.md**: Simple, versioned, local
+- **Session notes**: For complex multi-step tasks
+
+Before `/clear`:
+- [ ] Changes committed
+- [ ] Issue/todo updated
+- [ ] Next steps documented
+
+### Context Hygiene
+
+- Keep CLAUDE.md concise and focused
+- Use Rules/Skills files for reusable patterns
+- Minimize MCP tools to reduce context overhead
+- Clean up unused configuration
+
+### Anti-Patterns to Avoid
+
+| Anti-Pattern | Problem | Solution |
+|--------------|---------|----------|
+| "Buddy mode" | Excessive validation wastes context | Keep exchanges transactional |
+| Infinite exploration | Reading 20 files pollutes context | Use subagents for exploration |
+| Multi-tasking | Fragmented focus, confused context | One task per session |
+| Ignoring context % | Context rot causes failures | Monitor and /clear proactively |
+
+### Using Gandalf
+
+The `gandalf` agent helps enforce these practices:
+- `gandalf` - Full health check
+- `gandalf status` - Quick context evaluation
+- `gandalf save` - Guide to persist state
+- `gandalf rules` - Best practices reminder
+
+Invoke when:
+- Session feels long or unfocused
+- Claude starts forgetting things
+- Before starting a new major task
 
 ### Known Constraints
 - **Folder names with spaces**: Aesthetic choice that may cause issues in some CLI contexts

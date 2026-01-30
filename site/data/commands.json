@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.14.0",
-    "totalCommands": 57,
+    "totalCommands": 59,
     "lastUpdated": "2026-01-29"
   },
   "categories": [
@@ -14,9 +14,9 @@
       "color": "violet",
       "commands": [
         {
-          "name": "gybe",
+          "name": "godspeed",
           "description": "Point d'entrée - analyse le projet et propose les agents pertinents",
-          "icon": "compass"
+          "icon": "rocket"
         },
         {
           "name": "spec-writer",
@@ -134,6 +134,11 @@
           "icon": "image"
         },
         {
+          "name": "blackemperor",
+          "description": "Livraison rapide : simplify → docs → sync Notion/Linear → README → release",
+          "icon": "zap"
+        },
+        {
           "name": "frontend-qa",
           "description": "Audit frontend UX/UI et Tailwind",
           "icon": "layout"
@@ -152,6 +157,11 @@
           "name": "pre-release",
           "description": "Checklist pre-release + GO/NO-GO (5-6 agents, 20-45min, Ralph Loop)",
           "icon": "rocket"
+        },
+        {
+          "name": "gandalf",
+          "description": "Context guardian - hygiene de session, discipline, prevention context rot",
+          "icon": "shield"
         }
       ]
     },
