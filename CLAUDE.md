@@ -32,7 +32,7 @@ gh run list --workflow=deploy.yml
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
-**Workflow Agents (00-32):**
+**Workflow Agents (00-34):**
 - `00-godspeed.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive docs/spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
@@ -41,26 +41,22 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `05-code-auditor.md` - Performs code quality and architecture audits
 - `06-a11y-auditor.md` - Performs WCAG 2.1/2.2 accessibility audits
 - `07-perf-auditor.md` - Performs performance audits (Core Web Vitals, bundle analysis, etc.)
-- `08-external-sync.md` - Bidirectional sync with Notion/Linear ONLY
 - `09-context-generator.md` - Generates llm.txt snapshot (15K chars max)
 - `11-robocop.md` - Detective and fixer for all error types (runtime, compilation, tests, linting) - works directly or via GitHub issues
 - `13-documentalist.md` - Manages /docs folder (organize, clean, validate frontmatter)
+- `14-figma-shadcn.md` - Analyzes Figma designs and generates shadcn/ui + Tailwind implementations
+- `15-tw2shad.md` - Transforms Tailwind/HTML components into shadcn/ui Vue components (Nuxt)
+- `16-frontend-qa.md` - **Unified frontend QA**: 3 modes (full audit, landing page, shadcn deep audit)
+- `17-code-simplifier.md` - Codebase simplification audit, then applies via official code-simplifier plugin
 - `18-audit-complet.md` - Orchestrator: full repo audit (spec, code, perf, a11y) with consolidated report
 - `19-legacy-revival.md` - Orchestrator: legacy code revival (doc, simplify, fix, optimize)
 - `20-pre-release.md` - Orchestrator: pre-release checklist (audit, tests, docs) with GO/NO-GO decision
-- `14-figma-shadcn.md` - Analyzes Figma designs and generates shadcn/ui + Tailwind implementations
-- `15-tw2shad.md` - Transforms Tailwind/HTML components into shadcn/ui Vue components (Nuxt)
-- `16-frontend-qa.md` - Comprehensive frontend QA (UX, UI, Tailwind, shadcn, code coherence)
-- `17-code-simplifier.md` - Codebase simplification audit, then applies via official code-simplifier plugin
 - `21-notion-importer.md` - Imports Notion page with links → generates spec_notion.md + todo_notion.md in /docs
-- `22-landing-page-auditor.md` - Comprehensive landing page audit (conversion, design, mobile optimization)
-- `23-shadcn-auditor.md` - Dedicated shadcn/ui audit (config, imports, theming, a11y, anti-patterns)
-- `24-brigitte.md` - Friendly communications for non-tech teams (commits → human-readable updates)
+- `24-brigitte.md` - **Unified comms + sync**: friendly communications for non-tech teams AND bidirectional Notion/Linear sync
 - `25-c3po.md` - Product Manager orchestrator: transforms ideas into projects (spec → todo → tasks → audits)
 - `26-picsou.md` - Hosting cost estimator: analyzes infrastructure, compares providers, generates cost reports with recommendations
-- `27-steve.md` - Apple API orchestrator: audits web projects, designs API for Apple platforms (iOS, macOS, watchOS, tvOS, visionOS) parity, generates full documentation
+- `27-steve.md` - **Unified Apple orchestrator**: audits web projects, designs API, AND generates SwiftUI starter kit (absorbs jobs)
 - `28-svg-analyzer.md` - Analyzes React/Next.js projects, inventories pages and shadcn/ui components, generates SVG via Shad2SVG API
-- `29-jobs.md` - Apple implementation architect: Steve's adjoint, designs multi-platform SwiftUI architecture, generates compilable starter kit
 - `30-blackemperor.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
 - `31-ranma.md` - Migration planning agent: analyzes source project and generates detailed migration plan to target stack (WordPress→SPIP, Next→Nuxt, SPIP→Astro, Kirby→Astro, etc.)
 - `32-seo-auditor.md` - SEO & GEO audit: technical SEO (meta, sitemap, schema.org), on-page (headings, content), performance (Core Web Vitals), and GEO (Generative Engine Optimization for AI citations)
@@ -96,8 +92,9 @@ Once installed, invoke agents anywhere with:
 /ulk:agents:figma-shadcn
 /ulk:agents:c3po
 /ulk:agents:picsou
-/ulk:agents:steve
-/ulk:agents:jobs
+/ulk:agents:steve            # Unified Apple (API + SwiftUI)
+/ulk:agents:brigitte         # Unified comms + Notion/Linear sync
+/ulk:agents:frontend-qa      # Unified frontend (full, landing, shadcn)
 /ulk:agents:svg-analyzer
 /ulk:agents:blackemperor
 /ulk:agents:ranma
@@ -194,7 +191,7 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 
 # Import from Notion
 "Import from Notion" → notion-importer extracts page + links → generates spec_notion.md + todo_notion.md
-"Import + sync to Linear" → notion-importer then external-sync
+"Import + sync to Linear" → notion-importer then brigitte sync
 
 # Hosting cost estimation
 "Combien ça coûte ?" → picsou scans infrastructure, compares providers, generates report
@@ -203,7 +200,7 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 # Apple API
 "API Apple" → steve audits web project, designs API, documents endpoints for Apple platforms parity
 "Connecter une app Apple" → steve scans features, proposes API architecture, generates docs/api/
-"API mobile" → steve + jobs for complete Apple ecosystem (API + SwiftUI starter kit)
+"steve" → complete workflow: API design + SwiftUI starter kit generation (unified agent)
 
 # SVG mockup generation
 "Analyse ce projet" → svg-analyzer Phase 1 → generates ANALYSE_PAGES.md with pages/components inventory
@@ -212,7 +209,7 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 # Fast delivery (blackemperor)
 "blackemperor" → simplify code → update docs → sync Notion/Linear → update README → prepare release
 "blackemperor express" → same workflow with minimal questions, auto decisions
-"Ship it!" → blackemperor orchestrates 6 agents: code-simplifier, spec-writer, todo-generator, external-sync, sync-local, robocop
+"Ship it!" → blackemperor orchestrates 6 agents: code-simplifier, spec-writer, todo-generator, brigitte (sync), sync-local, robocop
 
 # Migration planning (ranma)
 "ranma" → analyze source project → ask target stack → generate migration plan in docs/migration/
@@ -342,7 +339,6 @@ ulk/
 │   ├── 05-code-auditor.md
 │   ├── 06-a11y-auditor.md
 │   ├── 07-perf-auditor.md
-│   ├── 08-external-sync.md
 │   ├── 09-context-generator.md
 │   ├── 10-analyze/              # Stack-specific analyzers
 │   │   ├── astro.md
@@ -352,13 +348,14 @@ ulk/
 │   │   ├── swiftui.md
 │   │   └── README.md
 │   ├── 11-robocop.md
+│   ├── 16-frontend-qa.md        # Unified: full + landing + shadcn audits
 │   ├── 18-audit-complet.md
 │   ├── 19-legacy-revival.md
 │   ├── 20-pre-release.md
+│   ├── 24-brigitte.md           # Unified: comms + Notion/Linear sync
 │   ├── 26-picsou.md
-│   ├── 27-steve.md
+│   ├── 27-steve.md              # Unified: API + SwiftUI starter kit
 │   ├── 28-svg-analyzer.md
-│   ├── 29-jobs.md
 │   ├── 30-blackemperor.md
 │   ├── 31-ranma.md
 │   ├── 32-seo-auditor.md
@@ -377,14 +374,15 @@ ulk/
 │   │   ├── code-auditor.md
 │   │   ├── a11y-auditor.md
 │   │   ├── perf-auditor.md
-│   │   ├── external-sync.md
 │   │   ├── context-generator.md
 │   │   ├── robocop.md
+│   │   ├── frontend-qa.md       # Unified: full + landing + shadcn
 │   │   ├── audit-complet.md
 │   │   ├── legacy-revival.md
 │   │   ├── pre-release.md
+│   │   ├── brigitte.md          # Unified: comms + sync
 │   │   ├── picsou.md
-│   │   ├── steve.md
+│   │   ├── steve.md             # Unified: API + SwiftUI
 │   │   ├── svg-analyzer.md
 │   │   ├── blackemperor.md
 │   │   ├── ranma.md

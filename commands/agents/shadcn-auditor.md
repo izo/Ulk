@@ -1,1 +1,0 @@
-../../agents/23-shadcn-auditor.md
