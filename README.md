@@ -13,6 +13,20 @@ curl -fsSL https://raw.githubusercontent.com/izo/ulk/main/install-remote.sh | ba
 
 Après installation, utilisez `/ulk:update` pour mettre à jour.
 
+## Désinstallation
+
+```bash
+# Depuis le dossier ulk cloné
+./uninstall.sh
+
+# Ou directement
+rm -rf ~/.claude/commands/ulk
+```
+
+Options disponibles :
+- `--force` ou `-f` : Supprime sans confirmation
+- `--dry-run` : Affiche ce qui serait supprimé sans rien faire
+
 ## Commandes disponibles
 
 ### Agents de développement (`/ulk:agents:*`)

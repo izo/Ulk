@@ -78,9 +78,30 @@ Install agents globally to use them in any project:
 # Install (creates symlink to ~/.claude/commands/ulk)
 ./install.sh
 
-# Uninstall
-./uninstall.sh
+# Install with VPS agents
+./install.sh --with-vps
+
+# Global install (copy instead of symlink)
+./install.sh --global
 ```
+
+#### Uninstallation
+
+```bash
+# Interactive uninstall (with confirmation)
+./uninstall.sh
+
+# Force uninstall (no confirmation)
+./uninstall.sh --force
+
+# Preview what would be removed
+./uninstall.sh --dry-run
+```
+
+The uninstaller removes:
+- `~/.claude/commands/ulk` - Current installation
+- `~/.claude/commands/woodman` - Legacy installation (if present)
+- `~/.claude/commands/wm` - Legacy installation (if present)
 
 Once installed, invoke agents anywhere with:
 ```
