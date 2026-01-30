@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.14.0",
-    "totalCommands": 58,
+    "totalCommands": 59,
     "lastUpdated": "2026-01-29"
   },
   "categories": [
@@ -132,6 +132,11 @@
           "name": "svg-analyzer",
           "description": "Analyse React/Next.js → inventaire pages/composants → génère SVG via Shad2SVG API",
           "icon": "image"
+        },
+        {
+          "name": "blackemperor",
+          "description": "Livraison rapide : simplify → docs → sync Notion/Linear → README → release",
+          "icon": "zap"
         },
         {
           "name": "frontend-qa",

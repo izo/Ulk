@@ -61,7 +61,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `27-steve.md` - Apple API orchestrator: audits web projects, designs API for Apple platforms (iOS, macOS, watchOS, tvOS, visionOS) parity, generates full documentation
 - `28-svg-analyzer.md` - Analyzes React/Next.js projects, inventories pages and shadcn/ui components, generates SVG via Shad2SVG API
 - `29-jobs.md` - Apple implementation architect: Steve's adjoint, designs multi-platform SwiftUI architecture, generates compilable starter kit
-- `30-gogogo.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
+- `30-blackemperor.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
 - `31-ranma.md` - Migration planning agent: analyzes source project and generates detailed migration plan to target stack (WordPress→SPIP, Next→Nuxt, SPIP→Astro, Kirby→Astro, etc.)
 - `32-seo-auditor.md` - SEO & GEO audit: technical SEO (meta, sitemap, schema.org), on-page (headings, content), performance (Core Web Vitals), and GEO (Generative Engine Optimization for AI citations)
 - `33-pencil-generator.md` - Next.js to Pencil: analyzes pages, layouts, shadcn/ui components and generates .pen files with design tokens
@@ -99,7 +99,7 @@ Once installed, invoke agents anywhere with:
 /ulk:agents:steve
 /ulk:agents:jobs
 /ulk:agents:svg-analyzer
-/ulk:agents:gogogo
+/ulk:agents:blackemperor
 /ulk:agents:ranma
 /ulk:agents:seo-auditor
 /ulk:agents:pencil-generator
@@ -209,10 +209,10 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "Analyse ce projet" → svg-analyzer Phase 1 → generates ANALYSE_PAGES.md with pages/components inventory
 "Génère les SVG" → svg-analyzer Phase 2 → calls Shad2SVG API → generates output/*.svg + preview index
 
-# Fast delivery (gogogo)
-"gogogo" → simplify code → update docs → sync Notion/Linear → update README → prepare release
-"gogogo express" → same workflow with minimal questions, auto decisions
-"Ship it!" → gogogo orchestrates 6 agents: code-simplifier, spec-writer, todo-generator, external-sync, sync-local, robocop
+# Fast delivery (blackemperor)
+"blackemperor" → simplify code → update docs → sync Notion/Linear → update README → prepare release
+"blackemperor express" → same workflow with minimal questions, auto decisions
+"Ship it!" → blackemperor orchestrates 6 agents: code-simplifier, spec-writer, todo-generator, external-sync, sync-local, robocop
 
 # Migration planning (ranma)
 "ranma" → analyze source project → ask target stack → generate migration plan in docs/migration/
@@ -359,7 +359,7 @@ ulk/
 │   ├── 27-steve.md
 │   ├── 28-svg-analyzer.md
 │   ├── 29-jobs.md
-│   ├── 30-gogogo.md
+│   ├── 30-blackemperor.md
 │   ├── 31-ranma.md
 │   ├── 32-seo-auditor.md
 │   ├── 33-pencil-generator.md
@@ -386,7 +386,7 @@ ulk/
 │   │   ├── picsou.md
 │   │   ├── steve.md
 │   │   ├── svg-analyzer.md
-│   │   ├── gogogo.md
+│   │   ├── blackemperor.md
 │   │   ├── ranma.md
 │   │   ├── seo-auditor.md
 │   │   ├── pencil-generator.md
