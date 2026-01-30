@@ -58,6 +58,7 @@ Dans Claude Code, invoquez les agents avec :
 | `steve` | API mobile : audit web → design API → documentation iOS/Android |
 | `jobs` | Implémentation Apple : adjoint de Steve → architecture SwiftUI multi-plateforme → starter kit compilable |
 | `svg-analyzer` | Analyse React/Next.js → inventaire pages/composants → génère SVG via Shad2SVG |
+| `pencil-generator` | Analyse Next.js → génère fichiers .pen pour Pencil (pages, layouts, tokens) |
 
 ### Analyzers (`/ulk:analyze:*`)
 
@@ -143,6 +144,7 @@ commands/
 │   ├── steve.md
 │   ├── jobs.md
 │   ├── svg-analyzer.md
+│   ├── pencil-generator.md
 │   └── ...
 ├── analyze/          # Stack analyzers
 │   ├── nuxt.md

@@ -159,6 +159,7 @@ echo "   /ulk:agents:pre-release        # Checklist pre-release + GO/NO-GO"
 echo "   /ulk:agents:picsou             # Estimation coûts d'hébergement"
 echo "   /ulk:agents:steve              # API mobile (audit web → API iOS/Android)"
 echo "   /ulk:agents:jobs               # Implémentation Apple (SwiftUI multi-plateforme)"
+echo "   /ulk:agents:pencil-generator   # Générer fichiers .pen depuis Next.js"
 echo "   /ulk:analyze:nuxt              # Analyse Nuxt"
 echo "   /ulk:deploy:vercel             # Déployer Vercel"
 if [ "$INSTALL_VPS" == "true" ]; then
