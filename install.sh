@@ -45,7 +45,7 @@ for arg in "$@"; do
 done
 
 echo ""
-echo -e "${GREEN}⚡ ulk Installer${NC}"
+echo -e "${GREEN}🐺 ulk Installer${NC}"
 echo "================"
 echo ""
 

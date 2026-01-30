@@ -37,7 +37,7 @@ for arg in "$@"; do
 done
 
 echo ""
-echo -e "${RED}⚡ ulk Uninstaller${NC}"
+echo -e "${RED}🐺 ulk Uninstaller${NC}"
 echo "=================="
 echo ""
 

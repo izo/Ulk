@@ -28,7 +28,7 @@ cleanup() {
 trap cleanup EXIT
 
 echo ""
-echo -e "${GREEN}⚡ ulk Remote Installer${NC}"
+echo -e "${GREEN}🐺 ulk Remote Installer${NC}"
 echo "========================"
 echo ""
 
