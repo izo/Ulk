@@ -294,15 +294,15 @@ Avant de /clear ou fermer :
 
 ---
 
-## Integration avec Gybe
+## Integration avec Godspeed
 
-Gandalf peut etre invoque automatiquement par Gybe quand :
+Gandalf peut etre invoque automatiquement par Godspeed quand :
 - Session detectee comme longue
 - Signes de context rot observes
 - Utilisateur semble perdu
 
 ```
-Gybe detecte : Session longue, contexte > 40%
+Godspeed detecte : Session longue, contexte > 40%
 → "Je suggere d'invoquer Gandalf pour un health check"
 ```
 
