@@ -282,6 +282,7 @@ L'utilisateur peut utiliser des raccourcis :
 | `todo` | Lancer todo-generator |
 | `ship` | Lancer pre-release |
 | `sync` | Lancer external-sync |
+| `gandalf` | Health check contexte/session |
 | `help` | Lister les agents disponibles |
 
 ---
@@ -314,6 +315,7 @@ L'utilisateur peut utiliser des raccourcis :
 | Audit landing | landing-page-auditor (22) | Conversion |
 | Audit shadcn | shadcn-auditor (23) | shadcn/ui |
 | Communication | brigitte (24) | Non-tech friendly |
+| Context hygiene | gandalf (34) | Session discipline |
 
 ---
 
@@ -354,6 +356,9 @@ Si l'utilisateur demande de l'aide :
    notion-importer Import Notion
    figma-shadcn   Figma → Code
    brigitte       Communication
+
+🧙 HYGIÈNE
+   gandalf        Context guardian (session discipline)
 
 📊 ANALYSEURS
    analyze:nuxt   Nuxt 3/4
