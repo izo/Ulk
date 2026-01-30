@@ -28,8 +28,12 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
+CYAN='\033[0;36m'
+DIM='\033[2m'
+BOLD='\033[1m'
 NC='\033[0m'
 
+# Options
 MODE="symlink"
 INSTALL_VPS=false
 
@@ -44,26 +48,116 @@ for arg in "$@"; do
     esac
 done
 
-echo ""
-echo -e "${GREEN}🐺 ulk Installer${NC}"
-echo "================"
-echo ""
+# ═══════════════════════════════════════════════════════════════
+# TUI Functions
+# ═══════════════════════════════════════════════════════════════
+
+print_header() {
+    echo ""
+    echo -e "${CYAN}"
+    cat << 'EOF'
+    ┌─────────────────────────────────────────┐
+    │                                         │
+    │        ╭━━━╮                            │
+    │        ┃ 🐺 ┃  u l k                    │
+    │        ╰━━━╯                            │
+    │                                         │
+    │        AI Development Toolkit           │
+    │                                         │
+    └─────────────────────────────────────────┘
+EOF
+    echo -e "${NC}"
+}
+
+print_box() {
+    local title="$1"
+    local width=45
+    local padding=$(( (width - ${#title} - 2) / 2 ))
+
+    echo ""
+    echo -e "${DIM}┌$(printf '─%.0s' $(seq 1 $width))┐${NC}"
+    echo -e "${DIM}│${NC}$(printf ' %.0s' $(seq 1 $padding))${BOLD}$title${NC}$(printf ' %.0s' $(seq 1 $((width - padding - ${#title}))))${DIM}│${NC}"
+    echo -e "${DIM}└$(printf '─%.0s' $(seq 1 $width))┘${NC}"
+}
+
+print_item() {
+    local status="$1"
+    local text="$2"
+    case "$status" in
+        ok)      echo -e "  ${GREEN}✓${NC} $text" ;;
+        warn)    echo -e "  ${YELLOW}○${NC} $text" ;;
+        error)   echo -e "  ${RED}✗${NC} $text" ;;
+        info)    echo -e "  ${BLUE}→${NC} $text" ;;
+        pending) echo -e "  ${DIM}◦${NC} ${DIM}$text${NC}" ;;
+    esac
+}
+
+print_stats() {
+    local label="$1"
+    local value="$2"
+    local color="${3:-$NC}"
+    printf "  ${DIM}│${NC} %-12s ${color}%s${NC}\n" "$label" "$value"
+}
+
+spinner() {
+    local pid=$1
+    local delay=0.1
+    local spinstr='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    while ps -p $pid > /dev/null 2>&1; do
+        for (( i=0; i<${#spinstr}; i++ )); do
+            printf "\r  ${CYAN}${spinstr:$i:1}${NC} $2"
+            sleep $delay
+        done
+    done
+    printf "\r"
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Main
+# ═══════════════════════════════════════════════════════════════
+
+clear
+print_header
+
+# Mode info
+if [ "$MODE" == "symlink" ]; then
+    echo -e "  ${DIM}Mode:${NC} ${GREEN}symlink${NC} ${DIM}(dev)${NC}"
+else
+    echo -e "  ${DIM}Mode:${NC} ${YELLOW}copy${NC} ${DIM}(global)${NC}"
+fi
+
+if [ "$INSTALL_VPS" == "true" ]; then
+    echo -e "  ${DIM}VPS:${NC}  ${GREEN}inclus${NC}"
+else
+    echo -e "  ${DIM}VPS:${NC}  ${DIM}non inclus${NC}"
+fi
 
 # Vérifier que le dossier commands existe
 if [ ! -d "$COMMANDS_SOURCE" ]; then
-    echo -e "${RED}❌ Erreur: Dossier commands/ non trouvé${NC}"
+    print_box "Erreur"
+    print_item error "Dossier commands/ non trouvé"
+    echo ""
     exit 1
 fi
 
+print_box "Installation"
+
 # Créer le dossier .claude/commands s'il n'existe pas
 mkdir -p "$CLAUDE_COMMANDS"
+print_item ok "Dossier ~/.claude/commands"
 
 # Nettoyer les anciennes installations (woodman, wm, ulk)
+cleaned=false
 for target in "$CLAUDE_COMMANDS/woodman" "$CLAUDE_COMMANDS/wm" "$ULK_DIR"; do
     if [ -e "$target" ] || [ -L "$target" ]; then
         rm -rf "$target"
+        cleaned=true
     fi
 done
+
+if [ "$cleaned" == "true" ]; then
+    print_item ok "Anciennes installations nettoyées"
+fi
 
 install_dir() {
     local target_dir="$1"
@@ -100,32 +194,13 @@ install_dir() {
 }
 
 if [ "$MODE" == "symlink" ]; then
-    echo -e "${BLUE}📦 Installation locale (symlink)...${NC}"
-    echo ""
-
     install_dir "$ULK_DIR" "symlink"
-
-    echo "   ✅ /ulk → symlinks vers $COMMANDS_SOURCE"
-    echo ""
-    echo -e "${YELLOW}📝 Pour mettre à jour:${NC}"
-    echo "   cd $SCRIPT_DIR && git pull"
-
+    print_item ok "Symlinks créés"
 else
-    echo -e "${BLUE}📦 Installation globale (copie)...${NC}"
-    echo ""
-
     install_dir "$ULK_DIR" "copy"
-
-    # Créer un fichier de version
     echo "$(git -C "$SCRIPT_DIR" rev-parse --short HEAD 2>/dev/null || echo 'unknown')" > "$ULK_DIR/.version"
-
-    echo "   ✅ /ulk → copié dans ~/.claude/commands/"
-    echo ""
-    echo -e "${YELLOW}📝 Pour mettre à jour:${NC}"
-    echo "   /ulk:update  (ou relancer ./install.sh --global)"
+    print_item ok "Fichiers copiés"
 fi
-
-echo ""
 
 # Compter les commandes
 AGENT_COUNT=$(find "$COMMANDS_SOURCE/agents" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
@@ -134,35 +209,37 @@ DEPLOY_COUNT=$(find "$COMMANDS_SOURCE/deploy" -name "*.md" 2>/dev/null | wc -l |
 TEST_COUNT=$(find "$COMMANDS_SOURCE/test" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 VPS_COUNT=$(find "$COMMANDS_SOURCE/vps" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
 
+print_box "Commandes installées"
 echo ""
-echo -e "${GREEN}✅ Installation réussie!${NC}"
-echo ""
-echo "📊 Commandes installées:"
-echo "   • Agents:    $AGENT_COUNT"
-echo "   • Analyze:   $ANALYZE_COUNT"
-echo "   • Deploy:    $DEPLOY_COUNT"
-echo "   • Test:      $TEST_COUNT"
+print_stats "Agents" "$AGENT_COUNT" "$GREEN"
+print_stats "Analyze" "$ANALYZE_COUNT" "$GREEN"
+print_stats "Deploy" "$DEPLOY_COUNT" "$GREEN"
+print_stats "Test" "$TEST_COUNT" "$GREEN"
 if [ "$INSTALL_VPS" == "true" ]; then
-    echo "   • VPS:       $VPS_COUNT"
+    print_stats "VPS" "$VPS_COUNT" "$GREEN"
 else
-    echo -e "   • VPS:       ${YELLOW}non installé${NC} (ajouter --with-vps)"
+    print_stats "VPS" "—" "$DIM"
 fi
 echo ""
 
-echo -e "${YELLOW}🚀 Usage:${NC}"
+print_box "Usage"
 echo ""
-echo "   /ulk:agents:spec-writer        # Générer docs/spec.md"
-echo "   /ulk:agents:robocop            # Fixer erreurs"
-echo "   /ulk:agents:audit-complet      # Audit complet (5 agents)"
-echo "   /ulk:agents:legacy-revival     # Revival code legacy (6 agents)"
-echo "   /ulk:agents:pre-release        # Checklist pre-release + GO/NO-GO"
-echo "   /ulk:agents:picsou             # Estimation coûts d'hébergement"
-echo "   /ulk:agents:steve              # API mobile (audit web → API iOS/Android)"
-echo "   /ulk:agents:jobs               # Implémentation Apple (SwiftUI multi-plateforme)"
-echo "   /ulk:agents:pencil-generator   # Générer fichiers .pen depuis Next.js"
-echo "   /ulk:analyze:nuxt              # Analyse Nuxt"
-echo "   /ulk:deploy:vercel             # Déployer Vercel"
-if [ "$INSTALL_VPS" == "true" ]; then
-    echo "   /ulk:vps:orchestrateur         # Orchestrateur VPS"
+echo -e "  ${DIM}Générer spec${NC}     ${CYAN}/ulk:agents:spec-writer${NC}"
+echo -e "  ${DIM}Fixer erreurs${NC}    ${CYAN}/ulk:agents:robocop${NC}"
+echo -e "  ${DIM}Audit complet${NC}    ${CYAN}/ulk:agents:audit-complet${NC}"
+echo -e "  ${DIM}Pre-release${NC}      ${CYAN}/ulk:agents:pre-release${NC}"
+echo -e "  ${DIM}Analyse Nuxt${NC}     ${CYAN}/ulk:analyze:nuxt${NC}"
+echo ""
+
+# Footer
+echo -e "${DIM}─────────────────────────────────────────────────${NC}"
+echo ""
+echo -e "  ${GREEN}✓${NC} ${BOLD}Installation réussie${NC}"
+echo ""
+
+if [ "$MODE" == "symlink" ]; then
+    echo -e "  ${DIM}Mise à jour:${NC} git pull"
+else
+    echo -e "  ${DIM}Mise à jour:${NC} /ulk:update"
 fi
 echo ""

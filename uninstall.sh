@@ -19,6 +19,9 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
+CYAN='\033[0;36m'
+DIM='\033[2m'
+BOLD='\033[1m'
 NC='\033[0m'
 
 # Options
@@ -36,85 +39,162 @@ for arg in "$@"; do
     esac
 done
 
-echo ""
-echo -e "${RED}🐺 ulk Uninstaller${NC}"
-echo "=================="
-echo ""
+# ═══════════════════════════════════════════════════════════════
+# TUI Functions
+# ═══════════════════════════════════════════════════════════════
+
+print_header() {
+    echo ""
+    echo -e "${RED}"
+    cat << 'EOF'
+    ┌─────────────────────────────────────────┐
+    │                                         │
+    │        ╭━━━╮                            │
+    │        ┃ 🐺 ┃  u l k                    │
+    │        ╰━━━╯                            │
+    │                                         │
+    │        Uninstaller                      │
+    │                                         │
+    └─────────────────────────────────────────┘
+EOF
+    echo -e "${NC}"
+}
+
+print_box() {
+    local title="$1"
+    local width=45
+    local padding=$(( (width - ${#title} - 2) / 2 ))
+
+    echo ""
+    echo -e "${DIM}┌$(printf '─%.0s' $(seq 1 $width))┐${NC}"
+    echo -e "${DIM}│${NC}$(printf ' %.0s' $(seq 1 $padding))${BOLD}$title${NC}$(printf ' %.0s' $(seq 1 $((width - padding - ${#title}))))${DIM}│${NC}"
+    echo -e "${DIM}└$(printf '─%.0s' $(seq 1 $width))┘${NC}"
+}
+
+print_item() {
+    local status="$1"
+    local text="$2"
+    case "$status" in
+        ok)      echo -e "  ${GREEN}✓${NC} $text" ;;
+        warn)    echo -e "  ${YELLOW}○${NC} $text" ;;
+        error)   echo -e "  ${RED}✗${NC} $text" ;;
+        info)    echo -e "  ${BLUE}→${NC} $text" ;;
+        pending) echo -e "  ${DIM}◦${NC} ${DIM}$text${NC}" ;;
+        delete)  echo -e "  ${RED}−${NC} $text" ;;
+    esac
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Main
+# ═══════════════════════════════════════════════════════════════
+
+clear
+print_header
+
+# Mode info
+if [ "$DRY_RUN" == "true" ]; then
+    echo -e "  ${DIM}Mode:${NC} ${YELLOW}dry-run${NC} ${DIM}(preview)${NC}"
+elif [ "$FORCE" == "true" ]; then
+    echo -e "  ${DIM}Mode:${NC} ${RED}force${NC} ${DIM}(no confirmation)${NC}"
+else
+    echo -e "  ${DIM}Mode:${NC} ${GREEN}interactive${NC}"
+fi
 
 # Collecter les cibles à supprimer
 targets=()
 target_names=()
+target_types=()
 
-if [ -L "$ULK_TARGET" ] || [ -e "$ULK_TARGET" ]; then
+if [ -L "$ULK_TARGET" ]; then
     targets+=("$ULK_TARGET")
     target_names+=("/ulk")
+    target_types+=("symlink → $(readlink "$ULK_TARGET")")
+elif [ -e "$ULK_TARGET" ]; then
+    targets+=("$ULK_TARGET")
+    target_names+=("/ulk")
+    target_types+=("directory")
 fi
 
 if [ -L "$WOODMAN_TARGET" ] || [ -e "$WOODMAN_TARGET" ]; then
     targets+=("$WOODMAN_TARGET")
-    target_names+=("/woodman (ancienne version)")
+    target_names+=("/woodman")
+    target_types+=("legacy")
 fi
 
 if [ -L "$WM_TARGET" ] || [ -e "$WM_TARGET" ]; then
     targets+=("$WM_TARGET")
-    target_names+=("/wm (ancienne version)")
+    target_names+=("/wm")
+    target_types+=("legacy")
 fi
 
 # Rien à supprimer
 if [ ${#targets[@]} -eq 0 ]; then
-    echo -e "${YELLOW}ℹ️  ulk n'est pas installé${NC}"
+    print_box "Status"
     echo ""
-    echo "   Emplacement vérifié: $CLAUDE_COMMANDS"
+    print_item warn "ulk n'est pas installé"
+    echo ""
+    echo -e "  ${DIM}Emplacement vérifié:${NC}"
+    echo -e "  ${DIM}$CLAUDE_COMMANDS${NC}"
     echo ""
     exit 0
 fi
 
 # Afficher ce qui sera supprimé
-echo -e "${BLUE}📦 Éléments à supprimer:${NC}"
+print_box "Éléments trouvés"
 echo ""
+
 for i in "${!targets[@]}"; do
-    if [ -L "${targets[$i]}" ]; then
-        echo "   • ${target_names[$i]} (symlink → $(readlink "${targets[$i]}"))"
-    else
-        echo "   • ${target_names[$i]} (dossier)"
-    fi
+    echo -e "  ${RED}●${NC} ${BOLD}${target_names[$i]}${NC}"
+    echo -e "    ${DIM}${target_types[$i]}${NC}"
 done
 echo ""
 
 # Dry run: afficher et quitter
 if [ "$DRY_RUN" = true ]; then
-    echo -e "${YELLOW}🔍 Mode dry-run: aucune suppression effectuée${NC}"
+    echo -e "${DIM}─────────────────────────────────────────────────${NC}"
+    echo ""
+    echo -e "  ${YELLOW}○${NC} ${BOLD}Mode dry-run${NC}"
+    echo -e "    ${DIM}Aucune suppression effectuée${NC}"
     echo ""
     exit 0
 fi
 
 # Confirmation (sauf si --force)
 if [ "$FORCE" != true ]; then
-    echo -e "${YELLOW}⚠️  Cette action est irréversible.${NC}"
+    echo -e "${DIM}─────────────────────────────────────────────────${NC}"
     echo ""
-    read -p "Confirmer la désinstallation ? [y/N] " -n 1 -r
+    echo -e "  ${YELLOW}⚠${NC}  ${BOLD}Confirmer la suppression ?${NC}"
+    echo ""
+    echo -e "    ${DIM}[y] Oui, supprimer${NC}"
+    echo -e "    ${DIM}[n] Non, annuler${NC}"
+    echo ""
+
+    read -p "  → " -n 1 -r
     echo ""
     echo ""
 
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo -e "${YELLOW}❌ Désinstallation annulée${NC}"
+        echo -e "  ${YELLOW}○${NC} ${BOLD}Annulé${NC}"
         echo ""
         exit 0
     fi
 fi
 
 # Supprimer les cibles
-removed=0
+print_box "Suppression"
+echo ""
 
 for i in "${!targets[@]}"; do
     rm -rf "${targets[$i]}"
-    echo -e "   ${GREEN}✅${NC} ${target_names[$i]} supprimé"
-    removed=$((removed + 1))
+    print_item delete "${target_names[$i]} supprimé"
 done
 
 echo ""
-echo -e "${GREEN}✅ Désinstallation réussie!${NC}"
+
+# Footer
+echo -e "${DIM}─────────────────────────────────────────────────${NC}"
 echo ""
-echo -e "${BLUE}📝 Pour réinstaller:${NC}"
-echo "   ./install.sh"
+echo -e "  ${GREEN}✓${NC} ${BOLD}Désinstallation terminée${NC}"
+echo ""
+echo -e "  ${DIM}Réinstaller:${NC} ./install.sh"
 echo ""
