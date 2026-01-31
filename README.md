@@ -65,6 +65,7 @@ Options disponibles :
 | `seo-auditor` | Audit SEO & GEO (technique, on-page, AI citations) |
 | `pencil-generator` | Génère fichiers .pen depuis Next.js |
 | `gandalf` | Context guardian (hygiène de session, discipline) |
+| `visual-auditor` | Audit visuel via Chrome DevTools MCP (screenshots, perf, erreurs) |
 | `blackemperor` | Livraison rapide : simplify → docs → sync → release |
 | `brigitte` | Communications bienveillantes + sync Notion/Linear |
 | `c3po` | Product Manager : idée → projet complet |

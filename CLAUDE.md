@@ -70,6 +70,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `32-seo-auditor.md` - SEO & GEO audit: technical SEO (meta, sitemap, schema.org), on-page (headings, content), performance (Core Web Vitals), and GEO (Generative Engine Optimization for AI citations)
 - `33-pencil-generator.md` - Next.js to Pencil: analyzes pages, layouts, shadcn/ui components and generates .pen files with design tokens
 - `34-gandalf.md` - Context guardian: monitors context usage, enforces session discipline, prevents context rot
+- `35-visual-auditor.md` - Visual audit via Chrome DevTools MCP: screenshots comparison (mobile/tablet/desktop), DOM/CSS analysis, visual performance (LCP/CLS/FCP), console/network errors, baseline management
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -264,6 +265,12 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "gandalf save" → persist state before /clear
 "gandalf rules" → best practices reminder
 
+# Visual audit (visual-auditor)
+"visual-auditor https://example.com" → full visual audit: screenshots (mobile/tablet/desktop), performance, errors
+"visual-auditor --project ." → scan local project pages, audit all
+"visual-auditor --compare staging prod" → compare two environments, detect visual regressions
+"visual-auditor --update-baseline" → update reference screenshots for future comparisons
+
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
 ```
@@ -391,6 +398,7 @@ ulk/
 │   ├── 32-seo-auditor.md
 │   ├── 33-pencil-generator.md
 │   ├── 34-gandalf.md
+│   ├── 35-visual-auditor.md
 │   ├── CLAUDE.md
 │   ├── Readme.md
 │   └── ANALYSE-COHERENCE.md
@@ -418,7 +426,8 @@ ulk/
 │   │   ├── ranma.md
 │   │   ├── seo-auditor.md
 │   │   ├── pencil-generator.md
-│   │   └── gandalf.md
+│   │   ├── gandalf.md
+│   │   └── visual-auditor.md
 │   ├── analyze/                  # Stack analyzers
 │   │   ├── nuxt.md
 │   │   ├── next.md
