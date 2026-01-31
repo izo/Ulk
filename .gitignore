@@ -34,3 +34,7 @@ build/
 .env
 .env.local
 .env.*.local
+
+# Status Board
+packages/status-board/public/data/
+packages/status-board/status-board.config.json
