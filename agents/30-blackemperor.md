@@ -239,42 +239,56 @@ Options :
 - Notion : [URL page] ✅
 - Linear : [X] issues mises à jour ✅
 
-[Continuer vers README ?]
+[Continuer vers README & CLAUDE.md ?]
 ```
 
 ---
 
-## Phase 4 : Mise à jour README
+## Phase 4 : Mise à jour README & CLAUDE.md
 
-### 4.1 - Analyse du README actuel
+### 4.1 - Analyse des fichiers actuels
 
 ```bash
 cat README.md 2>/dev/null | head -100
+cat CLAUDE.md 2>/dev/null | head -100
 ```
 
 ### 4.2 - Mise à jour intelligente
 
 ```
 Task tool → subagent_type: "sync-local"
-Prompt: "Mettre à jour README.md pour refléter l'état actuel du projet.
-Sections à vérifier/mettre à jour :
+Prompt: "Mettre à jour README.md et CLAUDE.md pour refléter l'état actuel du projet.
+
+README.md - Sections à vérifier/mettre à jour :
 - Version badge
 - Description (si changée)
 - Installation (si dépendances changées)
 - Usage (si API changée)
 - Changelog (lien ou dernières entrées)
+
+CLAUDE.md - Sections à vérifier/mettre à jour :
+- Commandes essentielles (nouvelles commandes, flags modifiés)
+- Architecture (nouveaux modules, fichiers clés)
+- Workflow de développement (si process changé)
+- Notes importantes (nouvelles contraintes, dépréciations)
+
 Mode : UPDATE, préserver le contenu manuel existant."
 ```
 
 ### 4.3 - Rapport intermédiaire
 
 ```
-✅ Phase 4 : README mis à jour
+✅ Phase 4 : README & CLAUDE.md mis à jour
 
-📝 Modifications :
+📝 README.md :
 - Version badge : X.Y.Z
 - Section [X] mise à jour
 - Liens vérifiés
+
+📝 CLAUDE.md :
+- Commandes : [ajoutées/modifiées]
+- Architecture : [mise à jour si applicable]
+- Notes : [ajoutées si applicable]
 
 [Continuer vers Release ?]
 ```
@@ -378,10 +392,12 @@ git push origin vX.Y.Z  # si confirmé
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│ 📖 README                                                    │
+│ 📖 README & CLAUDE.md                                        │
 ├─────────────────────────────────────────────────────────────┤
-│ ✅ Version badge mis à jour                                  │
-│ ✅ Sections vérifiées                                        │
+│ ✅ README.md - Version badge mis à jour                      │
+│ ✅ README.md - Sections vérifiées                            │
+│ ✅ CLAUDE.md - Commandes synchronisées                       │
+│ ✅ CLAUDE.md - Architecture à jour                           │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
