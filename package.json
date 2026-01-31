@@ -1,0 +1,19 @@
+{
+  "name": "ulk",
+  "version": "2.2.0",
+  "private": true,
+  "description": "AI-assisted development toolkit",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:core": "npm run build -w @ulk/core",
+    "build:status-board": "npm run build -w @ulk/status-board",
+    "clean": "npm run clean --workspaces",
+    "status-board": "npm run start -w @ulk/status-board --"
+  },
+  "author": "izo",
+  "license": "MIT"
+}
