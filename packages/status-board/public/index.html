@@ -8,27 +8,7 @@
     <link rel="icon" href="https://raw.githubusercontent.com/izo/Ulk/main/ulk.png" type="image/png">
 
     <style>
-        :root {
-            --bg: #ffffff;
-            --text: #1d1d1f;
-            --text-secondary: #86868b;
-            --text-tertiary: #aeaeb2;
-            --border: #d2d2d7;
-            --green: #34c759;
-            --yellow: #ff9f0a;
-            --red: #ff3b30;
-            --blue: #007aff;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #000000;
-                --text: #f5f5f7;
-                --text-secondary: #86868b;
-                --text-tertiary: #48484a;
-                --border: #38383a;
-            }
-        }
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Rounded:wght@400;500;600;700&display=swap');
 
         * {
             margin: 0;
@@ -37,283 +17,427 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.47059;
-            font-size: 17px;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', 'SF Pro Display', system-ui, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(180deg,
+                #4a90d9 0%,
+                #6ba3e0 30%,
+                #87b5e5 60%,
+                #a8c9eb 80%,
+                #d4e4f4 100%
+            );
+            color: #fff;
             -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 24px;
+            min-height: 100vh;
         }
 
-        /* Header */
-        header {
-            padding: 48px 0 32px;
-            text-align: center;
+        /* Status Header */
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 32px 0 24px;
         }
 
-        .logo {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+        .status-icon {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .cloud {
+            width: 80px;
+            height: 50px;
+            background: linear-gradient(180deg, #ffd54f 0%, #ffb300 100%);
+            border-radius: 25px;
+            position: relative;
+            top: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .cloud::before {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(180deg, #ffd54f 0%, #ffb300 100%);
+            border-radius: 50%;
+            top: -15px;
+            left: 12px;
+        }
+
+        .cloud::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(180deg, #ffd54f 0%, #ffb300 100%);
+            border-radius: 50%;
+            top: -8px;
+            right: 15px;
+        }
+
+        .check-badge {
+            position: absolute;
+            bottom: 5px;
+            right: -5px;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(180deg, #5eb4f7 0%, #2196f3 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .check-badge svg {
+            width: 20px;
+            height: 20px;
+            color: #fff;
+        }
+
+        .status-text h1 {
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.3;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .status-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .status-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .status-links a:hover {
+            color: #fff;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-pill {
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .stat-pill strong {
+            font-weight: 700;
+        }
+
+        /* Card */
+        .card {
+            background: rgba(45, 45, 48, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card-icon {
+            width: 28px;
+            height: 28px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Search */
+        .search-box {
             margin-bottom: 16px;
         }
 
-        h1 {
-            font-size: 32px;
-            font-weight: 600;
-            letter-spacing: -0.003em;
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: background 0.2s;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .search-input:focus {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 16px;
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .filter-btn.active {
+            background: rgba(255,255,255,0.95);
+            color: #333;
+        }
+
+        /* Project Item */
+        .project-item {
+            background: rgba(60, 60, 65, 0.8);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .project-item:hover {
+            background: rgba(70, 70, 75, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             margin-bottom: 8px;
         }
 
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 17px;
-        }
-
-        /* Status */
-        .status-section {
-            padding: 48px 0;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .status-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 21px;
-            font-weight: 500;
-        }
-
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--green);
-        }
-
-        .status-dot.warning { background: var(--yellow); }
-        .status-dot.critical { background: var(--red); }
-
-        .status-time {
-            margin-top: 12px;
-            font-size: 14px;
-            color: var(--text-tertiary);
-        }
-
-        /* Stats */
-        .stats-section {
+        .project-checkbox {
+            width: 24px;
+            height: 24px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 6px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 48px;
-            padding: 32px 0;
-            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
         }
 
-        .stat {
-            text-align: center;
+        .project-checkbox svg {
+            width: 14px;
+            height: 14px;
+            color: rgba(255,255,255,0.6);
         }
 
-        .stat-value {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.016em;
+        .project-checkbox.healthy {
+            background: #34c759;
         }
 
-        .stat-value.green { color: var(--green); }
-        .stat-value.blue { color: var(--blue); }
-
-        .stat-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            margin-top: 4px;
+        .project-checkbox.healthy svg {
+            color: #fff;
         }
 
-        /* Projects */
-        .projects-section {
-            padding: 32px 0;
+        .project-checkbox.warning {
+            background: #ff9f0a;
         }
 
-        .section-title {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            margin-bottom: 16px;
-        }
-
-        .project-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border);
-            cursor: pointer;
-            transition: opacity 0.15s;
-        }
-
-        .project:hover {
-            opacity: 0.7;
-        }
-
-        .project:last-child {
-            border-bottom: none;
-        }
-
-        .project-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
+        .project-checkbox.critical {
+            background: #ff3b30;
         }
 
         .project-name {
-            font-size: 17px;
-            font-weight: 500;
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .project-badge {
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .project-badge.healthy {
+            background: rgba(52, 199, 89, 0.3);
+            color: #34c759;
+        }
+
+        .project-badge.warning {
+            background: rgba(255, 159, 10, 0.3);
+            color: #ff9f0a;
+        }
+
+        .project-badge.critical {
+            background: rgba(255, 59, 48, 0.3);
+            color: #ff3b30;
         }
 
         .project-meta {
-            font-size: 14px;
-            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 36px;
         }
 
-        .project-status {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+        .project-desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.4;
         }
 
         .project-progress {
             font-size: 14px;
-            color: var(--text-secondary);
-            min-width: 48px;
-            text-align: right;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
         }
 
-        .project-health {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--green);
-        }
-
-        .project-health.warning { background: var(--yellow); }
-        .project-health.critical { background: var(--red); }
-        .project-health.unknown { background: var(--text-tertiary); }
-
-        /* Footer */
-        footer {
-            padding: 32px 0 48px;
+        /* Empty State */
+        .empty {
             text-align: center;
-            font-size: 12px;
-            color: var(--text-tertiary);
+            padding: 32px;
+            color: rgba(255,255,255,0.5);
         }
 
-        footer a {
-            color: var(--text-secondary);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+        .empty code {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            font-size: 13px;
         }
 
         /* Modal */
-        .modal-backdrop {
+        .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.2s;
+            transition: all 0.3s;
             z-index: 100;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 24px;
         }
 
-        .modal-backdrop.open {
+        @media (min-width: 640px) {
+            .modal-overlay {
+                align-items: center;
+            }
+        }
+
+        .modal-overlay.open {
             opacity: 1;
             visibility: visible;
         }
 
         .modal {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg);
-            border-radius: 16px 16px 0 0;
-            max-height: 85vh;
-            transform: translateY(100%);
-            transition: transform 0.3s ease-out;
-            z-index: 101;
+            background: rgba(45, 45, 48, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 80vh;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.4);
         }
 
-        @media (min-width: 640px) {
-            .modal {
-                top: 50%;
-                bottom: auto;
-                left: 50%;
-                right: auto;
-                transform: translate(-50%, -50%) scale(0.95);
-                width: 90%;
-                max-width: 500px;
-                max-height: 80vh;
-                border-radius: 16px;
-            }
-
-            .modal-backdrop.open .modal,
-            .modal.open {
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-
-        .modal.open {
+        .modal-overlay.open .modal {
             transform: translateY(0);
+            opacity: 1;
         }
 
         .modal-header {
             padding: 20px 24px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .modal-title {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 600;
+            color: #fff;
         }
 
         .modal-close {
             width: 28px;
             height: 28px;
-            border-radius: 50%;
-            background: var(--border);
+            background: rgba(255,255,255,0.1);
             border: none;
+            border-radius: 50%;
+            color: rgba(255,255,255,0.6);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
-            transition: opacity 0.15s;
+            transition: all 0.2s;
         }
 
         .modal-close:hover {
-            opacity: 0.7;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
         }
 
         .modal-body {
@@ -325,13 +449,33 @@
         .modal-stats {
             display: flex;
             justify-content: space-around;
-            padding-bottom: 24px;
-            margin-bottom: 24px;
-            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-stat {
+            text-align: center;
+        }
+
+        .modal-stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .modal-stat-value.green { color: #34c759; }
+        .modal-stat-value.blue { color: #5ac8fa; }
+
+        .modal-stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            margin-top: 4px;
         }
 
         .todo-section {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .todo-section:last-child {
@@ -341,201 +485,131 @@
         .todo-section-title {
             font-size: 12px;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: rgba(255,255,255,0.5);
             text-transform: uppercase;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.5px;
             margin-bottom: 12px;
-        }
-
-        .todo-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
         }
 
         .todo-item {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.02);
+            gap: 10px;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.05);
             border-radius: 10px;
+            margin-bottom: 8px;
         }
 
-        @media (prefers-color-scheme: dark) {
-            .todo-item {
-                background: rgba(255, 255, 255, 0.05);
-            }
+        .todo-item:last-child {
+            margin-bottom: 0;
         }
 
-        .todo-checkbox {
-            width: 20px;
-            height: 20px;
+        .todo-item.done {
+            opacity: 0.5;
+        }
+
+        .todo-check {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
-            border: 2px solid var(--border);
             flex-shrink: 0;
-            margin-top: 1px;
+            margin-top: 2px;
         }
 
-        .todo-item.done .todo-checkbox {
-            background: var(--green);
-            border-color: var(--green);
-        }
-
-        .todo-item.done .todo-text {
-            color: var(--text-tertiary);
-            text-decoration: line-through;
-        }
-
-        .todo-content {
-            flex: 1;
-            min-width: 0;
+        .todo-item.done .todo-check {
+            background: #34c759;
+            border-color: #34c759;
         }
 
         .todo-text {
-            font-size: 15px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
             line-height: 1.4;
+        }
+
+        .todo-item.done .todo-text {
+            text-decoration: line-through;
+            color: rgba(255,255,255,0.5);
         }
 
         .todo-priority {
             display: inline-block;
-            font-size: 11px;
-            font-weight: 500;
+            font-size: 10px;
+            font-weight: 600;
             padding: 2px 6px;
             border-radius: 4px;
-            margin-top: 6px;
+            margin-top: 4px;
+            text-transform: uppercase;
         }
 
         .todo-priority.critical {
-            background: rgba(255, 59, 48, 0.15);
-            color: var(--red);
+            background: rgba(255, 59, 48, 0.2);
+            color: #ff3b30;
         }
 
         .todo-priority.high {
-            background: rgba(255, 159, 10, 0.15);
-            color: var(--yellow);
+            background: rgba(255, 159, 10, 0.2);
+            color: #ff9f0a;
         }
 
-        /* Empty State */
-        .empty {
+        /* Footer */
+        footer {
             text-align: center;
-            padding: 48px 24px;
-            color: var(--text-secondary);
-        }
-
-        .empty p {
-            margin-bottom: 8px;
-        }
-
-        .empty code {
+            padding: 24px;
+            color: rgba(255,255,255,0.5);
             font-size: 13px;
-            padding: 4px 8px;
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 6px;
         }
 
-        @media (prefers-color-scheme: dark) {
-            .empty code {
-                background: rgba(255, 255, 255, 0.1);
-            }
+        footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
         }
 
-        /* Search */
-        .search-container {
-            padding: 16px 0;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 16px;
-            font-size: 17px;
-            border: none;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.05);
-            color: var(--text);
-            outline: none;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .search-input {
-                background: rgba(255, 255, 255, 0.1);
-            }
-        }
-
-        .search-input::placeholder {
-            color: var(--text-tertiary);
-        }
-
-        /* Filters */
-        .filters {
-            display: flex;
-            gap: 8px;
-            padding: 8px 0 16px;
-            overflow-x: auto;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            border: none;
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.05);
-            color: var(--text-secondary);
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.15s;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .filter-btn {
-                background: rgba(255, 255, 255, 0.1);
-            }
-        }
-
-        .filter-btn.active {
-            background: var(--text);
-            color: var(--bg);
+        footer a:hover {
+            color: #fff;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <img src="https://raw.githubusercontent.com/izo/Ulk/main/ulk.png" alt="" class="logo">
-            <h1>Status Board</h1>
-            <p class="subtitle">Project status at a glance</p>
-        </header>
+        <!-- Status Header -->
+        <div class="status-header">
+            <div class="status-icon">
+                <div class="cloud"></div>
+                <div class="check-badge">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="status-text">
+                <h1 id="status-title">All projects are on track.</h1>
+                <div class="status-links">
+                    <a href="#" id="refresh-link">Refresh</a>
+                    <a href="https://github.com/izo/Ulk" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </div>
 
-        <section class="status-section">
-            <div class="status-indicator">
-                <span id="status-dot" class="status-dot"></span>
-                <span id="status-text">All Systems Operational</span>
-            </div>
-            <p id="status-time" class="status-time">Updated just now</p>
-        </section>
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-pill"><strong id="stat-projects">—</strong> projects</div>
+            <div class="stat-pill"><strong id="stat-tasks">—</strong> tasks</div>
+            <div class="stat-pill"><strong id="stat-progress">—</strong> complete</div>
+        </div>
 
-        <section class="stats-section">
-            <div class="stat">
-                <div id="stat-projects" class="stat-value">—</div>
-                <div class="stat-label">Projects</div>
+        <!-- Projects Card -->
+        <div class="card">
+            <div class="card-header">
+                <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+                <span class="card-title">Projects</span>
             </div>
-            <div class="stat">
-                <div id="stat-tasks" class="stat-value">—</div>
-                <div class="stat-label">Tasks</div>
-            </div>
-            <div class="stat">
-                <div id="stat-done" class="stat-value green">—</div>
-                <div class="stat-label">Done</div>
-            </div>
-            <div class="stat">
-                <div id="stat-progress" class="stat-value blue">—</div>
-                <div class="stat-label">Progress</div>
-            </div>
-        </section>
 
-        <section class="projects-section">
-            <div class="search-container">
+            <div class="search-box">
                 <input type="text" id="search" class="search-input" placeholder="Search projects...">
             </div>
 
@@ -546,13 +620,10 @@
                 <button class="filter-btn" data-filter="critical">Critical</button>
             </div>
 
-            <div class="section-title">Projects</div>
-            <div id="project-list" class="project-list">
-                <div class="empty">
-                    <p>Loading...</p>
-                </div>
+            <div id="project-list">
+                <div class="empty">Loading...</div>
             </div>
-        </section>
+        </div>
 
         <footer>
             <a href="https://github.com/izo/Ulk">Ulk</a> · Status Board
@@ -560,8 +631,8 @@
     </div>
 
     <!-- Modal -->
-    <div id="modal-backdrop" class="modal-backdrop">
-        <div id="modal" class="modal">
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
             <div class="modal-header">
                 <span id="modal-title" class="modal-title">Project</span>
                 <button id="modal-close" class="modal-close">
@@ -572,17 +643,17 @@
             </div>
             <div class="modal-body">
                 <div class="modal-stats">
-                    <div class="stat">
-                        <div id="modal-total" class="stat-value">0</div>
-                        <div class="stat-label">Total</div>
+                    <div class="modal-stat">
+                        <div id="modal-total" class="modal-stat-value">0</div>
+                        <div class="modal-stat-label">Total</div>
                     </div>
-                    <div class="stat">
-                        <div id="modal-done" class="stat-value green">0</div>
-                        <div class="stat-label">Done</div>
+                    <div class="modal-stat">
+                        <div id="modal-done" class="modal-stat-value green">0</div>
+                        <div class="modal-stat-label">Done</div>
                     </div>
-                    <div class="stat">
-                        <div id="modal-progress" class="stat-value blue">0%</div>
-                        <div class="stat-label">Progress</div>
+                    <div class="modal-stat">
+                        <div id="modal-progress" class="modal-stat-value blue">0%</div>
+                        <div class="modal-stat-label">Progress</div>
                     </div>
                 </div>
                 <div id="modal-todos"></div>
@@ -610,41 +681,27 @@
                 if (fullRes?.ok) fullData = await fullRes.json();
                 render();
             } catch {
-                $('project-list').innerHTML = '<div class="empty"><p>No data</p><p><code>status-board fetch</code></p></div>';
+                $('project-list').innerHTML = '<div class="empty"><p>No data available</p><code>status-board fetch</code></div>';
             }
         }
 
         function render() {
             if (!data) return;
 
-            // Time
-            const date = new Date(data.generatedAt);
-            const now = new Date();
-            const diff = Math.floor((now - date) / 60000);
-            $('status-time').textContent = diff < 1 ? 'Updated just now' :
-                diff < 60 ? `Updated ${diff}m ago` :
-                `Updated ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+            const s = data.summary;
 
             // Status
-            const s = data.summary;
-            const dot = $('status-dot');
-            const text = $('status-text');
-            dot.className = 'status-dot';
-
             if (s.criticalProjects > 0) {
-                dot.classList.add('critical');
-                text.textContent = `${s.criticalProjects} project${s.criticalProjects > 1 ? 's' : ''} need attention`;
+                $('status-title').textContent = `${s.criticalProjects} project${s.criticalProjects > 1 ? 's' : ''} need attention.`;
             } else if (s.warningProjects > 0) {
-                dot.classList.add('warning');
-                text.textContent = `${s.warningProjects} project${s.warningProjects > 1 ? 's' : ''} with warnings`;
+                $('status-title').textContent = `${s.warningProjects} project${s.warningProjects > 1 ? 's' : ''} with warnings.`;
             } else {
-                text.textContent = 'All Systems Operational';
+                $('status-title').textContent = 'All projects are on track.';
             }
 
             // Stats
             $('stat-projects').textContent = s.totalProjects;
             $('stat-tasks').textContent = s.totalTodos;
-            $('stat-done').textContent = s.completedTodos;
             $('stat-progress').textContent = s.overallProgress + '%';
 
             renderProjects();
@@ -666,19 +723,24 @@
             }
 
             if (!projects.length) {
-                $('project-list').innerHTML = '<div class="empty"><p>No projects found</p></div>';
+                $('project-list').innerHTML = '<div class="empty">No projects found</div>';
                 return;
             }
 
             $('project-list').innerHTML = projects.map(p => `
-                <div class="project" onclick="openProject('${p.id}')">
-                    <div class="project-info">
-                        <div class="project-name">${p.name}</div>
-                        <div class="project-meta">${p.totalTodos} tasks${p.criticalTodos ? ` · ${p.criticalTodos} critical` : ''}</div>
+                <div class="project-item" onclick="openProject('${p.id}')">
+                    <div class="project-row">
+                        <div class="project-checkbox ${p.health}">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </div>
+                        <span class="project-name">${p.name}</span>
+                        <span class="project-badge ${p.health}">${p.health === 'healthy' ? 'On Track' : p.health === 'warning' ? 'Warning' : p.health === 'critical' ? 'Critical' : 'Unknown'}</span>
                     </div>
-                    <div class="project-status">
-                        <div class="project-progress">${p.progress}%</div>
-                        <div class="project-health ${p.health}"></div>
+                    <div class="project-meta">
+                        <span class="project-desc">${p.totalTodos} tasks${p.criticalTodos ? ` · ${p.criticalTodos} critical` : ''}</span>
+                        <span class="project-progress">${p.progress}%</span>
                     </div>
                 </div>
             `).join('');
@@ -696,7 +758,7 @@
 
             const todos = project.todoFile?.todos || [];
             if (!todos.length) {
-                $('modal-todos').innerHTML = '<div class="empty"><p>No todos</p></div>';
+                $('modal-todos').innerHTML = '<div class="empty">No todos available</div>';
             } else {
                 const pending = todos.filter(t => t.status !== 'done');
                 const done = todos.filter(t => t.status === 'done');
@@ -705,31 +767,30 @@
                 if (pending.length) {
                     html += `<div class="todo-section">
                         <div class="todo-section-title">Pending · ${pending.length}</div>
-                        <div class="todo-list">${pending.map(renderTodo).join('')}</div>
+                        ${pending.map(renderTodo).join('')}
                     </div>`;
                 }
                 if (done.length) {
                     html += `<div class="todo-section">
                         <div class="todo-section-title">Completed · ${done.length}</div>
-                        <div class="todo-list">${done.slice(0, 5).map(renderTodo).join('')}</div>
-                        ${done.length > 5 ? `<p style="color:var(--text-tertiary);font-size:13px;margin-top:8px">+ ${done.length - 5} more</p>` : ''}
+                        ${done.slice(0, 5).map(renderTodo).join('')}
+                        ${done.length > 5 ? `<p style="color:rgba(255,255,255,0.4);font-size:12px;margin-top:8px;text-align:center">+ ${done.length - 5} more</p>` : ''}
                     </div>`;
                 }
                 $('modal-todos').innerHTML = html;
             }
 
-            $('modal-backdrop').classList.add('open');
-            $('modal').classList.add('open');
+            $('modal-overlay').classList.add('open');
         }
 
         function renderTodo(t) {
             const done = t.status === 'done' ? 'done' : '';
             const priority = t.priority === 'critical' || t.priority === 'high'
-                ? `<span class="todo-priority ${t.priority}">${t.priority}</span>` : '';
+                ? `<div class="todo-priority ${t.priority}">${t.priority}</div>` : '';
             return `
                 <div class="todo-item ${done}">
-                    <div class="todo-checkbox"></div>
-                    <div class="todo-content">
+                    <div class="todo-check"></div>
+                    <div>
                         <div class="todo-text">${t.title}</div>
                         ${priority}
                     </div>
@@ -738,12 +799,11 @@
         }
 
         function closeModal() {
-            $('modal-backdrop').classList.remove('open');
-            $('modal').classList.remove('open');
+            $('modal-overlay').classList.remove('open');
         }
 
-        $('modal-backdrop').addEventListener('click', e => {
-            if (e.target === $('modal-backdrop')) closeModal();
+        $('modal-overlay').addEventListener('click', e => {
+            if (e.target === $('modal-overlay')) closeModal();
         });
         $('modal-close').addEventListener('click', closeModal);
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
@@ -760,6 +820,11 @@
         $('search').addEventListener('input', e => {
             search = e.target.value;
             renderProjects();
+        });
+
+        $('refresh-link').addEventListener('click', e => {
+            e.preventDefault();
+            load();
         });
 
         load();
