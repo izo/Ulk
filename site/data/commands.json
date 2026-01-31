@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "1.14.0",
-    "totalCommands": 59,
-    "lastUpdated": "2026-01-29"
+    "version": "2.1.0",
+    "totalCommands": 62,
+    "lastUpdated": "2026-01-31"
   },
   "categories": [
     {
@@ -162,6 +162,21 @@
           "name": "gandalf",
           "description": "Context guardian - hygiene de session, discipline, prevention context rot",
           "icon": "shield"
+        },
+        {
+          "name": "ranma",
+          "description": "Migration planner - analyse source, planifie migration vers stack cible (WP→SPIP, Next→Nuxt, etc.)",
+          "icon": "repeat"
+        },
+        {
+          "name": "seo-auditor",
+          "description": "Audit SEO & GEO - technique, on-page, performance, optimisation pour citations IA",
+          "icon": "search"
+        },
+        {
+          "name": "pencil-generator",
+          "description": "Analyse Next.js → genere fichiers .pen avec design tokens pour Pencil",
+          "icon": "layout"
         }
       ]
     },

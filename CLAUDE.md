@@ -2,6 +2,14 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## About the Name 🐺
+
+**Bruce**, whose real name is **Ulk**, is a Swedish Vallhund — a thousand-year-old Viking dog breed, stocky and fearless, nicknamed "the Viking's dog".
+
+Like his ancestor who accompanied drakkars across Nordic seas, Ulk accompanies developers through oceans of code. Small but mighty, he never backs down from any challenge: security audits, legacy code refactoring, or deployments at 3 AM.
+
+> The name "ulk" means "wolf" in Old Norse. Because beneath his adorable appearance, Bruce is a fierce guardian of code quality.
+
 ## Project Overview
 
 **ulk** is a comprehensive AI-assisted development toolkit organized into three independent modules:

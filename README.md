@@ -1,9 +1,18 @@
-# ulk
+# ulk 🐺
 
 AI Development Toolkit pour Claude Code.
 
 [![Live Demo](https://img.shields.io/badge/demo-live-blue)](https://izo.github.io/ulk/)
 [![GitHub](https://img.shields.io/github/stars/izo/ulk?style=social)](https://github.com/izo/ulk)
+[![Version](https://img.shields.io/badge/version-2.1.0-purple)](https://github.com/izo/ulk/releases)
+
+## Pourquoi "ulk" ?
+
+**Bruce**, de son vrai nom **Ulk**, est un Vallhund suédois — une race de chien viking millénaire, trapue et intrépide, surnommée "le chien des Vikings".
+
+Comme son ancêtre qui accompagnait les drakkars à travers les mers nordiques, Ulk accompagne les développeurs à travers les océans de code. Petit mais costaud, il ne recule devant aucun défi : audits de sécurité, refactoring de legacy code, ou déploiement à 3h du matin.
+
+> Le nom "ulk" signifie "loup" en vieux norrois. Car sous ses airs adorables, Bruce est un gardien féroce de la qualité du code.
 
 ## Installation
 
@@ -52,6 +61,13 @@ Options disponibles :
 | `steve` | API mobile : audit web → design API iOS/Android |
 | `jobs` | Implémentation Apple : architecture SwiftUI multi-plateforme |
 | `svg-analyzer` | Analyse React/Next.js → génère SVG via Shad2SVG |
+| `ranma` | Planificateur de migration (WP→SPIP, Next→Nuxt, etc.) |
+| `seo-auditor` | Audit SEO & GEO (technique, on-page, AI citations) |
+| `pencil-generator` | Génère fichiers .pen depuis Next.js |
+| `gandalf` | Context guardian (hygiène de session, discipline) |
+| `blackemperor` | Livraison rapide : simplify → docs → sync → release |
+| `brigitte` | Communications bienveillantes + sync Notion/Linear |
+| `c3po` | Product Manager : idée → projet complet |
 
 ### Orchestrateurs (`/ulk:agents:*`)
 

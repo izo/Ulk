@@ -40,8 +40,8 @@
         }
     </script>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <!-- Iconify (Fluent Icons) -->
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 
     <style>
         /* Light mode */
@@ -242,13 +242,13 @@
             </div>
             <div class="flex items-center gap-3">
                 <button onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle theme (T)">
-                    <i data-lucide="sun" class="w-4 h-4 sun"></i>
-                    <i data-lucide="moon" class="w-4 h-4 moon"></i>
+                    <span class="iconify w-4 h-4 sun" data-icon="fluent:weather-sunny-24-regular"></span>
+                    <span class="iconify w-4 h-4 moon" data-icon="fluent:weather-moon-24-regular"></span>
                     <span class="kbd ml-1">T</span>
                 </button>
                 <a href="https://github.com/izo/ulk" target="_blank"
                    class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-zed-text border border-zed-border rounded-lg hover:bg-white transition-colors">
-                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span class="iconify w-4 h-4" data-icon="mdi:github"></span>
                     <span>Source</span>
                     <span class="kbd">S</span>
                 </a>
@@ -269,18 +269,47 @@
             <div class="flex flex-wrap items-center justify-center gap-4 mb-8">
                 <a href="#install"
                    class="flex items-center gap-2 px-6 py-3 bg-zed-accent text-white font-medium rounded-lg hover:bg-zed-accentLight transition-colors">
-                    <i data-lucide="download" class="w-5 h-5"></i>
+                    <span class="iconify w-5 h-5" data-icon="fluent:arrow-download-24-regular"></span>
                     <span>Installer</span>
                     <span class="kbd bg-blue-700 border-blue-600 text-blue-100">D</span>
                 </a>
                 <a href="https://github.com/izo/ulk" target="_blank"
                    class="flex items-center gap-2 px-6 py-3 bg-white border border-zed-border font-medium rounded-lg hover:border-zed-muted transition-colors">
-                    <i data-lucide="github" class="w-5 h-5"></i>
+                    <span class="iconify w-5 h-5" data-icon="mdi:github"></span>
                     <span>Clone source</span>
                     <span class="kbd">C</span>
                 </a>
             </div>
             <p class="text-sm text-zed-muted">Compatible avec Claude Code sur macOS, Linux et Windows</p>
+        </div>
+    </section>
+
+    <!-- About Bruce -->
+    <section class="py-12 px-6">
+        <div class="max-w-3xl mx-auto">
+            <div class="card p-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-bl-full"></div>
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="flex-shrink-0">
+                        <img src="https://raw.githubusercontent.com/izo/ulk/main/ulk.png" alt="Bruce the Vallhund" class="w-24 h-24 rounded-2xl shadow-lg">
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h2 class="text-xl font-semibold mb-3 flex items-center justify-center md:justify-start gap-2">
+                            <span class="text-2xl">🐺</span>
+                            <span>Pourquoi "ulk" ?</span>
+                        </h2>
+                        <p class="text-sm text-zed-muted leading-relaxed mb-3">
+                            <strong class="text-zed-text">Bruce</strong>, de son vrai nom <strong class="text-zed-text">Ulk</strong>, est un Vallhund suedois — une race de chien viking millenaire, trapue et intrepide, surnommee "le chien des Vikings".
+                        </p>
+                        <p class="text-sm text-zed-muted leading-relaxed mb-3">
+                            Comme son ancetre qui accompagnait les drakkars a travers les mers nordiques, Ulk accompagne les developpeurs a travers les oceans de code. Petit mais costaud, il ne recule devant aucun defi : audits de securite, refactoring de legacy code, ou deploiement a 3h du matin.
+                        </p>
+                        <p class="text-xs text-zed-muted italic">
+                            Le nom "ulk" signifie "loup" en vieux norrois. Car sous ses airs adorables, Bruce est un gardien feroce de la qualite du code.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -290,7 +319,7 @@
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="card p-6">
                     <div class="flex items-center gap-3 mb-3">
-                        <i data-lucide="zap" class="w-5 h-5 text-zed-accent"></i>
+                        <span class="iconify w-5 h-5 text-zed-accent" data-icon="fluent:flash-24-filled"></span>
                         <span class="font-semibold">Rapide</span>
                     </div>
                     <p class="text-sm text-zed-muted leading-relaxed">
@@ -299,7 +328,7 @@
                 </div>
                 <div class="card p-6">
                     <div class="flex items-center gap-3 mb-3">
-                        <i data-lucide="brain" class="w-5 h-5 text-zed-accent"></i>
+                        <span class="iconify w-5 h-5 text-zed-accent" data-icon="fluent:brain-circuit-24-regular"></span>
                         <span class="font-semibold">Intelligent</span>
                     </div>
                     <p class="text-sm text-zed-muted leading-relaxed">
@@ -308,7 +337,7 @@
                 </div>
                 <div class="card p-6">
                     <div class="flex items-center gap-3 mb-3">
-                        <i data-lucide="git-fork" class="w-5 h-5 text-zed-accent"></i>
+                        <span class="iconify w-5 h-5 text-zed-accent" data-icon="fluent:branch-fork-24-regular"></span>
                         <span class="font-semibold">Extensible</span>
                     </div>
                     <p class="text-sm text-zed-muted leading-relaxed">
@@ -334,7 +363,7 @@
                     <div class="code-dot bg-green-500"></div>
                     <span class="text-gray-400 text-sm ml-2 font-mono">Terminal</span>
                     <button onclick="copyInstall()" class="ml-auto text-gray-400 hover:text-white transition-colors">
-                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span class="iconify w-4 h-4" data-icon="fluent:copy-24-regular"></span>
                     </button>
                 </div>
                 <div class="p-6">
@@ -361,7 +390,7 @@
                 <div class="card p-6 hover:shadow-lg transition-shadow">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
-                            <i data-lucide="clipboard-list" class="w-6 h-6 text-purple-600"></i>
+                            <span class="iconify w-6 h-6 text-purple-600" data-icon="fluent:clipboard-task-list-24-regular"></span>
                         </div>
                         <div>
                             <h3 class="font-mono font-semibold">audit-complet</h3>
@@ -378,7 +407,7 @@
                 <div class="card p-6 hover:shadow-lg transition-shadow">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
-                            <i data-lucide="refresh-ccw" class="w-6 h-6 text-purple-600"></i>
+                            <span class="iconify w-6 h-6 text-purple-600" data-icon="fluent:arrow-sync-24-regular"></span>
                         </div>
                         <div>
                             <h3 class="font-mono font-semibold">legacy-revival</h3>
@@ -395,7 +424,7 @@
                 <div class="card p-6 hover:shadow-lg transition-shadow">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
-                            <i data-lucide="rocket" class="w-6 h-6 text-purple-600"></i>
+                            <span class="iconify w-6 h-6 text-purple-600" data-icon="fluent:rocket-24-regular"></span>
                         </div>
                         <div>
                             <h3 class="font-mono font-semibold">pre-release</h3>
@@ -463,7 +492,7 @@
     <section class="py-16 px-6 bg-white border-y border-zed-border">
         <div class="max-w-4xl mx-auto text-center">
             <div class="inline-flex items-center justify-center w-12 h-12 bg-zed-accent/10 rounded-xl mb-6">
-                <i data-lucide="git-pull-request" class="w-6 h-6 text-zed-accent"></i>
+                <span class="iconify w-6 h-6 text-zed-accent" data-icon="fluent:branch-request-24-regular"></span>
             </div>
             <h2 class="text-2xl font-semibold mb-4">Open Source</h2>
             <p class="text-zed-muted mb-8 max-w-xl mx-auto">
@@ -473,12 +502,12 @@
             <div class="flex flex-wrap items-center justify-center gap-4">
                 <a href="https://github.com/izo/ulk/blob/main/site/data/commands.json" target="_blank"
                    class="flex items-center gap-2 px-5 py-2.5 bg-zed-text text-white font-medium rounded-lg hover:bg-gray-800 transition-colors">
-                    <i data-lucide="file-json" class="w-4 h-4"></i>
+                    <span class="iconify w-4 h-4" data-icon="fluent:document-javascript-24-regular"></span>
                     <span>commands.json</span>
                 </a>
                 <a href="https://github.com/izo/ulk/issues/new" target="_blank"
                    class="flex items-center gap-2 px-5 py-2.5 border border-zed-border font-medium rounded-lg hover:bg-gray-50 transition-colors">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span class="iconify w-4 h-4" data-icon="fluent:add-24-regular"></span>
                     <span>Proposer un agent</span>
                 </a>
             </div>
@@ -491,7 +520,7 @@
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="flex items-center gap-4">
                     <a href="https://github.com/izo/ulk" target="_blank" class="text-zed-muted hover:text-zed-text transition-colors">
-                        <i data-lucide="github" class="w-5 h-5"></i>
+                        <span class="iconify w-5 h-5" data-icon="mdi:github"></span>
                     </a>
                 </div>
                 <p class="text-sm text-zed-muted">
@@ -522,7 +551,6 @@
             const next = current === 'dark' ? 'light' : 'dark';
             localStorage.setItem('theme', next);
             applyTheme(next);
-            lucide.createIcons();
         }
 
         // Apply theme immediately to prevent flash
@@ -562,21 +590,72 @@
             }
         });
 
-        // Icon mapping
+        // Icon mapping - Fluent Icons via Iconify
         const iconMap = {
-            'file-text': 'file-text', 'list-checks': 'list-checks', 'play': 'play',
-            'refresh-cw': 'refresh-cw', 'search-code': 'search-code', 'minimize-2': 'minimize-2',
-            'accessibility': 'accessibility', 'gauge': 'gauge', 'arrow-left-right': 'arrow-left-right',
-            'brain': 'brain', 'folder-open': 'folder-open', 'figma': 'figma', 'repeat': 'repeat',
-            'layout': 'layout', 'hexagon': 'hexagon', 'triangle': 'triangle', 'rocket': 'rocket',
-            'smartphone': 'smartphone', 'database': 'database', 'globe': 'globe', 'cloud': 'cloud',
-            'container': 'box', 'server': 'server', 'check-circle': 'check-circle',
-            'monitor-check': 'monitor-check', 'network': 'network', 'clipboard-list': 'clipboard-list',
-            'shield': 'shield', 'upload': 'upload', 'git-branch': 'git-branch', 'activity': 'activity',
-            'hard-drive': 'hard-drive', 'alert-triangle': 'alert-triangle', 'move': 'move',
-            'trash-2': 'trash-2', 'book-open': 'book-open', 'shield-check': 'shield-check',
-            'coins': 'coins', 'layers': 'layers', 'download': 'download', 'plus-circle': 'plus-circle',
-            'search': 'search', 'calendar': 'calendar', 'bot': 'bot'
+            'file-text': 'fluent:document-24-regular',
+            'list-checks': 'fluent:task-list-square-24-regular',
+            'play': 'fluent:play-24-filled',
+            'refresh-cw': 'fluent:arrow-sync-24-regular',
+            'refresh-ccw': 'fluent:arrow-sync-24-regular',
+            'search-code': 'fluent:search-24-regular',
+            'minimize-2': 'fluent:arrow-minimize-24-regular',
+            'accessibility': 'fluent:accessibility-24-regular',
+            'gauge': 'fluent:gauge-24-regular',
+            'arrow-left-right': 'fluent:arrow-swap-24-regular',
+            'brain': 'fluent:brain-circuit-24-regular',
+            'folder-open': 'fluent:folder-open-24-regular',
+            'figma': 'logos:figma',
+            'repeat': 'fluent:arrow-repeat-all-24-regular',
+            'layout': 'fluent:panel-left-24-regular',
+            'hexagon': 'fluent:hexagon-24-regular',
+            'triangle': 'fluent:triangle-24-regular',
+            'rocket': 'fluent:rocket-24-regular',
+            'smartphone': 'fluent:phone-24-regular',
+            'database': 'fluent:database-24-regular',
+            'globe': 'fluent:globe-24-regular',
+            'cloud': 'fluent:cloud-24-regular',
+            'container': 'fluent:box-24-regular',
+            'box': 'fluent:box-24-regular',
+            'server': 'fluent:server-24-regular',
+            'check-circle': 'fluent:checkmark-circle-24-regular',
+            'monitor-check': 'fluent:desktop-checkmark-24-regular',
+            'network': 'fluent:connected-24-regular',
+            'clipboard-list': 'fluent:clipboard-task-list-24-regular',
+            'shield': 'fluent:shield-24-regular',
+            'upload': 'fluent:arrow-upload-24-regular',
+            'git-branch': 'fluent:branch-24-regular',
+            'activity': 'fluent:pulse-24-regular',
+            'hard-drive': 'fluent:hard-drive-24-regular',
+            'alert-triangle': 'fluent:warning-24-regular',
+            'move': 'fluent:arrow-move-24-regular',
+            'trash-2': 'fluent:delete-24-regular',
+            'book-open': 'fluent:book-open-24-regular',
+            'shield-check': 'fluent:shield-checkmark-24-regular',
+            'coins': 'fluent:money-24-regular',
+            'layers': 'fluent:layer-24-regular',
+            'download': 'fluent:arrow-download-24-regular',
+            'plus-circle': 'fluent:add-circle-24-regular',
+            'search': 'fluent:search-24-regular',
+            'calendar': 'fluent:calendar-24-regular',
+            'bot': 'fluent:bot-24-regular',
+            'zap': 'fluent:flash-24-filled',
+            'git-fork': 'fluent:branch-fork-24-regular',
+            'copy': 'fluent:copy-24-regular',
+            'sun': 'fluent:weather-sunny-24-regular',
+            'moon': 'fluent:weather-moon-24-regular',
+            'github': 'mdi:github',
+            'chevron-right': 'fluent:chevron-right-24-regular',
+            'git-pull-request': 'fluent:branch-request-24-regular',
+            'file-json': 'fluent:document-javascript-24-regular',
+            'plus': 'fluent:add-24-regular',
+            'terminal': 'fluent:terminal-24-regular',
+            'image': 'fluent:image-24-regular',
+            'file-import': 'fluent:document-arrow-down-24-regular',
+            'apple': 'mdi:apple',
+            'message-circle-heart': 'fluent:chat-sparkle-24-regular',
+            'presentation': 'fluent:presenter-24-regular',
+            'component': 'fluent:puzzle-piece-24-regular',
+            'flask-conical': 'fluent:beaker-24-regular'
         };
 
         const colorClasses = {
@@ -592,10 +671,10 @@
         }
 
         function createIcon(name, className) {
-            const i = document.createElement('i');
-            i.setAttribute('data-lucide', iconMap[name] || 'terminal');
-            i.className = className;
-            return i;
+            const span = document.createElement('span');
+            span.className = 'iconify ' + className;
+            span.setAttribute('data-icon', iconMap[name] || 'fluent:terminal-24-regular');
+            return span;
         }
 
         async function loadCommands() {
@@ -606,8 +685,6 @@
                 renderCommands(data.categories.filter(c => c.id !== 'vps'));
                 renderVPS(data.categories.find(c => c.id === 'vps'));
                 renderWorkflows(data.workflows);
-
-                lucide.createIcons();
             } catch (error) {
                 console.error('Failed to load commands:', error);
             }
@@ -754,7 +831,6 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadCommands();
-            lucide.createIcons();
         });
     </script>
 </body>
