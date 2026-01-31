@@ -12,11 +12,22 @@ Like his ancestor who accompanied drakkars across Nordic seas, Ulk accompanies d
 
 ## Project Overview
 
-**ulk** is a comprehensive AI-assisted development toolkit organized into three independent modules:
+**ulk** is a comprehensive AI-assisted development toolkit organized as a **lightweight monorepo**:
 
-1. **cheatheet/** - Documentation generator that combines Claude Code and Speckit references into a deployable GitHub Pages site
-2. **agents/** - Collection of specialized AI agents for common development tasks (spec writing, auditing, task generation, etc.)
-3. **sifrei - scribe/** - LLM context generator concept that creates `llm.txt` files for instant project onboarding
+### Core Modules
+- **agents/** - Collection of specialized AI agents for common development tasks
+- **commands/** - Installable Custom Commands for Claude Code
+- **site/** - Main documentation site (GitHub Pages)
+
+### Packages (`packages/`)
+- **@ulk/core** - Shared TypeScript library (parser, types, GitHub client)
+- **@ulk/status-board** - Unified dashboard for project tracking
+- **@ulk/vscode** - VS Code extension (planned)
+- **@ulk/nova** - Nova extension (planned)
+- **@ulk/apple** - iOS/macOS apps via UlkKit (planned)
+
+### Cross-Platform Contract
+- **schemas/** - JSON Schema definitions for data exchange between JS and Swift packages
 
 ## Essential Commands
 
@@ -136,12 +147,54 @@ Once installed, invoke agents anywhere with:
 
 The `commands/` directory contains the installable version of agents formatted for Claude Code Custom Commands.
 
-### Sifrei Scribe (Context Generator)
+### Status Board (`packages/status-board/`)
 
-Located in `sifrei - scribe/`:
-- Conceptual tool for generating `llm.txt` - a 15,000 character max context snapshot
-- Synthesizes: README, CLAUDE.md, configs, git history, MCP servers, custom commands
-- Currently documented in `scribe.md` and `manifeste.md` but not implemented
+Unified dashboard for tracking Ulk-managed projects:
+
+```bash
+cd packages/status-board
+
+# Install dependencies
+npm install
+
+# Create config
+cp status-board.config.example.json status-board.config.json
+# Edit to add your repos
+
+# Fetch project data and generate dashboard
+npm run start all
+
+# Start local dev server
+npm run serve
+```
+
+**Configuration** (`status-board.config.json`):
+```json
+{
+  "projects": [
+    { "repo": "owner/repo-name" },
+    { "repo": "owner/another-repo", "name": "Display Name" }
+  ],
+  "outputDir": "./public/data"
+}
+```
+
+Set `GITHUB_TOKEN` env var for private repositories.
+
+### Core Package (`packages/core/`)
+
+Shared TypeScript library used by all JS/TS packages:
+
+```bash
+cd packages/core
+npm install
+npm run build
+```
+
+Exports:
+- `parseTodoFile()` / `parseSpecFile()` - Parse markdown files
+- `GitHubClient` - GitHub API wrapper
+- TypeScript types for all data structures
 
 ## Architecture
 
@@ -357,105 +410,66 @@ Keep version synchronized across three locations:
 
 ## File Structure
 
-The repository has an intentional naming choice using spaces in folder names for aesthetic reasons:
+Lightweight monorepo with independent packages:
 
 ```
 ulk/
-├── cheatheet/                    # Documentation generator module
-│   ├── generate-unified-docs.js
-│   ├── index.html
-│   ├── ulk.md (generated)
-│   ├── serve.sh
-│   └── README.md, DEPLOY.md, CLAUDE.md
-│
-├── agents/                       # AI agent definitions (source)
-│   ├── 01-spec-writer.md
-│   ├── 02-todo-generator.md
-│   ├── 03-sync-local.md
-│   ├── 04-task-runner.md
-│   ├── 05-code-auditor.md
-│   ├── 06-a11y-auditor.md
-│   ├── 07-perf-auditor.md
-│   ├── 09-context-generator.md
-│   ├── 10-analyze/              # Stack-specific analyzers
-│   │   ├── astro.md
-│   │   ├── next.md
-│   │   ├── nuxt.md
-│   │   ├── spip.md
-│   │   ├── swiftui.md
+├── packages/                     # TypeScript/Swift packages
+│   ├── core/                     # @ulk/core - Shared library
+│   │   ├── src/
+│   │   │   ├── index.ts          # Package exports
+│   │   │   ├── types.ts          # Type definitions
+│   │   │   ├── parser.ts         # todo.md/spec.md parser
+│   │   │   └── github.ts         # GitHub API client
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── status-board/             # @ulk/status-board - Dashboard
+│   │   ├── src/
+│   │   │   ├── cli.ts            # CLI entry point
+│   │   │   ├── config.ts         # Configuration loader
+│   │   │   ├── fetch.ts          # GitHub data fetching
+│   │   │   └── generate.ts       # Static file generation
+│   │   ├── public/
+│   │   │   └── index.html        # Dashboard UI
+│   │   ├── package.json
 │   │   └── README.md
-│   ├── 11-robocop.md
-│   ├── 16-frontend-qa.md        # Unified: full + landing + shadcn audits
-│   ├── 18-audit-complet.md
-│   ├── 19-legacy-revival.md
-│   ├── 20-pre-release.md
-│   ├── 24-brigitte.md           # Unified: comms + Notion/Linear sync
-│   ├── 26-picsou.md
-│   ├── 27-steve.md              # Unified: API + SwiftUI starter kit
-│   ├── 28-svg-analyzer.md
-│   ├── 30-blackemperor.md
-│   ├── 31-ranma.md
-│   ├── 32-seo-auditor.md
-│   ├── 33-pencil-generator.md
-│   ├── 34-gandalf.md
-│   ├── 35-visual-auditor.md
-│   ├── CLAUDE.md
-│   ├── Readme.md
-│   └── ANALYSE-COHERENCE.md
+│   │
+│   └── apple/                    # UlkKit - Swift framework (planned)
+│       ├── UlkKit/               # Shared Swift code
+│       ├── StatusBoard-iOS/
+│       └── StatusBoard-macOS/
 │
-├── commands/                     # Installable Custom Commands
-│   ├── agents/                   # Workflow agents
-│   │   ├── spec-writer.md
-│   │   ├── todo-generator.md
-│   │   ├── task-runner.md
-│   │   ├── sync-local.md
-│   │   ├── code-auditor.md
-│   │   ├── a11y-auditor.md
-│   │   ├── perf-auditor.md
-│   │   ├── context-generator.md
-│   │   ├── robocop.md
-│   │   ├── frontend-qa.md       # Unified: full + landing + shadcn
-│   │   ├── audit-complet.md
-│   │   ├── legacy-revival.md
-│   │   ├── pre-release.md
-│   │   ├── brigitte.md          # Unified: comms + sync
-│   │   ├── picsou.md
-│   │   ├── steve.md             # Unified: API + SwiftUI
-│   │   ├── svg-analyzer.md
-│   │   ├── blackemperor.md
-│   │   ├── ranma.md
-│   │   ├── seo-auditor.md
-│   │   ├── pencil-generator.md
-│   │   ├── gandalf.md
-│   │   └── visual-auditor.md
-│   ├── analyze/                  # Stack analyzers
-│   │   ├── nuxt.md
-│   │   ├── next.md
-│   │   ├── astro.md
-│   │   ├── spip.md
-│   │   └── swiftui.md
+├── schemas/                      # JSON Schema (JS ↔ Swift contract)
+│   ├── todo.schema.json
+│   ├── project.schema.json
+│   ├── dashboard.schema.json
 │   └── README.md
 │
-├── sifrei - scribe/              # Context generator (concept only)
-│   ├── scribe.md
-│   └── manifeste.md
+├── agents/                       # AI agent definitions
+│   ├── 00-godspeed.md           # Entry point agent
+│   ├── 01-spec-writer.md
+│   ├── 02-todo-generator.md
+│   ├── ...
+│   ├── 10-analyze/              # Stack-specific analyzers
+│   └── 35-visual-auditor.md
+│
+├── commands/                     # Installable Custom Commands
+│   ├── agents/
+│   └── analyze/
+│
+├── site/                         # Main documentation site
+│   ├── index.html
+│   └── data/
 │
 ├── .github/workflows/
 │   └── deploy.yml
 │
-├── .claude/
-│   └── settings.local.json
-│
-├── docs/                         # Generated documentation (spec, todo, audits, reports)
-│   ├── spec.md                   # Project specification (generated by spec-writer)
-│   └── todo.md                   # Prioritized tasks (generated by todo-generator)
-│
-├── install.sh                    # Global installation script (--with-vps for VPS agents)
-├── uninstall.sh                  # Uninstallation script
-├── ulk.png                       # Main logo (1.8MB)
-├── ulk-mini.png                  # Favicon (16x16)
+├── install.sh                    # Global installation script
+├── uninstall.sh
+├── ulk.png
 ├── CLAUDE.md                     # This file
-└── .nojekyll                     # Disable Jekyll processing
+└── .nojekyll
 ```
 
 ## Important Notes

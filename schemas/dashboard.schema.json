@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/izo/Ulk/schemas/dashboard.schema.json",
+  "title": "Dashboard",
+  "description": "Status Board dashboard data",
+  "type": "object",
+  "required": ["version", "generatedAt", "projects", "summary"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Generation timestamp"
+    },
+    "projects": {
+      "type": "array",
+      "items": { "$ref": "project.schema.json" }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "totalProjects",
+        "healthyProjects",
+        "warningProjects",
+        "criticalProjects",
+        "totalTodos",
+        "completedTodos",
+        "overallProgress"
+      ],
+      "properties": {
+        "totalProjects": { "type": "integer", "minimum": 0 },
+        "healthyProjects": { "type": "integer", "minimum": 0 },
+        "warningProjects": { "type": "integer", "minimum": 0 },
+        "criticalProjects": { "type": "integer", "minimum": 0 },
+        "totalTodos": { "type": "integer", "minimum": 0 },
+        "completedTodos": { "type": "integer", "minimum": 0 },
+        "overallProgress": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    }
+  }
+}

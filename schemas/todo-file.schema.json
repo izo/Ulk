@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/izo/Ulk/schemas/todo-file.schema.json",
+  "title": "TodoFile",
+  "description": "A parsed todo.md file",
+  "type": "object",
+  "required": ["path", "project", "todos"],
+  "properties": {
+    "path": {
+      "type": "string",
+      "description": "File path relative to repository"
+    },
+    "project": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "todos": {
+      "type": "array",
+      "items": { "$ref": "todo.schema.json" }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

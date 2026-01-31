@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Board - Ulk</title>
+    <meta name="description" content="Unified dashboard for Ulk-managed projects. Track todos, specs, and project health.">
+    <link rel="icon" href="https://raw.githubusercontent.com/izo/Ulk/main/ulk.png" type="image/png">
+
+    <!-- IBM Plex Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        surface: {
+                            light: '#ffffff',
+                            dark: '#18181b'
+                        },
+                        health: {
+                            healthy: '#22c55e',
+                            warning: '#eab308',
+                            critical: '#ef4444',
+                            unknown: '#6b7280'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['IBM Plex Mono', 'monospace'],
+                        sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #fafafa;
+            background-image: radial-gradient(circle at 1px 1px, #e5e5e5 1px, transparent 0);
+            background-size: 24px 24px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        html.dark body {
+            background-color: #09090b;
+            background-image: radial-gradient(circle at 1px 1px, #27272a 1px, transparent 0);
+            color: #fafafa;
+        }
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+        .card:hover {
+            border-color: #d4d4d4;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        html.dark .card {
+            background: #18181b;
+            border-color: #27272a;
+        }
+        html.dark .card:hover {
+            border-color: #3f3f46;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .progress-bar {
+            background: #e5e5e5;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        html.dark .progress-bar {
+            background: #27272a;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .health-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        html.dark .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+    <!-- Header -->
+    <header class="border-b border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://raw.githubusercontent.com/izo/Ulk/main/ulk.png" alt="Ulk" class="w-8 h-8 rounded">
+                <h1 class="text-xl font-semibold font-mono">
+                    <span class="gradient-text">Status Board</span>
+                </h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <span id="last-updated" class="text-sm text-neutral-500 font-mono"></span>
+                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                    <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                    <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                </button>
+                <button id="refresh-btn" class="px-3 py-1.5 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    Refresh
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Summary Cards -->
+        <section id="summary" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="card p-4">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-1">Projects</div>
+                <div id="total-projects" class="text-2xl font-bold font-mono">-</div>
+            </div>
+            <div class="card p-4">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-1">Total Todos</div>
+                <div id="total-todos" class="text-2xl font-bold font-mono">-</div>
+            </div>
+            <div class="card p-4">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-1">Completed</div>
+                <div id="completed-todos" class="text-2xl font-bold font-mono text-green-600">-</div>
+            </div>
+            <div class="card p-4">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-1">Overall Progress</div>
+                <div id="overall-progress" class="text-2xl font-bold font-mono text-blue-600">-</div>
+            </div>
+        </section>
+
+        <!-- Health Overview -->
+        <section id="health-overview" class="card p-4 mb-8">
+            <h2 class="text-lg font-semibold mb-4">Health Overview</h2>
+            <div class="flex gap-6 flex-wrap">
+                <div class="flex items-center gap-2">
+                    <span class="health-dot bg-health-healthy"></span>
+                    <span class="text-sm">Healthy: <strong id="healthy-count">-</strong></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="health-dot bg-health-warning"></span>
+                    <span class="text-sm">Warning: <strong id="warning-count">-</strong></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="health-dot bg-health-critical"></span>
+                    <span class="text-sm">Critical: <strong id="critical-count">-</strong></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section>
+            <h2 class="text-lg font-semibold mb-4">Projects</h2>
+            <div id="projects-grid" class="grid gap-4 md:grid-cols-2">
+                <!-- Projects loaded dynamically -->
+                <div class="card p-6 text-center text-neutral-500">
+                    Loading projects...
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-neutral-200 dark:border-neutral-800 mt-16">
+        <div class="max-w-6xl mx-auto px-4 py-6 text-center text-sm text-neutral-500">
+            <a href="https://github.com/izo/Ulk" class="hover:text-blue-600 transition-colors">Ulk</a>
+            &middot; Status Board v0.1.0
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check system preference
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+
+        // Health colors
+        const healthColors = {
+            healthy: 'bg-health-healthy',
+            warning: 'bg-health-warning',
+            critical: 'bg-health-critical',
+            unknown: 'bg-health-unknown'
+        };
+
+        // Load dashboard data
+        async function loadDashboard() {
+            try {
+                const response = await fetch('/data/summary.json');
+                if (!response.ok) throw new Error('Failed to load data');
+                const data = await response.json();
+                renderDashboard(data);
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                document.getElementById('projects-grid').innerHTML = `
+                    <div class="card p-6 text-center text-neutral-500 col-span-2">
+                        <p class="mb-2">No data available</p>
+                        <p class="text-sm">Run <code class="font-mono bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">status-board fetch</code> to generate data</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderDashboard(data) {
+            // Update last sync time
+            const lastUpdated = new Date(data.generatedAt);
+            document.getElementById('last-updated').textContent =
+                `Updated ${lastUpdated.toLocaleDateString()} ${lastUpdated.toLocaleTimeString()}`;
+
+            // Summary
+            document.getElementById('total-projects').textContent = data.summary.totalProjects;
+            document.getElementById('total-todos').textContent = data.summary.totalTodos;
+            document.getElementById('completed-todos').textContent = data.summary.completedTodos;
+            document.getElementById('overall-progress').textContent = `${data.summary.overallProgress}%`;
+
+            // Health
+            document.getElementById('healthy-count').textContent = data.summary.healthyProjects;
+            document.getElementById('warning-count').textContent = data.summary.warningProjects;
+            document.getElementById('critical-count').textContent = data.summary.criticalProjects;
+
+            // Projects
+            const grid = document.getElementById('projects-grid');
+            if (data.projects.length === 0) {
+                grid.innerHTML = `
+                    <div class="card p-6 text-center text-neutral-500 col-span-2">
+                        No projects configured
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = data.projects.map(project => `
+                <div class="card p-5">
+                    <div class="flex items-start justify-between mb-3">
+                        <div>
+                            <h3 class="font-semibold text-lg">${project.name}</h3>
+                            <a href="${project.url}" target="_blank" class="text-sm text-neutral-500 hover:text-blue-600 transition-colors font-mono">
+                                ${project.url.replace('https://github.com/', '')}
+                            </a>
+                        </div>
+                        <span class="health-dot ${healthColors[project.health]}" title="${project.health}"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-neutral-500">Progress</span>
+                            <span class="font-mono font-medium">${project.progress}%</span>
+                        </div>
+                        <div class="progress-bar h-2">
+                            <div class="progress-fill bg-blue-600" style="width: ${project.progress}%"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 text-sm">
+                        <div>
+                            <span class="text-neutral-500">Todos:</span>
+                            <span class="font-mono font-medium">${project.totalTodos}</span>
+                        </div>
+                        ${project.criticalTodos > 0 ? `
+                        <div>
+                            <span class="text-neutral-500">Critical:</span>
+                            <span class="font-mono font-medium text-red-600">${project.criticalTodos}</span>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Refresh button
+        document.getElementById('refresh-btn').addEventListener('click', loadDashboard);
+
+        // Initial load
+        loadDashboard();
+    </script>
+</body>
+</html>
