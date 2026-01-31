@@ -162,6 +162,43 @@ Générer ou mettre à jour `CHANGELOG.md` :
 - docs/todo.md
 - CHANGELOG.md
 
+[Continuer vers Organisation Docs ?]
+```
+
+---
+
+## Phase 2.5 : Organisation Documentation (conditionnel)
+
+**Déclenchement automatique** si :
+- Release **major** (X.0.0)
+- Plus de **5 fichiers** modifiés dans `/docs`
+- Flag `--with-docs-cleanup` passé
+- Demande explicite de l'utilisateur
+
+### 2.5.1 - Lancer documentalist
+
+```
+Task tool → subagent_type: "documentalist"
+Prompt: "Organiser /docs après génération de documentation.
+Actions :
+1. Valider/ajouter frontmatter aux fichiers récemment modifiés
+2. Déplacer les fichiers dans les bonnes catégories (specs/, audits/, etc.)
+3. Mettre à jour l'index (00-meta/index.md)
+4. Archiver documentation obsolète si détectée
+Mode : post-release, focus sur fichiers modifiés récemment."
+```
+
+### 2.5.2 - Rapport intermédiaire
+
+```
+✅ Phase 2.5 : Organisation Docs terminée
+
+📁 Actions effectuées :
+- Frontmatter validé : X fichiers
+- Fichiers réorganisés : Y
+- Index mis à jour : ✅
+- Archivés : Z fichiers obsolètes
+
 [Continuer vers Sync Externe ?]
 ```
 
@@ -325,6 +362,15 @@ git push origin vX.Y.Z  # si confirmé
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
+│ 📁 ORGANISATION DOCS (si exécuté)                            │
+├─────────────────────────────────────────────────────────────┤
+│ ✅ Frontmatter validé : X fichiers                           │
+│ ✅ Fichiers réorganisés : Y                                  │
+│ ✅ Index mis à jour                                          │
+│ 📦 Archivés : Z fichiers obsolètes                           │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
 │ 🔗 SYNC EXTERNE                                              │
 ├─────────────────────────────────────────────────────────────┤
 │ Notion : [URL] ✅                                            │
@@ -453,7 +499,8 @@ Black Emperor orchestre ces agents dans l'ordre :
 | 1 | code-simplifier (17) | Simplification du code |
 | 2a | spec-writer (01) | Mise à jour docs/spec.md |
 | 2b | todo-generator (02) | Mise à jour docs/todo.md |
-| 3 | external-sync (08) | Sync Notion/Linear |
+| 2.5 | documentalist (13) | Organisation /docs (conditionnel) |
+| 3 | brigitte (24) | Sync Notion/Linear |
 | 4 | sync-local (03) | Mise à jour README |
 | 5 | robocop (11) | Fix erreurs si nécessaire |
 
@@ -466,6 +513,7 @@ Black Emperor orchestre ces agents dans l'ordre :
 | `blackemperor` | Workflow complet (mode standard) |
 | `blackemperor express` | Workflow rapide, minimal de questions |
 | `blackemperor prudent` | Workflow avec validation manuelle |
+| `blackemperor --with-docs-cleanup` | Force l'organisation /docs via documentalist |
 | `blackemperor status` | Voir où on en est |
 | `blackemperor skip` | Sauter la phase actuelle |
 | `blackemperor abort` | Abandonner proprement |
