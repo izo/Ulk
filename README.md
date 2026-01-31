@@ -4,7 +4,7 @@ AI Development Toolkit pour Claude Code.
 
 [![Live Demo](https://img.shields.io/badge/demo-live-blue)](https://izo.github.io/ulk/)
 [![GitHub](https://img.shields.io/github/stars/izo/ulk?style=social)](https://github.com/izo/ulk)
-[![Version](https://img.shields.io/badge/version-2.1.0-purple)](https://github.com/izo/ulk/releases)
+[![Version](https://img.shields.io/badge/version-2.1.1-purple)](https://github.com/izo/ulk/releases)
 
 ## Pourquoi "ulk" ?
 

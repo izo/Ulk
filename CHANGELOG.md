@@ -5,6 +5,29 @@ All notable changes to ulk will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] - 2026-01-31
+
+### Improved
+
+- **Agent Black Emperor (30)** - Enhanced delivery orchestrator
+  - Added **Phase 2.5: Documentation Organization** (conditional)
+    - Triggers on major versions, 5+ docs files modified, or `--with-docs-cleanup` flag
+    - Integrates `documentalist` agent for /docs folder maintenance
+    - Validates frontmatter, reorganizes files, updates index, archives obsolete files
+  - Added **CLAUDE.md update** in Phase 4
+    - Now updates both README.md and CLAUDE.md
+    - Verifies essential commands, architecture, workflow, and important notes
+  - Updated agent orchestration table (added documentalist 2.5, brigitte 24, split 4a/4b)
+  - Added `--with-docs-cleanup` command option
+  - Enhanced final report with ORGANISATION DOCS and README & CLAUDE.md sections
+
+### Fixed
+
+- Image URLs corrected to use proper repository case (Ulk)
+- Optimized images via ImgBot
+
+---
+
 ## [2.1.0] - 2026-01-29
 
 ### Added

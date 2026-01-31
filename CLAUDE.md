@@ -65,7 +65,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `26-picsou.md` - Hosting cost estimator: analyzes infrastructure, compares providers, generates cost reports with recommendations
 - `27-steve.md` - **Unified Apple orchestrator**: audits web projects, designs API, AND generates SwiftUI starter kit (absorbs jobs)
 - `28-svg-analyzer.md` - Analyzes React/Next.js projects, inventories pages and shadcn/ui components, generates SVG via Shad2SVG API
-- `30-blackemperor.md` - Fast delivery orchestrator: simplifies code, documents, syncs external tools (Notion/Linear), updates README, prepares release
+- `30-blackemperor.md` - Fast delivery orchestrator: simplifies code, documents, organizes /docs (Phase 2.5 with documentalist), syncs external tools (Notion/Linear), updates README & CLAUDE.md, prepares release
 - `31-ranma.md` - Migration planning agent: analyzes source project and generates detailed migration plan to target stack (WordPress→SPIP, Next→Nuxt, SPIP→Astro, Kirby→Astro, etc.)
 - `32-seo-auditor.md` - SEO & GEO audit: technical SEO (meta, sitemap, schema.org), on-page (headings, content), performance (Core Web Vitals), and GEO (Generative Engine Optimization for AI citations)
 - `33-pencil-generator.md` - Next.js to Pencil: analyzes pages, layouts, shadcn/ui components and generates .pen files with design tokens
@@ -236,9 +236,10 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "Génère les SVG" → svg-analyzer Phase 2 → calls Shad2SVG API → generates output/*.svg + preview index
 
 # Fast delivery (blackemperor)
-"blackemperor" → simplify code → update docs → sync Notion/Linear → update README → prepare release
+"blackemperor" → simplify code → update docs → organize /docs (Phase 2.5) → sync Notion/Linear → update README & CLAUDE.md → prepare release
 "blackemperor express" → same workflow with minimal questions, auto decisions
-"Ship it!" → blackemperor orchestrates 6 agents: code-simplifier, spec-writer, todo-generator, brigitte (sync), sync-local, robocop
+"blackemperor --with-docs-cleanup" → forces Phase 2.5 (documentalist) for /docs organization
+"Ship it!" → blackemperor orchestrates 7 agents: code-simplifier, spec-writer, todo-generator, documentalist (conditional), brigitte (sync), sync-local, robocop
 
 # Migration planning (ranma)
 "ranma" → analyze source project → ask target stack → generate migration plan in docs/migration/
