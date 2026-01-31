@@ -162,6 +162,47 @@ Générer ou mettre à jour `CHANGELOG.md` :
 - docs/todo.md
 - CHANGELOG.md
 
+[Continuer vers Organisation Docs ?]
+```
+
+---
+
+## Phase 2.5 : Organisation Documentation (Conditionnel)
+
+### 2.5.1 - Déclenchement
+
+Cette phase s'exécute SI l'une de ces conditions est vraie :
+- Version **major** (X.0.0) - réorganisation complète recommandée
+- Plus de **5 fichiers** modifiés dans `/docs`
+- Flag `--with-docs-cleanup` passé explicitement
+- Demande explicite de l'utilisateur
+
+### 2.5.2 - Exécution documentalist
+
+Si conditions remplies :
+
+```
+Task tool → subagent_type: "documentalist"
+Prompt: "Maintenance du dossier /docs suite aux modifications de release.
+Actions :
+1. Valider le frontmatter de tous les fichiers .md modifiés
+2. Réorganiser les fichiers selon les catégories (specs, audits, reports)
+3. Mettre à jour docs/00-meta/index.md
+4. Archiver les fichiers obsolètes dans 99-archive/
+Mode : AUTO pour corrections mineures, CONFIRM pour suppressions/déplacements."
+```
+
+### 2.5.3 - Rapport intermédiaire
+
+```
+✅ Phase 2.5 : Organisation Documentation terminée
+
+📂 Actions effectuées :
+- Frontmatter validé : X fichiers
+- Fichiers réorganisés : Y
+- Index mis à jour : ✅
+- Fichiers archivés : Z
+
 [Continuer vers Sync Externe ?]
 ```
 
@@ -207,7 +248,7 @@ Options :
 
 ---
 
-## Phase 4 : Mise à jour README
+## Phase 4 : Mise à jour README & CLAUDE.md
 
 ### 4.1 - Analyse du README actuel
 
@@ -215,7 +256,32 @@ Options :
 cat README.md 2>/dev/null | head -100
 ```
 
-### 4.2 - Mise à jour intelligente
+### 4.2 - Vérification CLAUDE.md
+
+Si `CLAUDE.md` existe :
+
+```bash
+cat CLAUDE.md 2>/dev/null | head -100
+```
+
+Vérifier et mettre à jour les sections suivantes :
+- **Commandes essentielles** : Refléter les changements de scripts/CLI
+- **Architecture** : Mettre à jour si structure de fichiers changée
+- **Workflow** : Ajouter nouvelles procédures si applicables
+- **Notes importantes** : Ajouter breaking changes ou points d'attention
+
+```
+Task tool → subagent_type: "sync-local"
+Prompt: "Mettre à jour CLAUDE.md pour refléter l'état actuel du projet.
+Sections à vérifier/mettre à jour :
+- Commandes essentielles (si scripts changés)
+- Architecture (si structure modifiée)
+- Workflow (si nouvelles procédures)
+- Notes importantes (breaking changes, dépréciations)
+Mode : UPDATE, préserver le contenu existant non impacté."
+```
+
+### 4.3 - Mise à jour intelligente README
 
 ```
 Task tool → subagent_type: "sync-local"
@@ -229,15 +295,20 @@ Sections à vérifier/mettre à jour :
 Mode : UPDATE, préserver le contenu manuel existant."
 ```
 
-### 4.3 - Rapport intermédiaire
+### 4.4 - Rapport intermédiaire
 
 ```
-✅ Phase 4 : README mis à jour
+✅ Phase 4 : README & CLAUDE.md mis à jour
 
 📝 Modifications :
-- Version badge : X.Y.Z
-- Section [X] mise à jour
-- Liens vérifiés
+- README.md :
+  - Version badge : X.Y.Z
+  - Section [X] mise à jour
+  - Liens vérifiés
+- CLAUDE.md :
+  - Commandes : ✅ à jour / ⏭️ inchangé
+  - Architecture : ✅ à jour / ⏭️ inchangé
+  - Notes : [ajouts si applicable]
 
 [Continuer vers Release ?]
 ```
@@ -325,6 +396,16 @@ git push origin vX.Y.Z  # si confirmé
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
+│ 📂 ORGANISATION DOCS                                         │
+├─────────────────────────────────────────────────────────────┤
+│ ✅ Frontmatter validé : X fichiers                          │
+│ ✅ Fichiers réorganisés : Y                                  │
+│ ✅ Index mis à jour                                          │
+│ 📦 Archivés : Z fichiers                                     │
+│ (ou ⏭️ Phase sautée - conditions non remplies)              │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
 │ 🔗 SYNC EXTERNE                                              │
 ├─────────────────────────────────────────────────────────────┤
 │ Notion : [URL] ✅                                            │
@@ -332,10 +413,15 @@ git push origin vX.Y.Z  # si confirmé
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│ 📖 README                                                    │
+│ 📖 README & CLAUDE.md                                        │
 ├─────────────────────────────────────────────────────────────┤
+│ README.md :                                                  │
 │ ✅ Version badge mis à jour                                  │
 │ ✅ Sections vérifiées                                        │
+│ CLAUDE.md :                                                  │
+│ ✅ Commandes essentielles                                    │
+│ ✅ Architecture                                              │
+│ ✅ Notes importantes                                         │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
@@ -453,8 +539,10 @@ Black Emperor orchestre ces agents dans l'ordre :
 | 1 | code-simplifier (17) | Simplification du code |
 | 2a | spec-writer (01) | Mise à jour docs/spec.md |
 | 2b | todo-generator (02) | Mise à jour docs/todo.md |
-| 3 | external-sync (08) | Sync Notion/Linear |
-| 4 | sync-local (03) | Mise à jour README |
+| 2.5 | documentalist (13) | Organisation /docs (conditionnel) |
+| 3 | brigitte (24) | Sync Notion/Linear |
+| 4a | sync-local (03) | Mise à jour README |
+| 4b | sync-local (03) | Mise à jour CLAUDE.md |
 | 5 | robocop (11) | Fix erreurs si nécessaire |
 
 ---
@@ -466,6 +554,7 @@ Black Emperor orchestre ces agents dans l'ordre :
 | `blackemperor` | Workflow complet (mode standard) |
 | `blackemperor express` | Workflow rapide, minimal de questions |
 | `blackemperor prudent` | Workflow avec validation manuelle |
+| `blackemperor --with-docs-cleanup` | Force la phase 2.5 (organisation /docs) |
 | `blackemperor status` | Voir où on en est |
 | `blackemperor skip` | Sauter la phase actuelle |
 | `blackemperor abort` | Abandonner proprement |
