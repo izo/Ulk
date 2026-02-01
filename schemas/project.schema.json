@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/izo/Ulk/schemas/project.schema.json",
+  "title": "Project",
+  "description": "A project tracked by Status Board",
+  "type": "object",
+  "required": ["id", "name", "repository", "health", "lastSync", "stats"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique project identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Project description"
+    },
+    "repository": {
+      "type": "object",
+      "required": ["owner", "name", "url", "defaultBranch"],
+      "properties": {
+        "owner": { "type": "string" },
+        "name": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "defaultBranch": { "type": "string" }
+      }
+    },
+    "health": {
+      "type": "string",
+      "enum": ["healthy", "warning", "critical", "unknown"],
+      "description": "Overall project health"
+    },
+    "lastSync": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last sync timestamp"
+    },
+    "stats": {
+      "type": "object",
+      "required": ["totalTodos", "completedTodos", "blockedTodos", "criticalTodos", "progress"],
+      "properties": {
+        "totalTodos": { "type": "integer", "minimum": 0 },
+        "completedTodos": { "type": "integer", "minimum": 0 },
+        "blockedTodos": { "type": "integer", "minimum": 0 },
+        "criticalTodos": { "type": "integer", "minimum": 0 },
+        "progress": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "todos": {
+      "$ref": "todo-file.schema.json"
+    },
+    "spec": {
+      "$ref": "spec.schema.json"
+    }
+  }
+}

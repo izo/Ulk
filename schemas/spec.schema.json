@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/izo/Ulk/schemas/spec.schema.json",
+  "title": "SpecFile",
+  "description": "A parsed spec.md file",
+  "type": "object",
+  "required": ["path", "project", "title", "sections"],
+  "properties": {
+    "path": {
+      "type": "string",
+      "description": "File path relative to repository"
+    },
+    "project": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "title": {
+      "type": "string",
+      "description": "Spec document title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description"
+    },
+    "sections": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/section" }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "review", "approved"]
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "section": {
+      "type": "object",
+      "required": ["id", "title", "level", "content"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "level": { "type": "integer", "minimum": 1, "maximum": 6 },
+        "content": { "type": "string" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/section" }
+        }
+      }
+    }
+  }
+}

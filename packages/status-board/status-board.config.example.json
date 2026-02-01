@@ -1,0 +1,22 @@
+{
+  "projects": [
+    {
+      "repo": "izo/Ulk",
+      "name": "Ulk"
+    },
+    {
+      "repo": "owner/another-project"
+    }
+  ],
+  "outputDir": "./public/data",
+  "sync": {
+    "notion": {
+      "enabled": false,
+      "databaseId": "your-notion-database-id"
+    },
+    "linear": {
+      "enabled": false,
+      "teamId": "your-linear-team-id"
+    }
+  }
+}
