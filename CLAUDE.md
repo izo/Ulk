@@ -51,7 +51,7 @@ gh run list --workflow=deploy.yml
 
 The `agents/` directory contains specialized AI agents that can be invoked as needed:
 
-**Workflow Agents (00-34):**
+**Workflow Agents (00-36):**
 - `00-godspeed.md` - Entry point: analyzes project state and suggests relevant agents/actions
 - `01-spec-writer.md` - Analyzes projects to generate comprehensive docs/spec.md files (supports all stacks)
 - `02-todo-generator.md` - Creates actionable TODO lists from specifications
@@ -82,6 +82,7 @@ The `agents/` directory contains specialized AI agents that can be invoked as ne
 - `33-pencil-generator.md` - Next.js to Pencil: analyzes pages, layouts, shadcn/ui components and generates .pen files with design tokens
 - `34-gandalf.md` - Context guardian: monitors context usage, enforces session discipline, prevents context rot
 - `35-visual-auditor.md` - Visual audit via Chrome DevTools MCP: screenshots comparison (mobile/tablet/desktop), DOM/CSS analysis, visual performance (LCP/CLS/FCP), console/network errors, baseline management
+- `36-marketing-maestro.md` - Marketing orchestrator for showcase sites: audits, optimizes and improves landing pages, corporate sites, conversion (CRO), copywriting, and digital presence
 
 **Stack Analyzers (10-analyze/):**
 - `10-analyze/astro.md` - In-depth Astro analysis (Islands, Content Collections)
@@ -142,6 +143,7 @@ Once installed, invoke agents anywhere with:
 /ulk:agents:seo-auditor
 /ulk:agents:pencil-generator
 /ulk:agents:gandalf
+/ulk:agents:marketing-maestro  # Marketing orchestrator for showcase sites
 /ulk:analyze:nuxt
 ```
 
@@ -324,6 +326,13 @@ Agents use `AskUserQuestionTool` for interactive information gathering and adapt
 "visual-auditor --compare staging prod" → compare two environments, detect visual regressions
 "visual-auditor --update-baseline" → update reference screenshots for future comparisons
 
+# Marketing & showcase sites (marketing-maestro)
+"marketing-maestro" → full audit: conversion (CRO), copywriting, analytics, SEO, performance, a11y
+"marketing-maestro landing" → focused audit for single landing page
+"marketing-maestro express" → quick conversion audit without technical audits
+"marketing-maestro implement" → apply quick wins from audit recommendations
+"marketing-maestro ab-test" → generate prioritized A/B testing hypotheses
+
 # Maintenance
 "Sync with Notion and Linear" → "Where are we?"
 ```
@@ -452,11 +461,7 @@ ulk/
 │   ├── 02-todo-generator.md
 │   ├── ...
 │   ├── 10-analyze/              # Stack-specific analyzers
-│   └── 35-visual-auditor.md
-│
-├── commands/                     # Installable Custom Commands
-│   ├── agents/
-│   └── analyze/
+
 │
 ├── site/                         # Main documentation site
 │   ├── index.html
